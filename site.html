@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prime Couture | Kigali Atelier</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Prime Couture, Kigali. A website redesign concept.">
+<meta property="og:title" content="Prime Couture">
+<meta property="og:description" content="Essential power tailoring from Kigali. A website redesign concept.">
+<meta property="og:image" content="https://angenicole.github.io/prime-couture/img/after.jpg">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: oxblood (their studio wall) for the hero, picks and films: brand name, two lines, one film screen; then daylight:
+   a colour room for all 51 pieces, the sash you can recolour, the atelier, the booking. Type is the client's Jost. */
+:root{
+  --night:#110E0B; --night-2:#1C1713; --red:#4C1514; --red-deep:#3B0F0F; --red-soft:#5E1D1A; --blush:#E5C9BE; --paper:#F7F4EF; --ink:#1A1612; --muted:#6E655C; --ivory:#F1EAE0; --dim:#A99D90; --sand:#CDB594;
+  --line:rgba(26,22,18,.12); --line-d:rgba(241,234,224,.14);
+  --sans:Jost,"Helvetica Neue",Arial,sans-serif; --gut:clamp(20px,4.5vw,72px); --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+@property --tint{syntax:'<color>';inherits:true;initial-value:#F7F4EF}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--sans);letter-spacing:.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+[hidden]{display:none!important}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1440px;margin:0 auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.kicker{margin:0 0 16px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
+.title{font-size:clamp(40px,5.6vw,88px);line-height:1.04;letter-spacing:.02em}
+.lede{margin:20px 0 0;max-width:44ch;font-size:17px;opacity:.72}
+.price{font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 30px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;white-space:nowrap;background:var(--ink);color:var(--paper);transition:opacity .3s}
+.btn:hover{opacity:.88}
+.btn--light{background:var(--ivory);color:var(--night)}
+.btn--sm{height:40px;padding:0 20px;font-size:11px}
+.link{font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;opacity:.85}
+.link:hover{opacity:1}
+.chip{height:40px;padding:0 18px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;transition:background .3s,color .3s,box-shadow .3s;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
+.dark .chip{box-shadow:inset 0 0 0 1px var(--line-d)}
+.dark .chip[aria-pressed="true"]{background:var(--ivory);color:var(--night)}
+.chip small{opacity:.6;font-size:12px;margin-left:6px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;z-index:60;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:6px;border-radius:999px;max-width:calc(100% - 24px);background:rgba(59,15,15,.6);color:var(--ivory);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px var(--line-d);transition:background .5s,color .5s,box-shadow .5s}
+.nav.light{background:rgba(247,244,239,.82);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line),0 12px 32px -20px rgba(0,0,0,.35)}
+.nav .mark{padding:0 16px 0 14px;font-size:13px;letter-spacing:.24em;text-decoration:none;white-space:nowrap}
+.nav .links{display:flex}
+.nav .links a{padding:8px 13px;font-size:13px;text-decoration:none;opacity:.7;white-space:nowrap}
+.nav .links a:hover{opacity:1}
+.icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;position:relative}
+.icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.icon i{position:absolute;top:4px;right:2px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--sand);color:var(--night);font:500 10px/16px var(--sans);font-style:normal;text-align:center}
+.icon i[data-n="0"]{display:none}
+.nav .btn{height:40px;padding:0 20px;font-size:11px;background:var(--ivory);color:var(--night)}
+.nav.light .btn{background:var(--ink);color:var(--paper)}
+.menu-btn{display:none}
+
+/* ---------- hero ---------- */
+.dark{background:var(--red);color:var(--ivory)}
+.dark .lede{color:var(--blush);opacity:.85}
+.hero{padding-top:120px;padding-bottom:clamp(64px,8vw,112px);text-align:center}
+.brand{font-size:clamp(34px,8.6vw,160px);line-height:1;letter-spacing:.14em;margin-right:-.14em;white-space:nowrap}
+.hero .intro{max-width:52ch;margin:28px auto 0;font-size:clamp(16px,1.3vw,19px);color:var(--blush);line-height:1.6}
+.screen{position:relative;margin-top:clamp(40px,5vw,64px);height:clamp(380px,58svh,640px);border-radius:10px;overflow:hidden;background:var(--red-deep);box-shadow:0 40px 90px -40px rgba(0,0,0,.6)}
+.screen .amb{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(36px) brightness(.55) saturate(1.1);transform:scale(1.1)}
+.screen .main{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);height:100%;aspect-ratio:9/16;object-fit:cover;box-shadow:0 0 60px rgba(0,0,0,.35)}
+.screen .fade{transition:opacity .6s var(--ease)}
+.screen .fade.out{opacity:0}
+.screen .cap{position:absolute;left:24px;bottom:24px;text-align:left;max-width:30%}
+.screen .cap small{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blush)}
+.screen .cap b{display:block;font-weight:400;font-size:clamp(20px,1.8vw,26px);margin-top:6px;letter-spacing:.02em}
+.screen .pick-films{position:absolute;right:20px;bottom:20px;display:flex;gap:8px}
+.screen .pick-films button{position:relative;display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 6px;border-radius:999px;background:rgba(59,15,15,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:12px;letter-spacing:.12em;text-transform:uppercase;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line-d)}
+.screen .pick-films img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.screen .pick-films button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
+.screen .pick-films i{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--sand)}
+.screen .pick-films button[aria-pressed="true"] i{background:var(--red)}
+.screen .sound{position:absolute;right:20px;top:20px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blush)}
+
+/* ---------- today's picks ---------- */
+.picks-sec{padding-block:clamp(72px,8vw,120px) clamp(96px,10vw,140px);border-top:1px solid var(--line-d)}
+.picks-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:56px}
+.tp{display:block;text-align:left;width:100%}
+.tp .ph{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--red-deep)}
+.tp .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transition:transform 1.4s var(--ease)}
+.tp:hover .ph img{transform:scale(1.03)}
+.tp .rank{position:absolute;left:16px;top:16px;padding:6px 12px;border-radius:999px;background:rgba(241,234,224,.92);color:var(--red-deep);font-size:12px;letter-spacing:.14em}
+.tp .meta{display:flex;justify-content:space-between;gap:12px;margin-top:16px;font-size:17px}
+.tp small{display:block;margin-top:4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blush);opacity:.8}
+
+/* ---------- films ---------- */
+.films{padding-block:clamp(96px,10vw,140px);background:var(--red-deep)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:48px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.reel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:none;margin-inline:calc(-1*max(var(--gut),env(safe-area-inset-left,0px)));padding-inline:max(var(--gut),env(safe-area-inset-left,0px))}
+.reel::-webkit-scrollbar{display:none}
+.film{flex:0 0 clamp(220px,21vw,320px);scroll-snap-align:start;text-align:left;text-decoration:none}
+.film .fr{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:rgba(0,0,0,.25)}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.film:hover video{transform:scale(1.03)}
+.film .play{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:rgba(241,234,224,.9);color:var(--night);display:grid;place-items:center;opacity:0;transform:scale(.9);transition:opacity .4s,transform .5s var(--ease)}
+.film:hover .play,.film:focus-visible .play{opacity:1;transform:none}
+.film .play svg{width:14px;height:14px;fill:currentColor}
+.film h3{font-size:16px;margin-top:14px;letter-spacing:.02em}
+.film small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blush);opacity:.8}
+.film.ig .fr{display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line-d);text-align:center;padding:24px}
+.film.ig p{margin:0;color:var(--blush);font-size:15px}
+.reel-nav{display:flex;gap:8px}
+.reel-nav button{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center}
+.reel-nav svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+/* ---------- colour room ---------- */
+.room{--tint:#F7F4EF;background:color-mix(in srgb,var(--tint) 26%,var(--paper));transition:--tint 1.2s var(--ease);padding-block:clamp(96px,10vw,160px)}
+.filterbar{position:sticky;top:calc(72px + env(safe-area-inset-top,0px));z-index:30;margin:40px 0 48px;padding:10px 0;background:color-mix(in srgb,var(--tint) 26%,var(--paper));transition:--tint 1.2s var(--ease)}
+.fline{display:flex;align-items:center;gap:8px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding:6px 2px}
+.fline::-webkit-scrollbar{display:none}
+.fline .sep{width:1px;height:24px;background:var(--line);margin:0 8px;flex-shrink:0}
+.fline .chip{flex-shrink:0;height:38px}
+.cd{flex-shrink:0;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14);transition:box-shadow .3s,transform .3s var(--ease)}
+.cd:hover{transform:scale(1.08)}
+.cd[aria-pressed="true"]{box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--ink)}
+.cd.all{background:conic-gradient(#E9E1D2,#C9AF8A,#6B4430,#7A2228,#5E6B4E,#5D7590,#8D8D8B,#1C1B1A,#E9E1D2)}
+.fcount{margin-left:auto;padding-left:16px;font-size:14px;color:var(--muted);flex-shrink:0}
+.cdot{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.cdot span{width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);transition:box-shadow .4s var(--ease),transform .4s var(--ease)}
+.cdot em{font-style:normal}
+.cdot[aria-pressed="true"]{color:var(--ink)}
+.cdot[aria-pressed="true"] span{box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--ink)}
+.seg{display:inline-flex;padding:4px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line)}
+.seg button{height:36px;padding:0 18px;border-radius:999px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:background .3s,color .3s}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:56px 20px}
+.card{display:block;width:100%;text-align:left;min-width:0;animation:rise .8s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:color-mix(in srgb,var(--tint) 30%,#E9E4DC)}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transition:opacity .8s var(--ease)}
+.card .ph img.alt{opacity:0}
+.card:hover .ph img.alt.ready{opacity:1}
+.card .meta{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:15px}
+.card .meta span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .sub{display:flex;align-items:center;gap:8px;margin-top:4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card .sub i{width:9px;height:9px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);flex-shrink:0}
+
+/* ---------- umushanana ---------- */
+.umu{padding-block:clamp(96px,10vw,160px)}
+.umu-in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(40px,7vw,128px);align-items:center}
+.umu .frame{position:relative;height:min(calc(100svh - 140px),880px);aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:#E9E4DC}
+.umu .frame canvas{position:absolute;inset:0;width:100%;height:100%;transition:opacity .7s var(--ease)}
+.umu .frame .lbl{position:absolute;left:16px;bottom:16px;padding:8px 14px;border-radius:999px;background:rgba(247,244,239,.9);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.umu .price{display:block;margin-top:20px;font-size:18px}
+.swatches{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+.note{margin:16px 0 0;font-size:13px;color:var(--muted)}
+
+/* ---------- atelier ---------- */
+.atelier{padding-block:clamp(96px,10vw,160px);border-top:1px solid var(--line)}
+.at-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,4fr);gap:24px;align-items:start;margin-top:56px}
+.at-grid .ph{border-radius:4px;overflow:hidden;background:#E9E4DC}
+.at-grid .ph img{width:100%;height:100%;object-fit:cover}
+.at-grid .tall{aspect-ratio:4/5}
+.at-grid .col{display:grid;gap:24px}
+.at-grid .col:nth-child(2){margin-top:96px}
+.visit{display:grid;gap:24px;align-content:start}
+.visit dl{margin:0;display:grid;gap:20px}
+.visit dt{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.visit dd{margin:0}
+
+/* ---------- booking ---------- */
+.book-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100svh}
+.book-ph{position:relative;overflow:hidden}
+.book-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.book-form{padding:clamp(96px,10vw,140px) max(var(--gut),env(safe-area-inset-right,0px)) clamp(96px,10vw,140px) clamp(32px,6vw,112px);display:flex;flex-direction:column;justify-content:center}
+.card-form{margin-top:48px;background:var(--paper);color:var(--ink);border-radius:10px;padding:40px}
+.steps{display:flex;gap:8px;margin-bottom:32px}
+.steps span{flex:1;height:2px;background:var(--line);transition:background .5s}
+.steps span.on{background:var(--ink)}
+.step h3{font-size:22px;letter-spacing:.02em;margin-bottom:24px}
+.sub-l{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:24px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.field input{width:100%;height:52px;border-radius:6px;border:0;box-shadow:inset 0 0 0 1px var(--line);background:transparent;color:var(--ink);padding:0 16px;font:inherit}
+.field input:focus{outline:none;box-shadow:inset 0 0 0 2px var(--ink)}
+.summary{margin-top:24px;padding:16px 20px;border-radius:6px;background:#EDE8E0;font-size:14px;line-height:1.7;white-space:pre-line}
+.step-acts{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:40px}
+.done p{color:var(--muted);margin:16px 0 32px;max-width:40ch}
+
+/* ---------- footer ---------- */
+.foot{padding-block:96px 40px}
+.foot-top{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:48px}
+.foot .mark{font-size:14px;letter-spacing:.24em}
+.foot h4{margin:0 0 16px;font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.foot ul a{text-decoration:none}
+.join{display:flex;gap:8px;margin-top:24px;max-width:420px}
+.join input{flex:1;min-width:0;height:48px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px var(--line);background:transparent;padding:0 20px;font:inherit}
+.join input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ink)}
+.foot-legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:96px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+
+/* ---------- overlays ---------- */
+.scrim{position:fixed;inset:0;z-index:80;background:rgba(10,8,6,.45);opacity:0;pointer-events:none;transition:opacity .5s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(1040px,100%);background:var(--paper);transform:translateX(102%);transition:transform .8s var(--ease);overflow-y:auto;overscroll-behavior:contain}
+.sheet.on{transform:none}
+.sheet .x{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));float:right;margin:16px 16px 0 0;z-index:2;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.item{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;padding:72px 48px 64px}
+.gallery .main{aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:#E9E4DC}
+.gallery .main img{width:100%;height:100%;object-fit:cover}
+.thumbs{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.thumbs button{width:64px;aspect-ratio:4/5;border-radius:3px;overflow:hidden;opacity:.55;transition:opacity .3s}
+.thumbs button[aria-current="true"]{opacity:1;box-shadow:0 0 0 1px var(--ink)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.item-info{position:sticky;top:96px;align-self:start}
+.item-info h2{font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:.02em}
+.item-info .price{display:block;margin-top:16px;font-size:18px}
+.item-info .desc{color:var(--muted);margin:28px 0 0}
+.item-acts{display:grid;gap:18px;margin-top:40px;justify-items:start}
+.drawer{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);transform:translateX(102%);transition:transform .8s var(--ease);display:flex;flex-direction:column;padding:calc(24px + env(safe-area-inset-top,0px)) 32px calc(24px + env(safe-area-inset-bottom,0px))}
+.drawer.on{transform:none}
+.drawer-h{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.drawer-h h3{font-size:20px;letter-spacing:.04em}
+.bag-items{flex:1;overflow:auto;display:grid;align-content:start;gap:24px;padding-block:24px}
+.bi{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center}
+.bi img{width:64px;aspect-ratio:4/5;object-fit:cover;border-radius:3px}
+.bi h4{margin:0;font-weight:400;font-size:15px}
+.bi .q{display:flex;align-items:center;gap:12px;margin-top:8px;font-size:14px;color:var(--muted)}
+.bi .q button{width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line)}
+.bag-f{border-top:1px solid var(--line);padding-top:24px;display:grid;gap:16px}
+.tot{display:flex;justify-content:space-between;font-size:17px}
+.bag-f small{color:var(--muted);font-size:13px}
+.btn[aria-disabled="true"]{opacity:.35;pointer-events:none}
+.lightbox{position:fixed;z-index:95;inset:0;background:rgba(10,8,6,.94);color:var(--ivory);display:flex;align-items:center;justify-content:center;gap:24px;padding:24px;opacity:0;pointer-events:none;transition:opacity .5s}
+.lightbox.on{opacity:1;pointer-events:auto}
+.lightbox .stage{position:relative;height:min(86svh,960px);aspect-ratio:9/16;max-width:100%;border-radius:8px;overflow:hidden;background:#000}
+.lightbox video{width:100%;height:100%;object-fit:cover}
+.lightbox .cap{position:absolute;left:0;right:0;bottom:0;padding:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.lightbox .cap small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.lightbox .cap h3{font-size:22px;margin-top:4px}
+.lightbox .nb{width:52px;height:52px;flex-shrink:0;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center}
+.lightbox .nb svg,.lightbox .lx svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.lightbox .lx{position:absolute;top:calc(20px + env(safe-area-inset-top,0px));right:20px;width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center;background:rgba(10,8,6,.5)}
+.menu{position:fixed;z-index:85;inset:0;background:var(--paper);color:var(--ink);padding:calc(96px + env(safe-area-inset-top,0px)) var(--gut) 40px;display:flex;flex-direction:column;gap:20px;opacity:0;pointer-events:none;transition:opacity .4s}
+.menu.on{opacity:1;pointer-events:auto}
+.menu a.big{font-size:36px;letter-spacing:.02em;text-decoration:none}
+.toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- concierge ---------- */
+.ask{position:fixed;z-index:70;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;height:52px;padding:0 22px 0 18px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:13px;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.5),inset 0 0 0 1px rgba(241,234,224,.12);transition:transform .5s var(--ease),opacity .4s}
+.ask .dot{width:8px;height:8px;border-radius:50%;background:var(--sand);box-shadow:0 0 0 4px rgba(205,181,148,.25)}
+.ask.hide{opacity:0;pointer-events:none;transform:translateY(12px)}
+.chat{position:fixed;z-index:92;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100% - 40px));height:min(640px,calc(100svh - 120px));background:var(--paper);color:var(--ink);border-radius:16px;box-shadow:0 30px 80px -24px rgba(0,0,0,.45),inset 0 0 0 1px var(--line);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(16px) scale(.98);transform-origin:bottom right;pointer-events:none;transition:opacity .4s,transform .6s var(--ease)}
+.chat.on{opacity:1;transform:none;pointer-events:auto}
+.chat-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 18px 14px 22px;border-bottom:1px solid var(--line)}
+.chat-h b{display:block;font-weight:400;font-size:15px;letter-spacing:.18em;text-transform:uppercase}
+.chat-h small{font-size:13px;color:var(--muted)}
+.msgs{flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.m{max-width:88%;font-size:15px;line-height:1.55;white-space:pre-line}
+.m.you{align-self:flex-end;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:16px 16px 4px 16px}
+.m.prime{align-self:flex-start}
+.m.prime.wait{color:var(--muted)}
+.picks{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;align-self:stretch;flex-shrink:0}
+.picks::-webkit-scrollbar{display:none}
+.pick{flex:0 0 132px;text-align:left}
+.pick img{width:132px;aspect-ratio:4/5;object-fit:cover;border-radius:4px;background:#E9E4DC}
+.pick span{display:block;font-size:13px;margin-top:6px;line-height:1.3}
+.pick em{font-style:normal;font-size:12px;color:var(--muted)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;padding:0 22px 12px}
+.quick button{height:34px;padding:0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:13px}
+.chat form{display:flex;gap:8px;padding:12px 14px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.chat input{flex:1;min-width:0;height:46px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px var(--line);background:transparent;padding:0 18px;font:inherit;color:var(--ink)}
+.chat input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ink)}
+.chat form .btn{height:46px;padding:0 18px}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .at-grid{grid-template-columns:1fr 1fr}
+  .at-grid .visit{grid-column:1/-1}
+  .at-grid .col:nth-child(2){margin-top:0}
+}
+@media (max-width:900px){
+  .nav .links,.nav .btn{display:none}
+  .menu-btn{display:grid}
+  .hero{padding-top:104px}
+  .screen .main{left:50%}
+  .screen .cap{max-width:60%;top:20px;bottom:auto;left:20px}
+  .screen .pick-films{left:12px;right:12px;bottom:12px;justify-content:center}
+  .screen .pick-films button{padding:0 12px 0 4px;font-size:11px}
+  .screen .pick-films button span{display:none}
+  .picks-grid{grid-template-columns:1fr;gap:40px}
+  .filterbar{top:calc(64px + env(safe-area-inset-top,0px))}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 14px}
+  .card .meta{flex-direction:column;gap:2px;font-size:14px}
+  .umu-in{grid-template-columns:1fr}
+  .umu .frame{height:min(68svh,640px);justify-self:center;order:2}
+  .book-in{grid-template-columns:1fr;min-height:0}
+  .book-ph{aspect-ratio:4/5}
+  .book-form{padding:96px max(var(--gut),env(safe-area-inset-right,0px))}
+  .card-form{padding:24px}
+  .item{grid-template-columns:1fr;padding:72px 20px 48px;gap:32px}
+  .item-info{position:static}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .foot-top>div:first-child{grid-column:1/-1}
+  .lightbox{padding:16px}
+  .lightbox .nb{display:none}
+  .lightbox .stage{height:auto;width:min(100%,calc(86svh*9/16))}
+  .chat{right:0;bottom:0;width:100%;height:100svh;border-radius:0}
+}
+@media (max-width:560px){
+  .at-grid{grid-template-columns:1fr}
+  .colours{gap:10px}
+  .cdot em{display:none}
+  .cdot span{width:36px;height:36px}
+  .nav .mark{padding:0 8px 0 12px;font-size:12px}
+  .ask{height:48px;padding:0 18px 0 14px}
+}
+@media (max-width:900px) and (orientation:landscape) and (max-height:560px){
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <a class="mark" href="#top">PRIME COUTURE</a>
+  <div class="links"><a href="#picks">Today's picks</a><a href="#films">Films</a><a href="#colours">The collection</a><a href="#atelier">Atelier</a></div>
+  <button type="button" class="icon" id="bagOpen" aria-label="Open bag"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><i id="bagCount" data-n="0"></i></button>
+  <a class="btn" href="#book">Book a fitting</a>
+  <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
+</nav>
+<div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
+  <a class="big" href="#picks">Today's picks</a><a class="big" href="#films">Films</a><a class="big" href="#colours">The collection</a><a class="big" href="#umushanana">Umushanana</a><a class="big" href="#atelier">Atelier</a>
+  <a class="btn" href="#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
+</div>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero dark" id="hero" aria-label="Prime Couture">
+    <div class="wrap">
+      <h1 class="brand">PRIME COUTURE</h1>
+      <p class="intro">Essential power tailoring from Kigali. Suits, kaftans, dresses and umushanana, cut and finished in our atelier.</p>
+      <div class="screen" id="screen">
+        <video class="amb fade" id="scrAmb" muted loop playsinline aria-hidden="true"></video>
+        <video class="main fade" id="scrMain" muted playsinline aria-label="Prime Couture film"></video>
+        <div class="cap"><small id="scrCat"></small><b id="scrTitle"></b></div>
+        <div class="pick-films" id="scrPick" role="group" aria-label="Choose a film"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODAY'S PICKS -->
+  <section class="picks-sec dark" id="picks" aria-labelledby="tpH">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:0">
+        <div><h2 class="title" id="tpH">Today's picks</h2><p class="lede">The three pieces clients look at most on the Prime Couture shop.</p></div>
+        <a class="link" href="#colours">See all 51 pieces</a>
+      </div>
+      <div class="picks-grid" id="picksGrid"></div>
+    </div>
+  </section>
+
+  <!-- FILMS -->
+  <section class="films dark" id="films" aria-labelledby="fH">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><h2 class="title" id="fH">See it worn</h2><p class="lede">Short films of clients in Prime Couture at their weddings and ceremonies. Choose who you are dressing: him, her, the wedding party, or the details.</p></div>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div class="tabs" id="filmTabs" role="group" aria-label="Show films for"></div><div class="reel-nav"><button type="button" id="rPrev" aria-label="Previous films"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="rNext" aria-label="More films"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+      </div>
+      <div class="reel" id="reel"></div>
+    </div>
+  </section>
+
+  <!-- COLOUR ROOM -->
+  <section class="room" id="colours" aria-labelledby="cH">
+    <div class="wrap">
+      <h2 class="title" id="cH">The collection</h2>
+      <p class="lede">Every piece the atelier makes. Filter by who it is for, by colour or by type, all in one line.</p>
+      <div class="filterbar"><div class="fline" id="fline" role="toolbar" aria-label="Filter the collection"></div></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- UMUSHANANA -->
+  <section class="umu" id="umushanana" aria-labelledby="uH">
+    <div class="wrap umu-in">
+      <div class="frame" id="umuFrame" role="img" aria-label="The Prime Umushanana, the sash shown in the chosen colour">
+        <canvas id="photoA"></canvas><canvas id="photoB"></canvas>
+        <span class="lbl" id="umuLbl">Olive · as made</span>
+      </div>
+      <div>
+        <p class="kicker">Prime Umushanana</p>
+        <h2 class="title" id="uH">Choose the colour of the sash</h2>
+        <p class="lede">Tap a colour and see it on the real piece, folds and sheen kept.</p>
+        <span class="price" data-rwf="156000"></span>
+        <div class="swatches" id="swatches" role="group" aria-label="Sash colour"></div>
+        <p class="note">Example colours. The atelier confirms the fabrics in stock.</p>
+        <div style="margin-top:40px"><button type="button" class="btn" id="umuBook">Book a fitting in <span id="umuColour">Olive</span></button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELIER -->
+  <section class="atelier" id="atelier" aria-labelledby="aH">
+    <div class="wrap">
+      <h2 class="title" id="aH">Visit the atelier</h2>
+      <p class="lede">Come to Gishushu to see the pieces, try them on and talk through your occasion.</p>
+      <div class="at-grid">
+        <div class="col"><div class="ph tall"><img src="media/full/the-ivory-vest-set-1.webp" alt="The Ivory Vest Set in the Prime Couture showroom" loading="lazy"></div></div>
+        <div class="col"><div class="ph tall"><img src="media/full/essential-noir-2.webp" alt="Essential Noir beside the showroom shelves" loading="lazy"></div></div>
+        <div class="visit">
+          <div class="ph tall"><img src="media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp" alt="A double-breasted suit in the atelier lounge" loading="lazy"></div>
+          <dl>
+            <div><dt>Where</dt><dd>15 KG 599 St, Gishushu, Kigali</dd></div>
+            <div><dt>Hours</dt><dd>Monday to Saturday, 9am to 8pm</dd></div>
+            <div><dt>Call or WhatsApp</dt><dd>+250 781 178 499</dd></div>
+          </dl>
+          <a class="link" style="justify-self:start" href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Open in Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="dark" id="book" aria-labelledby="bH">
+    <div class="book-in">
+      <div class="book-ph"><img src="media/full/the-sand-mocha-suits-1.webp" alt="The Sand and Mocha suits, worn side by side" loading="lazy"></div>
+      <div class="book-form">
+        <h2 class="title" id="bH">Book a fitting</h2>
+        <p class="lede">Three short steps. We write the WhatsApp message, you send it.</p>
+        <div class="card-form" id="bookCard">
+          <div class="steps" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="step" data-step="1"><h3>What is the occasion?</h3><div class="chips" id="fOcc" role="group" aria-label="Occasion"></div><p class="sub-l">The cut</p><div class="chips" id="fCut" role="group" aria-label="Cut"></div></div>
+          <div class="step" data-step="2" hidden><h3>When would you like to come in?</h3><div class="chips" id="fDay" role="group" aria-label="Day"></div><p class="sub-l">Time</p><div class="seg" id="fTime" role="group" aria-label="Time"></div></div>
+          <div class="step" data-step="3" hidden><h3>Your name</h3><label class="field" for="fName"><span class="sub-l" style="display:block;margin-top:0">So the atelier knows who is coming</span><input id="fName" autocomplete="name" placeholder="e.g. Aline Uwase"></label><div class="summary" id="fSummary" aria-live="polite"></div></div>
+          <div class="done" id="fDone" hidden><h3 style="font-size:22px">WhatsApp is open with your request</h3><p>Send the message there. The atelier replies to confirm your time.</p><button type="button" class="link" id="fAgain">Start a new request</button></div>
+          <div class="step-acts" id="fActs"><button type="button" class="link" id="fBack" hidden>Back</button><span></span><button type="button" class="btn" id="fNext">Next</button><a class="btn" id="fSend" target="_blank" rel="noopener" href="#" hidden>Send on WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <div class="foot-top">
+    <div><div class="mark">PRIME COUTURE</div><p style="color:var(--muted);max-width:36ch;margin:16px 0 0">Clean tailoring, elegant dresses, quiet palettes, and refined silhouettes curated for everyday elegance.</p>
+      <form class="join" id="join"><label for="jEmail" style="position:absolute;left:-9999px">Email</label><input id="jEmail" type="email" placeholder="Email for new pieces" required><button class="btn btn--sm" type="submit">Join</button></form><p id="joined" style="margin:16px 0 0;font-size:14px" hidden>You're on the list.</p></div>
+    <div><h4>Visit</h4><ul><li>15 KG 599 St, Gishushu, Kigali</li><li>Mon to Sat, 9am to 8pm</li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp +250 781 178 499</a></li><li>contact@prime-couture.com</li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram @primecouturehq</a></li></ul></div>
+    <div><h4>Prices in</h4><div class="seg" id="curSeg" role="group" aria-label="Currency"><button type="button" data-cur="RWF" aria-pressed="true">RWF</button><button type="button" data-cur="USD" aria-pressed="false">USD</button><button type="button" data-cur="GBP" aria-pressed="false">GBP</button></div><p style="font-size:13px;color:var(--muted);margin:12px 0 0">Prices are set in RWF. USD and GBP are estimates.</p></div>
+  </div>
+  <div class="foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><span>Photography and film © Prime Couture</span></div>
+</footer>
+
+<button type="button" class="ask" id="askBtn" aria-label="Ask Prime, the concierge"><span class="dot"></span>Ask Prime</button>
+<section class="chat" id="chat" aria-label="Prime concierge" aria-hidden="true" data-lenis-prevent>
+  <div class="chat-h"><div><b>Prime concierge</b><small>Pieces, prices, colours or a fitting.</small></div><button type="button" class="icon" id="chatClose" aria-label="Close concierge"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="quick" id="quick"></div>
+  <form id="chatForm"><label for="chatIn" style="position:absolute;left:-9999px">Message</label><input id="chatIn" autocomplete="off" placeholder="Ask about a piece or an occasion"><button class="btn" type="submit">Send</button></form>
+</section>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-label="Piece" aria-hidden="true" data-lenis-prevent>
+  <button type="button" class="icon x" id="sheetClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="item">
+    <div class="gallery"><div class="main"><img id="itMain" alt=""></div><div class="thumbs" id="itThumbs"></div></div>
+    <div class="item-info"><p class="kicker" id="itCat"></p><h2 id="itTitle"></h2><span class="price" id="itPrice"></span><p class="desc" id="itDesc"></p>
+      <div class="item-acts"><button type="button" class="btn" id="itAdd">Add to bag</button><button type="button" class="link" id="itFit">Book a fitting for this piece</button><button type="button" class="link" id="itAsk">Ask Prime about this piece</button></div></div>
+  </div>
+</aside>
+<aside class="drawer" id="drawer" aria-label="Bag" aria-hidden="true" data-lenis-prevent>
+  <div class="drawer-h"><h3>Your bag</h3><button type="button" class="icon" id="bagClose" aria-label="Close bag"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="bag-items" id="bagItems"></div>
+  <div class="bag-f"><div class="tot"><span>Total</span><span class="price" id="bagTotal"></span></div><small>The atelier confirms sizing, availability and delivery with you on WhatsApp before you pay.</small><a class="btn" id="bagCheckout" target="_blank" rel="noopener" href="#">Order on WhatsApp</a></div>
+</aside>
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Film">
+  <button type="button" class="nb" id="lbPrev" aria-label="Previous film"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div class="stage"><video id="lbVideo" muted loop playsinline></video><div class="cap"><div><small id="lbCat"></small><h3 id="lbTitle"></h3></div><a class="btn btn--light btn--sm" href="#book" id="lbBook">Book a fitting</a></div></div>
+  <button type="button" class="nb" id="lbNext" aria-label="Next film"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  <button type="button" class="lx" id="lbClose" aria-label="Close film"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+const WA='250781178499';
+const P=[{"slug":"the-sand-mocha-suits","title":"The Sand & Mocha Suits","cat":"Double-Breasted","rwf":350000,"desc":"Refined double-breasted suits in warm sand and rich mocha tones, featuring peak lapels, structured shoulders, and matching tailored trousers. A distinguished choice for weddings, business occasions, and formal celebrations. Each suit is sold separately at 350,000 RWF.","card":"media/card/the-sand-mocha-suits.webp","imgs":["media/full/the-sand-mocha-suits-0.webp","media/full/the-sand-mocha-suits-1.webp","media/full/the-sand-mocha-suits-2.webp","media/full/the-sand-mocha-suits-3.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":31},{"slug":"the-silver-muse-set","title":"The Silver Muse Set","cat":"Two-Piece Set","rwf":150000,"desc":"A striking silver-grey printed two-piece featuring a deep V-neck top, flared sleeves, and a sculpted waist with a peplum finish. Matching trousers create an elegant silhouette for special occasions and standout everyday style.","card":"media/card/the-silver-muse-set.webp","imgs":["media/full/the-silver-muse-set-0.webp","media/full/the-silver-muse-set-1.webp","media/full/the-silver-muse-set-2.webp","media/full/the-silver-muse-set-3.webp"],"fam":"Grey","for":"her","sw":"#8D8D8B","views":12},{"slug":"the-sahara-muse-set","title":"The Sahara Muse Set","cat":"Two-Piece Set","rwf":150000,"desc":"An elegant beige two-piece featuring a sculpted peplum top with flared sleeves, a statement front zip, and lace-up waist detailing. Matching trousers complete a refined look for special occasions and elevated everyday wear.","card":"media/card/the-sahara-muse-set.webp","imgs":["media/full/the-sahara-muse-set-0.webp","media/full/the-sahara-muse-set-1.webp","media/full/the-sahara-muse-set-2.webp","media/full/the-sahara-muse-set-3.webp"],"fam":"Sand","for":"her","sw":"#C9AF8A","views":16},{"slug":"the-executive-mocha-2","title":"The Executive Mocha","cat":"Double-Breasted","rwf":350000,"desc":"Command the room in The Executive Mocha, a women’s trouser suit in a rich mocha brown. A double-breasted blazer, defined waist, and tailored trousers create a polished silhouette for business meetings, special occasions, and everything in between.","card":"media/card/the-executive-mocha-2.webp","imgs":["media/full/the-executive-mocha-2-0.webp","media/full/the-executive-mocha-2-1.webp","media/full/the-executive-mocha-2-2.webp"],"fam":"Brown","for":"her","sw":"#6B4430","views":17},{"slug":"kaftan-jacket","title":"Kaftan Complete","cat":"Kaftan","rwf":146000,"desc":"Refined Made in Rwanda Shirt","card":"media/card/kaftan-jacket.webp","imgs":["media/full/kaftan-jacket-0.webp","media/full/kaftan-jacket-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":40},{"slug":"prime-jacket","title":"Prime Jacket","cat":"Jacket","rwf":94000,"desc":"Prime Jacket","card":"media/card/prime-jacket.webp","imgs":["media/full/prime-jacket-0.webp","media/full/prime-jacket-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":29},{"slug":"kaftan-shirt","title":"Kaftan Shirt","cat":"Kaftan","rwf":84000,"desc":"PS 030","card":"media/card/kaftan-shirt.webp","imgs":["media/full/kaftan-shirt-0.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":24},{"slug":"ash-distressed-texture-suit","title":"Ash Distressed Texture Suit","cat":"Single-breasted","rwf":380000,"desc":"A textured ash-grey blazer with a weathered, brushed finish, paired with a slim black tie for an edgy formal statement.","card":"media/card/ash-distressed-texture-suit.webp","imgs":["media/full/ash-distressed-texture-suit-0.webp","media/full/ash-distressed-texture-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":78},{"slug":"sand-contrast-bib-set","title":"Sand Contrast Bib Set","cat":"Kaftan","rwf":146000,"desc":"A beige two-piece set finished with a diagonally stitched brown bib panel for a refined contrast-detail look.","card":"media/card/sand-contrast-bib-set.webp","imgs":["media/full/sand-contrast-bib-set-0.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":82},{"slug":"midnight-laced-bib-shirt","title":"Midnight Laced Bib Shirt","cat":"Kaftan","rwf":84000,"desc":"A navy shirt with a structured bib front and eyelet lace-up detailing, blending utility styling with sharp tailoring.","card":"media/card/midnight-laced-bib-shirt.webp","imgs":["media/full/midnight-laced-bib-shirt-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":113},{"slug":"olive-marble-print-suit","title":"Olive Marble Print Suit","cat":"Single-breasted","rwf":380000,"desc":"A statement two-piece suit in an olive marbled texture, offering an artistic, modern twist on formal tailoring.","card":"media/card/olive-marble-print-suit.webp","imgs":["media/full/olive-marble-print-suit-0.webp","media/full/olive-marble-print-suit-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":66},{"slug":"monochrome-houndstooth-suit","title":"Monochrome Houndstooth Suit","cat":"Single-breasted","rwf":350000,"desc":"A sharp black-and-white houndstooth blazer styled with a crisp white shirt and slim black tie for classic tailored appeal","card":"media/card/monochrome-houndstooth-suit.webp","imgs":["media/full/monochrome-houndstooth-suit-0.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":56},{"slug":"espresso-bib-kaftan","title":"Espresso Bib Kaftan","cat":"Kaftan","rwf":84000,"desc":"A tailored deep brown kaftan featuring a layered bib front with silver snap buttons, paired elegantly with cream trousers.","card":"media/card/espresso-bib-kaftan.webp","imgs":["media/full/espresso-bib-kaftan-0.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":125},{"slug":"sand-weave-linen-kaftan","title":"Sand Weave Linen Kaftan","cat":"Kaftan","rwf":84000,"desc":"A relaxed linen-blend kaftan shirt in warm sand beige, finished with a bold zigzag stitch placket for a modern, textured look.","card":"media/card/sand-weave-linen-kaftan.webp","imgs":["media/full/sand-weave-linen-kaftan-0.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":63},{"slug":"ice-blue-double-breasted-suit","title":"Ice Blue Double-Breasted Suit","cat":"Double-Breasted","rwf":320000,"desc":"A refined double-breasted suit in pale silver-grey, paired here with a paisley tie and pocket square for a sharp, modern formal look.","card":"media/card/ice-blue-double-breasted-suit.webp","imgs":["media/full/ice-blue-double-breasted-suit-0.webp","media/full/ice-blue-double-breasted-suit-1.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":105},{"slug":"ivory-embroidered-kaftan","title":"Ivory Embroidered Kaftan","cat":"Kaftan","rwf":84000,"desc":"IVORY EMBROIDERED KAFTAN","card":"media/card/ivory-embroidered-kaftan.webp","imgs":["media/full/ivory-embroidered-kaftan-0.webp","media/full/ivory-embroidered-kaftan-1.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":77},{"slug":"verdant-double-breated-suit","title":"Verdant Double-Breasted Suit","cat":"Double-Breasted","rwf":380000,"desc":"","card":"media/card/verdant-double-breated-suit.webp","imgs":["media/full/verdant-double-breated-suit-0.webp","media/full/verdant-double-breated-suit-1.webp","media/full/verdant-double-breated-suit-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":135},{"slug":"brown-embellished-gown","title":"Brown Embellished Gown","cat":"Dress","rwf":350000,"desc":"","card":"media/card/brown-embellished-gown.webp","imgs":["media/full/brown-embellished-gown-0.webp","media/full/brown-embellished-gown-1.webp","media/full/brown-embellished-gown-2.webp","media/full/brown-embellished-gown-3.webp"],"fam":"Brown","for":"her","sw":"#6B4430","views":260},{"slug":"prime-essential-prime-jacket-set","title":"Prime Essential Jacket Set","cat":"Jacket complete","rwf":146000,"desc":"","card":"media/card/prime-essential-prime-jacket-set.webp","imgs":["media/full/prime-essential-prime-jacket-set-0.webp","media/full/prime-essential-prime-jacket-set-1.webp","media/full/prime-essential-prime-jacket-set-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":112},{"slug":"maroon-muse-suit","title":"Maroon Muse Suit","cat":"Double-Breasted","rwf":280000,"desc":"","card":"media/card/maroon-muse-suit.webp","imgs":["media/full/maroon-muse-suit-0.webp","media/full/maroon-muse-suit-1.webp","media/full/maroon-muse-suit-2.webp","media/full/maroon-muse-suit-3.webp"],"fam":"Red","for":"her","sw":"#7A2228","views":193},{"slug":"silverline-two-button-executive-suit","title":"Silverline Two Button Executive Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/silverline-two-button-executive-suit.webp","imgs":["media/full/silverline-two-button-executive-suit-0.webp","media/full/silverline-two-button-executive-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":138},{"slug":"ivory-silhouette-ensemble","title":"Ivory Silhouette Ensemble","cat":"Dress","rwf":168000,"desc":"","card":"media/card/ivory-silhouette-ensemble.webp","imgs":["media/full/ivory-silhouette-ensemble-0.webp","media/full/ivory-silhouette-ensemble-1.webp","media/full/ivory-silhouette-ensemble-2.webp","media/full/ivory-silhouette-ensemble-3.webp","media/full/ivory-silhouette-ensemble-4.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":189},{"slug":"the-terra-command-set","title":"The Terra Command Set","cat":"Jacket complete","rwf":198000,"desc":"","card":"media/card/the-terra-command-set.webp","imgs":["media/full/the-terra-command-set-0.webp","media/full/the-terra-command-set-1.webp","media/full/the-terra-command-set-2.webp","media/full/the-terra-command-set-3.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":41},{"slug":"the-eartline-pattern-suit","title":"The Eartline Pattern Suit","cat":"Single-breasted","rwf":380000,"desc":"","card":"media/card/the-eartline-pattern-suit.webp","imgs":["media/full/the-eartline-pattern-suit-0.webp","media/full/the-eartline-pattern-suit-1.webp","media/full/the-eartline-pattern-suit-2.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":40},{"slug":"sage-edge-formal-jacket","title":"Sage Edge Formal Jacket","cat":"Jacket","rwf":86000,"desc":"","card":"media/card/sage-edge-formal-jacket.webp","imgs":["media/full/sage-edge-formal-jacket-0.webp","media/full/sage-edge-formal-jacket-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":82},{"slug":"atlas-heavy-linen-kaftan","title":"Atlas Heavy Linen Kaftan","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/atlas-heavy-linen-kaftan.webp","imgs":["media/full/atlas-heavy-linen-kaftan-0.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":49},{"slug":"umugongo-black-linen-shirt","title":"Umugongo Black Linen Shirt","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/umugongo-black-linen-shirt.webp","imgs":["media/full/umugongo-black-linen-shirt-0.webp","media/full/umugongo-black-linen-shirt-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":159},{"slug":"the-tailored-contrast","title":"The Tailored Contrast","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/the-tailored-contrast.webp","imgs":["media/full/the-tailored-contrast-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":24},{"slug":"desert-phatom-set","title":"Desert Phantom Set","cat":"Safari Suit","rwf":350000,"desc":"","card":"media/card/desert-phatom-set.webp","imgs":["media/full/desert-phatom-set-0.webp","media/full/desert-phatom-set-1.webp","media/full/desert-phatom-set-2.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":32},{"slug":"one-button-sage-green-prime-suit","title":"One Button Sage Green Prime Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/one-button-sage-green-prime-suit.webp","imgs":["media/full/one-button-sage-green-prime-suit-0.webp","media/full/one-button-sage-green-prime-suit-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":38},{"slug":"veridian-jacket","title":"Veridian Jacket","cat":"Jacket","rwf":94000,"desc":"","card":"media/card/veridian-jacket.webp","imgs":["media/full/veridian-jacket-0.webp","media/full/veridian-jacket-1.webp","media/full/veridian-jacket-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":92},{"slug":"mocha-apex-suit","title":"Mocha Apex Suit","cat":"Double-Breasted","rwf":350000,"desc":"","card":"media/card/mocha-apex-suit.webp","imgs":["media/full/mocha-apex-suit-0.webp","media/full/mocha-apex-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":108},{"slug":"ivory-grace-dress","title":"Ivory Grace Dress","cat":"Dress","rwf":145000,"desc":"","card":"media/card/ivory-grace-dress.webp","imgs":["media/full/ivory-grace-dress-0.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":128},{"slug":"heritage-crest-jacket","title":"Heritage Crest Jacket","cat":"Jacket","rwf":86000,"desc":"","card":"media/card/heritage-crest-jacket.webp","imgs":["media/full/heritage-crest-jacket-0.webp","media/full/heritage-crest-jacket-1.webp","media/full/heritage-crest-jacket-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":60},{"slug":"umugongo-linen-shirt","title":"Umugongo Linen Shirt","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/umugongo-linen-shirt.webp","imgs":["media/full/umugongo-linen-shirt-0.webp","media/full/umugongo-linen-shirt-1.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":71},{"slug":"ember-sovereign-suit","title":"Ember Sovereign Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/ember-sovereign-suit.webp","imgs":["media/full/ember-sovereign-suit-0.webp","media/full/ember-sovereign-suit-1.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":32},{"slug":"the-sovereign-fringe-jacket-set","title":"The Sovereign Fringe Jacket Set","cat":"Jacket complete","rwf":206000,"desc":"A new chapter in modern African tailoring. \n\nDesigned and produced in RWANDA, celebrating the artistry of local craftmanship and cultural heritage.\n\nWhere tradition meets contemporary elegance.","card":"media/card/the-sovereign-fringe-jacket-set.webp","imgs":["media/full/the-sovereign-fringe-jacket-set-0.webp","media/full/the-sovereign-fringe-jacket-set-1.webp","media/full/the-sovereign-fringe-jacket-set-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":63},{"slug":"navy-blue-suit","title":"Navy Blue Suit","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/navy-blue-suit.webp","imgs":["media/full/navy-blue-suit-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":71},{"slug":"dark-grey-classic","title":"Dark Grey Classic","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/dark-grey-classic.webp","imgs":["media/full/dark-grey-classic-0.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":20},{"slug":"copper-noir","title":"Copper Noir","cat":"Kaftan","rwf":78000,"desc":"","card":"media/card/copper-noir.webp","imgs":["media/full/copper-noir-0.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":52},{"slug":"single-breasted-three-button-suit","title":"Single Breasted Three Button Suit","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/single-breasted-three-button-suit.webp","imgs":["media/full/single-breasted-three-button-suit-0.webp","media/full/single-breasted-three-button-suit-1.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":28},{"slug":"the-ivory-vest-set","title":"The Ivory Vest Set","cat":"Vest","rwf":245000,"desc":"","card":"media/card/the-ivory-vest-set.webp","imgs":["media/full/the-ivory-vest-set-0.webp","media/full/the-ivory-vest-set-1.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":57},{"slug":"essential-noir","title":"Essential Noir","cat":"Double-Breasted","rwf":320000,"desc":"This piece is a classic, minimalist black power suit designed for women. It emphasizes the concept of \"effortless elegance,\" where sharp tailoring and a deep noir tone create a strong, authoritative presence without the need for bold patterns or excessive ornamentation.","card":"media/card/essential-noir.webp","imgs":["media/full/essential-noir-0.webp","media/full/essential-noir-1.webp","media/full/essential-noir-2.webp"],"fam":"Black","for":"her","sw":"#1C1B1A","views":87},{"slug":"the-silent-shadow","title":"The Silent Shadow","cat":"Double-Breasted","rwf":385000,"desc":"This garment is built on precision, with strong shield-like shoulders that give quiet authority, while deep forest green brings controlled strength and black moves through it like a calm shadow, creating a look that doesn’t demand attention but naturally claims it.","card":"media/card/the-silent-shadow.webp","imgs":["media/full/the-silent-shadow-0.webp","media/full/the-silent-shadow-1.webp","media/full/the-silent-shadow-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":103},{"slug":"the-silent-command","title":"The Silent Command","cat":"Double-Breasted","rwf":555000,"desc":"","card":"media/card/the-silent-command.webp","imgs":["media/full/the-silent-command-0.webp","media/full/the-silent-command-1.webp","media/full/the-silent-command-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":35},{"slug":"scarlet-study-no-02","title":"Scarlet Study No. 02","cat":"Double-Breasted","rwf":435000,"desc":"Sharply structured ensemble defined by a disciplined waist, defined shoulders, and a unique curved lapel. The look is balanced by flared trousers with asymmetric layering and anchored by a black high-neck for a high-contrast, elongated silhouette.","card":"media/card/scarlet-study-no-02.webp","imgs":["media/full/scarlet-study-no-02-0.webp","media/full/scarlet-study-no-02-1.webp","media/full/scarlet-study-no-02-2.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":17},{"slug":"ivory-study-no-01","title":"Ivory Study No. 01","cat":"Double-Breasted","rwf":550000,"desc":"Ivory double-breasted suit featuring subtle gold accents. It is designed with a focus on precision and quiet elegance rather than bold ornamentation.","card":"media/card/ivory-study-no-01.webp","imgs":["media/full/ivory-study-no-01-0.webp","media/full/ivory-study-no-01-1.webp","media/full/ivory-study-no-01-2.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":24},{"slug":"black-safari-regent-suit-44d2b2","title":"Black Safari Regent Suit","cat":"Safari Suit","rwf":380000,"desc":"A sleek black safari suit tailored for modern ceremonial elegance","card":"media/card/black-safari-regent-suit-44d2b2.webp","imgs":["media/full/black-safari-regent-suit-44d2b2-0.webp","media/full/black-safari-regent-suit-44d2b2-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":50},{"slug":"black-regent-3f53da","title":"Black Regent","cat":"Double-Breasted","rwf":350000,"desc":"A timeless black double-breasted suit tailored for sharp formal authority","card":"media/card/black-regent-3f53da.webp","imgs":["media/full/black-regent-3f53da-0.webp","media/full/black-regent-3f53da-1.webp","media/full/black-regent-3f53da-2.webp","media/full/black-regent-3f53da-3.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":52},{"slug":"double-breasted-peak-lapel-suit-dbe2a6","title":"Double-Breasted Peak-Lapel Suit","cat":"Double-Breasted","rwf":380000,"desc":"A whisper of class","card":"media/card/double-breasted-peak-lapel-suit-dbe2a6.webp","imgs":["media/full/double-breasted-peak-lapel-suit-dbe2a6-0.webp","media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":42},{"slug":"ivory-tuxedo-5b6732","title":"Ivory Tuxedo","cat":"Tuxedo","rwf":380000,"desc":"Ivory tuxedo with bold black lapels","card":"media/card/ivory-tuxedo-5b6732.webp","imgs":["media/full/ivory-tuxedo-5b6732-0.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":46}];
+const FILMS=[{"id": "walk","cat": "him","title": "The walk","src": "media/films/walk.mp4","poster": "media/films/walk.jpg"},{"id": "party","cat": "party","title": "The groom's party","src": "media/films/party.mp4","poster": "media/films/party.jpg"},{"id": "sash","cat": "detail","title": "The sash, up close","src": "media/films/sash.mp4","poster": "media/films/sash.jpg"},{"id": "ceremony","cat": "party","title": "The groomsmen","src": "media/films/ceremony.mp4","poster": "media/films/ceremony.jpg"},{"id": "smile","cat": "him","title": "All smiles","src": "media/films/smile.mp4","poster": "media/films/smile.jpg"},{"id": "bride","cat": "her","title": "The bride","src": "media/films/bride.mp4","poster": "media/films/bride.jpg"},{"id": "train","cat": "her","title": "The train","src": "media/films/train.mp4","poster": "media/films/train.jpg"},{"id": "shimmer","cat": "her","title": "With a fan","src": "media/films/shimmer.mp4","poster": "media/films/shimmer.jpg"},{"id": "together","cat": "her","title": "In champagne","src": "media/films/together.mp4","poster": "media/films/together.jpg"}];
+const by=Object.fromEntries(P.map(p=>[p.slug,p]));
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k,d){try{const v=localStorage.getItem('pc_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('pc_'+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let tt; const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1900)};
+let lenis=null;
+const go=sel=>{const t=typeof sel==='string'?document.querySelector(sel):sel; if(!t) return; lenis?lenis.scrollTo(t,{offset:0}):t.scrollIntoView({behavior:reduce?'auto':'smooth'});};
+const catName=c=>({him:'For him',her:'For her',party:'The wedding party',detail:'Details'}[c]||c);
+
+/* money */
+const RATE={RWF:1,USD:1/1440,GBP:0.76/1440}; let cur=store.get('cur','RWF');
+const money=rwf=>cur==='RWF'?'RWF '+Math.round(rwf).toLocaleString('en-US'):(cur==='USD'?'$':'£')+Math.round(rwf*RATE[cur]).toLocaleString('en-US');
+const paint=()=>{$$('[data-rwf]').forEach(e=>e.textContent=money(+e.dataset.rwf)); renderBag();};
+$$('#curSeg button').forEach(b=>{b.setAttribute('aria-pressed',b.dataset.cur===cur); b.onclick=()=>{cur=b.dataset.cur;store.set('cur',cur);$$('#curSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));paint();}});
+
+/* nav turns light once the dark chapters have passed */
+const navTone=()=>$('#nav').classList.toggle('light',$('#films').getBoundingClientRect().bottom<70);
+addEventListener('scroll',navTone,{passive:true}); navTone();
+
+/* ---------- hero screen: three films, one frame ---------- */
+const film=id=>FILMS.find(f=>f.id===id);
+const SCREEN=['train','walk','sash'].map(film).filter(Boolean);
+const scrMain=$('#scrMain'), scrAmb=$('#scrAmb'); let si=-1, sTimer=null;
+$('#scrPick').innerHTML=SCREEN.map((f,i)=>`<button type="button" data-i="${i}" aria-pressed="false"><img src="${f.poster}" alt=""><span>${esc(f.title)}</span><i></i></button>`).join('');
+function playScreen(i){
+  si=(i+SCREEN.length)%SCREEN.length; const f=SCREEN[si];
+  [scrMain,scrAmb].forEach(v=>v.classList.add('out'));
+  setTimeout(()=>{ [scrMain,scrAmb].forEach(v=>{v.poster=f.poster; v.src=f.src; v.classList.remove('out'); if(!reduce) v.play().catch(()=>{});}); },reduce?0:300);
+  $('#scrTitle').textContent=f.title; $('#scrCat').textContent=catName(f.cat);
+  $$('#scrPick button').forEach((b,k)=>{b.setAttribute('aria-pressed',k===si); const bar=b.querySelector('i'); bar.style.transition='none'; bar.style.width='0';});
+}
+scrMain.addEventListener('timeupdate',()=>{ const b=$$('#scrPick button')[si]; if(b&&scrMain.duration) b.querySelector('i').style.width=(scrMain.currentTime/scrMain.duration*100)+'%'; });
+scrMain.addEventListener('ended',()=>playScreen(si+1));
+$('#scrPick').onclick=e=>{const b=e.target.closest('button'); if(b) playScreen(+b.dataset.i);};
+scrMain.addEventListener('click',()=>openFilm(FILMS.indexOf(SCREEN[si])));
+new IntersectionObserver(([e])=>{ if(reduce) return; e.isIntersecting?scrMain.play().catch(()=>{}):scrMain.pause(); e.isIntersecting?scrAmb.play().catch(()=>{}):scrAmb.pause(); }).observe($('#screen'));
+playScreen(0);
+function startVideo(v){ if(!v) return; if(!v.getAttribute('src')) v.src=v.dataset.src; v.play().catch(()=>{}); }
+
+/* ---------- today's picks: most viewed on their shop ---------- */
+const TOP=P.slice().sort((a,b)=>(b.views||0)-(a.views||0)).slice(0,3);
+$('#picksGrid').innerHTML=TOP.map((p,i)=>`<button type="button" class="tp" data-open="${p.slug}"><div class="ph"><img src="${p.imgs[0]||p.card}" alt="${esc(p.title)}" loading="lazy"><span class="rank">No. ${i+1}</span></div><div class="meta"><span>${esc(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><small>${esc(p.cat)} · ${p.for==='her'?'Women':'Men'}</small></button>`).join('');
+
+/* ---------- films ---------- */
+const reel=$('#reel'); let fcat='all', fList=FILMS;
+const CATS=[['all','All'],['him','For him'],['her','For her'],['party','The wedding party'],['detail','Details']].filter(([k])=>k==='all'||FILMS.some(f=>f.cat===k));
+$('#filmTabs').innerHTML=CATS.map(([k,l])=>`<button type="button" class="chip" data-c="${k}" aria-pressed="${k==='all'}">${l}</button>`).join('');
+function renderReel(){ fList=FILMS.filter(f=>fcat==='all'||f.cat===fcat);
+  reel.innerHTML=fList.map((f,i)=>`<button type="button" class="film" data-i="${i}"><div class="fr"><video muted loop playsinline preload="none" poster="${f.poster}" data-src="${f.src}"></video><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><h3>${esc(f.title)}</h3><small>${catName(f.cat)}</small></button>`).join('')
+   + `<a class="film ig" href="https://instagram.com/primecouturehq" target="_blank" rel="noopener"><div class="fr"><div><p>More fittings and new pieces, filmed in the atelier</p><span class="link" style="display:inline-block;margin-top:20px">@primecouturehq</span></div></div><h3>On Instagram</h3><small>Opens Instagram</small></a>`;
+  reel.scrollTo({left:0}); }
+$('#filmTabs').onclick=e=>{const b=e.target.closest('.chip'); if(!b) return; fcat=b.dataset.c; $$('#filmTabs .chip').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderReel();};
+reel.addEventListener('mouseover',e=>{const c=e.target.closest('.film:not(.ig)'); if(!c||reduce) return; startVideo(c.querySelector('video'));});
+reel.addEventListener('mouseout',e=>{const c=e.target.closest('.film:not(.ig)'); if(c && !c.contains(e.relatedTarget)) c.querySelector('video').pause();});
+reel.addEventListener('click',e=>{const c=e.target.closest('.film:not(.ig)'); if(c) openFilm(FILMS.indexOf(fList[+c.dataset.i]));});
+$('#rNext').onclick=()=>reel.scrollBy({left:reel.clientWidth*.8,behavior:'smooth'}); $('#rPrev').onclick=()=>reel.scrollBy({left:-reel.clientWidth*.8,behavior:'smooth'});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-films]'); if(b){ e.stopPropagation(); const c=b.dataset.films; fcat=CATS.some(([k])=>k===c)?c:'all'; $$('#filmTabs .chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.c===fcat)); renderReel(); go('#films'); }
+  const o=e.target.closest('[data-open]'); if(o){ e.stopPropagation(); openItem(o.dataset.open);} });
+renderReel();
+/* lightbox */
+const lb=$('#lightbox'), lbv=$('#lbVideo'); let lbi=0;
+function openFilm(i){ lbi=(i+FILMS.length)%FILMS.length; const f=FILMS[lbi]; lbv.poster=f.poster; lbv.src=f.src; $('#lbTitle').textContent=f.title; $('#lbCat').textContent=catName(f.cat); lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); lbv.play().catch(()=>{}); lenis&&lenis.stop(); setTimeout(()=>$('#lbClose').focus(),50); }
+function closeFilm(){ lb.classList.remove('on'); lb.setAttribute('aria-hidden','true'); lbv.pause(); lenis&&lenis.start(); }
+$('#lbClose').onclick=closeFilm; $('#lbNext').onclick=()=>openFilm(lbi+1); $('#lbPrev').onclick=()=>openFilm(lbi-1); $('#lbBook').onclick=e=>{e.preventDefault(); closeFilm(); go('#book');};
+lb.addEventListener('click',e=>{ if(e.target===lb) closeFilm(); });
+
+/* ---------- the collection: one line of filters ---------- */
+const FAMS=[...new Map(P.map(p=>[p.fam,p.sw])).entries()].sort((a,b)=>P.filter(p=>p.fam===b[0]).length-P.filter(p=>p.fam===a[0]).length);
+const TYPES=[['all','All types'],['suits','Suits',['Double-Breasted','Single-breasted','Tuxedo','Safari Suit']],['kaftans','Kaftans & shirts',['Kaftan']],['jackets','Jackets',['Jacket','Jacket complete']],['dresses','Dresses',['Dress']],['sets','Sets',['Two-Piece Set','Set']]];
+let fam='all', who='all', type='all';
+$('#fline').innerHTML=`<button type="button" class="chip" data-who="all" aria-pressed="true">All</button><button type="button" class="chip" data-who="him" aria-pressed="false">Men</button><button type="button" class="chip" data-who="her" aria-pressed="false">Women</button><span class="sep" aria-hidden="true"></span>`
+  +`<button type="button" class="cd all" data-fam="all" aria-pressed="true" aria-label="All colours" title="All colours"></button>`+FAMS.map(([f,sw])=>`<button type="button" class="cd" data-fam="${f}" aria-pressed="false" aria-label="${f}" title="${f}" style="background:${sw}"></button>`).join('')
+  +`<span class="sep" aria-hidden="true"></span>`+TYPES.map(([k,l])=>`<button type="button" class="chip" data-type="${k}" aria-pressed="${k==='all'}">${l}</button>`).join('')
+  +`<span class="fcount" id="count" aria-live="polite"></span>`;
+const grid=$('#grid'), room=$('#colours');
+function renderGrid(){
+  const tcats=type==='all'?null:TYPES.find(t=>t[0]===type)[2];
+  const list=P.filter(p=>(fam==='all'||p.fam===fam)&&(who==='all'||p.for===who)&&(!tcats||tcats.includes(p.cat)));
+  grid.innerHTML=list.length?list.map((p,i)=>`<button type="button" class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,12)*40}ms"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${esc(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}</div></button>`).join('')
+    :`<p style="grid-column:1/-1;color:var(--muted)">No pieces match all three filters. Try another colour, or ask the atelier on WhatsApp.</p>`;
+  $('#count').textContent=`${list.length} ${list.length===1?'piece':'pieces'}`;
+  room.style.setProperty('--tint',fam==='all'?'#F7F4EF':(P.find(p=>p.fam===fam)||{}).sw);
+}
+$('#fline').onclick=e=>{const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.who){who=b.dataset.who; $$('#fline [data-who]').forEach(x=>x.setAttribute('aria-pressed',x===b));}
+  else if(b.dataset.fam){fam=b.dataset.fam; $$('#fline [data-fam]').forEach(x=>x.setAttribute('aria-pressed',x===b));}
+  else if(b.dataset.type){type=b.dataset.type; $$('#fline [data-type]').forEach(x=>x.setAttribute('aria-pressed',x===b));}
+  renderGrid();};
+grid.addEventListener('mouseover',e=>{const a=e.target.closest('.card')?.querySelector('img.alt'); if(a&&!a.getAttribute('src')){a.onload=()=>a.classList.add('ready'); a.src=a.dataset.src;}});
+grid.onclick=e=>{const c=e.target.closest('.card'); if(c) openItem(c.dataset.slug)};
+renderGrid();
+
+/* ---------- overlays ---------- */
+const scrim=$('#scrim'); let panelOpen=null;
+function show(el){ if(panelOpen&&panelOpen!==el) hide(panelOpen,true); panelOpen=el; el.classList.add('on'); el.setAttribute('aria-hidden','false'); scrim.classList.add('on'); lenis&&lenis.stop(); }
+function hide(el,keep){ if(!el) return; el.classList.remove('on'); el.setAttribute('aria-hidden','true'); if(panelOpen===el) panelOpen=null; if(!keep&&!panelOpen){scrim.classList.remove('on'); lenis&&lenis.start();} }
+scrim.onclick=()=>hide(panelOpen);
+addEventListener('keydown',e=>{ if(e.key!=='Escape') return; if(lb.classList.contains('on')) closeFilm(); else if($('#chat').classList.contains('on')) closeChat(); else hide(panelOpen); closeMenu(); });
+
+/* item page */
+let itSlug=null; const sheet=$('#sheet');
+function openItem(slug){ const p=by[slug]; if(!p) return; itSlug=slug;
+  $('#itCat').textContent=`${p.cat} · ${p.fam}`; $('#itTitle').textContent=p.title; $('#itPrice').dataset.rwf=p.rwf; $('#itPrice').textContent=money(p.rwf);
+  $('#itDesc').textContent=p.desc&&p.desc.length>20?p.desc:'Ask the atelier on WhatsApp for fabric and fit details.';
+  const imgs=p.imgs.length?p.imgs:[p.card]; $('#itMain').src=imgs[0]; $('#itMain').alt=p.title;
+  $('#itThumbs').innerHTML=imgs.length>1?imgs.map((s,i)=>`<button type="button" data-src="${s}" aria-current="${i===0}" aria-label="Photo ${i+1}"><img src="${s}" alt="" loading="lazy"></button>`).join(''):'';
+  sheet.scrollTop=0; show(sheet); setTimeout(()=>$('#sheetClose').focus(),60); }
+$('#itThumbs').onclick=e=>{const b=e.target.closest('button'); if(!b) return; $('#itMain').src=b.dataset.src; $$('#itThumbs button').forEach(x=>x.setAttribute('aria-current',x===b));};
+$('#sheetClose').onclick=()=>hide(sheet);
+$('#itAdd').onclick=()=>{addToBag(itSlug); hide(sheet);};
+$('#itFit').onclick=()=>{const p=by[itSlug]; hide(sheet); bookFor(cutFor(p.cat),p.title,null);};
+$('#itAsk').onclick=()=>{const p=by[itSlug]; hide(sheet); openChat(); send(`Tell me about the ${p.title}.`);};
+
+/* bag */
+let bag=store.get('bag',[]).filter(i=>by[i.slug]); const drawer=$('#drawer');
+function addToBag(slug){const it=bag.find(i=>i.slug===slug); it?it.q++:bag.push({slug,q:1}); store.set('bag',bag); renderBag(); toast(by[slug].title+' is in your bag');}
+function renderBag(){
+  const n=bag.reduce((s,i)=>s+i.q,0); $('#bagCount').textContent=n||''; $('#bagCount').dataset.n=n;
+  $('#bagItems').innerHTML=bag.length?bag.map(i=>{const p=by[i.slug];return `<div class="bi"><img src="${p.card}" alt=""><div><h4>${esc(p.title)}</h4><div class="q"><button type="button" data-d="-1" data-s="${p.slug}" aria-label="One fewer">−</button>${i.q}<button type="button" data-d="1" data-s="${p.slug}" aria-label="One more">+</button></div></div><span class="price">${money(p.rwf*i.q)}</span></div>`}).join(''):'<p style="color:var(--muted)">Your bag is empty. Open any piece to add it.</p>';
+  const tot=bag.reduce((s,i)=>s+by[i.slug].rwf*i.q,0); $('#bagTotal').textContent=bag.length?money(tot):'';
+  const lines=bag.map(i=>`• ${by[i.slug].title} × ${i.q} (RWF ${(by[i.slug].rwf*i.q).toLocaleString('en-US')})`).join('\n');
+  const co=$('#bagCheckout'); co.href=`https://wa.me/${WA}?text=${encodeURIComponent(`Hello Prime Couture, I'd like to order:\n${lines}\nTotal: RWF ${tot.toLocaleString('en-US')}`)}`; co.setAttribute('aria-disabled',!bag.length);
+}
+$('#bagItems').onclick=e=>{const b=e.target.closest('button[data-d]'); if(!b) return; const it=bag.find(i=>i.slug===b.dataset.s); it.q+=+b.dataset.d; if(it.q<1) bag=bag.filter(x=>x!==it); store.set('bag',bag); renderBag();};
+$('#bagOpen').onclick=()=>show(drawer); $('#bagClose').onclick=()=>hide(drawer);
+
+/* menu */
+const menu=$('#menu');
+function closeMenu(){menu.classList.remove('on');menu.setAttribute('aria-hidden','true');$('#menuBtn').setAttribute('aria-expanded','false');$('#nav').classList.remove('menuopen');navTone();}
+$('#menuBtn').onclick=()=>{const on=!menu.classList.contains('on'); menu.classList.toggle('on',on); menu.setAttribute('aria-hidden',!on); $('#menuBtn').setAttribute('aria-expanded',on); $('#nav').classList.toggle('light',on||$('#films').getBoundingClientRect().bottom<70);};
+menu.addEventListener('click',e=>{if(e.target.closest('a')) closeMenu();});
+
+/* ---------- Prime Umushanana: recolour the sash on the real photo ---------- */
+const FABRICS=[{n:'Olive',c:'#5F6646'},{n:'Ivory',c:'#E2D6BF'},{n:'Sand',c:'#C4A983'},{n:'Mocha',c:'#5A3A2A'},{n:'Maroon',c:'#62202A'},{n:'Sage',c:'#8E9E80'},{n:'Midnight',c:'#1E2738'}];
+let fabric=FABRICS[0];
+$('#swatches').innerHTML=FABRICS.map((f,i)=>`<button type="button" class="cdot" data-i="${i}" aria-pressed="${i===0}" aria-label="${f.n}"><span style="background:${f.c}"></span><em>${f.n}</em></button>`).join('');
+function pickFabric(i){fabric=FABRICS[i]; $$('#swatches .cdot').forEach((b,k)=>b.setAttribute('aria-pressed',k===i)); $('#umuColour').textContent=fabric.n; $('#umuLbl').textContent=i===0?'Olive · as made':fabric.n+' · preview'; recolour(i===0?null:fabric.c);}
+$('#swatches').onclick=e=>{const b=e.target.closest('.cdot'); if(b) pickFabric(+b.dataset.i)};
+$('#umuBook').onclick=()=>bookFor('Umushanana','Prime Umushanana',fabric.n);
+const ph={a:$('#photoA'),b:$('#photoB'),front:null,base:null,mask:null,lum:null,mean:1}; let pReady=0,pending=null;
+const pImg=new Image(), mImg=new Image();
+const onReady=()=>{ if(++pReady<2) return; try{
+  const w=pImg.naturalWidth,h=pImg.naturalHeight; [ph.a,ph.b].forEach(c=>{c.width=w;c.height=h;});
+  const c=document.createElement('canvas'); c.width=w; c.height=h; const x=c.getContext('2d',{willReadFrequently:true});
+  x.drawImage(pImg,0,0); ph.base=x.getImageData(0,0,w,h); x.clearRect(0,0,w,h); x.drawImage(mImg,0,0,w,h); const md=x.getImageData(0,0,w,h).data;
+  ph.mask=new Float32Array(w*h); ph.lum=new Float32Array(w*h); let sum=0,n=0; const bd=ph.base.data;
+  for(let i=0;i<w*h;i++){const L=(.2126*bd[i*4]+.7152*bd[i*4+1]+.0722*bd[i*4+2])/255; ph.lum[i]=L; const a=md[i*4]/255; ph.mask[i]=a; if(a>.5){sum+=L;n++;}}
+  ph.mean=sum/n; ph.a.getContext('2d').putImageData(ph.base,0,0); ph.b.style.opacity=0; ph.front=ph.a; if(pending!==null) recolour(pending);
+ }catch(err){ $('#umuFrame').insertAdjacentHTML('afterbegin','<img src="media/umushanana.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">'); } };
+pImg.onload=onReady; mImg.onload=onReady;
+new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ pImg.src='media/umushanana.webp'; mImg.src='media/umushanana-mask.png'; o.disconnect(); } },{rootMargin:'800px'}).observe($('#umuFrame'));
+function recolour(hex){
+  if(!ph.base){ pending=hex; return; }
+  const cv=ph.front===ph.a?ph.b:ph.a, ctx=cv.getContext('2d');
+  if(!hex) ctx.putImageData(ph.base,0,0);
+  else{ const out=new ImageData(new Uint8ClampedArray(ph.base.data),ph.base.width,ph.base.height), d=out.data;
+    const t=[1,3,5].map(o=>parseInt(hex.slice(o,o+2),16)), tl=(.2126*t[0]+.7152*t[1]+.0722*t[2])/255, g=tl>.6?.8:1.1, s=tl>.6?.7:1;
+    for(let i=0;i<ph.mask.length;i++){ const a=ph.mask[i]; if(a<=0) continue; const k=1+(Math.pow(ph.lum[i]/ph.mean,g)-1)*s, j=i*4; for(let q=0;q<3;q++) d[j+q]=d[j+q]*(1-a)+Math.min(255,t[q]*k)*a; }
+    ctx.putImageData(out,0,0); }
+  cv.style.opacity=1; ph.front.style.opacity=0; ph.front=cv;
+}
+
+/* ---------- booking ---------- */
+const OCC=['Wedding','Gusaba & gukwa','Office','Gala or black tie','Everyday'];
+const CUTS=['Double-breasted','Single-breasted','Tuxedo','Safari suit','Kaftan','Jacket','Two-piece set','Dress','Umushanana'];
+const TIMES=['Morning','Afternoon','Evening'];
+const cutFor=c=>({'Double-Breasted':'Double-breasted','Single-breasted':'Single-breasted','Tuxedo':'Tuxedo','Safari Suit':'Safari suit','Kaftan':'Kaftan','Jacket':'Jacket','Jacket complete':'Jacket','Two-Piece Set':'Two-piece set','Dress':'Dress','Set':'Two-piece set'})[c]||'Double-breasted';
+const days=[]; {const d=new Date(); d.setHours(12); while(days.length<6){d.setDate(d.getDate()+1); if(d.getDay()!==0) days.push(new Date(d));}}
+const fmtDay=d=>d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+const fit={occ:'Wedding',cut:'Double-breasted',day:0,time:'Afternoon',piece:null,colour:null}; let step=1;
+const chipRow=(el,arr,key,label=x=>x,val=x=>x)=>{el.innerHTML=arr.map((x,i)=>`<button type="button" class="chip" data-k="${key}" data-v="${val(x,i)}" aria-pressed="${String(fit[key])===String(val(x,i))}">${label(x)}</button>`).join('')};
+function renderFit(){ chipRow($('#fOcc'),OCC,'occ'); chipRow($('#fCut'),CUTS,'cut'); chipRow($('#fDay'),days,'day',d=>{const [w,...r]=fmtDay(d).split(' ');return `${w}<small>${r.join(' ')}</small>`},(x,i)=>i);
+  $('#fTime').innerHTML=TIMES.map(t=>`<button type="button" data-k="time" data-v="${t}" aria-pressed="${fit.time===t}">${t}</button>`).join(''); msg(); }
+function msg(){ const name=$('#fName').value.trim();
+  const m=`Hello Prime Couture,${name?` this is ${name}.`:''}\nI'd like to book a fitting.\nOccasion: ${fit.occ}\nCut: ${fit.cut}${fit.piece?` (${fit.piece})`:''}${fit.colour&&fit.cut==='Umushanana'?`\nColour: ${fit.colour}`:''}\nDay: ${fmtDay(days[fit.day])}, ${fit.time.toLowerCase()}`;
+  $('#fSummary').textContent=m; $('#fSend').href=`https://wa.me/${WA}?text=${encodeURIComponent(m)}`; return m; }
+function goStep(n){ step=n; $$('#bookCard .step').forEach(s=>s.hidden=+s.dataset.step!==n); $$('#bookCard .steps span').forEach((s,i)=>s.classList.toggle('on',i<n));
+  $('#fBack').hidden=n===1; $('#fNext').hidden=n===3; $('#fSend').hidden=n!==3; $('#fDone').hidden=true; $('#fActs').hidden=false; msg(); }
+$('#bookCard').addEventListener('click',e=>{const b=e.target.closest('[data-k]'); if(!b) return; const k=b.dataset.k; fit[k]=k==='day'?+b.dataset.v:b.dataset.v;
+  if(k==='cut'){fit.piece=null; if(b.dataset.v!=='Umushanana') fit.colour=null;} b.parentElement.querySelectorAll('[data-k]').forEach(c=>c.setAttribute('aria-pressed',c===b)); msg();});
+$('#fNext').onclick=()=>goStep(Math.min(3,step+1)); $('#fBack').onclick=()=>goStep(Math.max(1,step-1)); $('#fName').addEventListener('input',msg);
+$('#fSend').addEventListener('click',()=>{setTimeout(()=>{$$('#bookCard .step').forEach(s=>s.hidden=true); $('#fActs').hidden=true; $('#fDone').hidden=false;},300);});
+$('#fAgain').onclick=()=>goStep(1);
+function bookFor(cut,piece,colour,occ){ fit.cut=cut||fit.cut; fit.piece=piece||null; fit.colour=colour||null; if(occ&&OCC.includes(occ)) fit.occ=occ; renderFit(); goStep(2); go('#book'); }
+
+$('#join').addEventListener('submit',e=>{e.preventDefault(); const i=$('#jEmail'); if(!i.checkValidity()){i.reportValidity();return} $('#join').hidden=true; $('#joined').hidden=false;});
+
+/* ---------- Prime concierge ---------- */
+const chat=$('#chat'), msgs=$('#msgs'), cin=$('#chatIn'); let turns=[], busy=false, ctl=null, sample=null;
+const FACTS=`Prime Couture is a tailoring atelier in Kigali, Rwanda ("Essential power tailoring"). Address: 15 KG 599 St, Gishushu, Kigali. Hours: Monday to Saturday, 9am to 8pm (Kigali time). Phone and WhatsApp: +250 781 178 499. Email: contact@prime-couture.com. Instagram: @primecouturehq. Orders and fittings are confirmed on WhatsApp. Prices are in Rwandan francs (RWF).`;
+const CATALOGUE=P.map(p=>`${p.slug} | ${p.title} | ${p.cat} | ${p.fam} | for ${p.for} | RWF ${p.rwf}`).join('\n')+`\n(not in the grid) Prime Umushanana | Umushanana | Olive, other colours on request | for him | RWF 156000`;
+const RULES=`You are Prime, the concierge on the Prime Couture website. Be warm, brief and elegant: two to four short sentences, plain English, no lists unless asked, no emoji.
+Only use the facts and catalogue below. Never invent fabrics, sizes, delivery times, payment methods, discounts or stock. If you don't know, say the atelier will confirm on WhatsApp.
+Use the tools: call show_pieces whenever you recommend pieces (up to 6 slugs from the catalogue) so the visitor sees them; call start_booking when the visitor wants a fitting or appointment; call open_piece to open one piece's page.
+FACTS: ${FACTS}
+CATALOGUE (slug | title | type | colour | for | price):
+${CATALOGUE}`;
+const TOOLS=[
+ {name:'show_pieces',description:'Show up to 6 pieces to the visitor as picture cards in the chat. Returns the titles shown.',inputSchema:{type:'object',properties:{slugs:{type:'array',items:{type:'string'}}},required:['slugs']},
+  execute:({slugs})=>{const list=(Array.isArray(slugs)?slugs:[]).map(String).filter(s=>by[s]).slice(0,6); if(!list.length) throw new Error('No matching slugs'); addPicks(list); return list.map(s=>by[s].title);}},
+ {name:'start_booking',description:'Fill in the fitting form for the visitor and take them to it. Returns what was filled in.',inputSchema:{type:'object',properties:{occasion:{type:'string',enum:OCC},cut:{type:'string',enum:CUTS},piece:{type:'string'},colour:{type:'string'}}},
+  execute:({occasion,cut,piece,colour})=>{ setTimeout(()=>{closeChat(); bookFor(CUTS.includes(cut)?cut:fit.cut, piece?String(piece):null, colour?String(colour):null, OCC.includes(occasion)?occasion:null);},1200); return 'Booking form filled in. The visitor chooses a day and sends it on WhatsApp.';}},
+ {name:'open_piece',description:'Open the page of one piece by slug.',inputSchema:{type:'object',properties:{slug:{type:'string'}},required:['slug']},
+  execute:({slug})=>{ if(!by[String(slug)]) throw new Error('Unknown slug'); setTimeout(()=>{closeChat(); openItem(String(slug));},900); return 'Opened '+by[String(slug)].title;}}
+];
+function bubble(cls,text){const d=document.createElement('div'); d.className='m '+cls; d.textContent=text; msgs.append(d); msgs.scrollTop=msgs.scrollHeight; return d;}
+function addPicks(slugs){const row=document.createElement('div'); row.className='picks'; row.innerHTML=slugs.map(s=>{const p=by[s];return `<button type="button" class="pick" data-open="${s}"><img src="${p.card}" alt=""><span>${esc(p.title)}</span><em>${money(p.rwf)}</em></button>`}).join(''); msgs.append(row); msgs.scrollTop=msgs.scrollHeight;}
+const QUICK=['What do you make?','Wedding looks for him','Something in ivory for her','Book a fitting','Where are you?'];
+const renderQuick=()=>{$('#quick').innerHTML=QUICK.map(q=>`<button type="button">${q}</button>`).join('');};
+$('#quick').onclick=e=>{const b=e.target.closest('button'); if(b) send(b.textContent);};
+msgs.addEventListener('click',e=>{ if(e.target.closest('[data-open]')) closeChat(); });
+function openChat(){ chat.classList.add('on'); chat.setAttribute('aria-hidden','false'); $('#askBtn').classList.add('hide'); if(!msgs.children.length){ bubble('prime','Welcome to Prime Couture. I can find a piece by colour or occasion, tell you prices, or book your fitting. What are you dressing for?'); renderQuick(); } setTimeout(()=>cin.focus(),200); }
+function closeChat(){ chat.classList.remove('on'); chat.setAttribute('aria-hidden','true'); $('#askBtn').classList.remove('hide'); ctl&&ctl.abort(); }
+$('#askBtn').onclick=openChat; $('#chatClose').onclick=closeChat;
+$('#chatForm').addEventListener('submit',e=>{e.preventDefault(); const t=cin.value.trim(); if(t) send(t); });
+try{ window.claude?.use?.('sample').then(s=>{sample=s;}).catch(()=>{sample=null;}); }catch(e){}
+async function send(text){
+  if(busy) return; cin.value=''; $('#quick').innerHTML=''; bubble('you',text); busy=true;
+  if(sample){ const out=bubble('prime wait','Thinking…'); turns.push({role:'user',content:text}); ctl=new AbortController();
+    try{ const {text:ans}=await sample([{role:'user',content:RULES},...turns.slice(-10)],{tools:TOOLS,modelTier:'quick',cache:false,signal:ctl.signal,onText:({text})=>{out.classList.remove('wait'); out.textContent=text;}});
+      turns.push({role:'assistant',content:ans}); out.classList.remove('wait'); out.textContent=ans; }
+    catch(err){ if(['not_granted','sampling_disabled','not_declared','capability_disabled','capability_removed','tools_unavailable'].includes(err.code)){ sample=null; out.remove(); turns.pop(); local(text); }
+      else if(err.code==='cancelled'){ out.textContent=err.text||''; if(!out.textContent) out.remove(); turns.pop(); }
+      else { out.classList.remove('wait'); out.textContent=(err.text?err.text+'\n\n':'')+'I lost the thread for a moment. Try again, or message the atelier on WhatsApp: +250 781 178 499.'; turns.pop(); } }
+    busy=false; msgs.scrollTop=msgs.scrollHeight; return; }
+  local(text); busy=false;
+}
+/* the concierge without Claude: answers from the catalogue */
+const COLW={ivory:'Ivory',white:'Ivory',cream:'Ivory',sand:'Sand',beige:'Sand',camel:'Sand',brown:'Brown',mocha:'Brown',chocolate:'Brown',red:'Red',maroon:'Red',burgundy:'Red',scarlet:'Red',green:'Green',sage:'Green',olive:'Green',blue:'Blue',navy:'Blue',grey:'Grey',gray:'Grey',silver:'Grey',black:'Black',noir:'Black'};
+const TYPEW={suit:['Double-Breasted','Single-breasted','Tuxedo','Safari Suit'],tuxedo:['Tuxedo'],kaftan:['Kaftan'],shirt:['Kaftan'],jacket:['Jacket','Jacket complete'],dress:['Dress'],gown:['Dress'],set:['Two-Piece Set','Set','Jacket complete'],safari:['Safari Suit']};
+function local(text){
+  const t=text.toLowerCase(), say=s=>bubble('prime',s);
+  if(/where|address|location|hours|open|visit|map/.test(t)) return say('We are at 15 KG 599 St, Gishushu, Kigali, open Monday to Saturday from 9am to 8pm. Call or WhatsApp +250 781 178 499.');
+  if(/book|fitting|appointment|measure/.test(t)){ say('Lovely. I have opened the fitting form for you. Choose a day and send it on WhatsApp.'); setTimeout(()=>{closeChat(); bookFor(fit.cut,null,null);},1100); return; }
+  if(/umushanana/.test(t)){ say('The Prime Umushanana is RWF 156,000. You can preview the sash in other colours on this page; I will take you there.'); setTimeout(()=>{closeChat(); go('#umushanana');},1400); return; }
+  const fams=[...new Set(Object.keys(COLW).filter(w=>new RegExp('\\b'+w).test(t)).map(w=>COLW[w]))];
+  const types=Object.keys(TYPEW).filter(w=>t.includes(w)).flatMap(w=>TYPEW[w]);
+  const whoW=/\b(her|she|women|woman|ladies|lady|bride|female)\b/.test(t)?'her':(/\b(him|he|men|man|groom|male|gentleman)\b/.test(t)?'him':null);
+  const budget=(()=>{ if(!/under|below|less|budget|max|up to/.test(t)) return null; const m=t.match(/(\d[\d,.]*)\s*(k)?/); if(!m) return null; let v=parseFloat(m[1].replace(/,/g,'')); if(m[2]) v*=1000; return v<1000?v*1000:v;})();
+  const wed=/wedding|gala|black tie|evening|ceremony|gusaba|gukwa|dowry/.test(t), office=/office|work|business|meeting|interview/.test(t);
+  const titleHit=P.find(p=>t.includes(p.title.toLowerCase()));
+  if(titleHit){ say(`The ${titleHit.title} is ${money(titleHit.rwf)}. ${titleHit.desc&&titleHit.desc.length>20?titleHit.desc:'The atelier can tell you more about fabric and fit on WhatsApp.'}`); addPicks([titleHit.slug]); return; }
+  if(/what do you|what can|sell|make|offer|help/.test(t) && !fams.length && !types.length){
+    return say(`We make ${P.length} pieces: suits (double-breasted, single-breasted, tuxedo and safari), kaftans and linen shirts, jackets, two-piece sets and dresses, and the Prime Umushanana. Prices run from RWF ${Math.min(...P.map(p=>p.rwf)).toLocaleString('en-US')} to RWF ${Math.max(...P.map(p=>p.rwf)).toLocaleString('en-US')}. Tell me the occasion or a colour and I'll show you pieces.`); }
+  if(/price|cost|how much|expensive|cheap/.test(t) && !fams.length && !types.length) return say('Kaftans and shirts start at RWF 78,000, jackets at RWF 86,000, sets at RWF 146,000, and suits run from RWF 280,000 to RWF 555,000. Tell me a colour or occasion and I will show prices for each piece.');
+  let list=P.filter(p=>(!fams.length||fams.includes(p.fam))&&(!types.length||types.includes(p.cat))&&(!whoW||p.for===whoW)&&(!budget||p.rwf<=budget));
+  if(wed&&!types.length) list=list.filter(p=>['Double-Breasted','Tuxedo','Dress','Two-Piece Set','Single-breasted','Safari Suit'].includes(p.cat));
+  if(office&&!types.length) list=list.filter(p=>['Single-breasted','Double-Breasted','Jacket','Jacket complete','Set','Two-Piece Set'].includes(p.cat));
+  if(!fams.length&&!types.length&&!whoW&&!budget&&!wed&&!office) return say('I can help with pieces by colour, occasion or budget, prices, our address, or a fitting. For anything else, the atelier answers on WhatsApp: +250 781 178 499.');
+  if(!list.length) return say('I could not find a piece that matches that exactly. Ask the atelier on WhatsApp, or try another colour.');
+  list=list.slice().sort((a,b)=>b.rwf-a.rwf);
+  say(`Here ${list.length===1?'is one piece':'are '+Math.min(list.length,6)+' pieces'}${fams.length?' in '+fams.join(' and ').toLowerCase():''}${whoW?(whoW==='her'?' for her':' for him'):''}${wed?' for a wedding or ceremony':''}${office?' for the office':''}. Tap one to see it.`); addPicks(list.slice(0,6).map(p=>p.slug));
+}
+
+renderFit(); goStep(1); paint();
+if(window.Lenis && !reduce){ lenis=new Lenis({lerp:.09}); const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)}; requestAnimationFrame(raf);
+  $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href'); if(h.length>1){const t=document.querySelector(h); if(t){e.preventDefault(); lenis.scrollTo(t,{offset:0});}}})); }
+})();
+</script>
+</body>
+</html>
