@@ -141,31 +141,28 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .foot-legal{flex-direction:column;align-items:flex-start}
 }
 
-/* Home: hero (name, two lines, one film screen) · Today's picks (pieces and films, hover to play) · the collection · visit band · booking. */
+/* Home: hero (name, two lines, a strip of wedding films) · Today's picks (pieces and films, hover to play) · the collection · visit band · booking. */
 
 /* hero */
 .hero{padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(64px,8vw,112px);text-align:center}
 .brand{font-size:min(138px,calc((100vw - 2 * max(20px,4.5vw)) / 9.3));line-height:1;letter-spacing:.14em;margin-right:-.14em;white-space:nowrap}
 .hero .intro{max-width:52ch;margin:28px auto 0;font-size:clamp(16px,1.3vw,19px);color:var(--blush);line-height:1.6}
-.screen{position:relative;margin-top:clamp(40px,5vw,64px);height:clamp(380px,58svh,640px);border-radius:10px;overflow:hidden;background:var(--red-deep);box-shadow:0 40px 90px -40px rgba(0,0,0,.6)}
-.screen .amb{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(36px) brightness(.55) saturate(1.1);transform:scale(1.1)}
-.screen .main{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);height:100%;aspect-ratio:9/16;object-fit:cover;box-shadow:0 0 60px rgba(0,0,0,.35);cursor:pointer}
-.screen .fade{transition:opacity .6s var(--ease)}
-.screen .fade.out{opacity:0}
-.screen .cap{position:absolute;left:24px;bottom:24px;text-align:left;max-width:30%}
-.screen .cap small{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blush)}
-.screen .cap b{display:block;font-weight:400;font-size:clamp(20px,1.8vw,26px);margin-top:6px;letter-spacing:.02em}
-.pick-films{position:absolute;right:20px;bottom:20px;display:flex;gap:6px;max-width:calc(70% - 40px);overflow-x:auto;scrollbar-width:none;padding:4px;scroll-behavior:smooth}
-.pick-films::-webkit-scrollbar{display:none}
-.pick-films button{position:relative;flex-shrink:0;display:flex;align-items:center;gap:0;height:44px;padding:0 6px;transition:background .4s,color .4s,padding .5s var(--ease),gap .5s;border-radius:999px;background:rgba(59,15,15,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:12px;letter-spacing:.12em;text-transform:uppercase;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line-d)}
-.pick-films img{width:32px;height:32px;border-radius:50%;object-fit:cover;transition:transform .4s var(--ease)}
-.pick-films span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .6s var(--ease)}
-.pick-films button[aria-pressed="true"]{gap:10px;padding:0 16px 0 6px}
-.pick-films button[aria-pressed="true"] span{max-width:200px}
-.pick-films button:hover img{transform:scale(1.08)}
-.pick-films button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
-.pick-films i{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--sand)}
-.pick-films button[aria-pressed="true"] i{background:var(--red)}
+/* hero film strip: portrait films side by side across the full width, one plays at a time */
+.strip{--n:5;--g:12px;display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - (var(--n) - 1) * var(--g)) / var(--n));gap:var(--g);margin-top:clamp(40px,5vw,64px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;text-align:left}
+.strip::-webkit-scrollbar{display:none}
+.panel{position:relative;margin:0;aspect-ratio:9/16;border-radius:10px;overflow:hidden;background:var(--red-deep);scroll-snap-align:start;cursor:pointer;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}
+.panel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.85);transition:filter .7s var(--ease),transform 1.4s var(--ease)}
+.panel:hover video{filter:brightness(.8) saturate(.95)}
+.panel.on video{filter:none;transform:scale(1.02)}
+.panel::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,rgba(30,6,6,.75));pointer-events:none}
+.panel .cap{position:absolute;z-index:1;left:16px;right:16px;bottom:20px}
+.panel .cap small{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blush)}
+.panel .cap b{display:block;font-weight:400;font-size:clamp(17px,1.4vw,22px);margin-top:4px;letter-spacing:.02em}
+.panel .bar{position:absolute;z-index:1;left:16px;right:16px;bottom:10px;height:2px;background:rgba(247,244,239,.18);border-radius:2px;overflow:hidden;opacity:0;transition:opacity .4s}
+.panel .bar i{display:block;height:100%;width:0;background:var(--ivory)}
+.panel.on .bar{opacity:1}
+.strip-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:20px;font-size:13px;letter-spacing:.06em;color:var(--blush);text-align:left}
+.strip-foot b{font-weight:400;color:var(--ivory)}
 
 /* today's picks */
 .picks{padding-block:clamp(72px,8vw,120px);border-top:1px solid var(--line-d)}
@@ -526,10 +523,6 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .when{grid-template-columns:1fr}
 }
 @media (max-width:900px){
-  .screen .cap{max-width:60%;top:20px;bottom:auto;left:20px}
-  .pick-films{left:12px;right:12px;bottom:12px;max-width:none}
-  .pick-films button{padding:0 12px 0 4px;font-size:11px}
-  .pick-films button span{display:none}
   .coll{grid-template-columns:1fr;margin-top:32px}
   .side{position:fixed;z-index:91;top:0;bottom:0;left:0;width:min(360px,88vw);max-height:none;border-radius:0 16px 16px 0;background:var(--paper);padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-104%);transition:transform .6s var(--ease);display:flex;flex-direction:column}
   .side.on{transform:none}
@@ -574,9 +567,10 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .bk-ctx{display:none}
   .ask{height:48px;padding:0 18px 0 14px}
 }
-@media (max-width:900px) and (orientation:landscape) and (max-height:560px){
-  .screen{height:calc(100svh - 40px)}
-}
+@media (max-width:1100px){.strip{--n:4}}
+@media (max-width:800px){.strip{--n:3}}
+@media (max-width:560px){.strip{--n:1.4;--g:10px;margin-inline:calc(-1 * max(var(--gut),env(safe-area-inset-left,0px)));padding-inline:max(var(--gut),env(safe-area-inset-left,0px));scroll-padding-inline:max(var(--gut),env(safe-area-inset-left,0px))}.strip-foot .arrows{display:none}}
+@media (max-width:900px) and (orientation:landscape) and (max-height:560px){.strip{--n:4.4}}
 </style>
 </head>
 <body data-page="home">
@@ -604,12 +598,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
     <div class="wrap">
       <h1 class="brand">PRIME COUTURE</h1>
       <p class="intro">Essential power tailoring from Kigali. Suits, kaftans, dresses and umushanana, cut and finished in our atelier.</p>
-      <div class="screen" id="screen">
-        <video class="amb fade" id="scrAmb" muted loop playsinline aria-hidden="true"></video>
-        <video class="main fade" id="scrMain" muted playsinline aria-label="Prime Couture film"></video>
-        <div class="cap"><small id="scrCat"></small><b id="scrTitle"></b></div>
-        <div class="pick-films" id="scrPick" role="group" aria-label="Choose a film"></div>
-      </div>
+      <div class="strip" id="strip" role="group" aria-label="Films from Prime Couture weddings"></div>
+      <div class="strip-foot"><span>Films from their weddings · <b id="stripN">01</b> / <span id="stripT">12</span></span><div class="arrows"><button type="button" id="sPrev" aria-label="Previous film"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="sNext" aria-label="Next film"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
     </div>
   </section>
 
@@ -841,24 +831,30 @@ const OCC_FOR={'Wedding':' for the wedding','Gusaba & gukwa':' for gusaba and gu
 const OCC_PL={'Wedding':'weddings','Gusaba & gukwa':'gusaba and gukwa','Office':'the office','Gala or black tie':'galas and black tie','Everyday':'every day','Something else':'any occasion'};
 const WHO_B=[['her','A woman','Her look'],['him','A man','His look'],['both','Both','Her and him']];
 
-/* ---------- hero screen: films in one frame ---------- */
-if($('#screen')){
+/* ---------- hero strip: wedding films side by side, one plays, then the next takes over ---------- */
+if($('#strip')){
   const SCREEN=['train','walk','bride','sash','dance','aisle','party','shimmer','ceremony','together','smile','couple'].map(film).filter(Boolean);
-  const scrMain=$('#scrMain'), scrAmb=$('#scrAmb'); let si=-1;
-  $('#scrPick').innerHTML=SCREEN.map((f,i)=>`<button type="button" data-i="${i}" aria-pressed="false" aria-label="Play ${esc(f.title)}" title="${esc(f.title)}"><img src="${f.poster}" alt="" loading="lazy"><span>${esc(f.title)}</span><i></i></button>`).join('');
-  const playScreen=i=>{
-    si=(i+SCREEN.length)%SCREEN.length; const f=SCREEN[si];
-    [scrMain,scrAmb].forEach(v=>v.classList.add('out'));
-    setTimeout(()=>{ [scrMain,scrAmb].forEach(v=>{v.poster=f.poster; v.src=f.src; v.classList.remove('out'); if(!reduce) v.play().catch(()=>{});}); },reduce?0:300);
-    $('#scrTitle').textContent=f.title; $('#scrCat').textContent=catName(f.cat);
-    $$('#scrPick button').forEach((b,k)=>{b.setAttribute('aria-pressed',k===si); b.querySelector('i').style.width='0';});
-    const ab=$$('#scrPick button')[si], row=$('#scrPick'); if(ab&&row.scrollWidth>row.clientWidth){ setTimeout(()=>row.scrollTo({left:ab.offsetLeft-row.clientWidth/2+ab.offsetWidth,behavior:reduce?'auto':'smooth'}),350); } };
-  scrMain.addEventListener('timeupdate',()=>{ const b=$$('#scrPick button')[si]; if(b&&scrMain.duration) b.querySelector('i').style.width=(scrMain.currentTime/scrMain.duration*100)+'%'; });
-  scrMain.addEventListener('ended',()=>playScreen(si+1));
-  $('#scrPick').onclick=e=>{const b=e.target.closest('button'); if(b) playScreen(+b.dataset.i);};
-  scrMain.addEventListener('click',()=>openFilm(FILMS.indexOf(SCREEN[si])));
-  new IntersectionObserver(([e])=>{ if(reduce) return; [scrMain,scrAmb].forEach(v=>e.isIntersecting?v.play().catch(()=>{}):v.pause()); }).observe($('#screen'));
-  playScreen(0);
+  const strip=$('#strip'); let si=-1, seen=false;
+  strip.innerHTML=SCREEN.map((f,i)=>`<figure class="panel" data-i="${i}" tabindex="0" role="button" aria-label="Play ${esc(f.title)}"><video muted playsinline preload="none" poster="${f.poster}"></video><figcaption class="cap"><small>${esc(catName(f.cat))}</small><b>${esc(f.title)}</b></figcaption><span class="bar"><i></i></span></figure>`).join('');
+  const panels=[...strip.querySelectorAll('.panel')], vids=panels.map(p=>p.querySelector('video'));
+  $('#stripT').textContent=String(SCREEN.length).padStart(2,'0');
+  const into=p=>{ const pad=parseFloat(getComputedStyle(strip).paddingLeft)||0, l=p.getBoundingClientRect().left-strip.getBoundingClientRect().left+strip.scrollLeft-pad, r=l+p.offsetWidth+pad;
+    if(l<strip.scrollLeft-1||r>strip.scrollLeft+strip.clientWidth+1) strip.scrollTo({left:l,behavior:reduce?'auto':'smooth'}); };
+  const play=(i,scroll=true)=>{
+    if(si>=0){ vids[si].pause(); panels[si].classList.remove('on'); panels[si].querySelector('i').style.width='0'; }
+    si=(i+SCREEN.length)%SCREEN.length; const p=panels[si], v=vids[si];
+    if(!v.getAttribute('src')) v.src=SCREEN[si].src;
+    p.classList.add('on'); try{ v.currentTime=0; }catch(_){}
+    if(!reduce&&seen) v.play().catch(()=>{});
+    $('#stripN').textContent=String(si+1).padStart(2,'0');
+    if(scroll) into(p); };
+  vids.forEach((v,k)=>{ v.addEventListener('timeupdate',()=>{ if(k===si&&v.duration) panels[k].querySelector('i').style.width=(v.currentTime/v.duration*100)+'%'; }); v.addEventListener('ended',()=>{ if(k===si) play(si+1); }); });
+  const pick=p=>{ const i=+p.dataset.i; i===si?openFilm(FILMS.indexOf(SCREEN[i])):play(i); };
+  strip.addEventListener('click',e=>{ const p=e.target.closest('.panel'); if(p) pick(p); });
+  strip.addEventListener('keydown',e=>{ const p=e.target.closest('.panel'); if(p&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); pick(p); } });
+  $('#sPrev').onclick=()=>play(si-1); $('#sNext').onclick=()=>play(si+1);
+  new IntersectionObserver(([e])=>{ seen=e.isIntersecting; const v=vids[si]; if(!v||reduce) return; seen?v.play().catch(()=>{}):v.pause(); }).observe(strip);
+  play(0,false);
 }
 
 /* ---------- today's picks: pieces and films drift slowly; hover to play ---------- */
