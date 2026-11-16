@@ -215,6 +215,50 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .lk-card.nx figcaption{opacity:1}
 .sr-h{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+
+/* hero: type links under the side title */
+.lk-types{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:20px;font-size:15px;letter-spacing:.02em}
+.lk-types a,.lk-types button{color:var(--blush);text-decoration:none;padding:2px 0 3px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.lk-types a:hover,.lk-types button:hover,.lk-types .on{color:var(--ivory);border-color:currentColor}
+/* hero: the film slide */
+.lk-card video{width:100%;height:100%;object-fit:cover;display:block}
+.lk-tag{position:absolute;right:16px;top:16px;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.lk-tag svg{width:10px;height:10px;fill:currentColor}
+.th .pl{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.18)}
+.th .pl svg{width:12px;height:12px;fill:#fff}
+/* weddings band */
+.wed{padding-block:clamp(88px,9vw,140px);background:var(--mist)}
+.wed-in{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,5vw,96px);align-items:center}
+.wed .lede{color:var(--muted);opacity:1}
+.wed .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.wed-ph{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.wed-ph button{position:relative;padding:0;aspect-ratio:9/14;border-radius:12px;overflow:hidden;background:#DDD8D1;box-shadow:0 30px 60px -36px rgba(18,16,16,.45)}
+.wed-ph button:nth-child(2){margin-top:56px}
+.wed-ph button:nth-child(3){margin-top:20px}
+.wed-ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.wed-ph button:hover img{transform:scale(1.04)}
+.wed-ph span{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.92);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.wed-ph span svg{width:9px;height:9px;fill:currentColor}
+/* search results: who tabs */
+.hs-res li.hs-tabs{display:flex;gap:6px;padding:6px 6px 8px;cursor:default}
+.hs-tabs button{height:30px;padding:0 14px;border-radius:999px;font-size:13px;box-shadow:inset 0 0 0 1px #E3DCD3;transition:background .2s,color .2s}
+.hs-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+/* collection cards: open the piece, or book it */
+.c-open{display:block;width:100%;padding:0;text-align:left}
+.c-book{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:0 0 2px;font-size:13px;color:var(--ink);border-bottom:1px solid rgba(18,16,16,.25);transition:border-color .2s,color .2s}
+.c-book:hover{border-color:var(--red);color:var(--red)}
+/* booking: a guided card with a large step count */
+.bk-h{align-items:center;gap:18px}
+.bk-h .bk-n{display:flex;align-items:baseline;gap:6px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.bk-h .bk-n b{font-weight:400;font-size:clamp(40px,3.8vw,56px);line-height:1;letter-spacing:-.04em}
+.bk-h .bk-n span{font-size:15px;color:var(--ui-mfg)}
+.bk-h .bk-t{flex:1;min-width:0}
+.bk-body h3{font-size:clamp(24px,2.3vw,32px);font-weight:400;letter-spacing:-.01em;line-height:1.15}
+.bk-body.go-f{animation:bkf .55s var(--ease) both}
+.bk-body.go-b{animation:bkb .55s var(--ease) both}
+@keyframes bkf{from{opacity:0;transform:translateX(36px)}}
+@keyframes bkb{from{opacity:0;transform:translateX(-36px)}}
+
 /* find your piece: the search and the way in by who you are dressing, after the looks */
 .find{padding-block:clamp(88px,9vw,140px)}
 .fd-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px clamp(32px,5vw,96px);align-items:end}
@@ -671,7 +715,9 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .lk-stage{order:3;height:calc((100vw - 2 * var(--gut) - 44px) * 1.25);margin:20px 0 0 var(--gut)}
   .lk-card{bottom:0;height:100%;width:calc(100vw - 2 * var(--gut) - 44px);aspect-ratio:auto}
   .lk-card.nx{transform:translateX(calc(100% + 14px)) scale(.86)}
+  .lk-types{order:2;padding:0 var(--gut);margin-top:14px}
   .lk-info{order:4;margin:24px 0 0;padding:0 var(--gut)}
+  .wed-in{grid-template-columns:1fr}
   .lk-nav{order:5;margin-top:28px;padding:0 var(--gut)}
 }
 @media (max-width:560px){
@@ -700,6 +746,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
     <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
     <div class="top-r">
       <div class="cur-top dd--dark" data-cur></div>
+      <a class="icon wa" href="https://wa.me/250781178499" target="_blank" rel="noopener" aria-label="Message the atelier on WhatsApp" title="WhatsApp the atelier"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9.2 9.4c.3 1.9 2.2 4 4.4 4.6l1.2-1.1 1.6.8-.4 1.5c-3.6.2-7.3-3.4-7.3-7.1l1.5-.4.8 1.6z" stroke-width="1.2"/></svg></a>
       <a class="btn btn--light" href="./#book">Book a fitting</a>
       <a class="icon" id="bagOpen" href="shop.html" aria-label="All pieces"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.4l2.2 10.6a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2L20.6 8H5.8"/><circle cx="9.6" cy="19.6" r="1.3"/><circle cx="17.2" cy="19.6" r="1.3"/></svg><i id="bagCount" data-n="0"></i></a>
     </div>
@@ -707,6 +754,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 </header>
 <div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
   <a class="big" href="./#find">Find a piece</a><a class="big" href="shop.html">Collection</a><a class="big" href="atelier.html">Atelier</a>
+  <a class="big" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a>
   <a class="btn btn--light" href="./#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
 </div>
 
@@ -960,6 +1008,14 @@ const OCC_FOR={'Wedding':' for the wedding','Gusaba & gukwa':' for gusaba and gu
 const OCC_PL={'Wedding':'weddings','Gusaba & gukwa':'gusaba and gukwa','Office':'the office','Gala or black tie':'galas and black tie','Everyday':'every day','Something else':'any occasion'};
 const WHO_B=[['her','A woman','Her look'],['him','A man','His look'],['both','Both','Her and him']];
 
+/* ---------- weddings band: stills from a client's wedding films; the button opens the form set to Wedding ---------- */
+if($('#wedPh')){
+  const W=['bride','couple','aisle'].map(film).filter(Boolean);
+  $('#wedPh').innerHTML=W.map(f=>`<button type="button" data-f="${f.id}" data-cursor="Play" aria-label="Play the film: ${esc(f.title)}"><img src="${f.poster}" alt="" loading="lazy"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>${esc(f.title)}</span></button>`).join('');
+  $('#wedPh').addEventListener('click',e=>{ const b=e.target.closest('button'); if(b) openFilm(FILMS.findIndex(f=>f.id===b.dataset.f)); });
+  $('#wedBook').addEventListener('click',()=>bookFor({occ:'Wedding'}));
+}
+
 /* ---------- hero: search is the main action ---------- */
 if($('#hs')){
   const chips=$('#hChips');
@@ -971,14 +1027,15 @@ if($('#hs')){
     const h=p=>nz(`${p.title} ${p.cat} ${p.fam} ${p.for==='her'?'women woman her ladies':'men man him'}`);
     let r=P.filter(p=>w.every(x=>h(p).includes(x))); if(!r.length) r=P.filter(p=>w.every(x=>nz(p.title+' '+p.desc).includes(x)));
     return r.sort((a,b)=>(b.views||0)-(a.views||0)); };
-  let act=-1;
+  let act=-1, who='all';
   const opts=()=>$$('li[role="option"]',res);
   const mark=i=>{ const o=opts(); act=o.length?(i+o.length)%o.length:-1; o.forEach((li,k)=>li.classList.toggle('act',k===act)); hq.setAttribute('aria-activedescendant',act>=0?o[act].id:''); };
   const close=()=>{ res.hidden=true; hq.setAttribute('aria-expanded','false'); act=-1; };
-  const paint=()=>{ const q=hq.value.trim(); if(!q) return close(); const list=find(q);
-    res.innerHTML=list.length
+  const paint=()=>{ const q=hq.value.trim(); if(!q) return close(); const all=find(q), list=who==='all'?all:all.filter(p=>p.for===who);
+    const tabs=`<li class="hs-tabs" role="presentation">${[['all','All'],['her','Women'],['him','Men']].map(([k,l])=>`<button type="button" data-w="${k}" aria-pressed="${who===k}">${l} ${k==='all'?all.length:all.filter(p=>p.for===k).length}</button>`).join('')}</li>`;
+    res.innerHTML=tabs+(list.length
       ? list.slice(0,5).map((p,i)=>`<li role="option" id="hs${i}" data-slug="${p.slug}"><img src="${p.card}" alt=""><span><b>${esc(p.title)}</b><small>${forName(p.for)} · ${esc(p.cat)}</small></span><em class="price" data-rwf="${p.rwf}">${money(p.rwf)}</em></li>`).join('')+`<li role="option" id="hsAll" class="all"><span>See every match in the collection</span><span aria-hidden="true">→</span></li>`
-      : `<li class="none">Nothing matches “${esc(q)}” yet. Try suit, kaftan or gown.</li>`;
+      : `<li class="none">Nothing matches “${esc(q)}” yet. Try suit, kaftan or gown.</li>`);
     res.hidden=false; hq.setAttribute('aria-expanded','true'); act=-1; };
   const toShop=()=>{ const q=hq.value.trim(); location.href='shop.html'+(q?'#q='+encodeURIComponent(q):''); };
   const choose=li=>{ if(!li) return toShop(); if(li.dataset.slug){ close(); openItem(li.dataset.slug); } else toShop(); };
@@ -991,7 +1048,7 @@ if($('#hs')){
   hq.addEventListener('blur',()=>setTimeout(close,160));
   res.addEventListener('mousedown',e=>e.preventDefault());
   res.addEventListener('mousemove',e=>{ const li=e.target.closest('li[role="option"]'); if(li){ const i=opts().indexOf(li); if(i!==act) mark(i); } });
-  res.addEventListener('click',e=>choose(e.target.closest('li[role="option"]')));
+  res.addEventListener('click',e=>{ const t=e.target.closest('[data-w]'); if(t){ who=t.dataset.w; paint(); hq.focus(); return; } choose(e.target.closest('li[role="option"]')); });
   $('#hs').addEventListener('submit',e=>{ e.preventDefault(); toShop(); });
 }
 
@@ -1002,16 +1059,21 @@ if($('#looks')){
     {slug:'brown-embellished-gown',img:'media/full/brown-embellished-gown-0.webp',w:'Gowns'},
     {slug:'ivory-embroidered-kaftan',img:'media/full/ivory-embroidered-kaftan-1.webp',w:'Kaftans'},
     {slug:'the-sahara-muse-set',img:'media/full/the-sahara-muse-set-0.webp',w:'Sets'},
+    {film:'couple',w:'Weddings'},
     {slug:'prime-essential-prime-jacket-set',img:'media/full/prime-essential-prime-jacket-set-1.webp',w:'Jackets'},
     {slug:'ivory-silhouette-ensemble',img:'media/full/ivory-silhouette-ensemble-0.webp',w:'Dresses'},
-    {slug:'mocha-apex-suit',img:'media/full/mocha-apex-suit-0.webp',w:'Suits'}].filter(x=>by[x.slug]);
-  const N=LINE.length, DUR=5000, pad=n=>String(n).padStart(2,'0');
+    {slug:'mocha-apex-suit',img:'media/full/mocha-apex-suit-0.webp',w:'Suits'}].filter(x=>x.film?film(x.film):by[x.slug]);
+  const PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+  const KOF={Suits:'suits',Kaftans:'kaftans',Gowns:'dresses',Dresses:'dresses',Sets:'sets',Jackets:'jackets'};
+  const N=LINE.length, DUR=5000, FILM_DUR=9000, pad=n=>String(n).padStart(2,'0');
   const sec=$('#looks'), stage=$('#lkStage'), word=$('#edWord'), rail=$('#lkRail'), info=$('#lkInfo');
-  stage.innerHTML=LINE.map((x,i)=>`<figure class="lk-card" data-i="${i}"><img src="${x.img}" alt="${esc(by[x.slug].title)}, photographed for Prime Couture" decoding="async"${i>1?' loading="lazy"':''}><figcaption>Next · ${esc(x.w)}</figcaption></figure>`).join('');
-  rail.innerHTML=LINE.map((x,i)=>`<button type="button" class="th" data-i="${i}" aria-pressed="false" aria-label="Show ${esc(by[x.slug].title)}"><img src="${by[x.slug].card}" alt=""><i></i></button>`).join('');
+  stage.innerHTML=LINE.map((x,i)=>{ if(x.film){ const f=film(x.film); return `<figure class="lk-card film" data-i="${i}"><video muted loop playsinline preload="none" poster="${f.poster}" data-src="${f.src}" aria-label="${esc(f.title)}, a film from a Prime Couture wedding"></video><span class="lk-tag">${PLAY}Film</span><figcaption>Next · ${esc(x.w)}</figcaption></figure>`; }
+    return `<figure class="lk-card" data-i="${i}"><img src="${x.img}" alt="${esc(by[x.slug].title)}, photographed for Prime Couture" decoding="async"${i>1?' loading="lazy"':''}><figcaption>Next · ${esc(x.w)}</figcaption></figure>`; }).join('');
+  rail.innerHTML=LINE.map((x,i)=>{ const t=x.film?film(x.film).title:by[x.slug].title, im=x.film?film(x.film).poster:by[x.slug].card; return `<button type="button" class="th" data-i="${i}" aria-pressed="false" aria-label="Show ${esc(t)}"><img src="${im}" alt="">${x.film?`<span class="pl" aria-hidden="true">${PLAY}</span>`:''}<i></i></button>`; }).join('');
   const cards=$$('.lk-card',stage), ths=$$('.th',rail);
   let cur=-1, slug=null, timer=0, paused=false, seen=false;
-  const setWord=w=>{ if(word.dataset.w===w) return; word.dataset.w=w;
+  const types=$$('#lkTypes [data-k]');
+  const setWord=w=>{ types.forEach(a=>a.classList.toggle('on',a.dataset.k===KOF[w])); if(word.dataset.w===w) return; word.dataset.w=w;
     const out=[...word.children]; out.forEach((sp,i)=>{ sp.style.transitionDelay=i*16+'ms'; sp.classList.add('out'); });
     setTimeout(()=>{ if(word.dataset.w!==w) return; word.innerHTML=[...w].map((c,i)=>`<span class="pre" style="transition-delay:${i*30}ms">${c}</span>`).join(''); void word.offsetWidth; $$('span',word).forEach(sp=>sp.classList.remove('pre')); },reduce||!out.length?0:400); };
   const setInfo=p=>{ slug=p.slug; info.classList.add('swap');
@@ -1019,12 +1081,17 @@ if($('#looks')){
       const pr=$('#lkP'); pr.dataset.rwf=p.rwf; pr.textContent=money(p.rwf);
       const t=TYPES.find(t=>t[0]!=='all'&&inType(p,t[0]))||['all','pieces'], m=$('#lkMore'); m.href=`shop.html#type=${t[0]}`; m.textContent=`See all ${t[1].toLowerCase()}`;
       info.classList.remove('swap'); },reduce?0:320); };
-  const tick=()=>{ clearTimeout(timer); ths.forEach(t=>t.classList.remove('run')); if(reduce||paused||!seen||cur<0) return;
-    const t=ths[cur]; void t.offsetWidth; t.classList.add('run'); timer=setTimeout(()=>show(cur+1),DUR); };
+  const setFilm=f=>{ slug=null; info.classList.add('swap');
+    setTimeout(()=>{ $('#lkK').textContent='Film · A Prime Couture wedding'; $('#lkT').textContent=f.title; const pr=$('#lkP'); delete pr.dataset.rwf; pr.textContent='Filmed on the day, in pieces cut at the atelier';
+      const m=$('#lkMore'); m.href='shop.html#type=dresses'; m.textContent='See the gowns'; $('#lkView').textContent='Watch the film'; info.classList.remove('swap'); },reduce?0:320); };
+  const dur=()=>LINE[cur]&&LINE[cur].film?FILM_DUR:DUR;
+  const tick=()=>{ clearTimeout(timer); ths.forEach(t=>{ t.classList.remove('run'); t.style.removeProperty('--dur'); }); if(reduce||paused||!seen||cur<0) return;
+    const t=ths[cur]; t.style.setProperty('--dur',dur()/1000+'s'); void t.offsetWidth; t.classList.add('run'); timer=setTimeout(()=>show(cur+1),dur()); };
   const show=i=>{ i=(i+N)%N; if(i===cur) return; cur=i;
-    cards.forEach((c,k)=>{ const rel=(k-i+N)%N; c.classList.toggle('on',rel===0); c.classList.toggle('nx',rel===1); c.classList.toggle('pv',rel===N-1); if(rel<=2) c.querySelector('img').loading='eager'; });
-    const x=LINE[i], p=by[x.slug]; ths.forEach((t,k)=>t.setAttribute('aria-pressed',k===i)); $('#lkN').textContent=`${pad(i+1)} / ${pad(N)}`;
-    setWord(x.w); setInfo(p); tick(); };
+    cards.forEach((c,k)=>{ const rel=(k-i+N)%N; c.classList.toggle('on',rel===0); c.classList.toggle('nx',rel===1); c.classList.toggle('pv',rel===N-1); const im=c.querySelector('img'); if(rel<=2&&im) im.loading='eager'; });
+    const x=LINE[i]; ths.forEach((t,k)=>t.setAttribute('aria-pressed',k===i)); $('#lkN').textContent=`${pad(i+1)} / ${pad(N)}`;
+    cards.forEach((c,k)=>{ const v=c.querySelector('video'); if(!v) return; if(k===i){ if(!v.getAttribute('src')) v.src=v.dataset.src; if(!reduce) v.play().catch(()=>{}); } else v.pause(); });
+    setWord(x.w); if(x.film) setFilm(film(x.film)); else { $('#lkView').textContent='View piece'; setInfo(by[x.slug]); } tick(); };
   const hold=on=>{ paused=on; tick(); };
   show(0);
   new IntersectionObserver(([e])=>{ seen=e.isIntersecting; tick(); },{threshold:.4}).observe(sec);
@@ -1032,10 +1099,11 @@ if($('#looks')){
   rail.addEventListener('click',e=>{ const t=e.target.closest('.th'); if(t) show(+t.dataset.i); });
   rail.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); show(cur+(e.key==='ArrowRight'?1:-1)); ths[cur].focus(); } });
   $('#lkPrev').onclick=()=>show(cur-1); $('#lkNext').onclick=()=>show(cur+1);
-  const open=()=>slug&&openItem(slug);
+  const open=()=>{ const x=LINE[cur]; if(x&&x.film) return openFilm(FILMS.indexOf(film(x.film))); if(slug) openItem(slug); };
+  $('#lkUmu').addEventListener('click',()=>bookFor({who:'her',cut:'umu'}));
   stage.addEventListener('click',e=>{ const c=e.target.closest('.lk-card'); if(!c) return; if(c.classList.contains('on')) open(); else if(c.classList.contains('nx')) show(cur+1); });
   $('#lkView').addEventListener('click',open);
-  $('#lkBook').addEventListener('click',()=>{ const p=by[slug]; if(p) bookFor({who:p.for,cut:cutOf(p),refs:[p.slug]}); });
+  $('#lkBook').addEventListener('click',()=>{ const x=LINE[cur]; if(x&&x.film) return bookFor({occ:'Wedding'}); const p=by[slug]; if(p) bookFor({who:p.for,cut:cutOf(p),refs:[p.slug]}); });
   let sx=null, sy=0;
   stage.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse'){ sx=e.clientX; sy=e.clientY; } });
   stage.addEventListener('pointerup',e=>{ if(sx===null) return; const dx=e.clientX-sx, dy=e.clientY-sy; sx=null; if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)) show(cur+(dx<0?1:-1)); });
@@ -1141,7 +1209,7 @@ if($('#grid')){
   function renderGrid(){
     let list=P.filter(p=>pass(p,on));
     if(sort==='low') list.sort((a,b)=>a.rwf-b.rwf); else if(sort==='high') list.sort((a,b)=>b.rwf-a.rwf); else if(sort==='az') list.sort((a,b)=>a.title.localeCompare(b.title)); else list.sort((a,b)=>(b.views||0)-(a.views||0));
-    grid.innerHTML=list.length?list.map((p,i)=>`<button type="button" class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button>`).join('')
+    grid.innerHTML=list.length?list.map((p,i)=>`<div class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms"><button type="button" class="c-open"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button><button type="button" class="c-book" data-book="${p.slug}">Book a fitting</button></div>`).join('')
       :`<div class="empty"><b>No pieces match</b>Try a different word, or clear a filter. The atelier can also make pieces to order.<div style="margin-top:16px"><button type="button" class="u-btn outline sm" data-clear="all">Clear all filters</button></div></div>`;
     const tags=[]; if(q) tags.push(['q',`“${q}”`]); if(on.who!=='all') tags.push(['who',WHO.find(x=>x[0]===on.who)[1]]); if(on.fam!=='all') tags.push(['fam',on.fam]); if(on.type!=='all') tags.push(['type',TYPES.find(x=>x[0]===on.type)[1]]); if(on.price!=='all') tags.push(['price',priceLabel(PRICES.find(x=>x[0]===on.price))]);
     $('#fActive').innerHTML=`<p class="rcount" aria-live="polite">${plural(list.length)}</p>`+tags.map(([k,l])=>`<span class="tag">${esc(l)}<button type="button" data-clear="${k}" aria-label="Remove ${esc(l)}">×</button></span>`).join('')+(tags.length>1?`<button type="button" class="u-btn ghost sm" data-clear="all">Clear all</button>`:'');
@@ -1165,7 +1233,7 @@ if($('#grid')){
   $('#fOpen').onclick=()=>{ draft={...on}; renderFilters(); show(side); };
   $('#fClose').onclick=()=>{ draft={...on}; renderFilters(); hide(side); };
   grid.addEventListener('mouseover',e=>{const a=e.target.closest('.card')?.querySelector('img.alt'); if(a&&!a.getAttribute('src')){a.onload=()=>a.classList.add('ready'); a.src=a.dataset.src;}});
-  grid.onclick=e=>{const c=e.target.closest('.card'); if(c) openItem(c.dataset.slug)};
+  grid.onclick=e=>{ const b=e.target.closest('.c-book'); if(b){ const p=by[b.dataset.book]; return bookFor({who:p.for,cut:cutOf(p),refs:[p.slug]}); } const c=e.target.closest('.c-open'); if(c) openItem(c.closest('.card').dataset.slug); };
   onCur(renderFilters);
   /* links like shop.html#who=her&type=dresses set and apply the filters */
   const fromHash=scroll=>{ const h=new URLSearchParams(location.hash.slice(1)); if(h.has('bag')){ setTimeout(()=>show(drawer),200); return; }
@@ -1256,6 +1324,7 @@ function pieceBlock(w){
   else if(sel==='any') h+=`<p class="refs-note">No problem. The atelier will show you pieces${OCC_FOR[bk.occ]||''} at the fitting.</p>`;
   return h+'</div>';
 }
+let bkLast=0;
 function renderBk(){
   const box=$('#bk'); if(!box) return;
   box.classList.toggle('filling',step>2&&!sent);
@@ -1263,7 +1332,8 @@ function renderBk(){
     <ol class="next"><li class="ok"><div><b>Send your request</b><span>It opened in WhatsApp, ready to send. Press send there.</span></div></li><li><div><b>The atelier confirms</b><span>They reply on WhatsApp with your time.</span></div></li><li><div><b>Come to Gishushu</b><span>15 KG 599 St, Monday to Saturday, 9am to 8pm.</span></div></li></ol>
     <p class="alt2">WhatsApp did not open? Message or call <a href="https://wa.me/${WA}" target="_blank" rel="noopener">+250 781 178 499</a>.</p>
     <div class="acts"><a class="u-btn" href="https://www.google.com/maps/search/?api=1&query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a><button type="button" class="u-btn outline" data-act="restart">Start a new request</button></div></div>`; return; }
-  let h=`<div class="bk-h"><div><b>Book a fitting</b><small>Step ${step} of 5 · ${LABELS[step-1]}</small></div>${step>1&&bk.occ?`<span class="bk-ctx">${esc(bk.occ)}${bk.who?' · '+esc(whoText()):''}</span>`:''}</div><div class="bk-progress" aria-hidden="true">${[1,2,3,4,5].map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body">`;
+  const bkDir=step>bkLast?' go-f':step<bkLast?' go-b':''; bkLast=step;
+  let h=`<div class="bk-h"><div class="bk-n" aria-label="Step ${step} of 5"><b>${String(step).padStart(2,'0')}</b><span>/ 05</span></div><div class="bk-t"><b>Book a fitting</b><small>${LABELS[step-1]}</small></div>${step>1&&bk.occ?`<span class="bk-ctx">${esc(bk.occ)}${bk.who?' · '+esc(whoText()):''}</span>`:''}</div><div class="bk-progress" aria-hidden="true">${[1,2,3,4,5].map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body${bkDir}">`;
   if(step===1) h+=`<h3>What is the occasion?</h3><p class="hint">Five quick questions, then we write the WhatsApp message for you.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
   if(step===2) h+=`<h3>Who are we dressing${OCC_FOR[bk.occ]||''}?</h3><p class="hint">We will only show pieces that suit them and the occasion.</p><div class="rcards who" role="radiogroup" aria-label="Who it is for">${WHO_B.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-who="${k}" aria-checked="${bk.who===k}">${TICK}${svg(k)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
   if(step===3) h+=`<h3>${bk.who==='both'?'Choose a piece for each of them':bk.who==='her'?'Choose her piece':'Choose his piece'}</h3><p class="hint">What we make for ${OCC_PL[bk.occ]||'any occasion'}. Pick the closest; the details are settled at your fitting.</p>${whoList().map(pieceBlock).join('')}`;
