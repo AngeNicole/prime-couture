@@ -167,68 +167,59 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
 /* Home: hero (search first, a piece on the stage) · Today's picks · client films · our pieces · booking. Earlier: · Today's picks (pieces and films, hover to play) · the collection · visit band · booking. */
 
-/* hero: red, the headline and the search. Nothing else competes with them. */
-.hero{padding-block:clamp(56px,7vw,120px) clamp(56px,6.4vw,104px)}
-.h-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px clamp(32px,5vw,96px);align-items:end}
-.h-t{font-size:clamp(44px,6vw,104px);line-height:.98;letter-spacing:-.03em;font-weight:400;max-width:13ch}
-.h-t span{color:var(--blush)}
-.h-lede{margin:24px 0 0;max-width:42ch;font-size:clamp(16px,1.2vw,18px);color:var(--blush)}
-.hs{position:relative;z-index:6}
-.red .hs-box{box-shadow:0 24px 48px -26px rgba(0,0,0,.6)}
-.red .h-chips a{box-shadow:inset 0 0 0 1px rgba(241,234,224,.3);color:var(--ivory)}
-.red .h-chips a:hover{background:var(--ivory);color:var(--red-deep);box-shadow:none}
-.h-acts{display:flex;align-items:center;gap:14px;margin-top:28px;font-size:14px;color:var(--blush)}
-.h-acts .btn{height:46px}
-
-/* the looks: a full-screen section of its own. One look at a time, cut from the shop's photographs; the panel beside it
-   holds the details and the controls, so nothing sits on the people. Each look tints the room and the word with its own fabric colour. */
-.looks{--sw:#8D8D8B;position:relative;overflow:hidden;background:color-mix(in srgb,var(--sw) 18%,#F7F5F2);transition:background-color 1.2s var(--ease)}
-.looks::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 70% at 66% 44%,rgba(255,255,255,.8),rgba(255,255,255,0) 72%);pointer-events:none}
-.lk{position:relative;display:grid;grid-template-columns:minmax(320px,.4fr) minmax(0,1fr);height:clamp(620px,calc(100svh - var(--bar)),1000px);max-width:1680px;margin:0 auto}
-.lk-panel{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:clamp(48px,8vh,104px) 24px clamp(40px,6vh,72px) max(var(--gut),env(safe-area-inset-left,0px))}
-.lk-head .title{font-size:clamp(34px,3.2vw,52px)}
-.lk-head p{margin:12px 0 0;max-width:30ch;font-size:15px;color:var(--muted)}
+/* hero: the looks, on red. The real photographs, backgrounds and all; the next one waits at the edge.
+   The type of piece is the title on the side and changes with the look. */
+.looks{position:relative;overflow:hidden;background:var(--red);color:var(--ivory)}
+.lk{position:relative;display:grid;grid-template-columns:minmax(340px,.42fr) minmax(0,1fr);height:clamp(620px,calc(100svh - var(--bar)),980px);max-width:1680px;margin:0 auto}
+.lk-panel{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(40px,7vh,88px) clamp(24px,3vw,48px) clamp(36px,6vh,64px) max(var(--gut),env(safe-area-inset-left,0px));container-type:inline-size}
+.lk-panel .kicker{margin:0;color:var(--blush);opacity:1}
+.lk-word{font-weight:500;font-size:24cqw;line-height:.88;letter-spacing:-.045em;white-space:nowrap;margin:0 0 0 -.04em;min-height:.9em}
+.lk-word span{display:inline-block;transition:transform .8s var(--ease),opacity .55s}
+.lk-word span.out{transform:translateY(-35%);opacity:0}
+.lk-word span.pre{transform:translateY(45%);opacity:0;transition:none}
+.lk-info{margin-top:clamp(20px,3vh,36px)}
 .lk-info .ei-in{transition:opacity .35s,transform .6s var(--ease)}
-.lk-info.swap .ei-in{opacity:0;transform:translateY(14px)}
-.ei-n{display:block;font-size:13px;letter-spacing:.16em;color:var(--muted);font-variant-numeric:tabular-nums}
-.lk-info small{display:block;margin-top:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.lk-name{display:block;font-weight:400;font-size:clamp(28px,2.5vw,42px);line-height:1.08;letter-spacing:-.02em;margin-top:10px;max-width:15ch}
-.lk-price{display:block;margin-top:12px;font-size:18px}
-.lk-acts{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.lk-info.swap .ei-in{opacity:0;transform:translateY(12px)}
+.lk-info small{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blush)}
+.lk-name{display:block;font-weight:400;font-size:clamp(22px,1.9vw,30px);line-height:1.15;margin-top:8px;max-width:20ch}
+.lk-price{display:block;margin-top:8px;font-size:17px;color:var(--blush)}
+.lk-acts{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px}
 .lk-acts .btn{height:46px;padding:0 22px}
-.lk-acts .more{margin-left:8px;font-size:13px;color:var(--muted);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;white-space:nowrap}
-.lk-acts .more:hover{color:var(--ink)}
+.lk-acts .more{margin-left:6px;font-size:13px;color:var(--blush);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;white-space:nowrap}
+.lk-acts .more:hover{color:var(--ivory)}
 .lk-nav{display:flex;flex-direction:column;gap:16px}
 .lk-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.lk-rail{display:flex;gap:8px}
-.th{position:relative;width:48px;height:48px;border-radius:50%;padding:0;flex-shrink:0}
-.th img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.75);filter:saturate(.25);opacity:.7;transition:filter .4s,opacity .4s,transform .4s var(--ease)}
-.th:hover img,.th[aria-pressed="true"] img{filter:none;opacity:1}
-.th:hover img{transform:scale(1.06)}
-.th svg{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);transform:rotate(-90deg);pointer-events:none}
-.th circle{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-dasharray:170;stroke-dashoffset:170;opacity:0}
-.th[aria-pressed="true"] circle{opacity:1;stroke-dashoffset:0}
-.th.run circle{animation:ring var(--dur,5s) linear forwards}
-@keyframes ring{from{stroke-dashoffset:170}to{stroke-dashoffset:0}}
+.ei-n{font-size:13px;letter-spacing:.16em;color:var(--blush);font-variant-numeric:tabular-nums}
 .lk-arrows{display:flex;gap:8px}
-.lk-arrows button{width:46px;height:46px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(18,16,16,.18);display:grid;place-items:center;transition:background .3s,color .3s,box-shadow .3s}
-.lk-arrows button:hover{background:var(--ink);color:#fff;box-shadow:none}
+.lk-arrows button{width:46px;height:46px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(241,234,224,.35);display:grid;place-items:center;transition:background .3s,color .3s,box-shadow .3s}
+.lk-arrows button:hover{background:var(--ivory);color:var(--red-deep);box-shadow:none}
 .lk-arrows svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
-.lk-stage{position:relative;overflow:hidden;container-type:inline-size;touch-action:pan-y}
-.ed-word{position:absolute;z-index:1;left:0;right:0;top:11%;text-align:center;font-weight:500;font-size:21cqw;line-height:.82;letter-spacing:-.045em;color:color-mix(in srgb,var(--sw) 45%,#121010);white-space:nowrap;pointer-events:none;user-select:none;transition:color 1.2s var(--ease)}
-.ed-word span{display:inline-block;transition:transform .8s var(--ease),opacity .55s}
-.ed-word span.out{transform:translateY(-30%);opacity:0}
-.ed-word span.pre{transform:translateY(40%);opacity:0;transition:none}
-.fig{position:absolute;z-index:2;left:50%;bottom:4%;height:88%;opacity:0;pointer-events:none;cursor:pointer;transform:translateX(-50%) translateY(3%) scale(1.02);clip-path:inset(100% -30% -30% -30%);transition:clip-path 1.1s var(--ease),transform 1.3s var(--ease),opacity .25s}
-.fig img{height:100%;width:auto;display:block;filter:drop-shadow(0 34px 34px rgba(18,16,16,.22));transform-origin:50% 100%}
-.fig::after{content:"";position:absolute;z-index:-1;left:6%;right:6%;bottom:-2.2%;height:4.5%;border-radius:50%;background:radial-gradient(closest-side,rgba(18,16,16,.34),rgba(18,16,16,0))}
-.fig.on{opacity:1;pointer-events:auto;transform:translateX(-50%);clip-path:inset(-30% -30% -30% -30%)}
-.fig.on img{animation:breathe 8s ease-in-out infinite alternate}
-@keyframes breathe{to{transform:scale(1.02)}}
-.fig.off{z-index:1;opacity:0;clip-path:inset(-30% -30% -30% -30%);transform:translateX(-50%) translateY(-2%) scale(.985);transition:opacity .9s ease,transform 1s var(--ease)}
-.hs-box{box-shadow:0 22px 44px -26px rgba(0,0,0,.6)}
-.red .h-chips a{box-shadow:inset 0 0 0 1px rgba(241,234,224,.3);color:var(--ivory)}
-.red .h-chips a:hover,.red .h-chips a.on{background:var(--ivory);color:var(--red-deep)}
+.lk-rail{display:flex;gap:8px}
+.th{position:relative;width:46px;height:58px;border-radius:8px;overflow:hidden;padding:0;flex-shrink:0;opacity:.5;transition:opacity .4s,box-shadow .4s}
+.th:hover{opacity:.85}
+.th[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 2px var(--ivory)}
+.th img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.th i{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--ivory);transform-origin:left;transform:scaleX(0)}
+.th.run i{animation:thbar var(--dur,5s) linear forwards}
+@keyframes thbar{to{transform:scaleX(1)}}
+.lk-stage{position:relative}
+.lk-card{position:absolute;left:0;bottom:7%;height:86%;aspect-ratio:4/5;margin:0;border-radius:16px;overflow:hidden;background:var(--red-deep);cursor:pointer;transform-origin:0 100%;box-shadow:0 50px 90px -40px rgba(0,0,0,.65);opacity:0;pointer-events:none;transform:translateX(calc(170% + 60px)) scale(.7);transition:transform 1.15s var(--ease),opacity .8s var(--ease),filter .9s var(--ease)}
+.lk-card img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
+.lk-card.on{z-index:2;opacity:1;pointer-events:auto;transform:none}
+.lk-card.on img{animation:kb 7s ease-out both}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
+.lk-card.nx{z-index:1;opacity:.75;pointer-events:auto;transform:translateX(calc(100% + 32px)) scale(.7);filter:saturate(.7) brightness(.85)}
+.lk-card.nx:hover{opacity:.95;filter:none}
+.lk-card.pv{z-index:1;opacity:0;transform:translateX(-22%) scale(.9)}
+.lk-card figcaption{position:absolute;left:16px;bottom:16px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .4s}
+.lk-card.nx figcaption{opacity:1}
+.sr-h{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* find your piece: the search and the way in by who you are dressing, after the looks */
+.find{padding-block:clamp(88px,9vw,140px)}
+.fd-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px clamp(32px,5vw,96px);align-items:end}
+.fd-search{max-width:640px;width:100%;justify-self:end}
+.hs{position:relative;z-index:6}
 .hs-box{display:flex;align-items:center;gap:6px;height:64px;padding:0 7px 0 22px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px #DDD8D2,0 18px 40px -28px rgba(18,16,16,.35);transition:box-shadow .3s}
 .hs-box:focus-within{box-shadow:inset 0 0 0 1.5px var(--ink),0 24px 50px -28px rgba(18,16,16,.45)}
 .hs-box>svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;flex-shrink:0;opacity:.55}
@@ -370,7 +361,6 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
 
 /* home: our pieces */
-.cats{padding-block:clamp(88px,9vw,140px)}
 .cats .sec-head{margin-bottom:0}
 .cat-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.82fr);gap:20px;margin-top:48px}
 .cat{display:flex;flex-direction:column;min-width:0}
@@ -672,20 +662,22 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 }
 @media (max-width:1100px){.proof{grid-template-columns:1fr 1fr}.proof p:nth-child(3){padding-left:0;border-left:0}.proof p:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:900px){
-  .h-top{grid-template-columns:1fr}
-  .lk{grid-template-columns:1fr;height:auto}
-  .lk-stage{order:-1;height:72svh;min-height:480px}
-  .lk-panel{padding:28px var(--gut) 48px;gap:28px}
-  .lk-head{display:none}
-  .ed-word{top:13%;font-size:24cqw}
-  .fig{height:84%;bottom:3%}
-  .looks::before{background:radial-gradient(80% 50% at 50% 34%,rgba(255,255,255,.8),rgba(255,255,255,0) 72%)}
+  .fd-head{grid-template-columns:1fr}
+  .fd-search{justify-self:stretch}
+  .lk{display:flex;flex-direction:column;height:auto;padding:28px 0 40px}
+  .lk-panel,.lk-mid{display:contents}
+  .lk-panel>.kicker{order:1;padding:0 var(--gut)}
+  .lk-word{order:2;font-size:21vw;padding:10px var(--gut) 0;margin:0}
+  .lk-stage{order:3;height:calc((100vw - 2 * var(--gut) - 44px) * 1.25);margin:20px 0 0 var(--gut)}
+  .lk-card{bottom:0;height:100%;width:calc(100vw - 2 * var(--gut) - 44px);aspect-ratio:auto}
+  .lk-card.nx{transform:translateX(calc(100% + 14px)) scale(.86)}
+  .lk-info{order:4;margin:24px 0 0;padding:0 var(--gut)}
+  .lk-nav{order:5;margin-top:28px;padding:0 var(--gut)}
 }
 @media (max-width:560px){
-  .th{width:40px;height:40px}
-  .lk-rail{gap:6px}
   .lk-arrows{display:none}
-  .h-acts{flex-wrap:wrap}
+  .lk-rail{gap:6px}
+  .th{width:38px;height:48px}
 }
 @media (max-width:560px){
   .hs-box{height:58px;padding-left:18px}
@@ -703,7 +695,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 <body data-page="shop">
 <header class="top" id="top">
   <div class="wrap top-in">
-    <nav aria-label="Primary"><a href="./#picks">Today's picks</a><a href="shop.html" aria-current="page">Collection</a><a href="atelier.html">Atelier</a></nav>
+    <nav aria-label="Primary"><a href="./#find">Find a piece</a><a href="shop.html" aria-current="page">Collection</a><a href="atelier.html">Atelier</a></nav>
     <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
     <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
     <div class="top-r">
@@ -714,7 +706,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </div>
 </header>
 <div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
-  <a class="big" href="./#picks">Today's picks</a><a class="big" href="shop.html">Collection</a><a class="big" href="atelier.html">Atelier</a>
+  <a class="big" href="./#find">Find a piece</a><a class="big" href="shop.html">Collection</a><a class="big" href="atelier.html">Atelier</a>
   <a class="btn" href="./#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
 </div>
 
@@ -1003,52 +995,45 @@ if($('#hs')){
   $('#hs').addEventListener('submit',e=>{ e.preventDefault(); toShop(); });
 }
 
-/* ---------- the looks: one at a time, 5 seconds each; tap a face, use the arrows or swipe ---------- */
+/* ---------- hero: the looks. The real photographs, one at a time, the next waiting at the edge; 5 seconds each ---------- */
 if($('#looks')){
-  /* cut from the shop's own photographs with Apple's subject lifting (tools/lift.swift) */
   const LINE=[
-    {slug:'silverline-two-button-executive-suit',cut:'media/cut/silverline-two-button-executive-suit.webp',th:'media/cut/th/silverline-two-button-executive-suit.webp',w:'SUITS'},
-    {slug:'brown-embellished-gown',cut:'media/cut/brown-embellished-gown.webp',th:'media/cut/th/brown-embellished-gown.webp',w:'GOWNS'},
-    {slug:'ivory-embroidered-kaftan',cut:'media/cut/ivory-embroidered-kaftan.webp',th:'media/cut/th/ivory-embroidered-kaftan.webp',w:'KAFTANS'},
-    {slug:'the-sahara-muse-set',cut:'media/cut/the-sahara-muse-set.webp',th:'media/cut/th/the-sahara-muse-set.webp',w:'SETS'},
-    {slug:'prime-essential-prime-jacket-set',cut:'media/cut/prime-essential-prime-jacket-set.webp',th:'media/cut/th/prime-essential-prime-jacket-set.webp',w:'JACKETS'},
-    {slug:'ivory-silhouette-ensemble',cut:'media/cut/ivory-silhouette-ensemble.webp',th:'media/cut/th/ivory-silhouette-ensemble.webp',w:'DRESSES'},
-    {slug:'mocha-apex-suit',cut:'media/cut/mocha-apex-suit.webp',th:'media/cut/th/mocha-apex-suit.webp',w:'SUITS'}].filter(x=>by[x.slug]);
+    {slug:'silverline-two-button-executive-suit',img:'media/full/silverline-two-button-executive-suit-1.webp',w:'Suits'},
+    {slug:'brown-embellished-gown',img:'media/full/brown-embellished-gown-0.webp',w:'Gowns'},
+    {slug:'ivory-embroidered-kaftan',img:'media/full/ivory-embroidered-kaftan-1.webp',w:'Kaftans'},
+    {slug:'the-sahara-muse-set',img:'media/full/the-sahara-muse-set-0.webp',w:'Sets'},
+    {slug:'prime-essential-prime-jacket-set',img:'media/full/prime-essential-prime-jacket-set-1.webp',w:'Jackets'},
+    {slug:'ivory-silhouette-ensemble',img:'media/full/ivory-silhouette-ensemble-0.webp',w:'Dresses'},
+    {slug:'mocha-apex-suit',img:'media/full/mocha-apex-suit-0.webp',w:'Suits'}].filter(x=>by[x.slug]);
   const N=LINE.length, DUR=5000, pad=n=>String(n).padStart(2,'0');
   const sec=$('#looks'), stage=$('#lkStage'), word=$('#edWord'), rail=$('#lkRail'), info=$('#lkInfo');
-  stage.insertAdjacentHTML('beforeend',LINE.map((x,i)=>`<div class="fig" data-i="${i}" aria-hidden="true"><img src="${x.cut}" alt="" decoding="async"${i>1?' loading="lazy"':''}></div>`).join(''));
-  rail.innerHTML=LINE.map((x,i)=>`<button type="button" class="th" data-i="${i}" aria-pressed="false" aria-label="Show ${esc(by[x.slug].title)}"><img src="${x.th}" alt=""><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27"/></svg></button>`).join('');
-  const figs=$$('.fig',stage), ths=$$('.th',rail);
-  let cur=-1, slug=null, timer=0, paused=false, seen=false, seq=0;
+  stage.innerHTML=LINE.map((x,i)=>`<figure class="lk-card" data-i="${i}"><img src="${x.img}" alt="${esc(by[x.slug].title)}, photographed for Prime Couture" decoding="async"${i>1?' loading="lazy"':''}><figcaption>Next · ${esc(x.w)}</figcaption></figure>`).join('');
+  rail.innerHTML=LINE.map((x,i)=>`<button type="button" class="th" data-i="${i}" aria-pressed="false" aria-label="Show ${esc(by[x.slug].title)}"><img src="${by[x.slug].card}" alt=""><i></i></button>`).join('');
+  const cards=$$('.lk-card',stage), ths=$$('.th',rail);
+  let cur=-1, slug=null, timer=0, paused=false, seen=false;
   const setWord=w=>{ if(word.dataset.w===w) return; word.dataset.w=w;
-    const out=[...word.children]; out.forEach((sp,i)=>{ sp.style.transitionDelay=i*14+'ms'; sp.classList.add('out'); });
-    setTimeout(()=>{ if(word.dataset.w!==w) return; word.innerHTML=[...w].map((c,i)=>`<span class="pre" style="transition-delay:${i*26}ms">${c}</span>`).join(''); void word.offsetWidth; $$('span',word).forEach(sp=>sp.classList.remove('pre')); },reduce||!out.length?0:380); };
-  const setInfo=(p,n)=>{ slug=p.slug; info.classList.add('swap');
-    setTimeout(()=>{ if(slug!==p.slug) return; $('#lkN').textContent=n; $('#lkK').textContent=`${forName(p.for)} · ${p.cat}`; $('#lkT').textContent=p.title;
+    const out=[...word.children]; out.forEach((sp,i)=>{ sp.style.transitionDelay=i*16+'ms'; sp.classList.add('out'); });
+    setTimeout(()=>{ if(word.dataset.w!==w) return; word.innerHTML=[...w].map((c,i)=>`<span class="pre" style="transition-delay:${i*30}ms">${c}</span>`).join(''); void word.offsetWidth; $$('span',word).forEach(sp=>sp.classList.remove('pre')); },reduce||!out.length?0:400); };
+  const setInfo=p=>{ slug=p.slug; info.classList.add('swap');
+    setTimeout(()=>{ if(slug!==p.slug) return; $('#lkK').textContent=`${forName(p.for)} · ${p.cat}`; $('#lkT').textContent=p.title;
       const pr=$('#lkP'); pr.dataset.rwf=p.rwf; pr.textContent=money(p.rwf);
       const t=TYPES.find(t=>t[0]!=='all'&&inType(p,t[0]))||['all','pieces'], m=$('#lkMore'); m.href=`shop.html#type=${t[0]}`; m.textContent=`See all ${t[1].toLowerCase()}`;
-      info.classList.remove('swap'); },reduce?0:300); };
-  const ready=im=>im.complete&&im.naturalWidth?Promise.resolve():(im.decode?im.decode().catch(()=>{}):Promise.resolve());
+      info.classList.remove('swap'); },reduce?0:320); };
   const tick=()=>{ clearTimeout(timer); ths.forEach(t=>t.classList.remove('run')); if(reduce||paused||!seen||cur<0) return;
     const t=ths[cur]; void t.offsetWidth; t.classList.add('run'); timer=setTimeout(()=>show(cur+1),DUR); };
-  const show=i=>{ i=(i+N)%N; if(i===cur) return; cur=i; const my=++seq;
-    const x=LINE[i], p=by[x.slug], el=figs[i], im=el.querySelector('img'); im.loading='eager';
-    ths.forEach((t,k)=>t.setAttribute('aria-pressed',k===i)); setInfo(p,`${pad(i+1)} / ${pad(N)}`); setWord(x.w); sec.style.setProperty('--sw',p.sw||'#8D8D8B');
-    ready(im).then(()=>{ if(my!==seq) return;
-      figs.forEach(f=>{ if(f!==el&&f.classList.contains('on')){ f.classList.remove('on'); f.classList.add('off'); setTimeout(()=>f.classList.remove('off'),900); } });
-      el.classList.remove('off'); void el.offsetWidth; el.classList.add('on'); });
-    const nx=figs[(i+1)%N].querySelector('img'); nx.loading='eager';   /* warm the next one */
-    tick(); };
+  const show=i=>{ i=(i+N)%N; if(i===cur) return; cur=i;
+    cards.forEach((c,k)=>{ const rel=(k-i+N)%N; c.classList.toggle('on',rel===0); c.classList.toggle('nx',rel===1); c.classList.toggle('pv',rel===N-1); if(rel<=2) c.querySelector('img').loading='eager'; });
+    const x=LINE[i], p=by[x.slug]; ths.forEach((t,k)=>t.setAttribute('aria-pressed',k===i)); $('#lkN').textContent=`${pad(i+1)} / ${pad(N)}`;
+    setWord(x.w); setInfo(p); tick(); };
   const hold=on=>{ paused=on; tick(); };
   show(0);
   new IntersectionObserver(([e])=>{ seen=e.isIntersecting; tick(); },{threshold:.4}).observe(sec);
-  new IntersectionObserver(([e],o)=>{ if(e.isIntersecting){ figs.forEach(f=>f.querySelector('img').loading='eager'); o.disconnect(); } },{rootMargin:'600px 0px'}).observe(sec);
   stage.addEventListener('mouseenter',()=>hold(true)); stage.addEventListener('mouseleave',()=>hold(false));
   rail.addEventListener('click',e=>{ const t=e.target.closest('.th'); if(t) show(+t.dataset.i); });
   rail.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); show(cur+(e.key==='ArrowRight'?1:-1)); ths[cur].focus(); } });
   $('#lkPrev').onclick=()=>show(cur-1); $('#lkNext').onclick=()=>show(cur+1);
   const open=()=>slug&&openItem(slug);
-  stage.addEventListener('click',e=>{ if(e.target.closest('.fig.on')) open(); });
+  stage.addEventListener('click',e=>{ const c=e.target.closest('.lk-card'); if(!c) return; if(c.classList.contains('on')) open(); else if(c.classList.contains('nx')) show(cur+1); });
   $('#lkView').addEventListener('click',open);
   $('#lkBook').addEventListener('click',()=>{ const p=by[slug]; if(p) bookFor({who:p.for,cut:cutOf(p),refs:[p.slug]}); });
   let sx=null, sy=0;
@@ -1116,9 +1101,7 @@ if($('#catGrid')){
   const thumbs=P.slice().sort((a,b)=>(b.views||0)-(a.views||0)).slice(3,7);
   $('#catGrid').innerHTML=CAT.map(card).join('')+`<article class="cat cat-all lite"><div class="cat-stack" aria-hidden="true">${thumbs.map(p=>`<img src="${p.card}" alt="" loading="lazy">`).join('')}</div>
     <div class="cat-b"><h3>The full collection</h3><p>Every suit, kaftan, dress and set the atelier makes. Search, filter by colour, type and price, and sort.</p>
-    <form class="cat-q" id="catQ" role="search"><label class="sr" for="catQin">Search the collection</label><input id="catQin" type="search" placeholder="Search, for example ivory" autocomplete="off" enterkeyhint="search"><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button></form>
     <a class="btn btn--light" href="shop.html">View all pieces</a></div></article>`;
-  $('#catQ').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#catQin').value.trim(); location.href='shop.html'+(v?'#q='+encodeURIComponent(v):''); });
 }
 
 /* ---------- the collection page: sidebar filters you apply, live search, sort ---------- */
@@ -1380,7 +1363,7 @@ function local(text){
   const whoW=/\b(her|she|women|woman|ladies|lady|bride|female)\b/.test(t)?'her':(/\b(him|he|men|man|groom|male|gentleman)\b/.test(t)?'him':null);
   if(/book|fitting|appointment|measure/.test(t)){ const occ=/wedding/.test(t)?'Wedding':/gusaba|gukwa|dowry/.test(t)?'Gusaba & gukwa':/office|work/.test(t)?'Office':/gala|black tie/.test(t)?'Gala or black tie':null;
     say('Lovely. I have opened the fitting form for you. It takes a few quick taps.'); setTimeout(()=>{closeChat(); bookFor({occ,who:whoW});},1100); return; }
-  if(/umushanana/.test(t)){ say('The Prime Umushanana is RWF 156,000. You can watch it in Today\'s picks on the home page, and book a fitting for it.'); setTimeout(()=>{closeChat(); $('#picks')?go('#picks'):(location.href='./#picks');},1400); return; }
+  if(/umushanana/.test(t)){ say('The Prime Umushanana is RWF 156,000. Book a fitting to try it on in the atelier.'); setTimeout(()=>{closeChat(); $('#book')?go('#book'):(location.href='./#book');},1400); return; }
   const fams=[...new Set(Object.keys(COLW).filter(w=>new RegExp('\\b'+w).test(t)).map(w=>COLW[w]))];
   const types=Object.keys(TYPEW).filter(w=>t.includes(w)).flatMap(w=>TYPEW[w]);
   const budget=(()=>{ if(!/under|below|less|budget|max|up to/.test(t)) return null; const m=t.match(/(\d[\d,.]*)\s*(k)?/); if(!m) return null; let v=parseFloat(m[1].replace(/,/g,'')); if(m[2]) v*=1000; return v<1000?v*1000:v;})();
