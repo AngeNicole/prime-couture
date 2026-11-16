@@ -286,7 +286,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
 /* who we are, then the way in: men, women, or everything */
 .about{padding-block:clamp(88px,9vw,140px)}
-.ab-brand{display:flex;align-items:center;gap:clamp(16px,2.4vw,40px)}
+.ab-brand{display:flex;justify-content:space-between;align-items:center;gap:16px}
 .ab-logo{height:clamp(64px,8.4vw,136px);width:auto;color:var(--red);flex-shrink:0}
 .ab-name{margin:0;font-weight:400;font-size:clamp(52px,9vw,148px);line-height:.95;letter-spacing:.005em;color:var(--ink);white-space:nowrap}
 .ab-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px clamp(40px,6vw,112px);margin-top:clamp(36px,4.4vw,64px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--line)}
@@ -327,25 +327,25 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .saved-band .sb-acts{display:flex;gap:8px;flex-wrap:wrap}
 
 /* know your suit: a red stage. The five cuts stand under a soft light; hover one and the others step back. */
-.kys{position:relative;overflow:hidden;padding-block:clamp(88px,9vw,140px) 0;background:radial-gradient(70% 70% at 50% 92%,#7A2622 0%,var(--red) 46%,#2E0A0A 100%);color:var(--ivory)}
-.kys::before{content:"";position:absolute;left:50%;top:-20%;width:120%;height:90%;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(255,236,220,.12),rgba(255,236,220,0) 70%);pointer-events:none}
+.kys{position:relative;overflow:hidden;padding-block:clamp(88px,9vw,140px) 0;background:radial-gradient(60% 75% at 50% 80%,#FCFAF7 0%,#EDE8E1 52%,#DBD3C8 100%);color:var(--ink)}
+.kys::before{content:"";position:absolute;left:50%;top:-20%;width:120%;height:90%;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);pointer-events:none}
 .kys-head{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px clamp(32px,5vw,96px);align-items:end}
-.kys .kicker{color:var(--blush);opacity:1}
+.kys .kicker{color:var(--muted);opacity:1}
 .kys-t{font-size:clamp(52px,7.4vw,124px);line-height:.95;letter-spacing:.005em;font-weight:400}
-.kys .lede{color:var(--blush);opacity:1;margin:0;max-width:40ch}
+.kys .lede{color:var(--muted);opacity:1;margin:0;max-width:40ch}
 .kys .btn{margin-top:24px}
 .kys-line{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(4px,1vw,16px);align-items:end;margin-top:clamp(40px,5vw,72px)}
 .kys-fig{position:relative;display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit;min-width:0;padding-bottom:clamp(28px,3vw,44px);transition:opacity .6s var(--ease)}
-.kys-fig::before{content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:70%;background:radial-gradient(50% 50% at 50% 60%,rgba(255,232,214,.22),rgba(255,232,214,0) 70%);opacity:0;transition:opacity .6s}
-.kys-fig img{position:relative;width:100%;height:clamp(300px,34vw,540px);object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 30px 30px rgba(0,0,0,.35));transform:translateY(40px);opacity:0;transition:transform 1.1s var(--ease),opacity .9s var(--ease),filter .6s}
+.kys-fig::before{content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:70%;background:radial-gradient(50% 50% at 50% 60%,rgba(255,255,255,.85),rgba(255,255,255,0) 70%);opacity:0;transition:opacity .6s}
+.kys-fig img{position:relative;width:100%;height:clamp(300px,34vw,540px);object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 28px 26px rgba(40,30,20,.22));transform:translateY(40px);opacity:0;transition:transform 1.1s var(--ease),opacity .9s var(--ease),filter .6s}
 .kys.in .kys-fig img{transform:none;opacity:1}
 .kys.in .kys-fig:nth-child(2) img{transition-delay:.08s}.kys.in .kys-fig:nth-child(3) img{transition-delay:.16s}.kys.in .kys-fig:nth-child(4) img{transition-delay:.24s}.kys.in .kys-fig:nth-child(5) img{transition-delay:.32s}
 .kys-fig b{position:relative;display:block;margin-top:18px;font-weight:400;font-size:clamp(16px,1.3vw,20px);white-space:nowrap}
-.kys-fig small{position:relative;display:block;margin-top:4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blush);white-space:nowrap}
+.kys-fig small{position:relative;display:block;margin-top:4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .kys-line:hover .kys-fig:not(:hover){opacity:.45}
 .kys-fig:hover::before{opacity:1}
 .kys-fig:hover img{transform:translateY(-12px) scale(1.02)}
-.kys-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,3vw,44px);border-top:1px solid rgba(241,234,224,.14)}
+.kys-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,3vw,44px);border-top:1px solid rgba(18,16,16,.1);background:rgba(18,16,16,.025)}
 
 /* the visit, and the way into the booking flow */
 .visit{padding-block:clamp(88px,9vw,140px)}
@@ -883,7 +883,8 @@ html.onb-open{overflow:hidden}
   .onb{grid-template-columns:1fr;grid-template-rows:24svh minmax(0,1fr)}
   .onb-cap p:last-child{font-size:20px}
   .onb .bk-h .bk-n b{font-size:34px}
-  .ab-name{white-space:normal}
+  .ab-name{font-size:12.4vw}
+  .ab-logo{height:12vw}
   .lk-nav{order:5;margin-top:28px;padding:0 var(--gut)}
 }
 @media (max-width:560px){
@@ -948,7 +949,7 @@ html.onb-open{overflow:hidden}
   <!-- WHO WE ARE + THE WAY IN -->
   <section class="about ui" id="find" aria-labelledby="abH">
     <div class="wrap">
-      <div class="ab-brand"><svg class="logo-mark ab-logo" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg><h2 class="ab-name" id="abH">Prime Couture</h2></div>
+      <div class="ab-brand"><h2 class="ab-name" id="abH">Prime Couture</h2><svg class="logo-mark ab-logo" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></div>
       <div class="ab-body">
         <p class="ab-t"><span class="kicker">Gishushu, Kigali</span>A tailoring atelier in Kigali, making suits, kaftans, gowns and umushanana for men and women. Choose your piece here, then try it on with us.</p>
         <ul class="ab-facts">
@@ -967,7 +968,7 @@ html.onb-open{overflow:hidden}
     <div class="wrap">
       <div class="kys-head">
         <div><p class="kicker">Suit guide · for men</p><h2 class="kys-t" id="kyH">Know your suit</h2></div>
-        <div><p class="lede">Single-breasted, double-breasted, tuxedo, safari or kaftan. See what sets each one apart and the colours it comes in, then book a fitting.</p><a class="btn btn--light" href="suits.html" data-mag>Open the suit guide</a></div>
+        <div><p class="lede">Single-breasted, double-breasted, tuxedo, safari or kaftan. See what sets each one apart and the colours it comes in, then book a fitting.</p><a class="btn" href="suits.html" data-mag>Open the suit guide</a></div>
       </div>
       <div class="kys-line" id="kysLine" aria-label="The five cuts"></div>
     </div>
@@ -987,7 +988,7 @@ html.onb-open{overflow:hidden}
   <!-- CLIENT FILMS -->
   <section class="clients dark" id="clients" aria-labelledby="clH">
     <div class="wrap">
-      <div class="sec-head"><div><p class="kicker">A look inside · @primecouturehq</p><h2 class="title" id="clH">Our atelier</h2><p class="lede">Fittings filmed in the atelier in Gishushu, from their Instagram. See where pieces are tried on before you visit.</p></div><a class="link" href="atelier.html">Visit the atelier page</a></div>
+      <div class="sec-head"><div><p class="kicker">A look inside · @primecouturehq</p><h2 class="title" id="clH">Our atelier</h2><p class="lede">The workshop and the showroom in Gishushu, filmed for their Instagram: pieces being cut, sewn and fitted.</p></div><a class="link" href="atelier.html">Visit the atelier page</a></div>
       <div class="ig-grid" id="clientFilms"></div>
     </div>
   </section>
@@ -1023,7 +1024,7 @@ html.onb-open{overflow:hidden}
 <footer class="foot" aria-label="Prime Couture">
   <div class="wrap fz-cta">
     <div><p class="kicker">Prime Couture · Gishushu, Kigali</p><p class="fz-t">Come in for a fitting.</p></div>
-    <div class="fz-acts"><a class="btn btn--light" href="#book">Book a fitting</a><a class="btn btn--ghost" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a></div>
+    <div class="fz-acts"><a class="btn btn--light" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a><a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a></div>
   </div>
   <div class="wrap fz-grid">
     <div class="fz-brand">
@@ -1037,10 +1038,10 @@ html.onb-open{overflow:hidden}
       <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li><li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
     </ul></nav>
     <nav class="fz-col" aria-label="The atelier"><p class="fz-h">The atelier</p><ul>
-      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="suits.html">Suit guide</a></li><li><a href="#book">Book a fitting</a></li><li><a href="shop.html#saved">Your wishlist</a></li>
+      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="suits.html">Suit guide</a></li><li><a href="shop.html#saved">Your wishlist</a></li>
     </ul></nav>
     <div class="fz-col"><p class="fz-h">Visit</p><ul>
-      <li>15 KG 599 St<br>Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a></li>
+      <li>15 KG 599 St<br>Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
     </ul></div>
     <div class="fz-col"><p class="fz-h">Contact</p><ul>
       <li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">+250 781 178 499</a></li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">@primecouturehq</a></li><li>contact@prime-couture.com</li>
@@ -1167,13 +1168,13 @@ function startLenis(){ if(!window.Lenis||reduce) return; lenis=new Lenis({lerp:.
     if(h.length>1){ const t=document.querySelector(h); if(t){ e.preventDefault(); go(t); } } else { e.preventDefault(); lenis.scrollTo(0); } }); }
 
 /* ---------- client films from @primecouturehq: Instagram's player cropped to the film where a page may embed it, a link elsewhere ---------- */
-const REELS=[['Dfur6U_iPq6','14 Nov 2026'],['DfukVZACe9N','14 Nov 2026'],['DfsGgkKiKmX','13 Nov 2026'],['Dfpi64vi8Ov','12 Nov 2026'],['Dfm5CMriWSM','11 Nov 2026'],['DfchnQkiHvj','7 Nov 2026'],['DfXVKBTCHHc','5 Nov 2026'],['DfSKQOJiUjF','3 Nov 2026']];
+const REELS=[['DfXVKBTCHHc','In the workshop'],['De9xvOAiuWT','At the cutting table'],['DfukVZACe9N','On the mannequin'],['DfXdPdFiA7k','A gown, finished'],['DdmFqusC4w9','On display'],['DfC6fMsi25A','In the showroom'],['DfXanXRiuhN','In the showroom'],['DfsGgkKiKmX','A fitting'],['Dfm5CMriWSM','A fitting'],['DecPI7CCtx1','A fitting'],['Dfur6U_iPq6','A fitting'],['DfSKQOJiUjF','A fitting']];
 const canEmbed=/github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
 const fitReels=()=>$$('.rv').forEach(r=>r.style.setProperty('--k',r.clientWidth/280));
 function mountReels(host,n){ if(!host) return;
   host.innerHTML=REELS.slice(0,n||REELS.length).map(([c,d])=>canEmbed
-    ?`<figure class="rv-tile"><div class="rv"><iframe src="https://www.instagram.com/reel/${c}/embed/" title="Prime Couture fitting film, ${d}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" scrolling="no"></iframe></div><figcaption><span>${d}</span><a href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener">On Instagram</a></figcaption></figure>`
-    :`<a class="ig-card" href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener"><small>Instagram · ${d}</small><b>A fitting in the atelier</b><span class="link" style="align-self:flex-start">Watch the film</span></a>`).join('');
+    ?`<figure class="rv-tile"><div class="rv"><iframe src="https://www.instagram.com/reel/${c}/embed/" title="Prime Couture film: ${d}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" scrolling="no"></iframe></div><figcaption><span>${d}</span><a href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener">On Instagram</a></figcaption></figure>`
+    :`<a class="ig-card" href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener"><small>Instagram</small><b>${d}</b><span class="link" style="align-self:flex-start">Watch the film</span></a>`).join('');
   fitReels();
   host.querySelectorAll('.rv iframe').forEach(f=>{ const ready=()=>f.classList.add('ready'); f.addEventListener('load',()=>setTimeout(ready,700)); new IntersectionObserver(([e],o)=>{ if(e.isIntersecting){ fitReels(); setTimeout(ready,6000); o.disconnect(); } }).observe(f); }); }
 addEventListener('resize',fitReels);
@@ -1331,7 +1332,7 @@ if($('#looks')){
   const setInfo=p=>{ slug=p.slug; info.classList.add('swap');
     setTimeout(()=>{ if(slug!==p.slug) return; $('#lkK').textContent=`${forName(p.for)} · ${p.cat}`; $('#lkT').textContent=p.title;
       const pr=$('#lkP'); pr.dataset.rwf=p.rwf; pr.textContent=money(p.rwf);
-      const hb=$('#lkHeart'); hb.hidden=false; hb.dataset.heart=p.slug; hb.setAttribute('aria-pressed',isSaved(p.slug));
+      $('#lkBook').hidden=true; const hb=$('#lkHeart'); hb.hidden=false; hb.dataset.heart=p.slug; hb.setAttribute('aria-pressed',isSaved(p.slug));
       const t=TYPES.find(t=>t[0]!=='all'&&inType(p,t[0]))||['all','pieces'], m=$('#lkMore'); m.href=`shop.html#type=${t[0]}`; m.textContent=`See all ${t[1].toLowerCase()}`;
       info.classList.remove('swap'); },reduce?0:320); };
   const reelCard=cards.find(c=>c.classList.contains('film'));
@@ -1354,7 +1355,7 @@ if($('#looks')){
   })();
   const setFilm=f=>{ slug=null; info.classList.add('swap');
     setTimeout(()=>{ $('#lkK').textContent=`Film · ${REEL.length} moments from one wedding`; $('#lkT').textContent='A Prime Couture wedding'; const pr=$('#lkP'); delete pr.dataset.rwf; pr.textContent='Filmed on the day, in pieces cut at the atelier';
-      $('#lkHeart').hidden=true; const m=$('#lkMore'); m.href='shop.html#type=dresses'; m.textContent='See the gowns'; $('#lkView').textContent='Watch the film'; info.classList.remove('swap'); },reduce?0:320); };
+      $('#lkHeart').hidden=true; const lb2=$('#lkBook'); lb2.hidden=false; lb2.textContent='Plan a wedding fitting'; const m=$('#lkMore'); m.href='shop.html#type=dresses'; m.textContent='See the gowns'; $('#lkView').textContent='Watch the film'; info.classList.remove('swap'); },reduce?0:320); };
   const dur=()=>LINE[cur]&&LINE[cur].film?FILM_DUR:DUR;
   const tick=()=>{ clearTimeout(timer); ths.forEach(t=>{ t.classList.remove('run'); t.style.removeProperty('--dur'); }); if(reduce||paused||!seen||cur<0) return; if(LINE[cur].film) return;
     const t=ths[cur]; t.style.setProperty('--dur',dur()/1000+'s'); void t.offsetWidth; t.classList.add('run'); timer=setTimeout(()=>show(cur+1),dur()); };
@@ -1482,7 +1483,7 @@ if($('#grid')){
   function renderGrid(){
     let list=P.filter(p=>pass(p,on)&&(!savedOnly||isSaved(p.slug)));
     if(sort==='low') list.sort((a,b)=>a.rwf-b.rwf); else if(sort==='high') list.sort((a,b)=>b.rwf-a.rwf); else if(sort==='az') list.sort((a,b)=>a.title.localeCompare(b.title)); else list.sort((a,b)=>(b.views||0)-(a.views||0));
-    grid.innerHTML=list.length?list.map((p,i)=>`<div class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms">${heartBtn(p.slug,p.title)}<button type="button" class="c-open"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button><button type="button" class="c-book" data-book="${p.slug}">Book a fitting</button></div>`).join('')
+    grid.innerHTML=list.length?list.map((p,i)=>`<div class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms">${heartBtn(p.slug,p.title)}<button type="button" class="c-open"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button></div>`).join('')
       :savedOnly?`<div class="empty"><b>Nothing saved yet</b>Tap the heart on any piece to keep it here, then book a fitting to try them on.</div>`:`<div class="empty"><b>No pieces match</b>Try a different word, or clear a filter. The atelier can also make pieces to order.<div style="margin-top:16px"><button type="button" class="u-btn outline sm" data-clear="all">Clear all filters</button></div></div>`;
     if(savedOnly&&list.length) grid.insertAdjacentHTML('afterbegin',`<div class="saved-band"><div><b>Your wishlist</b><p>Try your saved pieces on at the atelier.</p></div><div class="sb-acts"><a class="u-btn outline" id="savedWa" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(waList())}">Send to the atelier on WhatsApp</a><button type="button" class="u-btn" id="savedBook">Book a fitting for these</button></div></div>`);
     $('#fSaved').setAttribute('aria-pressed',savedOnly); const sn=$('#fSavedN'); sn.textContent=saved.length; sn.hidden=!saved.length;
@@ -1628,7 +1629,18 @@ function pieceBlock(w){
   return h+'</div>';
 }
 let bkLast=0;
-function onbSide(){ const side=$('.onb-side'); if(!side) return; const [src,cap]=STEP_SIDE[sent?NSTEP-1:step-1]||STEP_SIDE[0];
+const OCC_SIDE={'Wedding':{her:'film:bride',him:'film:walk',both:'film:couple'},'Gusaba & gukwa':{her:'media/umushanana.webp',him:'p:ivory-embroidered-kaftan',both:'media/umushanana.webp'},'Office':{her:'p:the-executive-mocha-2',him:'p:silverline-two-button-executive-suit',both:'p:the-executive-mocha-2'},'Gala or black tie':{her:'p:brown-embellished-gown',him:'p:ivory-tuxedo-5b6732',both:'p:brown-embellished-gown'},'Everyday':{her:'p:the-sahara-muse-set',him:'p:umugongo-black-linen-shirt',both:'p:the-sahara-muse-set'},'Something else':{her:'p:ivory-silhouette-ensemble',him:'p:prime-essential-prime-jacket-set',both:'p:ivory-silhouette-ensemble'}};
+const sideSrc=t=>!t?'':t.startsWith('film:')?((film(t.slice(5))||{}).poster||''):t.startsWith('p:')?(((by[t.slice(2)]||{}).imgs||[])[0]||''):t;
+function sideFor(){
+  const n=sent?NSTEP:step, o=OCC_SIDE[bk.occ], base=STEP_SIDE[n-1]||STEP_SIDE[0];
+  if(n>=8||!o) return n===2&&bk.occ?[base[0],`Dressing for ${OCC_PHRASE[bk.occ]}.`]:base;
+  let w=bk.who; if(w==='both'&&bk.occ!=='Wedding') w=n%2?'her':'him';
+  let tok=w?o[w]:(bk.occ==='Wedding'?o.both:o.her);
+  if(n===4){ const ws=whoList().filter(x=>bk.cut[x]&&bk.cut[x]!=='any'); const k=ws.length&&cut(bk.cut[ws[ws.length-1]]); if(k&&k.img) tok=k.img.startsWith('film:')?k.img:'p:'+k.img; }
+  const cap=n===1?'Every fitting starts with the occasion.':n===2?`Dressing for ${OCC_PHRASE[bk.occ]}.`:base[1];
+  return [sideSrc(tok)||base[0],cap];
+}
+function onbSide(){ const side=$('.onb-side'); if(!side) return; const [src,cap]=sideFor();
   const cur=side.querySelector('img.on'); if(!cur||cur.getAttribute('src')!==src){ const im=new Image(); im.alt=''; im.src=src; side.insertBefore(im,side.firstChild);
     let d=false; const go=()=>{ if(d) return; d=true; setTimeout(()=>{ im.classList.add('on'); side.querySelectorAll('img').forEach(o=>{ if(o!==im){ o.classList.remove('on'); setTimeout(()=>o.remove(),900); } }); },20); };
     im.addEventListener('load',go); im.addEventListener('error',go); if(im.complete) go(); setTimeout(go,1200); }
