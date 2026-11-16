@@ -191,12 +191,13 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 @keyframes vin{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .view-note{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:24px;font-size:14px;color:var(--muted)}
 .view-note a{color:var(--ink)}
-.mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(120px,12vw,190px);gap:16px}
-.mosaic figure{margin:0;position:relative;overflow:hidden;border-radius:10px;background:var(--mist);cursor:zoom-in}
+.mosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 20px}
+.mosaic figure{margin:0;cursor:zoom-in}
+.mosaic .ph{aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:var(--mist)}
 .mosaic img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
 .mosaic figure:hover img{transform:scale(1.04)}
-.mosaic figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);font-size:12px;letter-spacing:.06em}
-.m1{grid-column:span 5;grid-row:span 4}.m2{grid-column:span 4;grid-row:span 3}.m3{grid-column:span 3;grid-row:span 2}.m4{grid-column:span 3;grid-row:span 3}.m5{grid-column:span 4;grid-row:span 3}.m6{grid-column:span 5;grid-row:span 2}
+.mosaic figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:14px}
+.mosaic figcaption span{color:var(--muted);font-variant-numeric:tabular-nums}
 .zoom{position:fixed;z-index:96;inset:0;display:grid;place-items:center;padding:clamp(16px,4vw,56px);background:rgba(18,16,16,.88);opacity:0;pointer-events:none;transition:opacity .4s}
 .zoom.on{opacity:1;pointer-events:auto}
 .zoom img{max-width:100%;max-height:100%;border-radius:10px;transform:scale(.96);transition:transform .6s var(--ease)}
@@ -212,9 +213,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .facts dd{margin:0;font-size:18px}
 .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
 @media (max-width:900px){
-  .mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}
-  .mosaic figure{grid-column:auto!important;grid-row:auto!important;aspect-ratio:4/5}
-  .mosaic figure:first-child{grid-column:1/-1!important}
+  .mosaic{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
   .seg{width:100%}.seg button{flex:1;justify-content:center;padding:0 12px}
   .visit-grid{grid-template-columns:1fr}
 }
@@ -245,11 +244,11 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   <section class="at wrap" aria-labelledby="aH">
     <div class="at-head">
       <div><p class="kicker">Prime Couture · Gishushu, Kigali</p><h1 class="title" id="aH">Look around</h1><p class="lede">Choose where to look: the showroom where pieces hang and are tried on, or the atelier, in fittings filmed there.</p></div>
-      <div class="seg" role="tablist" aria-label="Where to look" id="seg"><b aria-hidden="true"></b><button type="button" role="tab" id="tShowroom" aria-controls="vShowroom" aria-selected="true">Showroom <span>06</span></button><button type="button" role="tab" id="tAtelier" aria-controls="vAtelier" aria-selected="false" tabindex="-1">Atelier <span>08</span></button></div>
+      <div class="seg" role="tablist" aria-label="Where to look" id="seg"><b aria-hidden="true"></b><button type="button" role="tab" id="tShowroom" aria-controls="vShowroom" aria-selected="true">Showroom <span>08</span></button><button type="button" role="tab" id="tAtelier" aria-controls="vAtelier" aria-selected="false" tabindex="-1">Atelier <span>08</span></button></div>
     </div>
     <div id="vShowroom" role="tabpanel" aria-labelledby="tShowroom">
       <div class="mosaic" id="mosaic"></div>
-      <p class="view-note"><span>Photographed in the showroom at 15 KG 599 St.</span><span>Tap a photo to see it larger.</span></p>
+      <p class="view-note"><span>Details of the showroom at 15 KG 599 St, from the atelier's own photographs.</span><span>Tap a photo to see it larger.</span></p>
     </div>
     <div id="vAtelier" role="tabpanel" aria-labelledby="tAtelier" hidden>
       <div class="ig-grid" id="igGrid"></div>
@@ -434,14 +433,17 @@ function toggleSave(slug){ const was=isSaved(slug); saved=was?saved.filter(x=>x!
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-heart]'); if(!b||!b.dataset.heart) return; e.preventDefault(); e.stopPropagation(); toggleSave(b.dataset.heart); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); },true);
 paintSaved();
 
+/* the showroom itself: details cropped from the atelier's own photographs, with the people left out */
 const SHOW=[
- ['media/full/essential-noir-2.webp','Essential Noir by the shelves','m1'],
- ['media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp','The fitting lounge','m2'],
- ['media/full/copper-noir-0.webp','Copper Noir at the rails','m3'],
- ['media/full/the-ivory-vest-set-1.webp','The Ivory Vest Set','m4'],
- ['media/full/dark-grey-classic-0.webp','Dark Grey Classic','m5'],
- ['media/full/navy-blue-suit-0.webp','Navy Blue Suit on the stairs','m6']];
-$('#mosaic').innerHTML=SHOW.map(([s,c,m])=>`<figure class="${m}" data-cursor="View" tabindex="0"><img src="${s}" alt="${c}, in the Prime Couture showroom" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('');
+ ['media/showroom/suit-wall.webp','The suit wall'],
+ ['media/showroom/lounge.webp','The fitting lounge'],
+ ['media/showroom/rail.webp','The rails'],
+ ['media/showroom/mannequin-red.webp','On display'],
+ ['media/showroom/lounge-light.webp','Light in the lounge'],
+ ['media/showroom/mannequin-sage.webp','On the stand'],
+ ['media/showroom/entrance.webp','The entrance'],
+ ['media/showroom/door.webp','The front door']];
+$('#mosaic').innerHTML=SHOW.map(([s,c],i)=>`<figure data-cursor="View" tabindex="0"><div class="ph"><img src="${s}" alt="${c}, in the Prime Couture showroom" loading="lazy"></div><figcaption>${c}<span>${String(i+1).padStart(2,'0')}</span></figcaption></figure>`).join('');
 /* showroom or atelier: the visitor chooses where to look */
 const seg=$('#seg'), tabs=$$('[role="tab"]',seg), pill=seg.querySelector('b'), views={showroom:$('#vShowroom'),atelier:$('#vAtelier')};
 let mounted=false;
