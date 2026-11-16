@@ -67,6 +67,11 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .top-r{display:flex;justify-content:flex-end;align-items:center;gap:8px}
 .top .btn{height:40px;padding:0 20px;font-size:11px}
 .menu-btn{display:none}
+.cur-top{height:36px;border-radius:999px;border:1px solid var(--line-d);background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F1EAE0' stroke-width='1.8'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 10px center/12px;color:var(--ivory);padding:0 28px 0 14px;font:inherit;font-size:12px;letter-spacing:.08em;appearance:none;-webkit-appearance:none;cursor:pointer}
+.cur-top option,.cur-foot option{color:#1A1612}
+.cur-top:focus,.cur-foot:focus{outline:2px solid var(--ivory);outline-offset:2px}
+.cur-foot{height:40px;border-radius:999px;border:1px solid var(--line-d);background:transparent;color:var(--ivory);padding:0 16px;font:inherit;font-size:14px;margin-top:4px}
+.sr{position:absolute;left:-9999px}
 .menu{position:fixed;z-index:85;inset:0;background:var(--red);color:var(--ivory);padding:calc(var(--bar) + 40px + env(safe-area-inset-top,0px)) var(--gut) 40px;display:flex;flex-direction:column;gap:20px;opacity:0;pointer-events:none;transition:opacity .4s}
 .menu.on{opacity:1;pointer-events:auto}
 .menu a.big{font-size:36px;letter-spacing:.02em;text-decoration:none}
@@ -101,7 +106,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 @media (max-width:900px){
   :root{--bar:60px}
   .top-in{grid-template-columns:auto 1fr auto}
-  .top nav,.top .btn{display:none}
+  .top nav,.top .btn,.cur-top{display:none}
   .menu-btn{display:grid;margin-left:-10px}
   .logo-mark{height:28px}
   .foot-top{grid-template-columns:1fr}
@@ -160,6 +165,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
     <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
     <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
     <div class="top-r">
+      
       <a class="btn btn--light" href="./#book">Book a fitting</a>
       <button type="button" class="icon" id="bagOpen" aria-label="Open bag"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><i id="bagCount" data-n="0"></i></button>
     </div>
