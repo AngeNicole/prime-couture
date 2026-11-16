@@ -1640,7 +1640,6 @@ if($('#grid')){
     $('#fActive').innerHTML=`<p class="rcount" aria-live="polite">${plural(total)}</p>`+tags.map(([k,l])=>`<span class="tag">${esc(l)}<button type="button" data-clear="${k}" aria-label="Remove ${esc(l)}">×</button></span>`).join('')+(tags.length>1?`<button type="button" class="u-btn ghost sm" data-clear="all">Clear all</button>`:'');
     const nf=KEYS.filter(k=>on[k]!=='all').length; $('#fN').textContent=nf; $('#fN').hidden=!nf;
     if($('#sCount')) $('#sCount').textContent=plural(total);
-    room.style.setProperty('--tint',on.fam==='all'?'#F7F4EF':(P.find(p=>p.fam===on.fam)||{}).sw);
   }
   function paintPager(total,pages,from,n){ const pg=$('#pager'); if(!pg) return;
     if(pages<2){ pg.innerHTML=total?`<p class="pg-n">Showing all ${plural(total)}</p>`:''; return; }
