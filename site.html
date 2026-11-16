@@ -167,14 +167,54 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
 /* Home: hero (search first, a piece on the stage) · Today's picks · client films · our pieces · booking. Earlier: · Today's picks (pieces and films, hover to play) · the collection · visit band · booking. */
 
-/* hero: search first, one piece on the stage that answers what you type */
-.hero{padding-block:clamp(32px,4.5vw,72px) 0}
-.h-in{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(32px,5vw,88px);align-items:center}
-.h-copy{min-width:0}
-.h-t{font-size:clamp(46px,6vw,100px);line-height:.98;letter-spacing:-.025em;font-weight:400}
-.h-t span{display:block;color:#9C948C}
-.h-lede{margin:28px 0 0;max-width:44ch;font-size:clamp(16px,1.25vw,18px);color:var(--muted)}
-.hs{position:relative;margin-top:clamp(28px,3vw,40px);max-width:600px}
+/* hero: their pieces as a lineup, cut from their own photographs and stood on one studio floor.
+   A giant word behind the lineup names the look in focus; search sits on the stage edge as the main action. */
+.hero{padding-block:clamp(24px,3vw,48px) 0}
+.h-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px 48px;flex-wrap:wrap;margin-bottom:clamp(20px,2.2vw,32px)}
+.h-t{font-size:clamp(36px,4.4vw,72px);line-height:1;letter-spacing:-.025em;font-weight:400;max-width:16ch}
+.h-t span{color:#9C948C}
+.h-side{display:flex;align-items:center;gap:24px;max-width:540px}
+.h-side p{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+.h-side .btn{flex-shrink:0}
+.edit{position:relative;container-type:inline-size;height:clamp(460px,66svh,740px);border-radius:22px;overflow:hidden;background:radial-gradient(110% 85% at 50% 16%,#FBFAF8 0%,#EFEDE9 50%,#E3DFD9 100%);isolation:isolate}
+.edit::after{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(180deg,rgba(18,16,16,0),rgba(18,16,16,.06));pointer-events:none;z-index:0}
+.ed-word{position:absolute;z-index:1;left:0;right:0;top:7%;text-align:center;font-weight:500;font-size:18.5cqw;line-height:.82;letter-spacing:-.04em;color:var(--red);white-space:nowrap;pointer-events:none;user-select:none;transform:translateX(var(--wx,0px));transition:transform 1.2s var(--ease)}
+.ed-word span{display:inline-block;transition:transform .75s var(--ease),opacity .5s}
+.ed-word span.out{transform:translateY(-35%);opacity:0}
+.ed-word span.pre{transform:translateY(45%);opacity:0;transition:none}
+.ed-line{position:absolute;z-index:2;left:0;right:0;bottom:8%;display:flex;justify-content:center;align-items:flex-end;transform:translateX(var(--lx,0px));transition:transform 1.2s var(--ease)}
+.fig{position:relative;flex-shrink:0;height:var(--fh,420px);margin:0 calc(var(--fh,420px) * -.03);padding:0;cursor:pointer;transform-origin:50% 100%;transform:scale(.965);filter:saturate(.3) brightness(1.05);opacity:.8;transition:transform .8s var(--ease),filter .8s var(--ease),opacity .8s}
+.fig img{height:100%;width:auto;display:block;filter:drop-shadow(0 22px 26px rgba(18,16,16,.16))}
+.fig::after{content:"";position:absolute;z-index:-1;left:8%;right:8%;bottom:-2.5%;height:5%;border-radius:50%;background:radial-gradient(closest-side,rgba(18,16,16,.34),rgba(18,16,16,0))}
+.fig:hover{filter:saturate(.75);opacity:.96}
+.fig.on{z-index:3;transform:scale(1.035);filter:none;opacity:1}
+.fig .dot{position:absolute;left:50%;top:33%;width:12px;height:12px;margin:-6px;border-radius:50%;background:#fff;opacity:0;transition:opacity .4s}
+.fig.on .dot{opacity:1;animation:dotp 2.2s infinite}
+@keyframes dotp{0%{box-shadow:0 0 0 0 rgba(255,255,255,.8)}100%{box-shadow:0 0 0 18px rgba(255,255,255,0)}}
+.edit.enter .fig{animation:rise 1.1s var(--ease) both;animation-delay:var(--d,0ms)}
+.edit.enter .ed-word{animation:wordin 1.4s var(--ease) both}
+@keyframes rise{from{transform:translateY(80px) scale(.965);opacity:0}}
+@keyframes wordin{from{transform:translateY(30px);opacity:0;letter-spacing:.02em}}
+.ed-meta{position:absolute;z-index:4;left:18px;top:16px;display:flex;align-items:center;gap:10px;height:34px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:12px;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.ed-meta i{position:relative;width:46px;height:2px;border-radius:2px;background:#E2DDD7;overflow:hidden}
+.ed-meta i::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.ed-meta.run i::after{animation:stbar var(--dur,4s) linear forwards}
+@keyframes stbar{to{transform:scaleX(1)}}
+.ed-tip{position:absolute;z-index:4;right:18px;top:16px;height:34px;display:flex;align-items:center;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.ed-card{position:absolute;z-index:5;left:0;top:0;width:260px;padding:16px 16px 12px;border-radius:16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 28px 56px -24px rgba(18,16,16,.38),inset 0 0 0 1px rgba(18,16,16,.06);text-align:left;transform:translate(var(--cx,0px),var(--cy,0px));transition:transform .9s var(--ease),opacity .4s}
+.ed-card.hide{opacity:0;pointer-events:none}
+.ec-in{transition:opacity .25s,transform .4s var(--ease)}
+.ed-card.swap .ec-in{opacity:0;transform:translateY(6px)}
+.ec-open{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.ec-th{width:46px;height:58px;border-radius:8px;object-fit:cover;object-position:50% 22%;flex-shrink:0;background:var(--mist)}
+.ec-th[hidden]{display:none}
+.ed-card small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ed-card b{display:block;font-weight:400;font-size:19px;line-height:1.25;margin-top:5px}
+.ec-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:14px}
+.ec-row u{text-decoration:none;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.ec-more{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;color:var(--muted);text-decoration:none}
+.ec-more:hover{color:var(--ink)}
+.hs{position:relative;z-index:6;margin:-32px auto 0;max-width:680px}
 .hs-box{display:flex;align-items:center;gap:6px;height:64px;padding:0 7px 0 22px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px #DDD8D2,0 18px 40px -28px rgba(18,16,16,.35);transition:box-shadow .3s}
 .hs-box:focus-within{box-shadow:inset 0 0 0 1.5px var(--ink),0 24px 50px -28px rgba(18,16,16,.45)}
 .hs-box>svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;flex-shrink:0;opacity:.55}
@@ -202,23 +242,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .h-chips a span{min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--mist);display:grid;place-items:center;font-size:12px;color:var(--muted);transition:background .25s,color .25s}
 .h-chips a:hover,.h-chips a.on{background:var(--ink);color:#fff;box-shadow:none}
 .h-chips a:hover span,.h-chips a.on span{background:rgba(255,255,255,.16);color:#fff}
-.h-acts{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:clamp(28px,3vw,40px)}
-.h-acts small{font-size:13px;color:var(--muted);letter-spacing:.02em}
-.stage{position:relative;height:min(76svh,760px);min-height:460px}
-.st-ph{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:var(--mist);cursor:pointer}
-.st-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;clip-path:inset(0 0 0 100%);transform:scale(1.08);transition:clip-path 1s var(--ease),transform 1.6s var(--ease)}
-.st-ph img.in{clip-path:inset(0 0 0 0);transform:none}
-.st-card{position:absolute;z-index:2;left:clamp(-40px,-2.4vw,-16px);bottom:28px;width:min(300px,78%);padding:18px 18px 16px;border-radius:14px;background:#fff;box-shadow:0 30px 60px -24px rgba(18,16,16,.4),inset 0 0 0 1px #EEEAE5;text-align:left;cursor:pointer;transition:opacity .25s,transform .4s var(--ease)}
-.st-card.swap{opacity:0;transform:translateY(8px)}
-.st-card small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.st-card b{display:block;font-weight:400;font-size:20px;line-height:1.25;margin-top:6px}
-.st-card .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:14px}
-.st-card .row u{text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.st-meta{position:absolute;z-index:2;right:16px;top:16px;display:flex;align-items:center;gap:10px;height:34px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:12px;letter-spacing:.1em;font-variant-numeric:tabular-nums}
-.st-meta i{position:relative;width:46px;height:2px;border-radius:2px;background:#E2DDD7;overflow:hidden}
-.st-meta i::after{content:"";position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(0)}
-.st-meta.run i::after{animation:stbar var(--dur,5s) linear forwards}
-@keyframes stbar{to{transform:scaleX(1)}}
+.h-chips{justify-content:center;margin:16px auto 0;max-width:680px}
 .proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(48px,6vw,88px);border-top:1px solid var(--line)}
 .proof p{margin:0;padding:22px 24px 26px 0;font-size:14px;color:var(--muted);line-height:1.5}
 .proof p+p{padding-left:24px;border-left:1px solid var(--line)}
@@ -631,10 +655,17 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .ask{height:48px;padding:0 18px 0 14px}
 }
 @media (max-width:1100px){.proof{grid-template-columns:1fr 1fr}.proof p:nth-child(3){padding-left:0;border-left:0}.proof p:nth-child(n+3){border-top:1px solid var(--line)}}
-@media (max-width:900px){
-  .h-in{grid-template-columns:1fr}
-  .stage{height:auto;min-height:0;aspect-ratio:4/5;max-height:72svh;margin-inline:auto;width:100%}
-  .st-card{left:12px;bottom:12px;width:min(280px,calc(100% - 24px))}
+@media (max-width:1100px){.fig.dk{display:none}}
+@media (max-width:700px){
+  .fig.tb{display:none}
+  .h-side{flex-direction:column;align-items:flex-start;gap:16px}
+  .edit{height:auto;aspect-ratio:4/5.4;max-height:80svh;border-radius:18px}
+  .ed-word{top:12%;font-size:20cqw}
+  .ed-line{bottom:25%}
+  .ed-tip{display:none}
+  .ed-card{left:12px;right:12px;top:auto;bottom:44px;width:auto;padding:12px 14px 10px;transform:none!important}
+  .ed-card b{font-size:17px}
+  .ec-more{display:none}
 }
 @media (max-width:560px){
   .hs-box{height:58px;padding-left:18px}
@@ -646,7 +677,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .h-chips a{flex-shrink:0}
   .proof p{padding:16px 10px 18px 0;font-size:13px}
   .proof p:nth-child(even){padding-left:14px}
-  .h-acts{gap:12px}
+  .hs{margin-top:-29px}
 }
 </style>
 </head>
@@ -672,27 +703,27 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 <main>
   <!-- HERO -->
   <section class="hero" id="hero" aria-labelledby="hT">
-    <div class="wrap h-in">
-      <div class="h-copy">
-        <p class="kicker">Prime Couture · Gishushu, Kigali</p>
-        <h1 class="h-t" id="hT">Suits, kaftans and gowns,<span>cut in Kigali.</span></h1>
-        <p class="h-lede">Tailoring for weddings, gusaba, the office and every day. Find your piece, then come in and try it on.</p>
-        <form class="hs" id="hs" role="search" action="shop.html" autocomplete="off">
-          <div class="hs-box">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
-            <div class="hs-f"><label class="sr" for="hq">Search the collection</label><input id="hq" type="search" placeholder=" " role="combobox" aria-expanded="false" aria-controls="hsRes" aria-autocomplete="list"><span class="hs-try" aria-hidden="true">Search <i id="hsTry">“ivory tuxedo”</i></span></div>
-            <button class="btn go" type="submit" data-mag>Search</button>
-          </div>
-          <ul class="hs-res" id="hsRes" role="listbox" aria-label="Matching pieces" hidden></ul>
-        </form>
-        <div class="h-chips" id="hChips" aria-label="Browse by type"></div>
-        <div class="h-acts"><a class="btn btn--ghost" href="#book" data-mag>Book a fitting</a><small>Monday to Saturday, 9am to 8pm</small></div>
+    <div class="wrap">
+      <div class="h-top">
+        <div><p class="kicker">Prime Couture · Gishushu, Kigali</p><h1 class="h-t" id="hT">Suits, kaftans and gowns, <span>cut in Kigali.</span></h1></div>
+        <div class="h-side"><p>Tailoring for weddings, gusaba, the office and every day. Find your piece, then come in and try it on.</p><a class="btn btn--ghost" href="#book" data-mag>Book a fitting</a></div>
       </div>
-      <div class="stage" id="stage">
-        <div class="st-ph" id="stPh" data-cursor="View" role="button" tabindex="0" aria-label="Open this piece"></div>
-        <div class="st-meta" id="stMeta" aria-hidden="true"><span id="stN">01 / 05</span><i></i></div>
-        <div class="st-card" id="stCard" data-cursor="View" role="button" tabindex="0"><small id="stK"></small><b id="stT"></b><div class="row"><span class="price" id="stP"></span><u>View piece</u></div></div>
+      <div class="edit enter" id="edit">
+        <div class="ed-word" aria-hidden="true" id="edWord"></div>
+        <div class="ed-line" id="edLine" role="group" aria-label="Looks from the collection"></div>
+        <div class="ed-meta" id="edMeta" aria-hidden="true"><span id="edN">01 / 07</span><i></i></div>
+        <div class="ed-tip" aria-hidden="true">Tap a look</div>
+        <div class="ed-card" id="edCard" aria-live="polite"><div class="ec-in"><div class="ec-open" id="ecOpen" data-cursor="View" role="button" tabindex="0"><img class="ec-th" id="ecTh" alt="" hidden><div><small id="ecK"></small><b id="ecT"></b></div></div><div class="ec-row"><span class="price" id="ecP"></span><u id="ecV">View piece</u></div><a class="ec-more" id="ecMore" href="shop.html"></a></div></div>
       </div>
+      <form class="hs" id="hs" role="search" action="shop.html" autocomplete="off">
+        <div class="hs-box">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+          <div class="hs-f"><label class="sr" for="hq">Search the collection</label><input id="hq" type="search" placeholder=" " role="combobox" aria-expanded="false" aria-controls="hsRes" aria-autocomplete="list"><span class="hs-try" aria-hidden="true">Search <i id="hsTry">“ivory tuxedo”</i></span></div>
+          <button class="btn go" type="submit" data-mag>Search</button>
+        </div>
+        <ul class="hs-res" id="hsRes" role="listbox" aria-label="Matching pieces" hidden></ul>
+      </form>
+      <div class="h-chips" id="hChips" aria-label="Browse by type"></div>
     </div>
     <div class="wrap"><div class="proof" id="proof"><p><b id="pfN">51 pieces</b>for men and women</p><p><b>6 currencies</b>prices in RWF, USD, EUR, GBP, KES and UGX</p><p><b>Fittings daily</b>Monday to Saturday, 9am to 8pm</p><p><b>Gishushu</b>15 KG 599 St, Kigali</p></div></div>
   </section>
@@ -960,38 +991,78 @@ const OCC_FOR={'Wedding':' for the wedding','Gusaba & gukwa':' for gusaba and gu
 const OCC_PL={'Wedding':'weddings','Gusaba & gukwa':'gusaba and gukwa','Office':'the office','Gala or black tie':'galas and black tie','Everyday':'every day','Something else':'any occasion'};
 const WHO_B=[['her','A woman','Her look'],['him','A man','His look'],['both','Both','Her and him']];
 
-/* ---------- hero: search is the main action; the stage shows a piece and answers what you type ---------- */
-if($('#hero')){
-  const HT=TYPES.filter(t=>t[0]!=='all');
-  const ranked=P.filter(p=>p.imgs&&p.imgs.length).sort((a,b)=>(b.views||0)-(a.views||0));
-  const used=new Set(), FEAT=[];
-  HT.forEach(t=>{ const p=ranked.find(x=>inType(x,t[0])&&!used.has(x.slug)); if(p){ used.add(p.slug); FEAT.push({p,t:t[0]}); } });
-  const ph=$('#stPh'), card=$('#stCard'), meta=$('#stMeta'); let cur=null, fi=0, timer=0, paused=false, seen=true;
+/* ---------- hero: a lineup of real looks; the giant word names the one in focus; search drives it ---------- */
+if($('#edit')){
+  /* cut from the shop's own photographs with Apple's subject lifting; a = width/height; dk = desktop only, tb = hidden on phones */
+  const LINE=[
+    {slug:'ivory-embroidered-kaftan',cut:'media/cut/ivory-embroidered-kaftan.webp',a:.3,w:'KAFTANS',k:'kaftans',c:'tb'},
+    {slug:'mocha-apex-suit',cut:'media/cut/mocha-apex-suit.webp',a:.31,w:'SUITS',k:'suits',c:'dk'},
+    {slug:'ivory-silhouette-ensemble',cut:'media/cut/ivory-silhouette-ensemble.webp',a:.303,w:'DRESSES',k:'dresses',c:''},
+    {slug:'silverline-two-button-executive-suit',cut:'media/cut/silverline-two-button-executive-suit.webp',a:.294,w:'SUITS',k:'suits',c:''},
+    {slug:'brown-embellished-gown',cut:'media/cut/brown-embellished-gown.webp',a:.339,w:'GOWNS',k:'dresses',c:'tb'},
+    {slug:'prime-essential-prime-jacket-set',cut:'media/cut/prime-essential-prime-jacket-set.webp',a:.325,w:'JACKETS',k:'jackets',c:''},
+    {slug:'the-sahara-muse-set',cut:'media/cut/the-sahara-muse-set.webp',a:.355,w:'SETS',k:'sets',c:'dk'}].filter(x=>by[x.slug]);
+  const WORD={'Double-Breasted':'SUITS','Single-breasted':'SUITS','Tuxedo':'TUXEDOS','Safari Suit':'SAFARI','Kaftan':'KAFTANS','Jacket':'JACKETS','Jacket complete':'JACKETS','Dress':'DRESSES','Two-Piece Set':'SETS','Set':'SETS','Vest':'VESTS'};
+  const wordOf=p=>/gown/i.test(p.title)?'GOWNS':(WORD[p.cat]||'PIECES');
+  const typeOf=p=>(TYPES.find(t=>t[0]!=='all'&&inType(p,t[0]))||['all','pieces'])[0];
+  const edit=$('#edit'), line=$('#edLine'), word=$('#edWord'), card=$('#edCard'), meta=$('#edMeta');
   $('#pfN').textContent=`${P.length} pieces`;
-  const show=p=>{ if(!p||cur===p.slug) return; cur=p.slug;
-    const im=new Image(); im.alt=p.title; im.src=p.imgs[0]||p.card; ph.appendChild(im);
-    const go=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>im.classList.add('in')));
-    im.decode?im.decode().then(go,go):go();
-    setTimeout(()=>{ while(ph.children.length>2) ph.firstChild.remove(); },1700);
-    card.classList.add('swap');
-    setTimeout(()=>{ $('#stK').textContent=`${forName(p.for)} · ${p.cat}`; $('#stT').textContent=p.title; const pr=$('#stP'); pr.dataset.rwf=p.rwf; pr.textContent=money(p.rwf); card.setAttribute('aria-label',`Open ${p.title}`); card.classList.remove('swap'); },reduce?0:260); };
-  const tick=()=>{ clearTimeout(timer); meta.classList.remove('run'); $('#stN').textContent=`${String(fi+1).padStart(2,'0')} / ${String(FEAT.length).padStart(2,'0')}`;
-    if(reduce||paused||!seen) return; void meta.offsetWidth; meta.classList.add('run'); timer=setTimeout(()=>{ fi=(fi+1)%FEAT.length; show(FEAT[fi].p); tick(); },5000); };
+  line.innerHTML=LINE.map((x,i)=>{ const p=by[x.slug]; return `<button type="button" class="fig ${x.c}" data-i="${i}" style="--d:${120+i*90}ms" data-cursor="View" aria-label="${esc(p.title)}, ${money(p.rwf)}"><img src="${x.cut}" alt="" width="${Math.round(x.a*1000)}" height="1000"><span class="dot" aria-hidden="true"></span></button>`; }).join('');
+  const figs=$$('.fig',line);
+  const vis=()=>figs.filter(f=>f.offsetParent);
+  /* size the looks so the lineup always fits the stage */
+  const size=()=>{ const W=edit.clientWidth, H=edit.clientHeight, phone=W<560, v=vis();
+    const sum=v.reduce((t,f)=>t+LINE[+f.dataset.i].a-.06,0)||1;
+    edit.style.setProperty('--fh',Math.min(H*(phone?.6:.8),W*(phone?.98:.9)/sum)+'px'); place(); };
+  /* the word: letters leave upward, the new ones rise in */
+  const setWord=w=>{ if(word.dataset.w===w) return; word.dataset.w=w;
+    const out=[...word.children]; out.forEach((sp,i)=>{ sp.style.transitionDelay=i*16+'ms'; sp.classList.add('out'); });
+    setTimeout(()=>{ word.innerHTML=[...w].map((c,i)=>`<span class="pre" style="transition-delay:${i*24}ms">${c}</span>`).join(''); void word.offsetWidth; $$('span',word).forEach(sp=>sp.classList.remove('pre')); },reduce||!out.length?0:360); };
+  let fi=-1, cur=null, timer=0, paused=false, seen=true;
+  /* the card sits beside the look in focus, on the side with more room */
+  const place=()=>{ if(edit.clientWidth<560) return; const f=figs[fi]; const W=edit.clientWidth, cw=card.offsetWidth, ch=card.offsetHeight;
+    if(!f||!f.offsetParent){ card.style.setProperty('--cx',(W-cw-28)+'px'); card.style.setProperty('--cy',(edit.clientHeight*.34)+'px'); return; }
+    const er=edit.getBoundingClientRect(), r=f.getBoundingClientRect(), mid=r.left+r.width/2-er.left;
+    let x=mid<W/2 ? r.right-er.left+8 : r.left-er.left-cw-8; x=Math.max(16,Math.min(W-cw-16,x));
+    const y=Math.max(64,Math.min(edit.clientHeight-ch-24,r.top-er.top+r.height*.26));
+    card.style.setProperty('--cx',x+'px'); card.style.setProperty('--cy',y+'px'); };
+  const fill=(p,showThumb)=>{ cur=p.slug; card.classList.add('swap');
+    setTimeout(()=>{ $('#ecK').textContent=`${forName(p.for)} · ${p.cat}`; $('#ecT').textContent=p.title; const pr=$('#ecP'); pr.dataset.rwf=p.rwf; pr.textContent=money(p.rwf);
+      const th=$('#ecTh'); th.hidden=!showThumb; if(showThumb) th.src=p.card;
+      const k=typeOf(p), n=P.filter(x=>inType(x,k)).length, lab=(TYPES.find(t=>t[0]===k)||[,'pieces'])[1].toLowerCase();
+      const more=$('#ecMore'); more.href=`shop.html#type=${k}`; more.innerHTML=`<span>All ${n} ${esc(lab)}</span><span aria-hidden="true">→</span>`;
+      card.classList.remove('swap'); place(); },reduce?0:220); };
+  const focus=(i,why)=>{ i=(i+LINE.length)%LINE.length; const v=vis(); if(!figs[i].offsetParent){ i=+v[0].dataset.i; }
+    fi=i; figs.forEach((f,k)=>{ f.classList.toggle('on',k===i); f.setAttribute('aria-pressed',k===i); });
+    const x=LINE[i], p=by[x.slug]; setWord(x.w); fill(p,false); place();
+    const pos=v.indexOf(figs[i]); $('#edN').textContent=`${String(pos+1).padStart(2,'0')} / ${String(v.length).padStart(2,'0')}`; };
+  const showPiece=p=>{ const i=LINE.findIndex(x=>x.slug===p.slug); if(i>=0&&figs[i].offsetParent) return focus(i);
+    fi=-1; figs.forEach(f=>{ f.classList.remove('on'); f.setAttribute('aria-pressed','false'); }); setWord(wordOf(p)); fill(p,true); place(); };
+  const next=()=>{ const v=vis(), pos=v.indexOf(figs[fi]); focus(+v[(pos+1)%v.length].dataset.i); };
+  const tick=()=>{ clearTimeout(timer); meta.classList.remove('run'); if(reduce||paused||!seen) return; void meta.offsetWidth; meta.classList.add('run'); timer=setTimeout(()=>{ next(); tick(); },4000); };
   const hold=on=>{ paused=on; tick(); };
-  show(FEAT[0].p); tick();
-  new IntersectionObserver(([e])=>{ seen=e.isIntersecting; tick(); },{threshold:.25}).observe($('#stage'));
+  focus(LINE.findIndex(x=>x.c==='')); size(); tick();
+  setTimeout(()=>edit.classList.remove('enter'),2200);
+  addEventListener('resize',()=>{ size(); if(fi>=0&&!figs[fi].offsetParent) focus(+vis()[0].dataset.i); });
+  new IntersectionObserver(([e])=>{ seen=e.isIntersecting; tick(); },{threshold:.3}).observe(edit);
+  edit.addEventListener('mouseenter',()=>hold(true)); edit.addEventListener('mouseleave',()=>hold(false));
+  line.addEventListener('click',e=>{ const f=e.target.closest('.fig'); if(!f) return; const i=+f.dataset.i; if(i===fi) openItem(LINE[i].slug); else { focus(i); hold(true); } });
+  line.addEventListener('focusin',e=>{ const f=e.target.closest('.fig'); if(f&&+f.dataset.i!==fi){ focus(+f.dataset.i); hold(true); } });
   const open=()=>cur&&openItem(cur);
-  [ph,card].forEach(el=>{ el.addEventListener('click',open); el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } }); });
-  $('#stage').addEventListener('mouseenter',()=>hold(true)); $('#stage').addEventListener('mouseleave',()=>hold(false));
-  /* type chips: hover shows that type's most viewed piece, click opens the collection filtered */
-  const chips=$('#hChips');
+  $('#ecOpen').addEventListener('click',open); $('#ecV').addEventListener('click',open);
+  $('#ecOpen').addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  /* depth: the lineup drifts against the pointer, the word less */
+  if(!reduce&&matchMedia('(pointer:fine)').matches) edit.addEventListener('pointermove',e=>{ const r=edit.getBoundingClientRect(), dx=(e.clientX-r.left)/r.width-.5; edit.style.setProperty('--lx',(dx*-18)+'px'); edit.style.setProperty('--wx',(dx*10)+'px'); });
+  edit.addEventListener('pointerleave',()=>{ edit.style.setProperty('--lx','0px'); edit.style.setProperty('--wx','0px'); });
+  /* type chips: hover brings that type's look forward, click opens the collection filtered */
+  const HT=TYPES.filter(t=>t[0]!=='all'), chips=$('#hChips');
   chips.innerHTML=HT.map(([k,l])=>`<a href="shop.html#type=${k}" data-t="${k}">${esc(l)} <span>${P.filter(p=>inType(p,k)).length}</span></a>`).join('');
-  const chipOn=a=>{ $$('a',chips).forEach(x=>x.classList.toggle('on',x===a)); if(!a) return; const i=FEAT.findIndex(f=>f.t===a.dataset.t); if(i>=0){ fi=i; show(FEAT[i].p); } paused=true; tick(); };
+  const chipOn=a=>{ $$('a',chips).forEach(x=>x.classList.toggle('on',x===a)); if(!a) return; const i=LINE.findIndex((x,k)=>x.k===a.dataset.t&&figs[k].offsetParent); if(i>=0) focus(i); else { const p=P.filter(p=>inType(p,a.dataset.t)).sort((x,y)=>(y.views||0)-(x.views||0))[0]; if(p) showPiece(p); } hold(true); };
   chips.addEventListener('mouseover',e=>{ const a=e.target.closest('a'); if(a) chipOn(a); });
   chips.addEventListener('focusin',e=>{ const a=e.target.closest('a'); if(a) chipOn(a); });
   chips.addEventListener('mouseleave',()=>{ chipOn(null); hold(false); });
   chips.addEventListener('focusout',()=>{ chipOn(null); hold(false); });
-  /* search: rotating suggestions, live results with pictures, the first match takes the stage */
+  /* search: rotating suggestions, live results with pictures; the first match takes the stage */
   const hq=$('#hq'), res=$('#hsRes'), TRY=['“ivory tuxedo”','“kaftan”','“embellished gown”','“sand suit”','“two-piece set”'];
   if(!reduce){ let ti=0; const tr=$('#hsTry'); setInterval(()=>{ if(hq.value||document.hidden) return; tr.classList.add('out'); setTimeout(()=>{ ti=(ti+1)%TRY.length; tr.textContent=TRY[ti]; tr.classList.remove('out'); tr.classList.add('pre'); void tr.offsetWidth; tr.classList.remove('pre'); },450); },2800); }
   const nz=x=>String(x).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[“”"]/g,'');
@@ -1001,14 +1072,14 @@ if($('#hero')){
     return r.sort((a,b)=>(b.views||0)-(a.views||0)); };
   let list=[], act=-1;
   const opts=()=>$$('li[role="option"]',res);
-  const mark=i=>{ const o=opts(); act=o.length?(i+o.length)%o.length:-1; o.forEach((li,k)=>li.classList.toggle('act',k===act)); hq.setAttribute('aria-activedescendant',act>=0?o[act].id:''); const s2=o[act]&&o[act].dataset.slug; if(s2) show(by[s2]); };
+  const mark=i=>{ const o=opts(); act=o.length?(i+o.length)%o.length:-1; o.forEach((li,k)=>li.classList.toggle('act',k===act)); hq.setAttribute('aria-activedescendant',act>=0?o[act].id:''); const s2=o[act]&&o[act].dataset.slug; if(s2) showPiece(by[s2]); };
   const close=()=>{ res.hidden=true; hq.setAttribute('aria-expanded','false'); act=-1; };
   const paint=()=>{ const q=hq.value.trim(); if(!q){ close(); hold(false); return; }
     list=find(q); hold(true);
     res.innerHTML=list.length
       ? list.slice(0,5).map((p,i)=>`<li role="option" id="hs${i}" data-slug="${p.slug}"><img src="${p.card}" alt=""><span><b>${esc(p.title)}</b><small>${forName(p.for)} · ${esc(p.cat)}</small></span><em class="price" data-rwf="${p.rwf}">${money(p.rwf)}</em></li>`).join('')+`<li role="option" id="hsAll" class="all"><span>See all ${list.length} in the collection</span><span aria-hidden="true">→</span></li>`
       : `<li class="none">Nothing matches “${esc(q)}” yet. Try suit, kaftan or gown.</li>`;
-    res.hidden=false; hq.setAttribute('aria-expanded','true'); act=-1; if(list[0]) show(list[0]); };
+    res.hidden=false; hq.setAttribute('aria-expanded','true'); act=-1; if(list[0]) showPiece(list[0]); };
   const toShop=()=>{ const q=hq.value.trim(); location.href='shop.html'+(q?'#q='+encodeURIComponent(q):''); };
   const choose=li=>{ if(!li) return toShop(); if(li.dataset.slug){ close(); openItem(li.dataset.slug); } else toShop(); };
   hq.addEventListener('input',paint);
@@ -1022,6 +1093,7 @@ if($('#hero')){
   res.addEventListener('mousemove',e=>{ const li=e.target.closest('li[role="option"]'); if(li){ const i=opts().indexOf(li); if(i!==act) mark(i); } });
   res.addEventListener('click',e=>choose(e.target.closest('li[role="option"]')));
   $('#hs').addEventListener('submit',e=>{ e.preventDefault(); toShop(); });
+  if(document.fonts) document.fonts.ready.then(place);
 }
 mountReels($('#clientFilms'),4);
 
