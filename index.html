@@ -271,7 +271,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 /* collection cards: open the piece, or book it */
 .c-open{display:block;width:100%;padding:0;text-align:left}
 .c-book{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:0 0 2px;font-size:13px;color:var(--ink);border-bottom:1px solid rgba(18,16,16,.25);transition:border-color .2s,color .2s}
-.c-book:hover{border-color:var(--red);color:var(--red)}
+.c-book:hover{border-color:var(--ink)}
 /* booking: a guided card with a large step count */
 .bk-h{align-items:center;gap:18px}
 .bk-h .bk-n{display:flex;align-items:baseline;gap:6px;flex-shrink:0;font-variant-numeric:tabular-nums}
@@ -287,7 +287,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 /* who we are, then the way in: men, women, or everything */
 .about{padding-block:clamp(88px,9vw,140px)}
 .ab-brand{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.ab-logo{height:clamp(64px,8.4vw,136px);width:auto;color:var(--red);flex-shrink:0}
+.ab-logo{height:clamp(64px,8.4vw,136px);width:auto;color:var(--ink);flex-shrink:0}
 .ab-name{margin:0;font-weight:400;font-size:clamp(52px,9vw,148px);line-height:.95;letter-spacing:.005em;color:var(--ink);white-space:nowrap}
 .ab-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px clamp(40px,6vw,112px);margin-top:clamp(36px,4.4vw,64px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--line)}
 .ab-t{margin:0;font-size:clamp(22px,2.1vw,32px);line-height:1.3;letter-spacing:-.01em;max-width:30ch}
@@ -297,9 +297,9 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .ab-facts span{display:block;margin-top:2px;font-size:15px;color:var(--muted)}
 .ab-lead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:clamp(64px,7vw,104px)}
 .ab-lead .kicker{margin:0}
-.cat-all.brand{display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:var(--red);color:var(--ivory)}
-.cat-all.brand .logo-mark{height:clamp(84px,8vw,120px);width:auto;color:var(--ivory)}
-.cat-all.brand p{color:var(--blush)}
+.cat-all.brand{display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:var(--mist);color:var(--ink)}
+.cat-all.brand .logo-mark{height:clamp(84px,8vw,120px);width:auto;color:var(--ink)}
+.cat-all.brand p{color:var(--muted)}
 /* weddings: a preview that opens when someone books from the Weddings slide */
 .wsheet{position:fixed;z-index:94;inset:0;display:grid;place-items:center;padding:clamp(16px,4vw,48px);background:rgba(18,16,16,.62);opacity:0;pointer-events:none;transition:opacity .4s}
 .wsheet.on{opacity:1;pointer-events:auto}
@@ -323,11 +323,11 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .bk-style{margin:-8px 0 18px;padding:10px 14px;border-radius:10px;background:var(--ui-muted);font-size:14px;color:var(--ui-mfg)}
 .bk-style b{font-weight:500;color:var(--ink)}
 .cat-guide{display:inline-block;margin-top:16px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
-.cat-guide:hover{color:var(--red)}
+.cat-guide:hover{opacity:.7}
 .saved-band .sb-acts{display:flex;gap:8px;flex-wrap:wrap}
 
 /* know your suit: a red stage. The five cuts stand under a soft light; hover one and the others step back. */
-.kys{position:relative;overflow:hidden;padding-block:clamp(88px,9vw,140px) 0;background:radial-gradient(60% 75% at 50% 80%,#FCFAF7 0%,#EDE8E1 52%,#DBD3C8 100%);color:var(--ink)}
+.kys{position:relative;overflow:hidden;padding-block:clamp(88px,9vw,140px) 0;background:var(--mist);color:var(--ink)}
 .kys::before{content:"";position:absolute;left:50%;top:-20%;width:120%;height:90%;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);pointer-events:none}
 .kys-head{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px clamp(32px,5vw,96px);align-items:end}
 .kys .kicker{color:var(--muted);opacity:1}
@@ -345,10 +345,10 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .kys-line:hover .kys-fig:not(:hover){opacity:.45}
 .kys-fig:hover::before{opacity:1}
 .kys-fig:hover img{transform:translateY(-12px) scale(1.02)}
-.kys-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,3vw,44px);border-top:1px solid rgba(18,16,16,.1);background:rgba(18,16,16,.025)}
+.kys-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,3vw,44px);border-top:1px solid var(--line)}
 
 /* the visit, and the way into the booking flow */
-.visit{padding-block:clamp(88px,9vw,140px)}
+.visit{padding-block:clamp(88px,9vw,140px);background:var(--mist)}
 .visit-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,96px);align-items:center}
 .visit-ph{margin:0;position:relative;aspect-ratio:4/5;max-height:80svh;border-radius:18px;overflow:hidden;background:var(--mist)}
 .visit-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform 2s var(--ease)}
@@ -359,7 +359,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .visit-facts b{display:block;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 .visit-facts span{font-size:18px}
 .visit .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
-.visit .acts .btn.go{background:var(--red)}
+
 
 /* booking flow: full screen, one question at a time, the atelier beside it */
 html.onb-open{overflow:hidden}
@@ -421,7 +421,7 @@ html.onb-open{overflow:hidden}
 .hs-res b{display:block;font-weight:400;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hs-res small{display:block;font-size:12px;color:var(--muted)}
 .hs-res em{font-style:normal;font-size:14px}
-.hs-res li.all{justify-content:space-between;font-size:13px;letter-spacing:.06em;color:var(--red);padding:12px 10px}
+.hs-res li.all{justify-content:space-between;font-size:13px;letter-spacing:.06em;color:var(--ink);padding:12px 10px}
 .hs-res li.none{cursor:default;font-size:14px;color:var(--muted);padding:14px 10px}
 .h-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;max-width:600px}
 .h-chips a{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 6px 0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;text-decoration:none;transition:box-shadow .25s,background .25s,color .25s}
@@ -436,7 +436,7 @@ html.onb-open{overflow:hidden}
 .cat-all.lite{background:var(--mist);color:var(--ink);--ivory:var(--ink);--blush:var(--muted);--line-d:rgba(18,16,16,.16);--red-deep:#fff}
 /* client films */
 .clients{padding-block:clamp(80px,8vw,128px)}
-.clients .rv-tile figcaption{color:#F4F2EF}
+
 
 /* today's picks */
 .picks{padding-block:clamp(88px,9vw,140px)}
@@ -510,23 +510,23 @@ html.onb-open{overflow:hidden}
 .fchip:hover{box-shadow:inset 0 0 0 1px var(--ink)}
 .fchip[aria-checked="true"]{background:var(--ink);color:#fff;box-shadow:none}
 .fchip[aria-checked="true"] span{color:rgba(255,255,255,.65)}
-.fchip.new{box-shadow:inset 0 0 0 1.5px var(--red)}
-.fchip[aria-checked="true"].new{background:var(--red)}
+.fchip.new{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.fchip[aria-checked="true"].new{background:var(--ink)}
 .fchip.zero{opacity:.4}
 .fsw{display:grid;grid-template-columns:repeat(6,32px);gap:10px 12px}
 .sw{position:relative;width:32px;height:32px;padding:0;border-radius:50%;display:grid;place-items:center;transition:transform .2s}
 .sw i{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
 .sw:hover{transform:scale(1.08)}
 .sw[aria-checked="true"]{box-shadow:0 0 0 1.5px var(--ink)}
-.sw.new[aria-checked="true"]{box-shadow:0 0 0 1.5px var(--red)}
+.sw.new[aria-checked="true"]{box-shadow:0 0 0 1.5px var(--ink)}
 .sw.zero{opacity:.3}
 .fsel{margin:12px 0 0;font-size:13px;color:var(--ui-mfg)}
 .fsel b{font-weight:500;color:var(--ink)}
 .side-f{position:sticky;bottom:0;z-index:1;display:flex;flex-direction:column;gap:6px;margin-top:auto;padding:18px 0 4px;background:linear-gradient(transparent,var(--paper) 22%)}
 .side-f .u-btn{width:100%;height:48px;border-radius:999px}
 .side-note{font-size:12px;color:var(--ui-mfg);text-align:center;min-height:16px}
-.side.dirty .side-note{color:var(--red)}
-.side.dirty .side-f .u-btn{background:var(--red);border-color:var(--red)}
+.side.dirty .side-note{color:var(--ink)}
+.side.dirty .side-f .u-btn{background:var(--ink);border-color:var(--ink)}
 .saved-band{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 22px;border-radius:14px;background:var(--mist)}
 .saved-band b{font-weight:400;font-size:18px}
 .saved-band p{margin:2px 0 0;font-size:14px;color:var(--ui-mfg)}
@@ -986,7 +986,7 @@ html.onb-open{overflow:hidden}
   </div>
 
   <!-- CLIENT FILMS -->
-  <section class="clients dark" id="clients" aria-labelledby="clH">
+  <section class="clients" id="clients" aria-labelledby="clH">
     <div class="wrap">
       <div class="sec-head"><div><p class="kicker">A look inside · @primecouturehq</p><h2 class="title" id="clH">Our atelier</h2><p class="lede">The workshop and the showroom in Gishushu, filmed for their Instagram: pieces being cut, sewn and fitted.</p></div><a class="link" href="atelier.html">Visit the atelier page</a></div>
       <div class="ig-grid" id="clientFilms"></div>
@@ -1441,7 +1441,7 @@ if($('#catGrid')){
   const mark=($('.top .logo-mark')||{}).outerHTML||'';
   $('#catGrid').innerHTML=CAT.map(card).join('')+`<article class="cat cat-all brand">${mark}
     <div class="cat-b"><h3>The full collection</h3><p>Every piece the atelier makes, for men and women. Filter by colour, type and price, or search by name.</p>
-    <a class="btn btn--light" href="shop.html">View all pieces</a></div></article>`;
+    <a class="btn" href="shop.html">View all pieces</a></div></article>`;
 }
 
 /* ---------- the collection page: sidebar filters you apply, live search, sort ---------- */
