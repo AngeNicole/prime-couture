@@ -234,6 +234,16 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .lk-types a:hover,.lk-types button:hover,.lk-types .on{color:var(--ivory);border-color:currentColor}
 /* hero: the film slide */
 .lk-card video{width:100%;height:100%;object-fit:cover;display:block}
+.reel{position:absolute;inset:0;overflow:hidden;background:#1a1414}
+.reel video{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.reel video.on{opacity:1;animation:kbv 6s ease-out both}
+@keyframes kbv{from{transform:scale(1.07)}to{transform:scale(1)}}
+.reel-bars{position:absolute;z-index:3;left:14px;right:14px;top:14px;display:flex;gap:4px;transition:opacity .4s}
+.reel-bars span{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.32);overflow:hidden}
+.reel-bars i{display:block;height:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
+.lk-card.film .lk-tag{top:30px}
+.reel-cap{position:absolute;z-index:3;left:16px;bottom:16px;padding:8px 14px;border-radius:999px;background:rgba(18,16,16,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:opacity .4s}
+.lk-card:not(.on) .reel-bars,.lk-card:not(.on) .reel-cap{opacity:0}
 .lk-tag{position:absolute;right:16px;top:16px;display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 .lk-tag svg{width:10px;height:10px;fill:currentColor}
 .th .pl{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.18)}
@@ -1230,7 +1240,9 @@ if($('#looks')){
   const KOF={Tuxedos:'suits',Suits:'suits',Kaftans:'kaftans',Gowns:'dresses',Dresses:'dresses',Sets:'sets',Jackets:'jackets'};
   const N=LINE.length, DUR=5000, FILM_DUR=9000, pad=n=>String(n).padStart(2,'0');
   const sec=$('#looks'), stage=$('#lkStage'), word=$('#edWord'), rail=$('#lkRail'), info=$('#lkInfo');
-  stage.innerHTML=LINE.map((x,i)=>{ if(x.film){ const f=film(x.film); return `<figure class="lk-card film" data-i="${i}"><video muted loop playsinline preload="${i===0?'auto':'none'}" poster="${f.poster}" data-src="${f.src}"${i===0?` src="${f.src}" autoplay`:''} aria-label="${esc(f.title)}, a film from a Prime Couture wedding"></video><span class="lk-tag">${PLAY}Film</span><figcaption>Next · ${esc(x.w)}</figcaption></figure>`; }
+  /* the wedding reel: every clip from the day, one after another */
+  const REEL=['couple','bride','train','aisle','sash','shimmer','together','ceremony','party','walk','smile','dance'].map(film).filter(Boolean);
+  stage.innerHTML=LINE.map((x,i)=>{ if(x.film){ const f=REEL[0]||film(x.film); return `<figure class="lk-card film" data-i="${i}"><div class="reel" role="img" aria-label="Films from a Prime Couture wedding"><video class="on" muted playsinline preload="auto" poster="${f.poster}"></video><video muted playsinline preload="auto"></video></div><div class="reel-bars" aria-hidden="true">${REEL.map(()=>'<span><i></i></span>').join('')}</div><span class="lk-tag">${PLAY}Film</span><span class="reel-cap" aria-hidden="true">${esc(f.title)}</span><figcaption>Next · ${esc(x.w)}</figcaption></figure>`; }
     return `<figure class="lk-card" data-i="${i}"><img src="${x.img}" alt="${esc(by[x.slug].title)}, photographed for Prime Couture" decoding="async"${i>1?' loading="lazy"':''}><figcaption>Next · ${esc(x.w)}</figcaption></figure>`; }).join('');
   rail.innerHTML=LINE.map((x,i)=>{ const t=x.film?film(x.film).title:by[x.slug].title, im=x.film?film(x.film).poster:by[x.slug].card; return `<button type="button" class="th" data-i="${i}" aria-pressed="false" aria-label="Show ${esc(t)}"><img src="${im}" alt="">${x.film?`<span class="pl" aria-hidden="true">${PLAY}</span>`:''}<i></i></button>`; }).join('');
   const cards=$$('.lk-card',stage), ths=$$('.th',rail);
@@ -1245,25 +1257,43 @@ if($('#looks')){
       const hb=$('#lkHeart'); hb.hidden=false; hb.dataset.heart=p.slug; hb.setAttribute('aria-pressed',isSaved(p.slug));
       const t=TYPES.find(t=>t[0]!=='all'&&inType(p,t[0]))||['all','pieces'], m=$('#lkMore'); m.href=`shop.html#type=${t[0]}`; m.textContent=`See all ${t[1].toLowerCase()}`;
       info.classList.remove('swap'); },reduce?0:320); };
+  const reelCard=cards.find(c=>c.classList.contains('film'));
+  const reel=(()=>{ if(!reelCard) return {start(){},stop(){},resume(){},current:()=>REEL[0]};
+    const vids=[...reelCard.querySelectorAll('.reel video')], bars=[...reelCard.querySelectorAll('.reel-bars i')], cap=reelCard.querySelector('.reel-cap');
+    let ri=0, act=0, on=false;
+    vids.forEach(v=>{ v.autoplay=false; v.removeAttribute('autoplay'); });
+    const small=matchMedia('(max-width:700px)').matches, srcOf=f=>small?f.src.replace('media/films/','media/films/sm/'):f.src;   /* phones get the light clips */
+    const load=(v,i)=>{ const f=REEL[i]; if(v.dataset.f!==f.id){ v.dataset.f=f.id; v.poster=f.poster; v.src=srcOf(f); v.load(); } };
+    const setBars=frac=>{ bars.forEach((b,k)=>b.style.transform=`scaleX(${k<ri?1:k===ri?frac:0})`); const t=ths[LINE.indexOf(LINE.find(x=>x.film))]; if(t){ const i=t.querySelector('i'); if(i) i.style.transform=`scaleX(${(ri+frac)/REEL.length})`; } };
+    const play=i=>{ ri=i; const v=vids[act], o=vids[1-act]; load(v,i); try{ v.currentTime=0; }catch(_){}
+      v.classList.add('on'); o.classList.remove('on'); o.pause(); if(on&&!reduce) v.play().catch(()=>{});
+      cap.textContent=REEL[i].title; setBars(0); load(o,(i+1)%REEL.length); };
+    vids.forEach(v=>{
+      v.addEventListener('timeupdate',()=>{ if(on&&v===vids[act]&&v.duration) setBars(Math.min(1,v.currentTime/v.duration)); });
+      v.addEventListener('ended',()=>{ if(!on||v!==vids[act]) return; act=1-act;
+        if(ri+1<REEL.length) play(ri+1); else if(paused||!seen) play(0); else { on=false; show(cur+1); } }); });
+    return { start(){ on=true; act=0; play(0); }, stop(){ on=false; vids.forEach(v=>v.pause()); const t=ths[LINE.indexOf(LINE.find(x=>x.film))]; if(t){ const i=t.querySelector('i'); if(i) i.style.transform=''; } },
+      resume(){ if(on&&!reduce) vids[act].play().catch(()=>{}); }, pause(){ vids[act].pause(); }, current:()=>REEL[ri] };
+  })();
   const setFilm=f=>{ slug=null; info.classList.add('swap');
-    setTimeout(()=>{ $('#lkK').textContent='Film · A Prime Couture wedding'; $('#lkT').textContent=f.title; const pr=$('#lkP'); delete pr.dataset.rwf; pr.textContent='Filmed on the day, in pieces cut at the atelier';
+    setTimeout(()=>{ $('#lkK').textContent=`Film · ${REEL.length} moments from one wedding`; $('#lkT').textContent='A Prime Couture wedding'; const pr=$('#lkP'); delete pr.dataset.rwf; pr.textContent='Filmed on the day, in pieces cut at the atelier';
       $('#lkHeart').hidden=true; const m=$('#lkMore'); m.href='shop.html#type=dresses'; m.textContent='See the gowns'; $('#lkView').textContent='Watch the film'; info.classList.remove('swap'); },reduce?0:320); };
   const dur=()=>LINE[cur]&&LINE[cur].film?FILM_DUR:DUR;
-  const tick=()=>{ clearTimeout(timer); ths.forEach(t=>{ t.classList.remove('run'); t.style.removeProperty('--dur'); }); if(reduce||paused||!seen||cur<0) return;
+  const tick=()=>{ clearTimeout(timer); ths.forEach(t=>{ t.classList.remove('run'); t.style.removeProperty('--dur'); }); if(reduce||paused||!seen||cur<0) return; if(LINE[cur].film) return;
     const t=ths[cur]; t.style.setProperty('--dur',dur()/1000+'s'); void t.offsetWidth; t.classList.add('run'); timer=setTimeout(()=>show(cur+1),dur()); };
   const show=i=>{ i=(i+N)%N; if(i===cur) return; cur=i;
     cards.forEach((c,k)=>{ const rel=(k-i+N)%N; c.classList.toggle('on',rel===0); c.classList.toggle('nx',rel===1); c.classList.toggle('pv',rel===N-1); const im=c.querySelector('img'); if(rel<=2&&im) im.loading='eager'; });
     const x=LINE[i]; ths.forEach((t,k)=>t.setAttribute('aria-pressed',k===i)); $('#lkN').textContent=`${pad(i+1)} / ${pad(N)}`;
-    cards.forEach((c,k)=>{ const v=c.querySelector('video'); if(!v) return; if(k===i){ if(!v.getAttribute('src')) v.src=v.dataset.src; if(!reduce) v.play().catch(()=>{}); } else v.pause(); });
+    if(x.film) reel.start(); else reel.stop();
     setWord(x.w); if(x.film) setFilm(film(x.film)); else { $('#lkView').textContent='View piece'; setInfo(by[x.slug]); } tick(); };
   const hold=on=>{ paused=on; tick(); };
   show(0);
-  new IntersectionObserver(([e])=>{ seen=e.isIntersecting; tick(); },{threshold:.4}).observe(sec);
+  new IntersectionObserver(([e])=>{ seen=e.isIntersecting; if(LINE[cur]&&LINE[cur].film){ seen?reel.resume():reel.pause(); } tick(); },{threshold:.4}).observe(sec);
   stage.addEventListener('mouseenter',()=>hold(true)); stage.addEventListener('mouseleave',()=>hold(false));
   rail.addEventListener('click',e=>{ const t=e.target.closest('.th'); if(t) show(+t.dataset.i); });
   rail.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); show(cur+(e.key==='ArrowRight'?1:-1)); ths[cur].focus(); } });
   $('#lkPrev').onclick=()=>show(cur-1); $('#lkNext').onclick=()=>show(cur+1);
-  const open=()=>{ const x=LINE[cur]; if(x&&x.film) return openFilm(FILMS.indexOf(film(x.film))); if(slug) openItem(slug); };
+  const open=()=>{ const x=LINE[cur]; if(x&&x.film) return openFilm(FILMS.indexOf(reel.current())); if(slug) openItem(slug); };
   $('#lkUmu').addEventListener('click',()=>bookFor({who:'her',cut:'umu'}));
   stage.addEventListener('click',e=>{ const c=e.target.closest('.lk-card'); if(!c) return; if(c.classList.contains('on')) open(); else if(c.classList.contains('nx')) show(cur+1); });
   $('#lkView').addEventListener('click',open);
