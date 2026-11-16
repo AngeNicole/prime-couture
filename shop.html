@@ -297,6 +297,22 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .ws-x{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;background:var(--paper)}
 .ws-x svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
 
+/* booking: the wedding party, the suit guide choice */
+.party{margin-top:24px;padding-top:18px;border-top:1px solid var(--ui-border)}
+.party-h{margin:0 0 6px;font-size:15px}
+.party-h em{font-style:normal;color:var(--ui-mfg);font-size:13px;margin-left:6px}
+.ctr{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+.ctr>div{display:flex;align-items:center;gap:14px}
+.ctr button{width:36px;height:36px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--ui-border);font-size:18px;line-height:1;display:grid;place-items:center}
+.ctr button:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.ctr button:disabled{opacity:.35;pointer-events:none}
+.ctr b{min-width:22px;text-align:center;font-weight:500;font-variant-numeric:tabular-nums}
+.bk-style{margin:-8px 0 18px;padding:10px 14px;border-radius:10px;background:var(--ui-muted);font-size:14px;color:var(--ui-mfg)}
+.bk-style b{font-weight:500;color:var(--ink)}
+.cat-guide{display:inline-block;margin-top:16px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.cat-guide:hover{color:var(--red)}
+.saved-band .sb-acts{display:flex;gap:8px;flex-wrap:wrap}
+
 /* find your piece: the search and the way in by who you are dressing, after the looks */
 .find{padding-block:clamp(88px,9vw,140px)}
 .fd-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px clamp(32px,5vw,96px);align-items:end}
@@ -799,7 +815,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 <body data-page="shop">
 <header class="top" id="top">
   <div class="wrap top-in">
-    <nav aria-label="Primary"><a href="./#find">Find a piece</a><a href="shop.html" aria-current="page">Collection</a><a href="atelier.html">Atelier</a></nav>
+    <nav aria-label="Primary"><a href="./#find">Find a piece</a><a href="shop.html" aria-current="page">Collection</a><a href="suits.html">Suit guide</a><a href="atelier.html">Atelier</a></nav>
     <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
     <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
     <div class="top-r">
@@ -812,7 +828,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </div>
 </header>
 <div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
-  <a class="big" href="./#find">Find a piece</a><a class="big" href="shop.html">Collection</a><a class="big" href="atelier.html">Atelier</a>
+  <a class="big" href="./#find">Find a piece</a><a class="big" href="shop.html">Collection</a><a class="big" href="suits.html">Suit guide</a><a class="big" href="atelier.html">Atelier</a>
   <a class="big" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a>
   <a class="btn btn--light" href="./#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
 </div>
@@ -1241,7 +1257,7 @@ if($('#catGrid')){
     const types=TYPES.slice(1).map(([k,l])=>[k,l,list.filter(p=>inType(p,k)).length]).filter(t=>t[2]);
     return `<article class="cat"><a class="cat-ph" href="shop.html#who=${w}" aria-label="${name}, ${list.length} pieces"><img src="${(pa.imgs[0]||pa.card)}" alt="" loading="lazy"><img class="b" src="${(pb.imgs[0]||pb.card)}" alt="" loading="lazy"><span class="cat-k">${kick}</span></a>
       <div class="cat-b"><div class="cat-t"><h3><a href="shop.html#who=${w}">${name}</a></h3><span>${list.length} pieces</span></div>
-      <ul class="cat-types">${types.map(([k,l,n])=>`<li><a href="shop.html#who=${w}&type=${k}">${esc(l)}<span>${n}</span></a></li>`).join('')}</ul></div></article>`; };
+      <ul class="cat-types">${types.map(([k,l,n])=>`<li><a href="shop.html#who=${w}&type=${k}">${esc(l)}<span>${n}</span></a></li>`).join('')}</ul>${w==='him'?'<a class="cat-guide" href="suits.html">Not sure which suit? Read the suit guide</a>':''}</div></article>`; };
   const mark=($('.top .logo-mark')||{}).outerHTML||'';
   $('#catGrid').innerHTML=CAT.map(card).join('')+`<article class="cat cat-all brand">${mark}
     <div class="cat-b"><h3>The full collection</h3><p>Every piece the atelier makes, for men and women. Filter by colour, type and price, or search by name.</p>
@@ -1289,7 +1305,7 @@ if($('#grid')){
     if(sort==='low') list.sort((a,b)=>a.rwf-b.rwf); else if(sort==='high') list.sort((a,b)=>b.rwf-a.rwf); else if(sort==='az') list.sort((a,b)=>a.title.localeCompare(b.title)); else list.sort((a,b)=>(b.views||0)-(a.views||0));
     grid.innerHTML=list.length?list.map((p,i)=>`<div class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms">${heartBtn(p.slug,p.title)}<button type="button" class="c-open"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button><button type="button" class="c-book" data-book="${p.slug}">Book a fitting</button></div>`).join('')
       :savedOnly?`<div class="empty"><b>Nothing saved yet</b>Tap the heart on any piece to keep it here, then book a fitting to try them on.</div>`:`<div class="empty"><b>No pieces match</b>Try a different word, or clear a filter. The atelier can also make pieces to order.<div style="margin-top:16px"><button type="button" class="u-btn outline sm" data-clear="all">Clear all filters</button></div></div>`;
-    if(savedOnly&&list.length) grid.insertAdjacentHTML('afterbegin',`<div class="saved-band"><div><b>Your wishlist</b><p>Try your saved pieces on at the atelier.</p></div><button type="button" class="u-btn" id="savedBook">Book a fitting for these</button></div>`);
+    if(savedOnly&&list.length) grid.insertAdjacentHTML('afterbegin',`<div class="saved-band"><div><b>Your wishlist</b><p>Try your saved pieces on at the atelier.</p></div><div class="sb-acts"><a class="u-btn outline" id="savedWa" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(waList())}">Send to the atelier on WhatsApp</a><button type="button" class="u-btn" id="savedBook">Book a fitting for these</button></div></div>`);
     $('#fSaved').setAttribute('aria-pressed',savedOnly); const sn=$('#fSavedN'); sn.textContent=saved.length; sn.hidden=!saved.length;
     const tags=[]; if(savedOnly) tags.push(['saved','Saved pieces']); if(q) tags.push(['q',`“${q}”`]); if(on.who!=='all') tags.push(['who',WHO.find(x=>x[0]===on.who)[1]]); if(on.fam!=='all') tags.push(['fam',on.fam]); if(on.type!=='all') tags.push(['type',TYPES.find(x=>x[0]===on.type)[1]]); if(on.price!=='all') tags.push(['price',priceLabel(PRICES.find(x=>x[0]===on.price))]);
     $('#fActive').innerHTML=`<p class="rcount" aria-live="polite">${plural(list.length)}</p>`+tags.map(([k,l])=>`<span class="tag">${esc(l)}<button type="button" data-clear="${k}" aria-label="Remove ${esc(l)}">×</button></span>`).join('')+(tags.length>1?`<button type="button" class="u-btn ghost sm" data-clear="all">Clear all</button>`:'');
@@ -1300,6 +1316,7 @@ if($('#grid')){
   const render=()=>{ renderFilters(); renderGrid(); };
   const apply=()=>{ on={...draft}; render(); hide(side); toResults(); };
   const setQ=v=>{ q=v; $('#fSearch').value=v; $('#fSearchClear').hidden=!v; };
+  const waList=()=>'Hello Prime Couture, these are the pieces I saved on your website:\n'+saved.map(x=>by[x]).filter(Boolean).map(p=>`- ${p.title} (${money(p.rwf)})`).join('\n')+'\n\nCould you tell me more about them?';
   const resetAll=()=>{ on={...ALL}; draft={...ALL}; savedOnly=false; setQ(''); render(); toResults(); };
   $('#fSaved').onclick=()=>{ savedOnly=!savedOnly; renderGrid(); toResults(); };
   savedHooks.push(()=>{ if(savedOnly) return renderGrid(); const sn=$('#fSavedN'); sn.textContent=saved.length; sn.hidden=!saved.length; });
@@ -1377,7 +1394,8 @@ const day0=d=>{const x=new Date(d); x.setHours(0,0,0,0); return x;};
 const TODAY=day0(new Date()), MIN=new Date(TODAY.getTime()+864e5), MAX=new Date(TODAY.getTime()+60*864e5);
 const isOpen=d=>d>=MIN&&d<=MAX&&d.getDay()!==0;
 const fmtDay=d=>d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
-const bk={occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,name:'',note:''}; let step=1, sent=false, view=new Date(MIN.getFullYear(),MIN.getMonth(),1);
+const bk={occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,name:'',note:'',style:'',party:{men:0,women:0}};
+const partyText=()=>bk.occ!=='Wedding'?'':[bk.party.men?`${bk.party.men} groomsm${bk.party.men>1?'en':'an'}`:'',bk.party.women?`${bk.party.women} bridesmaid${bk.party.women>1?'s':''}`:''].filter(Boolean).join(' and '); let step=1, sent=false, view=new Date(MIN.getFullYear(),MIN.getMonth(),1);
 const LABELS=['Occasion','Who it is for','The piece','Date and time','Your details'];
 const whoList=()=>bk.who==='both'?['her','him']:bk.who?[bk.who]:[];
 const whoText=()=>({her:'A woman',him:'A man',both:'A woman and a man'})[bk.who]||'';
@@ -1388,7 +1406,7 @@ const likes=w=>bk.refs[w].map(s=>by[s]&&by[s].title).filter(Boolean);
 const pieceLine=w=>{ const c=cut(bk.cut[w]); if(!c) return ''; const l=likes(w); return c.name+(l.length?` (I like: ${l.join(', ')})`:''); };
 function message(){
   const pieces=whoList().map(w=>bk.who==='both'?`${w==='her'?'Her':'His'} piece: ${pieceLine(w)}`:`Piece: ${pieceLine(w)}`).join('\n');
-  return `Hello Prime Couture,${bk.name?` this is ${bk.name}.`:''}\nI'd like to book a fitting.\n\nOccasion: ${bk.occ}\nFor: ${whoText().toLowerCase()}\n${pieces}\nWhen: ${fmtDay(bk.date)}, ${bk.time.toLowerCase()}${bk.note?`\nNote: ${bk.note}`:''}\n\nThank you.`;
+  return `Hello Prime Couture,${bk.name?` this is ${bk.name}.`:''}\nI'd like to book a fitting.\n\nOccasion: ${bk.occ}\nFor: ${whoText().toLowerCase()}\n${pieces}${bk.style?`\nStyle: ${bk.style}`:''}${partyText()?`\nWedding party: ${partyText()}`:''}\nWhen: ${fmtDay(bk.date)}, ${bk.time.toLowerCase()}${bk.note?`\nNote: ${bk.note}`:''}\n\nThank you.`;
 }
 const imgFor=src=>!src?'':src.startsWith('film:')?(film(src.slice(5))||{}).poster:((by[src]||{}).card||'');
 function calendar(){
@@ -1419,11 +1437,12 @@ function renderBk(){
   const bkDir=step>bkLast?' go-f':step<bkLast?' go-b':''; bkLast=step;
   let h=`<div class="bk-h"><div class="bk-n" aria-label="Step ${step} of 5"><b>${String(step).padStart(2,'0')}</b><span>/ 05</span></div><div class="bk-t"><b>Book a fitting</b><small>${LABELS[step-1]}</small></div>${step>1&&bk.occ?`<span class="bk-ctx">${esc(bk.occ)}${bk.who?' · '+esc(whoText()):''}</span>`:''}</div><div class="bk-progress" aria-hidden="true">${[1,2,3,4,5].map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body${bkDir}">`;
   if(step===1) h+=`<h3>What is the occasion?</h3><p class="hint">Five quick questions, then we write the WhatsApp message for you.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
-  if(step===2) h+=`<h3>Who are we dressing${OCC_FOR[bk.occ]||''}?</h3><p class="hint">We will only show pieces that suit them and the occasion.</p><div class="rcards who" role="radiogroup" aria-label="Who it is for">${WHO_B.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-who="${k}" aria-checked="${bk.who===k}">${TICK}${svg(k)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
-  if(step===3) h+=`<h3>${bk.who==='both'?'Choose a piece for each of them':bk.who==='her'?'Choose her piece':'Choose his piece'}</h3><p class="hint">What we make for ${OCC_PL[bk.occ]||'any occasion'}. Pick the closest; the details are settled at your fitting.</p>${whoList().map(pieceBlock).join('')}`;
+  if(step===2) h+=`<h3>Who are we dressing${OCC_FOR[bk.occ]||''}?</h3><p class="hint">We will only show pieces that suit them and the occasion.</p><div class="rcards who" role="radiogroup" aria-label="Who it is for">${WHO_B.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-who="${k}" aria-checked="${bk.who===k}">${TICK}${svg(k)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`
+    +(bk.occ==='Wedding'?`<div class="party"><p class="party-h">Dressing the wedding party too?<em>Optional</em></p>${[['men','Groomsmen'],['women','Bridesmaids']].map(([k,l])=>`<div class="ctr"><span>${l}</span><div><button type="button" data-pty="${k}" data-d="-1" aria-label="Fewer ${l.toLowerCase()}" ${bk.party[k]?'':'disabled'}>−</button><b>${bk.party[k]}</b><button type="button" data-pty="${k}" data-d="1" aria-label="More ${l.toLowerCase()}">+</button></div></div>`).join('')}</div>`:'');
+  if(step===3) h+=`<h3>${bk.who==='both'?'Choose a piece for each of them':bk.who==='her'?'Choose her piece':'Choose his piece'}</h3><p class="hint">What we make for ${OCC_PL[bk.occ]||'any occasion'}. Pick the closest; the details are settled at your fitting.</p>${bk.style?`<p class="bk-style">From the suit guide: <b>${esc(bk.style)}</b></p>`:''}${whoList().map(pieceBlock).join('')}`;
   if(step===4) h+=`<h3>When would you like to come in?</h3><p class="hint">The atelier is open Monday to Saturday, 9am to 8pm.</p><div class="when">${calendar()}<div><div class="slots" role="radiogroup" aria-label="Time of day">${TIMES.map(([t,r])=>`<button type="button" class="rcard" role="radio" data-time="${t}" aria-checked="${bk.time===t}">${TICK}<b>${t}</b><small>${r}</small></button>`).join('')}</div><p class="chosen">${bk.date?`<b>${esc(fmtDay(bk.date))}</b>${bk.time?', '+esc(bk.time.toLowerCase()):', choose a time'}`:'Choose a date on the calendar.'}</p></div></div>`;
   if(step===5) h+=`<h3>Your details</h3><p class="hint">Check your request, then send it on WhatsApp.</p><label class="u-field" id="nameField" for="bkName"><span>Your name</span><input id="bkName" autocomplete="name" placeholder="e.g. Aline Uwase" value="${esc(bk.name)}"></label><p class="err" id="nameErr" hidden>Add your name so the atelier knows who is coming.</p><label class="u-field" for="bkNote"><span>Anything we should know? <em>Optional</em></span><textarea id="bkNote" placeholder="The date of your ${esc((bk.occ||'event').toLowerCase())}, colours you like, sizes">${esc(bk.note)}</textarea></label>
-    <dl class="summary"><div><dt>Occasion</dt><dd>${esc(bk.occ)}</dd><button type="button" class="u-btn ghost sm" data-go="1">Edit</button></div><div><dt>For</dt><dd>${esc(whoText())}</dd><button type="button" class="u-btn ghost sm" data-go="2">Edit</button></div>${whoList().map(w=>`<div><dt>${bk.who==='both'?(w==='her'?'Her piece':'His piece'):'Piece'}</dt><dd>${esc(cut(bk.cut[w]).name)}${likes(w).length?` · ${esc(likes(w).join(', '))}`:''}</dd><button type="button" class="u-btn ghost sm" data-go="3">Edit</button></div>`).join('')}<div><dt>When</dt><dd>${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}</dd><button type="button" class="u-btn ghost sm" data-go="4">Edit</button></div></dl>`;
+    <dl class="summary"><div><dt>Occasion</dt><dd>${esc(bk.occ)}</dd><button type="button" class="u-btn ghost sm" data-go="1">Edit</button></div><div><dt>For</dt><dd>${esc(whoText())}</dd><button type="button" class="u-btn ghost sm" data-go="2">Edit</button></div>${whoList().map(w=>`<div><dt>${bk.who==='both'?(w==='her'?'Her piece':'His piece'):'Piece'}</dt><dd>${esc(cut(bk.cut[w]).name)}${likes(w).length?` · ${esc(likes(w).join(', '))}`:''}</dd><button type="button" class="u-btn ghost sm" data-go="3">Edit</button></div>`).join('')}<div><dt>When</dt><dd>${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}</dd><button type="button" class="u-btn ghost sm" data-go="4">Edit</button></div>${bk.style?`<div><dt>Style</dt><dd>${esc(bk.style)}</dd><span></span></div>`:''}${partyText()?`<div><dt>Party</dt><dd>${esc(partyText())}</dd><button type="button" class="u-btn ghost sm" data-go="2">Edit</button></div>`:''}</dl>`;
   h+=`</div><div class="bk-foot">${step>1?'<button type="button" class="u-btn ghost" data-act="back"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button>':'<span></span>'}<div class="right">`;
   if(step<5) h+=`<button type="button" class="u-btn" data-act="next" ${valid(step)?'':'disabled'}>Continue<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`;
   else h+=`<button type="button" class="u-btn outline" data-act="copy">Copy message</button><a class="u-btn" id="bkSend" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(message())}"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>Send on WhatsApp</a>`;
@@ -1435,7 +1454,8 @@ function renderBk(){
     s.addEventListener('click',e=>{ upd(); if(!bk.name){ e.preventDefault(); $('#nameErr').hidden=false; $('#nameField').classList.add('bad'); n.focus(); return;} setTimeout(()=>{sent=true; renderBk();},400); }); }
 }
 const goStep=n=>{ step=n; renderBk(); const top=$('#bk').getBoundingClientRect().top; if(top<barH()||top>innerHeight*.6) go('#bk',16); };
-function prefill({occ,who,cut:c,refs,piece}={}){
+function prefill({occ,who,cut:c,refs,piece,style}={}){
+  if(style) bk.style=String(style).slice(0,160);
   if(occ&&OCC_NAMES.includes(occ)) bk.occ=occ;
   const pc=piece&&P.find(p=>p.title.toLowerCase()===String(piece).toLowerCase());
   if(['her','him','both'].includes(who)) bk.who=who; else if(pc) bk.who=pc.for;
@@ -1454,10 +1474,11 @@ if($('#bk')){
     else if(d.date){ bk.date=new Date(+d.date); renderBk(); }
     else if(d.time){ bk.time=d.time; renderBk(); }
     else if(d.cal){ view=new Date(view.getFullYear(),view.getMonth()+(+d.cal),1); renderBk(); }
+    else if(d.pty){ bk.party[d.pty]=Math.max(0,Math.min(30,bk.party[d.pty]+(+d.d))); renderBk(); }
     else if(d.go){ goStep(+d.go); }
     else if(d.act==='back'){ goStep(Math.max(1,step-1)); }
     else if(d.act==='next'){ if(valid(step)) goStep(step+1); }
-    else if(d.act==='restart'){ Object.assign(bk,{occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,note:''}); sent=false; step=1; renderBk(); }
+    else if(d.act==='restart'){ Object.assign(bk,{occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,note:'',style:'',party:{men:0,women:0}}); sent=false; step=1; renderBk(); }
     else if(d.act==='copy'){ const m=message(); const ok=()=>toast('Message copied'); const fb=()=>{const ta=document.createElement('textarea'); ta.value=m; document.body.append(ta); ta.select(); try{document.execCommand('copy'); ok();}catch(_){} ta.remove();}; navigator.clipboard?navigator.clipboard.writeText(m).then(ok,fb):fb(); }
   });
   $('#bk').addEventListener('dblclick',e=>{ const b=e.target.closest('[data-occ],[data-who]'); if(b&&valid(step)) goStep(step+1); });
