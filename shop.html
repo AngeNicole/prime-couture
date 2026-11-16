@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Collection | Prime Couture</title>
+<meta name="robots" content="noindex, nofollow, noimageindex, noarchive">
+<meta name="description" content="Prime Couture, Kigali. A website redesign concept.">
+<meta property="og:title" content="The Prime Couture collection">
+<meta property="og:description" content="Essential power tailoring from Kigali. A website redesign concept.">
+<meta property="og:image" content="https://angenicole.github.io/prime-couture/img/after.jpg">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap">
+<style>
+/* Shared by every page: tokens, type, buttons, the header bar, the footer, the menu.
+   Colour: oxblood from their studio wall, ivory, sand; paper for the collection. Type: the client's Jost. */
+:root{
+  --red:#4C1514; --red-deep:#3B0F0F; --red-soft:#5E1D1A; --blush:#E5C9BE;
+  --night:#110E0B; --paper:#F7F4EF; --ink:#1A1612; --muted:#6E655C; --ivory:#F1EAE0; --sand:#CDB594;
+  --line:rgba(26,22,18,.12); --line-d:rgba(241,234,224,.16);
+  --sans:Jost,"Helvetica Neue",Arial,sans-serif; --gut:clamp(20px,4.5vw,72px); --ease:cubic-bezier(.2,.7,.1,1); --bar:68px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:var(--bar)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--sans);letter-spacing:.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+[hidden]{display:none!important}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1440px;margin:0 auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.kicker{margin:0 0 16px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
+.title{font-size:clamp(40px,5.6vw,88px);line-height:1.04;letter-spacing:.02em}
+.lede{margin:20px 0 0;max-width:46ch;font-size:17px;opacity:.75}
+.price{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dark{background:var(--red);color:var(--ivory)}
+.dark .lede{color:var(--blush);opacity:.9}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 30px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;white-space:nowrap;background:var(--ink);color:var(--paper);transition:opacity .3s,background .3s}
+.btn:hover{opacity:.88}
+.btn--light{background:var(--ivory);color:var(--red-deep)}
+.btn--ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+.btn--sm{height:40px;padding:0 20px;font-size:11px}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.35;pointer-events:none}
+.link{font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;opacity:.85}
+.link:hover{opacity:1}
+.chip{height:40px;padding:0 18px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;transition:background .3s,color .3s,box-shadow .3s;white-space:nowrap}
+.chip:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:none}
+.icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;position:relative;flex-shrink:0}
+.icon svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.5}
+.icon i{position:absolute;top:4px;right:2px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--sand);color:var(--red-deep);font:500 10px/16px var(--sans);font-style:normal;text-align:center}
+.icon i[data-n="0"],.icon i:empty{display:none}
+
+/* ---------- header bar ---------- */
+.top{position:sticky;top:0;z-index:60;background:var(--red);color:var(--ivory);border-bottom:1px solid var(--line-d);padding-top:env(safe-area-inset-top,0px)}
+.top-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:var(--bar)}
+.top nav{display:flex;gap:4px;margin-left:-12px}
+.top nav a{padding:8px 12px;font-size:13px;letter-spacing:.06em;text-decoration:none;opacity:.8;white-space:nowrap}
+.top nav a:hover,.top nav a[aria-current="page"]{opacity:1}
+.top .home{display:grid;place-items:center;height:var(--bar);padding:0 12px}
+.logo-mark{height:34px;width:auto;display:block}
+.top-r{display:flex;justify-content:flex-end;align-items:center;gap:8px}
+.top .btn{height:40px;padding:0 20px;font-size:11px}
+.menu-btn{display:none}
+/* ---------- dropdown (button + listbox) ---------- */
+.dd{position:relative;display:inline-block;vertical-align:middle}
+.dd-btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 12px 0 14px;border-radius:10px;border:1px solid #E3DCD3;background:#fff;font-size:14px;color:var(--ink);white-space:nowrap;transition:border-color .2s,box-shadow .2s,background .2s}
+.dd-btn:hover{border-color:#BDB3A7}
+.dd-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;opacity:.6;transition:transform .3s var(--ease)}
+.dd.on .dd-btn svg{transform:rotate(180deg)}
+.dd.on .dd-btn,.dd-btn:focus-visible{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,22,18,.08)}
+.dd-p{color:#6E655C}
+.dd-list{position:absolute;z-index:75;top:calc(100% + 6px);right:0;min-width:max(100%,210px);max-height:330px;overflow:auto;margin:0;padding:6px;list-style:none;border-radius:12px;background:#fff;color:var(--ink);border:1px solid #E3DCD3;box-shadow:0 22px 48px -18px rgba(26,22,18,.4);opacity:0;visibility:hidden;transform:translateY(-4px) scale(.98);transform-origin:top right;pointer-events:none;transition:opacity .16s,transform .24s var(--ease),visibility 0s .24s;outline:none;text-align:left;letter-spacing:.01em;text-transform:none}
+.dd.up .dd-list{top:auto;bottom:calc(100% + 6px);transform-origin:bottom right}
+.dd.left .dd-list{right:auto;left:0;transform-origin:top left}
+.dd.left.up .dd-list{transform-origin:bottom left}
+.dd.on .dd-list{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .16s,transform .24s var(--ease)}
+.dd-list li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 10px;border-radius:8px;font-size:14px;line-height:1.3;cursor:pointer}
+.dd-list li small{display:block;font-size:12px;color:#6E655C;margin-top:1px}
+.dd-list li.act{background:#EFE9E1}
+.dd-list li svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;opacity:0;flex-shrink:0}
+.dd-list li[aria-selected="true"]{font-weight:500}
+.dd-list li[aria-selected="true"] svg{opacity:1}
+.dd--dark .dd-btn{height:36px;border-radius:999px;border-color:var(--line-d);background:transparent;color:var(--ivory);font-size:12px;letter-spacing:.08em;padding:0 10px 0 14px}
+.dd--dark .dd-btn:hover{border-color:rgba(241,234,224,.45);background:rgba(241,234,224,.06)}
+.dd--dark.on .dd-btn,.dd--dark .dd-btn:focus-visible{border-color:var(--ivory);box-shadow:0 0 0 3px rgba(241,234,224,.14)}
+.dd--sm .dd-btn{height:36px;font-size:13px}
+.cur-foot{margin-top:4px}
+.cur-foot .dd-btn{height:42px;font-size:14px;padding:0 12px 0 18px}
+.cur-foot .dd-list{left:0;right:auto;transform-origin:bottom left}
+.sr{position:absolute;left:-9999px}
+.menu{position:fixed;z-index:85;inset:0;background:var(--red);color:var(--ivory);padding:calc(var(--bar) + 40px + env(safe-area-inset-top,0px)) var(--gut) 40px;display:flex;flex-direction:column;gap:20px;opacity:0;pointer-events:none;transition:opacity .4s}
+.menu.on{opacity:1;pointer-events:auto}
+.menu a.big{font-size:36px;letter-spacing:.02em;text-decoration:none}
+
+/* ---------- footer ---------- */
+.foot{background:var(--red-deep);color:var(--ivory);overflow:hidden}
+.foot a{text-decoration:none}
+.foot-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:end;padding-block:clamp(80px,9vw,128px) 64px;border-bottom:1px solid var(--line-d)}
+.foot-brand .logo-mark{height:72px;color:var(--sand)}
+.foot-claim{margin:32px 0 32px;font-size:clamp(26px,2.6vw,40px);line-height:1.2;letter-spacing:.02em;max-width:20ch}
+.foot-news h4,.foot-cols h4{margin:0 0 16px;font-size:12px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
+.foot-news p{margin:0 0 20px;color:var(--blush);max-width:40ch}
+.join{display:flex;gap:8px;max-width:480px}
+.join input{flex:1;min-width:0;height:52px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px var(--line-d);background:rgba(255,255,255,.04);color:var(--ivory);padding:0 22px;font:inherit}
+.join input::placeholder{color:var(--blush);opacity:.7}
+.join input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ivory)}
+.joined{margin:16px 0 0;color:var(--sand)}
+.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;padding-block:56px}
+.foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
+.foot-cols li{color:var(--blush)}
+.foot-cols a{color:var(--ivory);opacity:.85;transition:opacity .3s}
+.foot-cols a:hover{opacity:1}
+.cur{display:inline-flex;padding:4px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d);margin-top:8px}
+.cur button{height:32px;padding:0 14px;border-radius:999px;font-size:11px;letter-spacing:.12em;color:var(--blush)}
+.cur button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
+.foot-word{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(20px,2.4vw,32px);overflow:hidden;user-select:none}
+.foot-word span{display:block;width:max-content;margin:0 auto;font-size:min(170px,calc((100vw - 2 * max(20px,4.5vw)) / 9.6));line-height:1.05;letter-spacing:.16em;padding-left:.16em;white-space:nowrap;background:linear-gradient(180deg,var(--sand) 0%,rgba(205,181,148,.55) 55%,rgba(205,181,148,.12) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:24px calc(92px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
+.foot-legal nav{display:flex;gap:24px}
+.toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}}
+@media (max-width:900px){
+  :root{--bar:60px}
+  .top-in{grid-template-columns:auto 1fr auto}
+  .top nav,.top .btn,.cur-top{display:none}
+  .menu-btn{display:grid;margin-left:-10px}
+  .logo-mark{height:28px}
+  .foot-top{grid-template-columns:1fr}
+  .foot-cols{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .foot-cols{grid-template-columns:1fr}
+  .foot-cols ul{overflow-wrap:anywhere}
+  .foot-legal{flex-direction:column;align-items:flex-start}
+}
+
+/* Home: hero (name, two lines, one film screen) · Today's picks (pieces and films, hover to play) · the collection · visit band · booking. */
+
+/* hero */
+.hero{padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(64px,8vw,112px);text-align:center}
+.brand{font-size:min(138px,calc((100vw - 2 * max(20px,4.5vw)) / 9.3));line-height:1;letter-spacing:.14em;margin-right:-.14em;white-space:nowrap}
+.hero .intro{max-width:52ch;margin:28px auto 0;font-size:clamp(16px,1.3vw,19px);color:var(--blush);line-height:1.6}
+.screen{position:relative;margin-top:clamp(40px,5vw,64px);height:clamp(380px,58svh,640px);border-radius:10px;overflow:hidden;background:var(--red-deep);box-shadow:0 40px 90px -40px rgba(0,0,0,.6)}
+.screen .amb{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(36px) brightness(.55) saturate(1.1);transform:scale(1.1)}
+.screen .main{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);height:100%;aspect-ratio:9/16;object-fit:cover;box-shadow:0 0 60px rgba(0,0,0,.35);cursor:pointer}
+.screen .fade{transition:opacity .6s var(--ease)}
+.screen .fade.out{opacity:0}
+.screen .cap{position:absolute;left:24px;bottom:24px;text-align:left;max-width:30%}
+.screen .cap small{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blush)}
+.screen .cap b{display:block;font-weight:400;font-size:clamp(20px,1.8vw,26px);margin-top:6px;letter-spacing:.02em}
+.pick-films{position:absolute;right:20px;bottom:20px;display:flex;gap:6px;max-width:calc(70% - 40px);overflow-x:auto;scrollbar-width:none;padding:4px;scroll-behavior:smooth}
+.pick-films::-webkit-scrollbar{display:none}
+.pick-films button{position:relative;flex-shrink:0;display:flex;align-items:center;gap:0;height:44px;padding:0 6px;transition:background .4s,color .4s,padding .5s var(--ease),gap .5s;border-radius:999px;background:rgba(59,15,15,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:12px;letter-spacing:.12em;text-transform:uppercase;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line-d)}
+.pick-films img{width:32px;height:32px;border-radius:50%;object-fit:cover;transition:transform .4s var(--ease)}
+.pick-films span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .6s var(--ease)}
+.pick-films button[aria-pressed="true"]{gap:10px;padding:0 16px 0 6px}
+.pick-films button[aria-pressed="true"] span{max-width:200px}
+.pick-films button:hover img{transform:scale(1.08)}
+.pick-films button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
+.pick-films i{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--sand)}
+.pick-films button[aria-pressed="true"] i{background:var(--red)}
+
+/* today's picks */
+.picks{padding-block:clamp(72px,8vw,120px);border-top:1px solid var(--line-d)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:48px}
+.arrows{display:flex;gap:8px}
+.arrows button{width:46px;height:46px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center}
+.arrows svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5}
+.reel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none;margin-inline:calc(-1*max(var(--gut),env(safe-area-inset-left,0px)));padding-inline:max(var(--gut),env(safe-area-inset-left,0px));scroll-padding-inline:max(var(--gut),env(safe-area-inset-left,0px))}
+.reel::-webkit-scrollbar{display:none}
+.reel.auto{scroll-snap-type:none;scroll-behavior:auto}
+.pk{flex:0 0 clamp(250px,23vw,340px);scroll-snap-align:start;text-align:left;color:inherit}
+.pk .fr{position:relative;aspect-ratio:3/4;border-radius:8px;overflow:hidden;background:var(--red-deep)}
+.pk img,.pk video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 24%;transition:opacity .7s var(--ease),transform 1.6s var(--ease)}
+.pk img.b{opacity:0}
+.pk.cycling img.b.show{opacity:1}
+.pk:hover .fr>img:first-child,.pk:hover video{transform:scale(1.03)}
+.pk .badge{position:absolute;left:14px;top:14px;z-index:2;padding:6px 12px;border-radius:999px;background:rgba(241,234,224,.92);color:var(--red-deep);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.pk .play{position:absolute;right:14px;bottom:14px;z-index:2;width:42px;height:42px;border-radius:50%;background:rgba(241,234,224,.92);color:var(--red-deep);display:grid;place-items:center;transition:opacity .4s}
+.pk .play svg{width:14px;height:14px;fill:currentColor}
+.pk.playing .play{opacity:0}
+.pk .meta{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:16px}
+.pk .meta span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pk small{display:block;margin-top:2px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blush)}
+
+/* collection */
+@property --tint{syntax:'<color>';inherits:true;initial-value:#F7F4EF}
+.collection{--tint:#F7F4EF;background:color-mix(in srgb,var(--tint) 18%,var(--paper));transition:--tint 1.2s var(--ease);padding-block:clamp(88px,9vw,140px)}
+/* shadcn-style parts: quiet borders, 10px radius, soft focus rings, sentence-case buttons */
+.ui{--ui-border:#E3DCD3;--ui-muted:#EFE9E1;--ui-mfg:#6E655C;--ui-r:10px}
+.sr{position:absolute;left:-9999px}
+.u-input{display:flex;align-items:center;gap:10px;height:44px;padding:0 14px;border-radius:var(--ui-r);border:1px solid var(--ui-border);background:#fff;transition:border-color .2s,box-shadow .2s;cursor:text}
+.u-input:focus-within{border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,22,18,.08)}
+.u-input svg{width:16px;height:16px;stroke:var(--ui-mfg);fill:none;stroke-width:1.8;flex-shrink:0}
+.u-input input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:15px;color:var(--ink)}
+.u-input input::-webkit-search-cancel-button{display:none}
+.u-input .clear{font-size:13px;color:var(--ui-mfg);padding:4px 6px;border-radius:6px}
+.u-input .clear:hover{background:var(--ui-muted);color:var(--ink)}
+.u-select{height:44px;border-radius:var(--ui-r);border:1px solid var(--ui-border);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E655C' stroke-width='1.8'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 12px center/14px;padding:0 34px 0 12px;font:inherit;font-size:14px;color:var(--ink);appearance:none;-webkit-appearance:none;cursor:pointer}
+.u-select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,22,18,.08)}
+.u-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:var(--ui-r);font-size:14px;font-weight:500;letter-spacing:.01em;background:var(--ink);color:var(--paper);border:1px solid var(--ink);transition:opacity .2s,background .2s,color .2s;text-decoration:none;white-space:nowrap}
+.u-btn:hover{opacity:.9}
+.u-btn.outline{background:#fff;color:var(--ink);border-color:var(--ui-border)}
+.u-btn.outline:hover{background:var(--ui-muted);opacity:1}
+.u-btn.ghost{background:transparent;border-color:transparent;color:var(--ui-mfg)}
+.u-btn.ghost:hover{background:var(--ui-muted);color:var(--ink);opacity:1}
+.u-btn.sm{height:34px;padding:0 12px;font-size:13px}
+.u-btn:disabled,.u-btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
+.u-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.u-badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:12px}
+/* layout: sidebar + results */
+.coll{display:grid;grid-template-columns:268px minmax(0,1fr);gap:clamp(28px,4vw,56px);margin-top:48px;align-items:start}
+.side{position:sticky;top:calc(var(--bar) + 20px);max-height:calc(100svh - var(--bar) - 40px);overflow:auto;padding:18px 20px;border:1px solid var(--ui-border);border-radius:16px;background:rgba(255,255,255,.7);scrollbar-width:thin}
+.side-h{position:sticky;top:-18px;z-index:1;margin:-18px -20px 0;padding:18px 20px 8px;background:rgba(251,249,246,.96);border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center;padding-bottom:8px}
+.side-h b{font-weight:500;font-size:16px}
+.fgroup{padding:16px 0;border-top:1px solid var(--ui-border)}
+.fgroup h4{margin:0 0 8px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ui-mfg)}
+.ropt{display:flex;align-items:center;gap:10px;width:calc(100% + 16px);padding:7px 8px;margin:0 -8px;border-radius:8px;font-size:15px;text-align:left;transition:background .2s}
+.ropt:hover{background:var(--ui-muted)}
+.ropt .dot{width:16px;height:16px;border-radius:50%;border:1px solid #BDB3A7;display:grid;place-items:center;flex-shrink:0;background:#fff}
+.ropt[aria-checked="true"] .dot{border-color:var(--ink)}
+.ropt[aria-checked="true"] .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.ropt .n,.swopt .n{margin-left:auto;font-size:12px;color:var(--ui-mfg);font-variant-numeric:tabular-nums}
+.ropt.zero,.swopt.zero{opacity:.45}
+.swgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
+.swopt{display:flex;align-items:center;gap:8px;padding:7px 8px;margin:0 -4px;border-radius:8px;font-size:14px;text-align:left;transition:background .2s}
+.swopt:hover{background:var(--ui-muted)}
+.swopt i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);flex-shrink:0}
+.swopt[aria-checked="true"]{background:var(--ui-muted);font-weight:500}
+.swopt[aria-checked="true"] i{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ink)}
+.pnote{margin:8px 0 0;font-size:12px;color:var(--ui-mfg)}
+.side-f{position:sticky;bottom:-18px;z-index:1;display:flex;flex-direction:column;align-items:stretch;gap:8px;text-align:center;margin:8px -20px -18px;padding:14px 20px 18px;border-top:1px solid var(--ui-border);background:rgba(251,249,246,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:0 0 16px 16px}
+.side-note{font-size:13px;color:var(--ui-mfg)}
+.side.dirty .side-note{color:#9A5B12}
+.side-f .u-btn{flex-shrink:0}
+.side.dirty .side-f .u-btn{box-shadow:0 0 0 3px rgba(205,181,148,.45)}
+.side-h>div{display:flex;align-items:center;gap:4px}
+.side-x{display:none}
+.ropt.new{font-weight:500}
+.ropt.new .dot{border-color:#9A5B12}
+.ropt.new .dot::after{background:#9A5B12}
+.results-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.results-bar .u-input{flex:1 1 280px}
+.fbtn{display:none}
+.active{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0 28px;min-height:30px}
+.tag{display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 4px 0 12px;border-radius:999px;background:#fff;border:1px solid var(--ui-border);font-size:13px}
+.tag button{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:var(--ui-mfg);font-size:15px;line-height:1}
+.tag button:hover{background:var(--ui-muted);color:var(--ink)}
+.rcount{font-size:14px;color:var(--ui-mfg);margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 20px}
+.card{display:block;width:100%;text-align:left;min-width:0;animation:rise .7s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:8px;background:color-mix(in srgb,var(--tint) 30%,#E9E4DC)}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transition:opacity .8s var(--ease)}
+.card .ph img.alt{opacity:0}
+.card:hover .ph img.alt.ready{opacity:1}
+.card .meta{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:15px}
+.card .meta span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .sub{display:flex;align-items:center;gap:8px;margin-top:4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card .sub i{width:9px;height:9px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);flex-shrink:0}
+.card mark{background:#F3E2B8;color:inherit;border-radius:3px;padding:0 2px}
+.empty{grid-column:1/-1;padding:48px 24px;text-align:center;border:1px dashed var(--ui-border);border-radius:16px;color:var(--ui-mfg)}
+.empty b{display:block;color:var(--ink);font-weight:500;font-size:18px;margin-bottom:6px}
+
+
+/* home: our pieces */
+.cats{padding-block:clamp(88px,9vw,140px)}
+.cats .sec-head{margin-bottom:0}
+.cat-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.82fr);gap:20px;margin-top:48px}
+.cat{display:flex;flex-direction:column;min-width:0}
+.cat-ph{position:relative;display:block;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#E9E4DC}
+.cat-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;transition:opacity .9s var(--ease),transform 1.6s var(--ease)}
+.cat-ph img.b{opacity:0}
+.cat-ph:hover img{transform:scale(1.03)}
+.cat-ph:hover img.b{opacity:1}
+.cat-k{position:absolute;left:16px;top:16px;padding:6px 12px;border-radius:999px;background:rgba(247,244,239,.92);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.cat-b{padding-top:20px}
+.cat-t{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.cat-t h3{font-size:clamp(28px,2.6vw,40px);letter-spacing:.02em}
+.cat-t h3 a{text-decoration:none}
+.cat-t span{font-size:14px;color:var(--muted);white-space:nowrap}
+.cat-types{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.cat-types a{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 5px 0 14px;border-radius:999px;border:1px solid var(--ui-border);background:#fff;font-size:14px;text-decoration:none;transition:border-color .2s}
+.cat-types a:hover{border-color:var(--ink)}
+.cat-types a span{min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--ui-muted);display:grid;place-items:center;font-size:12px;color:var(--ui-mfg)}
+.cat-all{border-radius:12px;padding:clamp(22px,2.2vw,32px);justify-content:space-between;gap:28px}
+.cat-stack{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cat-stack img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:8px}
+.cat-all .cat-b{padding:0}
+.cat-all h3{font-size:clamp(28px,2.6vw,40px);letter-spacing:.02em}
+.cat-all p{margin:10px 0 20px;color:var(--blush);font-size:15px}
+.cat-q{display:flex;align-items:center;height:48px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d);padding:0 5px 0 18px;margin-bottom:12px;transition:box-shadow .2s}
+.cat-q:focus-within{box-shadow:inset 0 0 0 1px var(--ivory)}
+.cat-q input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ivory);font:inherit;font-size:15px}
+.cat-q input::placeholder{color:var(--blush);opacity:.75}
+.cat-q input::-webkit-search-cancel-button{display:none}
+.cat-q button{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--ivory);color:var(--red-deep)}
+.cat-q svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.cat-all .btn{width:100%}
+/* collection page */
+.s-hero{padding-block:clamp(44px,5vw,80px) clamp(36px,4vw,56px)}
+.s-hero .kicker a{text-decoration:none}
+.s-hero .kicker a:hover{text-decoration:underline}
+.s-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap}
+.s-hero .title{font-size:clamp(44px,6.4vw,104px)}
+.s-count{margin:0 0 .6em;font-size:14px;letter-spacing:.06em;color:var(--blush)}
+.s-hero .lede{margin-top:14px}
+[data-page="shop"] .collection{padding-top:clamp(36px,4vw,56px)}
+[data-page="shop"] .coll{margin-top:0}
+.band{padding-block:clamp(72px,8vw,120px)}
+.band-in{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.band .title{font-size:clamp(36px,4.4vw,72px)}
+.band .acts{display:flex;gap:12px;flex-wrap:wrap}
+
+/* booking: a shadcn-style card */
+.book{padding-block:clamp(88px,9vw,140px)}
+.book-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:stretch}
+.book-ph{position:relative;margin:0;min-height:0;border-radius:18px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(0,0,0,.6)}
+.book-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform 2s var(--ease)}
+.book-ph:hover img{transform:scale(1.03)}
+.book-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(59,15,15,0) 30%,rgba(59,15,15,.55) 58%,rgba(59,15,15,.95) 100%);pointer-events:none}
+.book-ph figcaption{position:absolute;z-index:1;left:0;right:0;bottom:0;padding:clamp(24px,3vw,40px)}
+.book-ph .title{font-size:clamp(36px,3.8vw,60px)}
+.book-ph .lede{margin:14px 0 24px;max-width:36ch;font-size:16px}
+.book-ph .meta{margin:20px 0 0;font-size:13px;letter-spacing:.06em;color:var(--blush)}
+.bk{display:flex;flex-direction:column;min-height:580px;background:var(--paper);color:var(--ink);border-radius:18px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 50px 90px -40px rgba(0,0,0,.6);overflow:hidden}
+.bk-h{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:24px 28px 0}
+.bk-h b{display:block;font-weight:500;font-size:18px;letter-spacing:.01em}
+.bk-h small{display:block;font-size:14px;color:var(--ui-mfg);margin-top:2px}
+.bk-progress{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:18px 28px 0}
+.bk-progress span{height:4px;border-radius:999px;background:var(--ui-muted);overflow:hidden;position:relative}
+.bk-progress span.on::after{content:"";position:absolute;inset:0;background:var(--ink);border-radius:inherit;animation:fillbar .5s var(--ease) both}
+@keyframes fillbar{from{transform:translateX(-100%)}to{transform:none}}
+.bk-body{flex:1;padding:26px 28px 28px}
+.bk-ctx{flex-shrink:0;padding:5px 12px;border-radius:999px;background:var(--ui-muted);font-size:13px;color:var(--ui-mfg);white-space:nowrap;max-width:50%;overflow:hidden;text-overflow:ellipsis}
+.bk-body h3{font-size:clamp(20px,1.8vw,24px);font-weight:500;letter-spacing:.01em}
+.bk-body .hint{color:var(--ui-mfg);margin:6px 0 20px;font-size:15px}
+.bk-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 28px;border-top:1px solid var(--ui-border);background:#FBF9F6;flex-wrap:wrap}
+.bk-foot .right{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.rcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rcard{position:relative;text-align:left;padding:16px 14px 14px;border:1px solid var(--ui-border);border-radius:12px;background:#fff;transition:border-color .2s,box-shadow .2s;min-width:0}
+.rcard:hover{border-color:#BDB3A7}
+.rcard .ic{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.5;margin-bottom:14px;display:block}
+.rcard b{display:block;font-weight:500;font-size:15px}
+.rcard small{display:block;color:var(--ui-mfg);font-size:13px;margin-top:2px;line-height:1.4}
+.rcard[aria-checked="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.tick{position:absolute;top:12px;right:12px;width:20px;height:20px;border-radius:50%;border:1px solid var(--ui-border);background:#fff;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.tick svg{width:11px;height:11px;stroke:var(--paper);fill:none;stroke-width:3;opacity:0}
+[aria-checked="true"]>.tick,[aria-checked="true"] .tick{background:var(--ink);border-color:var(--ink)}
+[aria-checked="true"]>.tick svg,[aria-checked="true"] .tick svg{opacity:1}
+.ptiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.rcards.who{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rcards.who .rcard{padding:22px 16px 18px}
+.rcards.who .ic{width:30px;height:30px;margin-bottom:18px}
+.pblock h4{margin:0 0 10px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ui-mfg)}
+.pblock+.pblock{margin-top:24px;padding-top:20px;border-top:1px solid var(--ui-border)}
+.refs{margin-top:18px}
+.refs-h{display:flex;justify-content:space-between;align-items:baseline;gap:4px 12px;flex-wrap:wrap;margin:0 0 10px;font-size:14px}
+.refs-h b{font-weight:500}
+.refs-h span{color:var(--ui-mfg);font-size:13px}
+.ref-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.ref{position:relative;flex:0 0 118px;text-align:left;border:1px solid var(--ui-border);border-radius:12px;overflow:hidden;background:#fff;transition:border-color .2s,box-shadow .2s}
+.ref:hover{border-color:#BDB3A7}
+.ref img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;background:var(--ui-muted)}
+.ref span{display:block;font-size:12.5px;line-height:1.3;padding:8px 9px 0}
+.ref em{display:block;font-style:normal;font-size:12px;color:var(--ui-mfg);padding:2px 9px 9px}
+.ref[aria-checked="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.refs-note{margin:14px 0 0;font-size:14px;color:var(--ui-mfg)}
+.ref .tick,.ptile .tick{display:grid;padding:0;font-size:0}
+.ptile{position:relative;text-align:left;border:1px solid var(--ui-border);border-radius:12px;overflow:hidden;background:#fff;transition:border-color .2s,box-shadow .2s;min-width:0}
+.ptile:hover{border-color:#BDB3A7}
+.ptile .im{aspect-ratio:4/5;background:var(--ui-muted)}
+.ptile .im img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.ptile .im.none{display:grid;place-items:center;font-size:24px;color:var(--ui-mfg)}
+.ptile span{display:block;font-size:13px;line-height:1.3;padding:8px 10px 10px}
+.ptile[aria-checked="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.for-piece{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:4px 4px 4px 12px;border-radius:999px;border:1px solid var(--ui-border);background:#fff;font-size:13px}
+.for-piece button{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:15px;color:var(--ui-mfg)}
+.for-piece button:hover{background:var(--ui-muted);color:var(--ink)}
+.when{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+.cal{border:1px solid var(--ui-border);border-radius:12px;padding:12px;background:#fff}
+.cal-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cal-h b{font-weight:500;font-size:15px}
+.cal-h button{width:32px;height:32px;border-radius:8px;border:1px solid var(--ui-border);display:grid;place-items:center;background:#fff}
+.cal-h button:hover:not(:disabled){background:var(--ui-muted)}
+.cal-h button:disabled{opacity:.35;cursor:default}
+.cal-h svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+.cal-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;text-align:center}
+.cal-g .wd{font-size:12px;color:var(--ui-mfg);padding:6px 0}
+.cal-g button{height:38px;border-radius:8px;font-size:14px;font-variant-numeric:tabular-nums;transition:background .15s}
+.cal-g button:hover:not(:disabled){background:var(--ui-muted)}
+.cal-g button:disabled{color:#CBC2B7;cursor:default;text-decoration:none}
+.cal-g button.today{box-shadow:inset 0 0 0 1px var(--ui-border)}
+.cal-g button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.slots{display:grid;gap:8px}
+.slots .rcard{padding:14px 14px 14px 16px}
+.slots .rcard b{font-size:15px}
+.chosen{margin:12px 0 0;font-size:14px;color:var(--ui-mfg)}
+.chosen b{color:var(--ink);font-weight:500}
+.u-field{display:block;margin-bottom:16px}
+.u-field>span{display:block;font-size:14px;font-weight:500;margin-bottom:6px}
+.u-field>span em{font-style:normal;font-weight:400;color:var(--ui-mfg)}
+.u-field input,.u-field textarea{width:100%;border-radius:var(--ui-r);border:1px solid var(--ui-border);background:#fff;color:var(--ink);padding:10px 14px;font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+.u-field input{height:44px}
+.u-field textarea{min-height:84px;resize:vertical}
+.u-field input:focus,.u-field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,22,18,.08)}
+.u-field.bad input{border-color:#B4412F;box-shadow:0 0 0 3px rgba(180,65,47,.12)}
+.err{color:#B4412F;font-size:13px;margin:6px 0 0}
+.summary{border:1px solid var(--ui-border);border-radius:12px;background:#FBF9F6;padding:4px 16px;margin-top:8px}
+.summary div{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ui-border);font-size:14px}
+.summary div:last-child{border-bottom:0}
+.summary dt{color:var(--ui-mfg)}
+.summary dd{margin:0;font-weight:500}
+.done{padding:30px 28px 28px}
+.done .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ui-mfg);margin-bottom:14px}
+.done .eyebrow i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-style:normal}
+.done .eyebrow svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:3}
+.done h3{font-size:clamp(28px,2.6vw,38px);font-weight:400;letter-spacing:.02em;line-height:1.1}
+.next{list-style:none;margin:28px 0 0;padding:0;counter-reset:n}
+.next li{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr);gap:14px;padding-bottom:22px;counter-increment:n}
+.next li::before{content:counter(n);width:30px;height:30px;border-radius:50%;border:1px solid var(--ui-border);background:#fff;display:grid;place-items:center;font-size:13px;font-weight:500}
+.next li.ok::before{content:"\2713";background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.next li:not(:last-child)::after{content:"";position:absolute;left:15px;top:34px;bottom:4px;width:1px;background:var(--ui-border)}
+.next b{display:block;font-weight:500;font-size:16px}
+.next span{display:block;color:var(--ui-mfg);font-size:14px;margin-top:2px}
+.done .alt2{margin:4px 0 0;padding:12px 14px;border-radius:12px;background:var(--ui-muted);font-size:14px;color:var(--ui-mfg)}
+.done .alt2 a{color:var(--ink)}
+.done .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+
+/* overlays */
+.scrim{position:fixed;inset:0;z-index:80;background:rgba(10,8,6,.45);opacity:0;pointer-events:none;transition:opacity .5s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(1040px,100%);background:var(--paper);transform:translateX(102%);transition:transform .8s var(--ease);overflow-y:auto;overscroll-behavior:contain}
+.sheet.on{transform:none}
+.sheet .x{position:sticky;top:calc(16px + env(safe-area-inset-top,0px));float:right;margin:16px 16px 0 0;z-index:2;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.item{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;padding:72px 48px 64px}
+.gallery .main{aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:#E9E4DC}
+.gallery .main img{width:100%;height:100%;object-fit:cover}
+.thumbs{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.thumbs button{width:64px;aspect-ratio:4/5;border-radius:3px;overflow:hidden;opacity:.55;transition:opacity .3s}
+.thumbs button[aria-current="true"]{opacity:1;box-shadow:0 0 0 1px var(--ink)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.item-info{position:sticky;top:96px;align-self:start}
+.item-info h2{font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:.02em}
+.item-info .price{display:block;margin-top:16px;font-size:18px}
+.item-info .desc{color:var(--muted);margin:28px 0 0}
+.item-acts{display:grid;gap:18px;margin-top:40px;justify-items:start}
+.drawer{position:fixed;z-index:90;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);transform:translateX(102%);transition:transform .8s var(--ease);display:flex;flex-direction:column;padding:calc(24px + env(safe-area-inset-top,0px)) 32px calc(24px + env(safe-area-inset-bottom,0px))}
+.drawer.on{transform:none}
+.drawer-h{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.drawer-h h3{font-size:20px;letter-spacing:.04em}
+.bag-items{flex:1;overflow:auto;display:grid;align-content:start;gap:24px;padding-block:24px}
+.bi{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:16px;align-items:center}
+.bi img{width:64px;aspect-ratio:4/5;object-fit:cover;border-radius:3px}
+.bi h4{margin:0;font-weight:400;font-size:15px}
+.bi .q{display:flex;align-items:center;gap:12px;margin-top:8px;font-size:14px;color:var(--muted)}
+.bi .q button{width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line)}
+.bag-f{border-top:1px solid var(--line);padding-top:24px;display:grid;gap:16px}
+.tot{display:flex;justify-content:space-between;font-size:17px}
+.bag-f small{color:var(--muted);font-size:13px}
+.lightbox{position:fixed;z-index:95;inset:0;background:rgba(10,8,6,.94);color:var(--ivory);display:flex;align-items:center;justify-content:center;gap:24px;padding:24px;opacity:0;pointer-events:none;transition:opacity .5s}
+.lightbox.on{opacity:1;pointer-events:auto}
+.lightbox .stage{position:relative;height:min(86svh,960px);aspect-ratio:9/16;max-width:100%;border-radius:8px;overflow:hidden;background:#000}
+.lightbox video{width:100%;height:100%;object-fit:cover}
+.lightbox .cap{position:absolute;left:0;right:0;bottom:0;padding:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.lightbox .cap small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.lightbox .cap h3{font-size:22px;margin-top:4px}
+.lightbox .nb{width:52px;height:52px;flex-shrink:0;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center}
+.lightbox .nb svg,.lightbox .lx svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.lightbox .lx{position:absolute;top:calc(20px + env(safe-area-inset-top,0px));right:20px;width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center;background:rgba(10,8,6,.5)}
+
+/* concierge */
+.ask{position:fixed;z-index:70;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;height:52px;padding:0 22px 0 18px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:13px;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.5),inset 0 0 0 1px rgba(241,234,224,.12);transition:transform .5s var(--ease),opacity .4s}
+.ask .dot{width:8px;height:8px;border-radius:50%;background:var(--sand);box-shadow:0 0 0 4px rgba(205,181,148,.25)}
+.ask.hide{opacity:0;pointer-events:none;transform:translateY(12px)}
+.chat{position:fixed;z-index:92;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:min(420px,calc(100% - 40px));height:min(640px,calc(100svh - 120px));background:var(--paper);color:var(--ink);border-radius:16px;box-shadow:0 30px 80px -24px rgba(0,0,0,.45),inset 0 0 0 1px var(--line);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(16px) scale(.98);transform-origin:bottom right;pointer-events:none;transition:opacity .4s,transform .6s var(--ease)}
+.chat.on{opacity:1;transform:none;pointer-events:auto}
+.chat-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 18px 14px 22px;border-bottom:1px solid var(--line)}
+.chat-h b{display:block;font-weight:400;font-size:15px;letter-spacing:.18em;text-transform:uppercase}
+.chat-h small{font-size:13px;color:var(--muted)}
+.msgs{flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:14px;overscroll-behavior:contain}
+.m{max-width:88%;font-size:15px;line-height:1.55;white-space:pre-line}
+.m.you{align-self:flex-end;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:16px 16px 4px 16px}
+.m.prime{align-self:flex-start}
+.m.prime.wait{color:var(--muted)}
+.cpicks{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;align-self:stretch;flex-shrink:0}
+.cpicks::-webkit-scrollbar{display:none}
+.cpick{flex:0 0 132px;text-align:left}
+.cpick img{width:132px;aspect-ratio:4/5;object-fit:cover;border-radius:4px;background:#E9E4DC}
+.cpick span{display:block;font-size:13px;margin-top:6px;line-height:1.3}
+.cpick em{font-style:normal;font-size:12px;color:var(--muted)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;padding:0 22px 12px}
+.quick button{height:34px;padding:0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:13px}
+.chat form{display:flex;gap:8px;padding:12px 14px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.chat input{flex:1;min-width:0;height:46px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px var(--line);background:transparent;padding:0 18px;font:inherit;color:var(--ink)}
+.chat input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ink)}
+.chat form .btn{height:46px;padding:0 18px}
+
+.itprice{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+.itprice .price{font-size:20px}
+.itprice small{display:block;width:100%;font-size:13px;color:var(--muted)}
+.conv{margin-top:16px;border:1px solid #E3DCD3;border-radius:10px;background:#fff}
+.conv summary{cursor:pointer;padding:10px 14px;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.conv summary::-webkit-details-marker{display:none}
+.conv summary::after{content:"+";color:var(--muted)}
+.conv[open] summary::after{content:"−"}
+.conv ul{list-style:none;margin:0;padding:0 14px 10px}
+.conv li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid #EFE9E1;font-size:14px}
+.conv li span{color:var(--muted)}
+.conv li b{font-weight:500;font-variant-numeric:tabular-nums}
+.conv p{margin:0;padding:0 14px 12px;font-size:12px;color:var(--muted)}
+.drawer-h .u-select{height:36px;font-size:13px}
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .cat-all{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:center}
+  .cat-stack{grid-template-columns:repeat(4,1fr)}
+  .ptiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .when{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .screen .cap{max-width:60%;top:20px;bottom:auto;left:20px}
+  .pick-films{left:12px;right:12px;bottom:12px;max-width:none}
+  .pick-films button{padding:0 12px 0 4px;font-size:11px}
+  .pick-films button span{display:none}
+  .coll{grid-template-columns:1fr;margin-top:32px}
+  .side{position:fixed;z-index:91;top:0;bottom:0;left:0;width:min(360px,88vw);max-height:none;border-radius:0 16px 16px 0;background:var(--paper);padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-104%);transition:transform .6s var(--ease);display:flex;flex-direction:column}
+  .side.on{transform:none}
+  .side #fGroups{flex:1;overflow:auto}
+  .side-x{display:grid}
+  .side-f{position:static;margin:12px 0 0;padding:14px 0 0;background:none;border-radius:0}
+  .side-f .u-btn{flex:1}
+  .side-h{position:static;margin:0;padding:0 0 8px;background:none}
+  .fbtn{display:inline-flex}
+  .results-bar .u-input{flex-basis:100%}
+  .grid{gap:36px 14px}
+  .card .meta{flex-direction:column;gap:2px;font-size:14px}
+  .book-in{grid-template-columns:1fr}
+  .book-ph{min-height:520px}
+  .bk{min-height:0}
+  .item{grid-template-columns:1fr;padding:72px 20px 48px;gap:32px}
+  .item-info{position:static}
+  .lightbox{padding:16px}
+  .lightbox .nb{display:none}
+  .lightbox .stage{height:auto;width:min(100%,calc(86svh*9/16))}
+  .chat{right:0;bottom:0;width:100%;height:100svh;border-radius:0}
+}
+@media (max-width:640px){
+  .rcards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ptiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .bk-h,.bk-progress,.bk-body,.bk-foot{padding-left:18px;padding-right:18px}
+  .summary div{grid-template-columns:1fr auto}
+  .summary dt{grid-column:1/-1}
+  .pk{flex-basis:76%}
+  .cat-grid{grid-template-columns:1fr;gap:40px}
+  .cat-all{display:flex}
+  .cat-stack{grid-template-columns:repeat(4,1fr)}
+  .rcards.who .rcard{padding:16px 10px 14px}
+  .results-bar .dd{flex:1 1 0;min-width:0}
+  .results-bar .cur-coll{flex:0 0 auto}
+  .results-bar .dd-btn{width:100%;min-width:0;justify-content:space-between}
+  .results-bar .dd-v{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .results-bar .dd-p{display:none}
+  .results-bar .fbtn{padding:0 12px}
+  .results-bar .dd-btn{padding:0 10px 0 12px}
+  .sub-w{display:none}
+  .bk-ctx{display:none}
+  .ask{height:48px;padding:0 18px 0 14px}
+}
+@media (max-width:900px) and (orientation:landscape) and (max-height:560px){
+  .screen{height:calc(100svh - 40px)}
+}
+</style>
+</head>
+<body data-page="shop">
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <nav aria-label="Primary"><a href="./#picks">Today's picks</a><a href="shop.html" aria-current="page">Collection</a><a href="atelier.html">Atelier</a></nav>
+    <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
+    <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
+    <div class="top-r">
+      <div class="cur-top dd--dark" data-cur></div>
+      <a class="btn btn--light" href="./#book">Book a fitting</a>
+      <a class="icon" id="bagOpen" href="shop.html" aria-label="All pieces"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.4l2.2 10.6a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2L20.6 8H5.8"/><circle cx="9.6" cy="19.6" r="1.3"/><circle cx="17.2" cy="19.6" r="1.3"/></svg><i id="bagCount" data-n="0"></i></a>
+    </div>
+  </div>
+</header>
+<div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
+  <a class="big" href="./#picks">Today's picks</a><a class="big" href="shop.html">Collection</a><a class="big" href="atelier.html">Atelier</a>
+  <a class="btn btn--light" href="./#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
+</div>
+
+
+<main>
+  <section class="s-hero dark" aria-labelledby="sH">
+    <div class="wrap">
+      <p class="kicker"><a href="./">Home</a> / Collection</p>
+      <div class="s-row"><h1 class="title" id="sH">The collection</h1><p class="s-count"><span id="sCount">All pieces</span> · made in Kigali</p></div>
+      <p class="lede">Every piece the atelier makes, for men and women. Search as you type, or choose filters and press Apply.</p>
+    </div>
+  </section>
+  <section class="collection ui" id="collection" aria-label="All pieces">
+    <div class="wrap">
+      <div class="coll">
+        <aside class="side" id="side" aria-label="Filters" data-lenis-prevent>
+          <div class="side-h"><b>Filters</b><div><button type="button" class="u-btn ghost sm" id="fClear">Reset</button><button type="button" class="icon side-x" id="fClose" aria-label="Close filters"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
+          <div id="fGroups"></div>
+          <div class="side-f"><span class="side-note" id="fNote"></span><button type="button" class="u-btn" id="fApply" disabled>Apply filters</button></div>
+        </aside>
+        <div>
+          <div class="results-bar" id="results">
+            <label class="u-input" for="fSearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="fSearch" type="search" placeholder="Search by name, colour or type" autocomplete="off" enterkeyhint="search"><button type="button" class="clear" id="fSearchClear" hidden>Clear</button></label>
+            <button type="button" class="u-btn outline fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters<span class="u-badge" id="fN" hidden></span></button>
+            <div id="fSort"></div>
+            <div class="cur-coll" data-cur></div>
+          </div>
+          <div class="active" id="fActive"></div>
+          <div class="grid" id="grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="band dark" aria-labelledby="bandH">
+    <div class="wrap band-in">
+      <div><h2 class="title" id="bandH">Not sure which piece?</h2><p class="lede">The atelier also makes pieces to order. Come in, try things on and talk it through.</p></div>
+      <div class="acts"><a class="btn btn--light" href="./#book">Book a fitting</a><a class="btn btn--ghost" href="https://wa.me/250781178499" target="_blank" rel="noopener">Ask on WhatsApp</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" aria-label="Prime Couture">
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg>
+      <p class="foot-claim">Essential power tailoring, cut and finished in Kigali.</p>
+      <a class="btn btn--light" href="./#book">Book a fitting</a>
+    </div>
+    <div class="foot-news">
+      <h4>Private list</h4>
+      <p>Early access to new drops, fittings and collection releases.</p>
+      <form class="join" id="join"><label for="jEmail" style="position:absolute;left:-9999px">Email address</label><input id="jEmail" type="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn--light" type="submit">Join</button></form>
+      <p class="joined" id="joined" hidden>You're on the list. Thank you.</p>
+    </div>
+  </div>
+  <div class="wrap foot-cols">
+    <div><h4>Shop</h4><ul>
+      <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li>
+      <li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
+    </ul></div>
+    <div><h4>Atelier</h4><ul>
+      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="./#book">Book a fitting</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Directions</a></li>
+    </ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp +250 781 178 499</a></li><li>contact@prime-couture.com</li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram @primecouturehq</a></li>
+    </ul></div>
+    <div><h4>Visit</h4><ul>
+      <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
+    </ul><h4 style="margin-top:28px">Prices in</h4><div class="cur-foot dd--dark" data-cur></div><p style="margin:12px 0 0;font-size:13px;color:var(--blush)">Set in RWF. Other currencies are approximate.</p></div>
+  </div>
+  <div class="wrap foot-word" aria-hidden="true"><span>PRIME COUTURE</span></div>
+  <script>(()=>{const box=document.querySelector(".foot-word"),w=box&&box.querySelector("span");if(!w)return;const fit=()=>{w.style.fontSize="100px";const cs=getComputedStyle(box),avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);w.style.fontSize=Math.max(24,Math.floor(100*avail/w.offsetWidth*10)/10)+"px";};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener("resize",fit);})();</script>
+  <div class="wrap foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><nav aria-label="Footer"><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram</a><a href="#top">Back to top</a></nav></div>
+</footer>
+
+
+<button type="button" class="ask" id="askBtn" aria-label="Ask Prime, the concierge"><span class="dot"></span>Ask Prime</button>
+<section class="chat" id="chat" aria-label="Prime concierge" aria-hidden="true" data-lenis-prevent>
+  <div class="chat-h"><div><b>Prime concierge</b><small>Pieces, prices, colours or a fitting.</small></div><button type="button" class="icon" id="chatClose" aria-label="Close concierge"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="quick" id="quick"></div>
+  <form id="chatForm"><label for="chatIn" style="position:absolute;left:-9999px">Message</label><input id="chatIn" autocomplete="off" placeholder="Ask about a piece or an occasion"><button class="btn" type="submit">Send</button></form>
+</section>
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-label="Piece" aria-hidden="true" data-lenis-prevent>
+  <button type="button" class="icon x" id="sheetClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="item">
+    <div class="gallery"><div class="main"><img id="itMain" alt=""></div><div class="thumbs" id="itThumbs"></div></div>
+    <div class="item-info"><p class="kicker" id="itCat"></p><h2 id="itTitle"></h2><div class="itprice"><span class="price" id="itPrice"></span><div id="curItem"></div><small id="itNote"></small></div><details class="conv"><summary>See this price in other currencies</summary><ul id="itConv"></ul><p>Set in Rwandan francs. Other currencies are approximate and confirmed by the atelier.</p></details><p class="desc" id="itDesc"></p>
+      <div class="item-acts"><button type="button" class="btn" id="itAdd">Add to bag</button><button type="button" class="link" id="itFit">Book a fitting for this piece</button><button type="button" class="link" id="itAsk">Ask Prime about this piece</button></div></div>
+  </div>
+</aside>
+<aside class="drawer" id="drawer" aria-label="Bag" aria-hidden="true" data-lenis-prevent>
+  <div class="drawer-h"><h3>Your bag</h3><div id="curBag" style="margin-left:auto;margin-right:8px"></div><button type="button" class="icon" id="bagClose" aria-label="Close bag"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="bag-items" id="bagItems"></div>
+  <div class="bag-f"><div class="tot"><span>Total</span><span class="price" id="bagTotal"></span></div><small>The atelier confirms sizing, availability and delivery with you on WhatsApp before you pay.</small><a class="btn" id="bagCheckout" target="_blank" rel="noopener" href="#">Order on WhatsApp</a></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+/* Shared by every page: helpers, money and the currency pickers, the custom dropdown, smooth scroll, menu, newsletter, the cart. */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k,d){try{const v=localStorage.getItem('pc_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('pc_'+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let tt; const toast=t=>{const e=$('#toast'); if(!e) return; e.textContent=t;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1900)};
+let lenis=null;
+const barH=()=>parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bar'))||0;
+/* scroll so the target starts just under the header bar */
+const go=(sel,extra=0)=>{const t=typeof sel==='string'?document.querySelector(sel):sel; if(!t) return; const off=-barH()-extra;
+  if(lenis) lenis.scrollTo(t,{offset:off}); else window.scrollTo({top:t.getBoundingClientRect().top+scrollY+off,behavior:reduce?'auto':'smooth'}); };
+
+/* money: prices are set in RWF; every other currency is an approximate conversion */
+const CURS=[['RWF','Rwandan franc',1],['USD','US dollar',1/1440],['EUR','Euro',1/1565],['GBP','British pound',1/1846],['KES','Kenyan shilling',0.0896],['UGX','Ugandan shilling',2.57]];
+const RATE=Object.fromEntries(CURS.map(c=>[c[0],c[2]]));
+let cur=store.get('cur','RWF'); if(!RATE[cur]) cur='RWF';
+const fmt=(v,c)=>new Intl.NumberFormat('en-US',{style:'currency',currency:c,currencyDisplay:['RWF','KES','UGX'].includes(c)?'code':'narrowSymbol',maximumFractionDigits:0}).format(Math.round(v)).replace(/ /g,' ');
+const money=(rwf,c=cur)=>(c==='RWF'?'':'≈ ')+fmt(rwf*RATE[c],c);
+const curHooks=[], curPickers=[];
+const onCur=fn=>curHooks.push(fn);
+function setCur(c){ if(!RATE[c]||c===cur) return; cur=c; store.set('cur',c);
+  $$('[data-rwf]').forEach(e=>e.textContent=money(+e.dataset.rwf)); curPickers.forEach(p=>p.set(c)); curHooks.forEach(f=>f());
+  toast(c==='RWF'?'Prices in Rwandan francs':`Prices shown in ${CURS.find(x=>x[0]===c)[1].toLowerCase()}s, approximate`); }
+
+/* the dropdown: a button and a listbox, styled like the rest of the site.
+   Keyboard: arrows, Home, End, a letter, Enter or Space to choose, Escape to close. */
+const CHEV='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>';
+const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+let ddN=0, ddOpen=null;
+function dropdown(host,{label,options,value,onChange,short,prefix}){
+  const id='dd'+(++ddN); let val=value, act=0;
+  host.classList.add('dd');
+  host.innerHTML=`<button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="${esc(label)}">${prefix?`<span class="dd-p">${esc(prefix)}</span>`:''}<span class="dd-v"></span>${CHEV}</button><ul class="dd-list" id="${id}" role="listbox" tabindex="-1" aria-label="${esc(label)}" data-lenis-prevent></ul>`;
+  const btn=host.firstElementChild, list=host.lastElementChild;
+  const paintBtn=()=>{ const o=options.find(o=>o.v===val)||options[0]; host.querySelector('.dd-v').textContent=short?short(o):o.label; };
+  const paintList=()=>{ list.innerHTML=options.map((o,i)=>`<li role="option" id="${id}-${i}" data-i="${i}" aria-selected="${o.v===val}"><span>${esc(o.label)}${o.sub?`<small>${esc(o.sub)}</small>`:''}</span>${CHECK}</li>`).join(''); };
+  const setAct=i=>{ act=(i+options.length)%options.length; [...list.children].forEach((li,k)=>li.classList.toggle('act',k===act)); list.setAttribute('aria-activedescendant',`${id}-${act}`); list.children[act]&&list.children[act].scrollIntoView({block:'nearest'}); };
+  const open=()=>{ if(ddOpen&&ddOpen!==api) ddOpen.close(); paintList(); host.classList.add('on'); btn.setAttribute('aria-expanded','true');
+    const r=btn.getBoundingClientRect(), need=Math.min(330,list.scrollHeight+12); host.classList.toggle('up',innerHeight-r.bottom<need&&r.top>innerHeight-r.bottom);
+    setAct(Math.max(0,options.findIndex(o=>o.v===val))); list.focus({preventScroll:true}); ddOpen=api; };
+  const close=focus=>{ host.classList.remove('on'); btn.setAttribute('aria-expanded','false'); if(ddOpen===api) ddOpen=null; if(focus) btn.focus({preventScroll:true}); };
+  const pick=i=>{ const o=options[i]; close(true); if(o&&o.v!==val){ val=o.v; paintBtn(); onChange&&onChange(val); } };
+  btn.addEventListener('mousedown',e=>{ if(host.classList.contains('on')) e.preventDefault(); });
+  btn.addEventListener('click',()=>host.classList.contains('on')?close(true):open());
+  btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); open(); } });
+  list.addEventListener('click',e=>{ const li=e.target.closest('li'); if(li) pick(+li.dataset.i); });
+  list.addEventListener('mousemove',e=>{ const li=e.target.closest('li'); if(li&&+li.dataset.i!==act) setAct(+li.dataset.i); });
+  list.addEventListener('keydown',e=>{ const k=e.key;
+    if(k==='ArrowDown'){ e.preventDefault(); setAct(act+1); } else if(k==='ArrowUp'){ e.preventDefault(); setAct(act-1); }
+    else if(k==='Home'){ e.preventDefault(); setAct(0); } else if(k==='End'){ e.preventDefault(); setAct(options.length-1); }
+    else if(k==='Enter'||k===' '){ e.preventDefault(); pick(act); }
+    else if(k==='Escape'){ e.preventDefault(); e.stopPropagation(); close(true); }
+    else if(k==='Tab'){ close(); }
+    else if(k.length===1){ const L=k.toLowerCase(), n=options.length; for(let j=1;j<=n;j++){ const i=(act+j)%n; if(options[i].label.toLowerCase().startsWith(L)){ setAct(i); break; } } } });
+  list.addEventListener('focusout',e=>{ if(!host.contains(e.relatedTarget)) close(); });
+  const api={ set(v){ val=v; paintBtn(); if(host.classList.contains('on')) paintList(); }, setOptions(o){ options=o; paintBtn(); }, close, get value(){ return val; } };
+  paintBtn(); return api;
+}
+document.addEventListener('pointerdown',e=>{ if(ddOpen&&!e.target.closest('.dd.on')) ddOpen.close(); });
+$$('[data-cur]').forEach(h=>curPickers.push(dropdown(h,{label:'Currency',options:CURS.map(([c,n])=>({v:c,label:c,sub:n})),value:cur,short:o=>o.v,onChange:setCur})));
+
+/* the cart: a count on the icon; it opens the full collection, and the bag when it has pieces in it */
+const bagCount=()=>store.get('bag',[]).reduce((s,i)=>s+(i.q||0),0);
+function paintCart(n=bagCount()){ const c=$('#bagCount'), a=$('#bagOpen'); if(c){ c.textContent=n||''; c.dataset.n=n; }
+  if(a){ a.setAttribute('href','shop.html'+(n?'#bag':'')); a.setAttribute('aria-label',n?`Your bag, ${n} ${n===1?'piece':'pieces'}`:'All pieces'); } }
+paintCart();
+
+/* booking from a page without the form: remember the choice and open it on the home page */
+let bookFor=o=>{ store.set('book',o||{}); location.href='./#book'; };
+
+/* menu */
+const menu=$('#menu');
+function closeMenu(){ if(!menu) return; menu.classList.remove('on'); menu.setAttribute('aria-hidden','true'); $('#menuBtn').setAttribute('aria-expanded','false'); }
+if(menu){ $('#menuBtn').onclick=()=>{const on=!menu.classList.contains('on'); menu.classList.toggle('on',on); menu.setAttribute('aria-hidden',!on); $('#menuBtn').setAttribute('aria-expanded',on);};
+  menu.addEventListener('click',e=>{ if(e.target.closest('a')) closeMenu(); }); }
+
+/* newsletter (prototype) */
+const join=$('#join'); if(join) join.addEventListener('submit',e=>{e.preventDefault(); const i=$('#jEmail'); if(!i.checkValidity()){i.reportValidity();return} join.hidden=true; $('#joined').hidden=false;});
+
+/* smooth scroll */
+function startLenis(){ if(!window.Lenis||reduce) return; lenis=new Lenis({lerp:.09}); const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)}; requestAnimationFrame(raf);
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(!a) return; const h=a.getAttribute('href');
+    if(h.length>1){ const t=document.querySelector(h); if(t){ e.preventDefault(); go(t); } } else { e.preventDefault(); lenis.scrollTo(0); } }); }
+
+const PAGE=document.body.dataset.page;
+const WA='250781178499';
+const P=[{"slug":"the-sand-mocha-suits","title":"The Sand & Mocha Suits","cat":"Double-Breasted","rwf":350000,"desc":"Refined double-breasted suits in warm sand and rich mocha tones, featuring peak lapels, structured shoulders, and matching tailored trousers. A distinguished choice for weddings, business occasions, and formal celebrations. Each suit is sold separately at 350,000 RWF.","card":"media/card/the-sand-mocha-suits.webp","imgs":["media/full/the-sand-mocha-suits-0.webp","media/full/the-sand-mocha-suits-1.webp","media/full/the-sand-mocha-suits-2.webp","media/full/the-sand-mocha-suits-3.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":31},{"slug":"the-silver-muse-set","title":"The Silver Muse Set","cat":"Two-Piece Set","rwf":150000,"desc":"A striking silver-grey printed two-piece featuring a deep V-neck top, flared sleeves, and a sculpted waist with a peplum finish. Matching trousers create an elegant silhouette for special occasions and standout everyday style.","card":"media/card/the-silver-muse-set.webp","imgs":["media/full/the-silver-muse-set-0.webp","media/full/the-silver-muse-set-1.webp","media/full/the-silver-muse-set-2.webp","media/full/the-silver-muse-set-3.webp"],"fam":"Grey","for":"her","sw":"#8D8D8B","views":12},{"slug":"the-sahara-muse-set","title":"The Sahara Muse Set","cat":"Two-Piece Set","rwf":150000,"desc":"An elegant beige two-piece featuring a sculpted peplum top with flared sleeves, a statement front zip, and lace-up waist detailing. Matching trousers complete a refined look for special occasions and elevated everyday wear.","card":"media/card/the-sahara-muse-set.webp","imgs":["media/full/the-sahara-muse-set-0.webp","media/full/the-sahara-muse-set-1.webp","media/full/the-sahara-muse-set-2.webp","media/full/the-sahara-muse-set-3.webp"],"fam":"Sand","for":"her","sw":"#C9AF8A","views":16},{"slug":"the-executive-mocha-2","title":"The Executive Mocha","cat":"Double-Breasted","rwf":350000,"desc":"Command the room in The Executive Mocha, a women’s trouser suit in a rich mocha brown. A double-breasted blazer, defined waist, and tailored trousers create a polished silhouette for business meetings, special occasions, and everything in between.","card":"media/card/the-executive-mocha-2.webp","imgs":["media/full/the-executive-mocha-2-0.webp","media/full/the-executive-mocha-2-1.webp","media/full/the-executive-mocha-2-2.webp"],"fam":"Brown","for":"her","sw":"#6B4430","views":17},{"slug":"kaftan-jacket","title":"Kaftan Complete","cat":"Kaftan","rwf":146000,"desc":"Refined Made in Rwanda Shirt","card":"media/card/kaftan-jacket.webp","imgs":["media/full/kaftan-jacket-0.webp","media/full/kaftan-jacket-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":40},{"slug":"prime-jacket","title":"Prime Jacket","cat":"Jacket","rwf":94000,"desc":"Prime Jacket","card":"media/card/prime-jacket.webp","imgs":["media/full/prime-jacket-0.webp","media/full/prime-jacket-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":29},{"slug":"kaftan-shirt","title":"Kaftan Shirt","cat":"Kaftan","rwf":84000,"desc":"PS 030","card":"media/card/kaftan-shirt.webp","imgs":["media/full/kaftan-shirt-0.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":24},{"slug":"ash-distressed-texture-suit","title":"Ash Distressed Texture Suit","cat":"Single-breasted","rwf":380000,"desc":"A textured ash-grey blazer with a weathered, brushed finish, paired with a slim black tie for an edgy formal statement.","card":"media/card/ash-distressed-texture-suit.webp","imgs":["media/full/ash-distressed-texture-suit-0.webp","media/full/ash-distressed-texture-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":78},{"slug":"sand-contrast-bib-set","title":"Sand Contrast Bib Set","cat":"Kaftan","rwf":146000,"desc":"A beige two-piece set finished with a diagonally stitched brown bib panel for a refined contrast-detail look.","card":"media/card/sand-contrast-bib-set.webp","imgs":["media/full/sand-contrast-bib-set-0.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":82},{"slug":"midnight-laced-bib-shirt","title":"Midnight Laced Bib Shirt","cat":"Kaftan","rwf":84000,"desc":"A navy shirt with a structured bib front and eyelet lace-up detailing, blending utility styling with sharp tailoring.","card":"media/card/midnight-laced-bib-shirt.webp","imgs":["media/full/midnight-laced-bib-shirt-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":113},{"slug":"olive-marble-print-suit","title":"Olive Marble Print Suit","cat":"Single-breasted","rwf":380000,"desc":"A statement two-piece suit in an olive marbled texture, offering an artistic, modern twist on formal tailoring.","card":"media/card/olive-marble-print-suit.webp","imgs":["media/full/olive-marble-print-suit-0.webp","media/full/olive-marble-print-suit-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":66},{"slug":"monochrome-houndstooth-suit","title":"Monochrome Houndstooth Suit","cat":"Single-breasted","rwf":350000,"desc":"A sharp black-and-white houndstooth blazer styled with a crisp white shirt and slim black tie for classic tailored appeal","card":"media/card/monochrome-houndstooth-suit.webp","imgs":["media/full/monochrome-houndstooth-suit-0.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":56},{"slug":"espresso-bib-kaftan","title":"Espresso Bib Kaftan","cat":"Kaftan","rwf":84000,"desc":"A tailored deep brown kaftan featuring a layered bib front with silver snap buttons, paired elegantly with cream trousers.","card":"media/card/espresso-bib-kaftan.webp","imgs":["media/full/espresso-bib-kaftan-0.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":125},{"slug":"sand-weave-linen-kaftan","title":"Sand Weave Linen Kaftan","cat":"Kaftan","rwf":84000,"desc":"A relaxed linen-blend kaftan shirt in warm sand beige, finished with a bold zigzag stitch placket for a modern, textured look.","card":"media/card/sand-weave-linen-kaftan.webp","imgs":["media/full/sand-weave-linen-kaftan-0.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":63},{"slug":"ice-blue-double-breasted-suit","title":"Ice Blue Double-Breasted Suit","cat":"Double-Breasted","rwf":320000,"desc":"A refined double-breasted suit in pale silver-grey, paired here with a paisley tie and pocket square for a sharp, modern formal look.","card":"media/card/ice-blue-double-breasted-suit.webp","imgs":["media/full/ice-blue-double-breasted-suit-0.webp","media/full/ice-blue-double-breasted-suit-1.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":105},{"slug":"ivory-embroidered-kaftan","title":"Ivory Embroidered Kaftan","cat":"Kaftan","rwf":84000,"desc":"IVORY EMBROIDERED KAFTAN","card":"media/card/ivory-embroidered-kaftan.webp","imgs":["media/full/ivory-embroidered-kaftan-0.webp","media/full/ivory-embroidered-kaftan-1.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":77},{"slug":"verdant-double-breated-suit","title":"Verdant Double-Breasted Suit","cat":"Double-Breasted","rwf":380000,"desc":"","card":"media/card/verdant-double-breated-suit.webp","imgs":["media/full/verdant-double-breated-suit-0.webp","media/full/verdant-double-breated-suit-1.webp","media/full/verdant-double-breated-suit-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":135},{"slug":"brown-embellished-gown","title":"Brown Embellished Gown","cat":"Dress","rwf":350000,"desc":"","card":"media/card/brown-embellished-gown.webp","imgs":["media/full/brown-embellished-gown-0.webp","media/full/brown-embellished-gown-1.webp","media/full/brown-embellished-gown-2.webp","media/full/brown-embellished-gown-3.webp"],"fam":"Brown","for":"her","sw":"#6B4430","views":260},{"slug":"prime-essential-prime-jacket-set","title":"Prime Essential Jacket Set","cat":"Jacket complete","rwf":146000,"desc":"","card":"media/card/prime-essential-prime-jacket-set.webp","imgs":["media/full/prime-essential-prime-jacket-set-0.webp","media/full/prime-essential-prime-jacket-set-1.webp","media/full/prime-essential-prime-jacket-set-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":112},{"slug":"maroon-muse-suit","title":"Maroon Muse Suit","cat":"Double-Breasted","rwf":280000,"desc":"","card":"media/card/maroon-muse-suit.webp","imgs":["media/full/maroon-muse-suit-0.webp","media/full/maroon-muse-suit-1.webp","media/full/maroon-muse-suit-2.webp","media/full/maroon-muse-suit-3.webp"],"fam":"Red","for":"her","sw":"#7A2228","views":193},{"slug":"silverline-two-button-executive-suit","title":"Silverline Two Button Executive Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/silverline-two-button-executive-suit.webp","imgs":["media/full/silverline-two-button-executive-suit-0.webp","media/full/silverline-two-button-executive-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":138},{"slug":"ivory-silhouette-ensemble","title":"Ivory Silhouette Ensemble","cat":"Dress","rwf":168000,"desc":"","card":"media/card/ivory-silhouette-ensemble.webp","imgs":["media/full/ivory-silhouette-ensemble-0.webp","media/full/ivory-silhouette-ensemble-1.webp","media/full/ivory-silhouette-ensemble-2.webp","media/full/ivory-silhouette-ensemble-3.webp","media/full/ivory-silhouette-ensemble-4.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":189},{"slug":"the-terra-command-set","title":"The Terra Command Set","cat":"Jacket complete","rwf":198000,"desc":"","card":"media/card/the-terra-command-set.webp","imgs":["media/full/the-terra-command-set-0.webp","media/full/the-terra-command-set-1.webp","media/full/the-terra-command-set-2.webp","media/full/the-terra-command-set-3.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":41},{"slug":"the-eartline-pattern-suit","title":"The Eartline Pattern Suit","cat":"Single-breasted","rwf":380000,"desc":"","card":"media/card/the-eartline-pattern-suit.webp","imgs":["media/full/the-eartline-pattern-suit-0.webp","media/full/the-eartline-pattern-suit-1.webp","media/full/the-eartline-pattern-suit-2.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":40},{"slug":"sage-edge-formal-jacket","title":"Sage Edge Formal Jacket","cat":"Jacket","rwf":86000,"desc":"","card":"media/card/sage-edge-formal-jacket.webp","imgs":["media/full/sage-edge-formal-jacket-0.webp","media/full/sage-edge-formal-jacket-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":82},{"slug":"atlas-heavy-linen-kaftan","title":"Atlas Heavy Linen Kaftan","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/atlas-heavy-linen-kaftan.webp","imgs":["media/full/atlas-heavy-linen-kaftan-0.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":49},{"slug":"umugongo-black-linen-shirt","title":"Umugongo Black Linen Shirt","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/umugongo-black-linen-shirt.webp","imgs":["media/full/umugongo-black-linen-shirt-0.webp","media/full/umugongo-black-linen-shirt-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":159},{"slug":"the-tailored-contrast","title":"The Tailored Contrast","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/the-tailored-contrast.webp","imgs":["media/full/the-tailored-contrast-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":24},{"slug":"desert-phatom-set","title":"Desert Phantom Set","cat":"Safari Suit","rwf":350000,"desc":"","card":"media/card/desert-phatom-set.webp","imgs":["media/full/desert-phatom-set-0.webp","media/full/desert-phatom-set-1.webp","media/full/desert-phatom-set-2.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":32},{"slug":"one-button-sage-green-prime-suit","title":"One Button Sage Green Prime Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/one-button-sage-green-prime-suit.webp","imgs":["media/full/one-button-sage-green-prime-suit-0.webp","media/full/one-button-sage-green-prime-suit-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":38},{"slug":"veridian-jacket","title":"Veridian Jacket","cat":"Jacket","rwf":94000,"desc":"","card":"media/card/veridian-jacket.webp","imgs":["media/full/veridian-jacket-0.webp","media/full/veridian-jacket-1.webp","media/full/veridian-jacket-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":92},{"slug":"mocha-apex-suit","title":"Mocha Apex Suit","cat":"Double-Breasted","rwf":350000,"desc":"","card":"media/card/mocha-apex-suit.webp","imgs":["media/full/mocha-apex-suit-0.webp","media/full/mocha-apex-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":108},{"slug":"ivory-grace-dress","title":"Ivory Grace Dress","cat":"Dress","rwf":145000,"desc":"","card":"media/card/ivory-grace-dress.webp","imgs":["media/full/ivory-grace-dress-0.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":128},{"slug":"heritage-crest-jacket","title":"Heritage Crest Jacket","cat":"Jacket","rwf":86000,"desc":"","card":"media/card/heritage-crest-jacket.webp","imgs":["media/full/heritage-crest-jacket-0.webp","media/full/heritage-crest-jacket-1.webp","media/full/heritage-crest-jacket-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":60},{"slug":"umugongo-linen-shirt","title":"Umugongo Linen Shirt","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/umugongo-linen-shirt.webp","imgs":["media/full/umugongo-linen-shirt-0.webp","media/full/umugongo-linen-shirt-1.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":71},{"slug":"ember-sovereign-suit","title":"Ember Sovereign Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/ember-sovereign-suit.webp","imgs":["media/full/ember-sovereign-suit-0.webp","media/full/ember-sovereign-suit-1.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":32},{"slug":"the-sovereign-fringe-jacket-set","title":"The Sovereign Fringe Jacket Set","cat":"Jacket complete","rwf":206000,"desc":"A new chapter in modern African tailoring. \n\nDesigned and produced in RWANDA, celebrating the artistry of local craftmanship and cultural heritage.\n\nWhere tradition meets contemporary elegance.","card":"media/card/the-sovereign-fringe-jacket-set.webp","imgs":["media/full/the-sovereign-fringe-jacket-set-0.webp","media/full/the-sovereign-fringe-jacket-set-1.webp","media/full/the-sovereign-fringe-jacket-set-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":63},{"slug":"navy-blue-suit","title":"Navy Blue Suit","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/navy-blue-suit.webp","imgs":["media/full/navy-blue-suit-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":71},{"slug":"dark-grey-classic","title":"Dark Grey Classic","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/dark-grey-classic.webp","imgs":["media/full/dark-grey-classic-0.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":20},{"slug":"copper-noir","title":"Copper Noir","cat":"Kaftan","rwf":78000,"desc":"","card":"media/card/copper-noir.webp","imgs":["media/full/copper-noir-0.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":52},{"slug":"single-breasted-three-button-suit","title":"Single Breasted Three Button Suit","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/single-breasted-three-button-suit.webp","imgs":["media/full/single-breasted-three-button-suit-0.webp","media/full/single-breasted-three-button-suit-1.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":28},{"slug":"the-ivory-vest-set","title":"The Ivory Vest Set","cat":"Vest","rwf":245000,"desc":"","card":"media/card/the-ivory-vest-set.webp","imgs":["media/full/the-ivory-vest-set-0.webp","media/full/the-ivory-vest-set-1.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":57},{"slug":"essential-noir","title":"Essential Noir","cat":"Double-Breasted","rwf":320000,"desc":"This piece is a classic, minimalist black power suit designed for women. It emphasizes the concept of \"effortless elegance,\" where sharp tailoring and a deep noir tone create a strong, authoritative presence without the need for bold patterns or excessive ornamentation.","card":"media/card/essential-noir.webp","imgs":["media/full/essential-noir-0.webp","media/full/essential-noir-1.webp","media/full/essential-noir-2.webp"],"fam":"Black","for":"her","sw":"#1C1B1A","views":87},{"slug":"the-silent-shadow","title":"The Silent Shadow","cat":"Double-Breasted","rwf":385000,"desc":"This garment is built on precision, with strong shield-like shoulders that give quiet authority, while deep forest green brings controlled strength and black moves through it like a calm shadow, creating a look that doesn’t demand attention but naturally claims it.","card":"media/card/the-silent-shadow.webp","imgs":["media/full/the-silent-shadow-0.webp","media/full/the-silent-shadow-1.webp","media/full/the-silent-shadow-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":103},{"slug":"the-silent-command","title":"The Silent Command","cat":"Double-Breasted","rwf":555000,"desc":"","card":"media/card/the-silent-command.webp","imgs":["media/full/the-silent-command-0.webp","media/full/the-silent-command-1.webp","media/full/the-silent-command-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":35},{"slug":"scarlet-study-no-02","title":"Scarlet Study No. 02","cat":"Double-Breasted","rwf":435000,"desc":"Sharply structured ensemble defined by a disciplined waist, defined shoulders, and a unique curved lapel. The look is balanced by flared trousers with asymmetric layering and anchored by a black high-neck for a high-contrast, elongated silhouette.","card":"media/card/scarlet-study-no-02.webp","imgs":["media/full/scarlet-study-no-02-0.webp","media/full/scarlet-study-no-02-1.webp","media/full/scarlet-study-no-02-2.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":17},{"slug":"ivory-study-no-01","title":"Ivory Study No. 01","cat":"Double-Breasted","rwf":550000,"desc":"Ivory double-breasted suit featuring subtle gold accents. It is designed with a focus on precision and quiet elegance rather than bold ornamentation.","card":"media/card/ivory-study-no-01.webp","imgs":["media/full/ivory-study-no-01-0.webp","media/full/ivory-study-no-01-1.webp","media/full/ivory-study-no-01-2.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":24},{"slug":"black-safari-regent-suit-44d2b2","title":"Black Safari Regent Suit","cat":"Safari Suit","rwf":380000,"desc":"A sleek black safari suit tailored for modern ceremonial elegance","card":"media/card/black-safari-regent-suit-44d2b2.webp","imgs":["media/full/black-safari-regent-suit-44d2b2-0.webp","media/full/black-safari-regent-suit-44d2b2-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":50},{"slug":"black-regent-3f53da","title":"Black Regent","cat":"Double-Breasted","rwf":350000,"desc":"A timeless black double-breasted suit tailored for sharp formal authority","card":"media/card/black-regent-3f53da.webp","imgs":["media/full/black-regent-3f53da-0.webp","media/full/black-regent-3f53da-1.webp","media/full/black-regent-3f53da-2.webp","media/full/black-regent-3f53da-3.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":52},{"slug":"double-breasted-peak-lapel-suit-dbe2a6","title":"Double-Breasted Peak-Lapel Suit","cat":"Double-Breasted","rwf":380000,"desc":"A whisper of class","card":"media/card/double-breasted-peak-lapel-suit-dbe2a6.webp","imgs":["media/full/double-breasted-peak-lapel-suit-dbe2a6-0.webp","media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":42},{"slug":"ivory-tuxedo-5b6732","title":"Ivory Tuxedo","cat":"Tuxedo","rwf":380000,"desc":"Ivory tuxedo with bold black lapels","card":"media/card/ivory-tuxedo-5b6732.webp","imgs":["media/full/ivory-tuxedo-5b6732-0.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":46}];
+const FILMS=[{"id":"walk","cat":"him","title":"The walk","src":"media/films/walk.mp4","poster":"media/films/walk.jpg"},{"id":"party","cat":"party","title":"The groom's party","src":"media/films/party.mp4","poster":"media/films/party.jpg"},{"id":"sash","cat":"detail","title":"The sash, up close","src":"media/films/sash.mp4","poster":"media/films/sash.jpg"},{"id":"ceremony","cat":"party","title":"The groomsmen","src":"media/films/ceremony.mp4","poster":"media/films/ceremony.jpg"},{"id":"smile","cat":"him","title":"All smiles","src":"media/films/smile.mp4","poster":"media/films/smile.jpg"},{"id":"dance","cat":"him","title":"The dance","src":"media/films/dance.mp4","poster":"media/films/dance.jpg"},{"id":"couple","cat":"party","title":"The couple","src":"media/films/couple.mp4","poster":"media/films/couple.jpg"},{"id":"bride","cat":"her","title":"The bride","src":"media/films/bride.mp4","poster":"media/films/bride.jpg"},{"id":"aisle","cat":"her","title":"The aisle","src":"media/films/aisle.mp4","poster":"media/films/aisle.jpg"},{"id":"train","cat":"her","title":"The train","src":"media/films/train.mp4","poster":"media/films/train.jpg"},{"id":"shimmer","cat":"her","title":"With a fan","src":"media/films/shimmer.mp4","poster":"media/films/shimmer.jpg"},{"id":"together","cat":"her","title":"In champagne","src":"media/films/together.mp4","poster":"media/films/together.jpg"}];
+const by=Object.fromEntries(P.map(p=>[p.slug,p]));
+const film=id=>FILMS.find(f=>f.id===id);
+const catName=c=>({him:'For him',her:'For her',party:'The wedding party',detail:'Details'}[c]||c);
+const forName=w=>w==='her'?'Women':'Men';
+const TYPES=[['all','All types',null],['suits','Suits',['Double-Breasted','Single-breasted','Tuxedo','Safari Suit']],['kaftans','Kaftans & shirts',['Kaftan']],['jackets','Jackets',['Jacket','Jacket complete']],['dresses','Dresses',['Dress']],['sets','Sets',['Two-Piece Set','Set','Vest']]];
+const inType=(p,k)=>{const t=TYPES.find(x=>x[0]===k); return !t||!t[2]||t[2].includes(p.cat);};
+
+/* ---------- booking data, shared so any page can start a booking ---------- */
+const CUTS=[
+ {id:'dbs',w:'him',name:'Double-breasted suit',cats:['Double-Breasted'],img:'the-sand-mocha-suits'},
+ {id:'sbs',w:'him',name:'Single-breasted suit',cats:['Single-breasted'],img:'single-breasted-three-button-suit'},
+ {id:'tux',w:'him',name:'Tuxedo',cats:['Tuxedo'],img:'ivory-tuxedo-5b6732'},
+ {id:'kaf',w:'him',name:'Kaftan',cats:['Kaftan'],img:'kaftan-jacket'},
+ {id:'saf',w:'him',name:'Safari suit',cats:['Safari Suit'],img:'desert-phatom-set'},
+ {id:'jkt',w:'him',name:'Jacket',cats:['Jacket','Jacket complete'],img:'sage-edge-formal-jacket'},
+ {id:'dress',w:'her',name:'Dress',cats:['Dress'],img:'brown-embellished-gown'},
+ {id:'umu',w:'her',name:'Umushanana',cats:[],img:'film:walk'},
+ {id:'set',w:'her',name:'Two-piece set',cats:['Two-Piece Set','Vest'],img:'the-sahara-muse-set'},
+ {id:'wsuit',w:'her',name:'Tailored suit',cats:['Double-Breasted'],img:'maroon-muse-suit'},
+ {id:'any',w:'both',name:'Not sure yet',cats:[],img:''}];
+const cut=id=>CUTS.find(c=>c.id===id);
+const cutOf=p=>(CUTS.find(c=>c.w===p.for&&c.cats.includes(p.cat))||cut('any')).id;
+const OCC=[['Wedding','Ceremony and reception','ring'],['Gusaba & gukwa','Introduction and dowry','gift'],['Office','Work and meetings','brief'],['Gala or black tie','Evening events','star'],['Everyday','Day to day','sun'],['Something else','Tell us in the note','dots']];
+const OCC_NAMES=OCC.map(o=>o[0]);
+/* what the atelier makes for each occasion, for her and for him */
+const FOR_OCC={
+ 'Wedding':{her:['dress','umu','set','wsuit'],him:['dbs','tux','sbs','kaf']},
+ 'Gusaba & gukwa':{her:['umu','dress','set'],him:['kaf','dbs','sbs','saf']},
+ 'Office':{her:['wsuit','set'],him:['sbs','dbs','jkt','saf']},
+ 'Gala or black tie':{her:['dress','wsuit','set'],him:['tux','dbs','jkt']},
+ 'Everyday':{her:['set','dress'],him:['kaf','jkt','saf','sbs']},
+ 'Something else':{her:['dress','set','wsuit','umu'],him:['dbs','sbs','tux','kaf','saf','jkt']}};
+const OCC_FOR={'Wedding':' for the wedding','Gusaba & gukwa':' for gusaba and gukwa','Office':' for the office','Gala or black tie':' for the evening','Everyday':' for every day','Something else':''};
+const OCC_PL={'Wedding':'weddings','Gusaba & gukwa':'gusaba and gukwa','Office':'the office','Gala or black tie':'galas and black tie','Everyday':'every day','Something else':'any occasion'};
+const WHO_B=[['her','A woman','Her look'],['him','A man','His look'],['both','Both','Her and him']];
+
+/* ---------- hero screen: films in one frame ---------- */
+if($('#screen')){
+  const SCREEN=['train','walk','bride','sash','dance','aisle','party','shimmer','ceremony','together','smile','couple'].map(film).filter(Boolean);
+  const scrMain=$('#scrMain'), scrAmb=$('#scrAmb'); let si=-1;
+  $('#scrPick').innerHTML=SCREEN.map((f,i)=>`<button type="button" data-i="${i}" aria-pressed="false" aria-label="Play ${esc(f.title)}" title="${esc(f.title)}"><img src="${f.poster}" alt="" loading="lazy"><span>${esc(f.title)}</span><i></i></button>`).join('');
+  const playScreen=i=>{
+    si=(i+SCREEN.length)%SCREEN.length; const f=SCREEN[si];
+    [scrMain,scrAmb].forEach(v=>v.classList.add('out'));
+    setTimeout(()=>{ [scrMain,scrAmb].forEach(v=>{v.poster=f.poster; v.src=f.src; v.classList.remove('out'); if(!reduce) v.play().catch(()=>{});}); },reduce?0:300);
+    $('#scrTitle').textContent=f.title; $('#scrCat').textContent=catName(f.cat);
+    $$('#scrPick button').forEach((b,k)=>{b.setAttribute('aria-pressed',k===si); b.querySelector('i').style.width='0';});
+    const ab=$$('#scrPick button')[si], row=$('#scrPick'); if(ab&&row.scrollWidth>row.clientWidth){ setTimeout(()=>row.scrollTo({left:ab.offsetLeft-row.clientWidth/2+ab.offsetWidth,behavior:reduce?'auto':'smooth'}),350); } };
+  scrMain.addEventListener('timeupdate',()=>{ const b=$$('#scrPick button')[si]; if(b&&scrMain.duration) b.querySelector('i').style.width=(scrMain.currentTime/scrMain.duration*100)+'%'; });
+  scrMain.addEventListener('ended',()=>playScreen(si+1));
+  $('#scrPick').onclick=e=>{const b=e.target.closest('button'); if(b) playScreen(+b.dataset.i);};
+  scrMain.addEventListener('click',()=>openFilm(FILMS.indexOf(SCREEN[si])));
+  new IntersectionObserver(([e])=>{ if(reduce) return; [scrMain,scrAmb].forEach(v=>e.isIntersecting?v.play().catch(()=>{}):v.pause()); }).observe($('#screen'));
+  playScreen(0);
+}
+
+/* ---------- today's picks: pieces and films drift slowly; hover to play ---------- */
+if($('#reel')){
+  const TOP=P.slice().sort((a,b)=>(b.views||0)-(a.views||0)).slice(0,3);
+  const ORDER=['walk','bride','train','dance','party','sash','aisle','ceremony','smile','shimmer','couple','together'].map(film).filter(Boolean);
+  const items=[]; ORDER.forEach((f,i)=>{ if(TOP[i]) items.push({p:TOP[i],rank:i+1}); items.push({f}); });
+  const reel=$('#reel');
+  const pkHTML=(x,clone)=>{ const hid=clone?' aria-hidden="true" tabindex="-1"':'';
+    if(x.p){const p=x.p; return `<button type="button" class="pk" data-open="${p.slug}"${hid}><div class="fr"><img src="${p.imgs[0]||p.card}" alt="${clone?'':esc(p.title)}" loading="lazy">${p.imgs.length>1?'<img class="b" alt="">':''}<span class="badge">No. ${x.rank} · Most viewed</span></div><div class="meta"><span>${esc(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><small>${esc(p.cat)} · ${forName(p.for)}</small></button>`;}
+    const f=x.f; return `<button type="button" class="pk film" data-film="${f.id}"${hid}><div class="fr"><video muted loop playsinline preload="none" poster="${f.poster}" data-src="${f.src}"></video><span class="badge">Film</span><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div><div class="meta"><span>${esc(f.title)}</span></div><small>${catName(f.cat)}</small></button>`; };
+  reel.innerHTML=items.map(x=>pkHTML(x,false)).join('')+(reduce?'':items.map(x=>pkHTML(x,true)).join(''));
+  const startVideo=v=>{ if(!v) return; if(!v.getAttribute('src')) v.src=v.dataset.src; v.play().catch(()=>{}); };
+  const cycles=new Map();
+  const cardOn=c=>{ if(reduce) return;
+    if(c.classList.contains('film')){ startVideo(c.querySelector('video')); c.classList.add('playing'); return; }
+    const p=by[c.dataset.open]; if(!p||p.imgs.length<2||cycles.has(c)) return; const b=c.querySelector('img.b'); let k=0; c.classList.add('cycling');
+    const step=()=>{ k=(k+1)%p.imgs.length; if(k===0){b.classList.remove('show'); return;} b.classList.remove('show'); setTimeout(()=>{ b.onload=()=>b.classList.add('show'); b.src=p.imgs[k]; },200); };
+    step(); cycles.set(c,setInterval(step,1500)); };
+  const cardOff=c=>{ if(c.classList.contains('film')){ c.querySelector('video').pause(); c.classList.remove('playing'); return; }
+    clearInterval(cycles.get(c)); cycles.delete(c); c.classList.remove('cycling'); const b=c.querySelector('img.b'); b&&b.classList.remove('show'); };
+  reel.addEventListener('mouseover',e=>{const c=e.target.closest('.pk'); if(c && !c.contains(e.relatedTarget)) cardOn(c);});
+  reel.addEventListener('mouseout',e=>{const c=e.target.closest('.pk'); if(c && !c.contains(e.relatedTarget)) cardOff(c);});
+  reel.addEventListener('click',e=>{const c=e.target.closest('.pk'); if(!c) return; if(c.dataset.film) openFilm(FILMS.findIndex(f=>f.id===c.dataset.film)); else openItem(c.dataset.open);});
+  if(matchMedia('(hover: none)').matches){ const io=new IntersectionObserver(es=>es.forEach(en=>en.isIntersecting?cardOn(en.target):cardOff(en.target)),{root:reel,threshold:.75}); $$('#reel .pk').forEach(c=>io.observe(c)); }
+  /* the slow drift: about 28px a second, endless; it waits while someone hovers, touches, scrolls or uses the arrows */
+  let pos=0, hold=0, last=0, reelSeen=false, selfScroll=false;
+  const SPEED=28, pause=ms=>{ hold=performance.now()+ms; };
+  if(!reduce){
+    reel.classList.add('auto');
+    new IntersectionObserver(([e])=>{ reelSeen=e.isIntersecting; },{threshold:.15}).observe(reel);
+    ['pointerdown','wheel','touchstart'].forEach(ev=>reel.addEventListener(ev,()=>pause(3500),{passive:true}));
+    reel.addEventListener('scroll',()=>{ if(selfScroll){ selfScroll=false; return; } pos=reel.scrollLeft; },{passive:true});
+    const drift=t=>{ const dt=Math.min(120,t-(last||t)); last=t;
+      if(reelSeen && !document.hidden && t>hold && !reel.matches(':hover') && !reel.contains(document.activeElement)){
+        const half=reel.scrollWidth/2; pos+=SPEED*dt/1000; if(pos>=half) pos-=half;
+        const next=Math.round(pos); if(next!==reel.scrollLeft){ selfScroll=true; reel.scrollLeft=next; } }
+      requestAnimationFrame(drift); };
+    requestAnimationFrame(drift);
+  }
+  $('#pNext').onclick=()=>{ pause(4000); reel.scrollBy({left:reel.clientWidth*.8,behavior:'smooth'}); };
+  $('#pPrev').onclick=()=>{ pause(4000); reel.scrollBy({left:-reel.clientWidth*.8,behavior:'smooth'}); };
+}
+
+/* ---------- lightbox ---------- */
+const lb=$('#lightbox'), lbv=$('#lbVideo'); let lbi=0;
+function openFilm(i){ if(!lb) return; lbi=(i+FILMS.length)%FILMS.length; const f=FILMS[lbi]; lbv.poster=f.poster; lbv.src=f.src; $('#lbTitle').textContent=f.title; $('#lbCat').textContent=catName(f.cat); lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); lbv.play().catch(()=>{}); lenis&&lenis.stop(); setTimeout(()=>$('#lbClose').focus(),50); }
+function closeFilm(){ lb.classList.remove('on'); lb.setAttribute('aria-hidden','true'); lbv.pause(); lenis&&lenis.start(); }
+if(lb){ $('#lbClose').onclick=closeFilm; $('#lbNext').onclick=()=>openFilm(lbi+1); $('#lbPrev').onclick=()=>openFilm(lbi-1); $('#lbBook').onclick=e=>{e.preventDefault(); closeFilm(); go('#book');};
+  lb.addEventListener('click',e=>{ if(e.target===lb) closeFilm(); }); }
+
+/* ---------- home: our pieces, by who they are for ---------- */
+if($('#catGrid')){
+  const CAT=[['him','Men','For him','the-sand-mocha-suits','essential-noir'],['her','Women','For her','ivory-grace-dress','maroon-muse-suit']];
+  const card=([w,name,kick,a,b])=>{ const list=P.filter(p=>p.for===w), pa=by[a]||list[0], pb=by[b]||list[1];
+    const types=TYPES.slice(1).map(([k,l])=>[k,l,list.filter(p=>inType(p,k)).length]).filter(t=>t[2]);
+    return `<article class="cat"><a class="cat-ph" href="shop.html#who=${w}" aria-label="${name}, ${list.length} pieces"><img src="${(pa.imgs[0]||pa.card)}" alt="" loading="lazy"><img class="b" src="${(pb.imgs[0]||pb.card)}" alt="" loading="lazy"><span class="cat-k">${kick}</span></a>
+      <div class="cat-b"><div class="cat-t"><h3><a href="shop.html#who=${w}">${name}</a></h3><span>${list.length} pieces</span></div>
+      <ul class="cat-types">${types.map(([k,l,n])=>`<li><a href="shop.html#who=${w}&type=${k}">${esc(l)}<span>${n}</span></a></li>`).join('')}</ul></div></article>`; };
+  const thumbs=P.slice().sort((a,b)=>(b.views||0)-(a.views||0)).slice(3,7);
+  $('#catGrid').innerHTML=CAT.map(card).join('')+`<article class="cat cat-all dark"><div class="cat-stack" aria-hidden="true">${thumbs.map(p=>`<img src="${p.card}" alt="" loading="lazy">`).join('')}</div>
+    <div class="cat-b"><h3>All ${P.length} pieces</h3><p>Every suit, kaftan, dress and set the atelier makes. Search, filter by colour, type and price, and sort.</p>
+    <form class="cat-q" id="catQ" role="search"><label class="sr" for="catQin">Search the collection</label><input id="catQin" type="search" placeholder="Search, for example ivory" autocomplete="off" enterkeyhint="search"><button type="submit" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button></form>
+    <a class="btn btn--light" href="shop.html">View all pieces</a></div></article>`;
+  $('#catQ').addEventListener('submit',e=>{ e.preventDefault(); const v=$('#catQin').value.trim(); location.href='shop.html'+(v?'#q='+encodeURIComponent(v):''); });
+}
+
+/* ---------- the collection page: sidebar filters you apply, live search, sort ---------- */
+if($('#grid')){
+  const FAMS=[...new Map(P.map(p=>[p.fam,p.sw])).entries()].sort((a,b)=>P.filter(p=>p.fam===b[0]).length-P.filter(p=>p.fam===a[0]).length);
+  const WHO=[['all','Everyone'],['him','Men'],['her','Women']];
+  const PRICES=[['all',0,Infinity],['u100',0,100000],['100-250',100000,250000],['250-400',250000,400000],['400+',400000,Infinity]];
+  const bare=s=>s.replace(/^≈ /,'');
+  const priceLabel=([k,lo,hi])=>k==='all'?'Any price':(lo===0?`Under ${bare(money(hi))}`:(hi===Infinity?`Over ${bare(money(lo))}`:`${bare(money(lo))} to ${bare(money(hi))}`));
+  const inPrice=(p,k)=>{const r=PRICES.find(x=>x[0]===k)||PRICES[0]; return p.rwf>=r[1]&&p.rwf<r[2];};
+  const KEYS=['who','fam','type','price'], ALL={who:'all',fam:'all',type:'all',price:'all'};
+  let on={...ALL}, draft={...ALL}, q='', sort='views';
+  const grid=$('#grid'), room=$('#collection'), side=$('#side');
+  const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const words=()=>norm(q).split(/\s+/).filter(Boolean);
+  const hay=p=>norm(`${p.title} ${p.cat} ${p.fam} ${p.for==='her'?'women woman ladies her':'men man gentlemen him'} ${p.desc}`);
+  const matchQ=p=>words().every(w=>hay(p).includes(w));
+  const pass=(p,st,skip)=>(skip==='fam'||st.fam==='all'||p.fam===st.fam)&&(skip==='who'||st.who==='all'||p.for===st.who)&&(skip==='type'||inType(p,st.type))&&(skip==='price'||inPrice(p,st.price))&&matchQ(p);
+  const cnt=(g,test)=>P.filter(p=>pass(p,draft,g)&&test(p)).length;
+  const changed=()=>KEYS.some(k=>draft[k]!==on[k]);
+  const plural=n=>`${n} ${n===1?'piece':'pieces'}`;
+  const toResults=()=>go('#results',16);
+  function renderFilters(){
+    const radio=(g,k,l,n)=>`<button type="button" class="ropt${n?'':' zero'}${draft[g]===k&&on[g]!==k?' new':''}" role="radio" aria-checked="${draft[g]===k}" data-g="${g}" data-v="${k}"><span class="dot"></span>${l}<span class="n">${n}</span></button>`;
+    $('#fGroups').innerHTML=
+      `<div class="fgroup" role="radiogroup" aria-label="Who it is for"><h4>Who it is for</h4>${WHO.map(([k,l])=>radio('who',k,l,cnt('who',p=>k==='all'||p.for===k))).join('')}</div>`
+     +`<div class="fgroup" role="radiogroup" aria-label="Colour"><h4>Colour</h4><div class="swgrid"><button type="button" class="swopt" role="radio" aria-checked="${draft.fam==='all'}" data-g="fam" data-v="all"><i style="background:conic-gradient(#E9E1D2,#C9AF8A,#6B4430,#7A2228,#5E6B4E,#5D7590,#8D8D8B,#1C1B1A,#E9E1D2)"></i>All</button>${FAMS.map(([f,sw])=>{const n=cnt('fam',p=>p.fam===f); return `<button type="button" class="swopt${n?'':' zero'}" role="radio" aria-checked="${draft.fam===f}" data-g="fam" data-v="${f}"><i style="background:${sw}"></i>${f}<span class="n">${n}</span></button>`;}).join('')}</div></div>`
+     +`<div class="fgroup" role="radiogroup" aria-label="Type"><h4>Type</h4>${TYPES.map(([k,l])=>radio('type',k,l,cnt('type',p=>inType(p,k)))).join('')}</div>`
+     +`<div class="fgroup" role="radiogroup" aria-label="Price"><h4>Price</h4>${PRICES.map(x=>radio('price',x[0],priceLabel(x),cnt('price',p=>inPrice(p,x[0])))).join('')}<p class="pnote">${cur==='RWF'?'Prices are set in Rwandan francs.':'Converted from Rwandan francs at an approximate rate.'}</p></div>`;
+    const n=P.filter(p=>pass(p,draft)).length, ch=changed();
+    $('#fApply').disabled=!ch; $('#fApply').textContent=ch?`Show ${plural(n)}`:'Apply filters';
+    $('#fNote').textContent=ch?'Not applied yet':`Showing ${plural(P.filter(p=>pass(p,on)).length)}`;
+    side.classList.toggle('dirty',ch);
+    $('#fClear').disabled=KEYS.every(k=>draft[k]==='all');
+  }
+  const hl=t=>{ let s=esc(t); words().forEach(w=>{ if(w.length>1) s=s.replace(new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>'); }); return s; };
+  function renderGrid(){
+    let list=P.filter(p=>pass(p,on));
+    if(sort==='low') list.sort((a,b)=>a.rwf-b.rwf); else if(sort==='high') list.sort((a,b)=>b.rwf-a.rwf); else if(sort==='az') list.sort((a,b)=>a.title.localeCompare(b.title)); else list.sort((a,b)=>(b.views||0)-(a.views||0));
+    grid.innerHTML=list.length?list.map((p,i)=>`<button type="button" class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button>`).join('')
+      :`<div class="empty"><b>No pieces match</b>Try a different word, or clear a filter. The atelier can also make pieces to order.<div style="margin-top:16px"><button type="button" class="u-btn outline sm" data-clear="all">Clear all filters</button></div></div>`;
+    const tags=[]; if(q) tags.push(['q',`“${q}”`]); if(on.who!=='all') tags.push(['who',WHO.find(x=>x[0]===on.who)[1]]); if(on.fam!=='all') tags.push(['fam',on.fam]); if(on.type!=='all') tags.push(['type',TYPES.find(x=>x[0]===on.type)[1]]); if(on.price!=='all') tags.push(['price',priceLabel(PRICES.find(x=>x[0]===on.price))]);
+    $('#fActive').innerHTML=`<p class="rcount" aria-live="polite">${plural(list.length)}</p>`+tags.map(([k,l])=>`<span class="tag">${esc(l)}<button type="button" data-clear="${k}" aria-label="Remove ${esc(l)}">×</button></span>`).join('')+(tags.length>1?`<button type="button" class="u-btn ghost sm" data-clear="all">Clear all</button>`:'');
+    const nf=KEYS.filter(k=>on[k]!=='all').length; $('#fN').textContent=nf; $('#fN').hidden=!nf;
+    $('#sCount').textContent=plural(list.length);
+    room.style.setProperty('--tint',on.fam==='all'?'#F7F4EF':(P.find(p=>p.fam===on.fam)||{}).sw);
+  }
+  const render=()=>{ renderFilters(); renderGrid(); };
+  const apply=()=>{ on={...draft}; render(); hide(side); toResults(); };
+  const setQ=v=>{ q=v; $('#fSearch').value=v; $('#fSearchClear').hidden=!v; };
+  const resetAll=()=>{ on={...ALL}; draft={...ALL}; setQ(''); render(); toResults(); };
+  $('#fGroups').addEventListener('click',e=>{const b=e.target.closest('[data-g]'); if(!b) return; draft[b.dataset.g]=b.dataset.v; renderFilters();});
+  $('#fApply').onclick=apply;
+  $('#fClear').onclick=()=>{ draft={...ALL}; renderFilters(); };
+  room.addEventListener('click',e=>{const b=e.target.closest('[data-clear]'); if(!b) return; const k=b.dataset.clear;
+    if(k==='all') return resetAll(); if(k==='q') setQ(''); else { on[k]='all'; draft[k]='all'; } render(); toResults(); });
+  let qt; $('#fSearch').addEventListener('input',e=>{ clearTimeout(qt); qt=setTimeout(()=>{ q=e.target.value.trim(); $('#fSearchClear').hidden=!q; render(); },140); });
+  $('#fSearch').addEventListener('keydown',e=>{ if(e.key==='Escape'&&e.target.value){ e.stopPropagation(); setQ(''); render(); } });
+  $('#fSearchClear').onclick=()=>{ setQ(''); render(); $('#fSearch').focus(); };
+  dropdown($('#fSort'),{label:'Sort by',prefix:'Sort',options:[{v:'views',label:'Most viewed',s:'Popular'},{v:'low',label:'Price, low to high',s:'Price ↑'},{v:'high',label:'Price, high to low',s:'Price ↓'},{v:'az',label:'Name, A to Z',s:'A to Z'}],value:sort,short:o=>innerWidth<640?o.s:o.label,onChange:v=>{ sort=v; renderGrid(); toResults(); }});
+  $('#fOpen').onclick=()=>{ draft={...on}; renderFilters(); show(side); };
+  $('#fClose').onclick=()=>{ draft={...on}; renderFilters(); hide(side); };
+  grid.addEventListener('mouseover',e=>{const a=e.target.closest('.card')?.querySelector('img.alt'); if(a&&!a.getAttribute('src')){a.onload=()=>a.classList.add('ready'); a.src=a.dataset.src;}});
+  grid.onclick=e=>{const c=e.target.closest('.card'); if(c) openItem(c.dataset.slug)};
+  onCur(renderFilters);
+  /* links like shop.html#who=her&type=dresses set and apply the filters */
+  const fromHash=scroll=>{ const h=new URLSearchParams(location.hash.slice(1)); if(h.has('bag')){ setTimeout(()=>show(drawer),200); return; }
+    if(![...KEYS,'q'].some(k=>h.has(k))) return;
+    KEYS.forEach(k=>{ on[k]=h.get(k)||'all'; }); if(!WHO.some(x=>x[0]===on.who)) on.who='all'; if(!TYPES.some(x=>x[0]===on.type)) on.type='all'; if(!PRICES.some(x=>x[0]===on.price)) on.price='all'; if(!FAMS.some(x=>x[0]===on.fam)) on.fam='all';
+    draft={...on}; setQ((h.get('q')||'').trim()); render(); if(scroll) toResults(); };
+  render(); fromHash(false);
+  addEventListener('hashchange',()=>fromHash(true));
+}
+
+/* ---------- overlays ---------- */
+const scrim=$('#scrim'); let panelOpen=null;
+function show(el){ if(panelOpen&&panelOpen!==el) hide(panelOpen,true); panelOpen=el; el.classList.add('on'); el.setAttribute('aria-hidden','false'); scrim.classList.add('on'); lenis&&lenis.stop(); }
+function hide(el,keep){ if(!el) return; el.classList.remove('on'); el.setAttribute('aria-hidden','true'); if(panelOpen===el) panelOpen=null; if(!keep&&!panelOpen){scrim.classList.remove('on'); lenis&&lenis.start();} }
+scrim.onclick=()=>{ if(panelOpen===$('#side')) $('#fClose').click(); else hide(panelOpen); };
+addEventListener('keydown',e=>{ if(e.key!=='Escape') return; if(lb&&lb.classList.contains('on')) closeFilm(); else if($('#chat').classList.contains('on')) closeChat(); else if(panelOpen===$('#side')) $('#fClose').click(); else hide(panelOpen); closeMenu(); });
+
+/* item page */
+const sheet=$('#sheet'); let itSlug=null;
+function openItem(slug){ const p=by[slug]; if(!p) return; itSlug=slug;
+  $('#itCat').textContent=`${p.cat} · ${forName(p.for)} · ${p.fam}`; $('#itTitle').textContent=p.title; $('#itPrice').dataset.rwf=p.rwf; $('#itPrice').textContent=money(p.rwf);
+  $('#itDesc').textContent=p.desc&&p.desc.length>30&&p.desc.toLowerCase()!==p.title.toLowerCase()?p.desc:'Ask the atelier on WhatsApp for fabric and fit details.';
+  const imgs=p.imgs.length?p.imgs:[p.card]; $('#itMain').src=imgs[0]; $('#itMain').alt=p.title;
+  $('#itThumbs').innerHTML=imgs.length>1?imgs.map((s,i)=>`<button type="button" data-src="${s}" aria-current="${i===0}" aria-label="Photo ${i+1}"><img src="${s}" alt="" loading="lazy"></button>`).join(''):'';
+  fillConv(); sheet.scrollTop=0; show(sheet); setTimeout(()=>$('#sheetClose').focus(),60); }
+function fillConv(){ const p=by[itSlug]; if(!p) return; $('#itPrice').textContent=money(p.rwf); $('#itNote').textContent=cur==='RWF'?'':`Set price ${fmt(p.rwf,'RWF')}`; $('#itConv').innerHTML=CURS.map(([c,n])=>`<li><span>${n}</span><b>${money(p.rwf,c)}</b></li>`).join(''); }
+$('#itThumbs').onclick=e=>{const b=e.target.closest('button'); if(!b) return; $('#itMain').src=b.dataset.src; $$('#itThumbs button').forEach(x=>x.setAttribute('aria-current',x===b));};
+$('#sheetClose').onclick=()=>hide(sheet);
+$('#itAdd').onclick=()=>{addToBag(itSlug); hide(sheet);};
+$('#itFit').onclick=()=>{const p=by[itSlug]; hide(sheet); bookFor({who:p.for,cut:cutOf(p),refs:[p.slug]});};
+$('#itAsk').onclick=()=>{const p=by[itSlug]; hide(sheet); openChat(); send(`Tell me about the ${p.title}.`);};
+
+/* bag */
+let bag=store.get('bag',[]).filter(i=>by[i.slug]); const drawer=$('#drawer');
+function addToBag(slug){const it=bag.find(i=>i.slug===slug); it?it.q++:bag.push({slug,q:1}); store.set('bag',bag); renderBag(); toast(by[slug].title+' is in your bag');}
+function renderBag(){
+  const n=bag.reduce((s,i)=>s+i.q,0); paintCart(n);
+  $('#bagItems').innerHTML=bag.length?bag.map(i=>{const p=by[i.slug];return `<div class="bi"><img src="${p.card}" alt=""><div><h4>${esc(p.title)}</h4><div class="q"><button type="button" data-d="-1" data-s="${p.slug}" aria-label="One fewer">−</button>${i.q}<button type="button" data-d="1" data-s="${p.slug}" aria-label="One more">+</button></div></div><span class="price">${money(p.rwf*i.q)}</span></div>`}).join(''):'<p style="color:var(--muted)">Your bag is empty. Open any piece to add it.</p>';
+  const tot=bag.reduce((s,i)=>s+by[i.slug].rwf*i.q,0); $('#bagTotal').textContent=bag.length?money(tot):'';
+  const lines=bag.map(i=>`• ${by[i.slug].title} × ${i.q} (RWF ${(by[i.slug].rwf*i.q).toLocaleString('en-US')})`).join('\n');
+  const co=$('#bagCheckout'); co.href=`https://wa.me/${WA}?text=${encodeURIComponent(`Hello Prime Couture, I'd like to order:\n${lines}\nTotal: RWF ${tot.toLocaleString('en-US')}`)}`; co.setAttribute('aria-disabled',!bag.length);
+}
+$('#bagItems').onclick=e=>{const b=e.target.closest('button[data-d]'); if(!b) return; const it=bag.find(i=>i.slug===b.dataset.s); it.q+=+b.dataset.d; if(it.q<1) bag=bag.filter(x=>x!==it); store.set('bag',bag); renderBag();};
+$('#bagClose').onclick=()=>hide(drawer);
+if(PAGE==='shop') $('#bagOpen').addEventListener('click',e=>{ e.preventDefault(); show(drawer); });
+['#curItem','#curBag'].forEach(s=>{ const h=$(s); h.classList.add('dd--sm'); curPickers.push(dropdown(h,{label:'Currency',options:CURS.map(([c,n])=>({v:c,label:c,sub:n})),value:cur,short:o=>o.v,onChange:setCur})); });
+onCur(()=>{ renderBag(); if(itSlug) fillConv(); });
+
+/* ---------- booking: occasion, who it is for, the piece, the day, your details ---------- */
+const IC={ring:'<circle cx="12" cy="14" r="6"/><path d="M9 4h6l-1.5 4h-3z"/>',gift:'<rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M4 13h16M12 9v11M12 9c-2-4-6-3-5 0M12 9c2-4 6-3 5 0"/>',brief:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 12h18"/>',star:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L3.4 9.3l6-.7z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',dots:'<circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/>',
+  her:'<circle cx="12" cy="5.5" r="2.8"/><path d="M9.5 10h5l3 10h-11z"/>',him:'<circle cx="12" cy="5.5" r="2.8"/><path d="M7 21v-7.5a5 5 0 0 1 10 0V21"/>',both:'<circle cx="7.5" cy="6" r="2.4"/><circle cx="16.5" cy="6" r="2.4"/><path d="M5.5 10h4l2.2 9.5H3.3zM13 20v-6a3.5 3.5 0 0 1 7 0v6"/>',
+  morning:'<path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 6v3M5 10l2 1.5M19 10l-2 1.5"/>',afternoon:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/>',evening:'<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>'};
+const svg=(k,c='ic')=>`<svg class="${c}" viewBox="0 0 24 24">${IC[k]}</svg>`;
+const TICK='<span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>';
+const TIMES=[['Morning','9am to 12pm','morning'],['Afternoon','12pm to 4pm','afternoon'],['Evening','4pm to 8pm','evening']];
+const day0=d=>{const x=new Date(d); x.setHours(0,0,0,0); return x;};
+const TODAY=day0(new Date()), MIN=new Date(TODAY.getTime()+864e5), MAX=new Date(TODAY.getTime()+60*864e5);
+const isOpen=d=>d>=MIN&&d<=MAX&&d.getDay()!==0;
+const fmtDay=d=>d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+const bk={occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,name:'',note:''}; let step=1, sent=false, view=new Date(MIN.getFullYear(),MIN.getMonth(),1);
+const LABELS=['Occasion','Who it is for','The piece','Date and time','Your details'];
+const whoList=()=>bk.who==='both'?['her','him']:bk.who?[bk.who]:[];
+const whoText=()=>({her:'A woman',him:'A man',both:'A woman and a man'})[bk.who]||'';
+const valid=n=>n===1?!!bk.occ:n===2?!!bk.who:n===3?whoList().every(w=>bk.cut[w]):n===4?!!(bk.date&&bk.time):!!bk.name;
+const firstOpen=()=>[1,2,3,4].find(n=>!valid(n))||5;
+const cutsFor=w=>{ const ids=((FOR_OCC[bk.occ]||FOR_OCC['Something else'])[w]||[]).slice(); const c=bk.cut[w]; if(c&&c!=='any'&&!ids.includes(c)) ids.unshift(c); return [...ids,'any']; };
+const likes=w=>bk.refs[w].map(s=>by[s]&&by[s].title).filter(Boolean);
+const pieceLine=w=>{ const c=cut(bk.cut[w]); if(!c) return ''; const l=likes(w); return c.name+(l.length?` (I like: ${l.join(', ')})`:''); };
+function message(){
+  const pieces=whoList().map(w=>bk.who==='both'?`${w==='her'?'Her':'His'} piece: ${pieceLine(w)}`:`Piece: ${pieceLine(w)}`).join('\n');
+  return `Hello Prime Couture,${bk.name?` this is ${bk.name}.`:''}\nI'd like to book a fitting.\n\nOccasion: ${bk.occ}\nFor: ${whoText().toLowerCase()}\n${pieces}\nWhen: ${fmtDay(bk.date)}, ${bk.time.toLowerCase()}${bk.note?`\nNote: ${bk.note}`:''}\n\nThank you.`;
+}
+const imgFor=src=>!src?'':src.startsWith('film:')?(film(src.slice(5))||{}).poster:((by[src]||{}).card||'');
+function calendar(){
+  const y=view.getFullYear(), m=view.getMonth(), first=new Date(y,m,1), lead=(first.getDay()+6)%7, n=new Date(y,m+1,0).getDate();
+  const canPrev=new Date(y,m,0)>=MIN, canNext=new Date(y,m+1,1)<=MAX;
+  let cells=['Mo','Tu','We','Th','Fr','Sa','Su'].map(w=>`<span class="wd" aria-hidden="true">${w}</span>`).join('')+'<span></span>'.repeat(lead);
+  for(let d=1; d<=n; d++){ const dt=new Date(y,m,d), ok=isOpen(dt), sel=bk.date&&dt.getTime()===bk.date.getTime(), today=dt.getTime()===TODAY.getTime();
+    cells+=`<button type="button" class="${today?'today':''}" data-date="${dt.getTime()}" ${ok?'':'disabled'} aria-pressed="${!!sel}" aria-label="${fmtDay(dt)}${ok?'':', unavailable'}">${d}</button>`; }
+  return `<div class="cal"><div class="cal-h"><button type="button" data-cal="-1" ${canPrev?'':'disabled'} aria-label="Previous month"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><b>${view.toLocaleDateString('en-GB',{month:'long',year:'numeric'})}</b><button type="button" data-cal="1" ${canNext?'':'disabled'} aria-label="Next month"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div><div class="cal-g" role="grid">${cells}</div></div>`;
+}
+function pieceBlock(w){
+  const sel=bk.cut[w], c=cut(sel);
+  let h=`<div class="pblock">${bk.who==='both'?`<h4>${w==='her'?'For her':'For him'}</h4>`:''}<div class="ptiles" role="radiogroup" aria-label="${w==='her'?'Her piece':'His piece'}">${cutsFor(w).map(id=>{const k=cut(id), src=imgFor(k.img); return `<button type="button" class="ptile" role="radio" data-cut="${id}" data-w="${w}" aria-checked="${sel===id}">${TICK}<div class="im${src?'':' none'}">${src?`<img src="${src}" alt="" loading="lazy">`:'?'}</div><span>${k.name}</span></button>`;}).join('')}</div>`;
+  if(c&&c.cats.length){ const list=P.filter(p=>p.for===w&&c.cats.includes(p.cat)).sort((a,b)=>(b.views||0)-(a.views||0)).slice(0,8);
+    if(list.length) h+=`<div class="refs"><p class="refs-h"><b>From the collection</b><span>Optional. Tap up to three you would like to try on.</span></p><div class="ref-row" data-lenis-prevent>${list.map(p=>`<button type="button" class="ref" role="checkbox" data-ref="${p.slug}" data-w="${w}" aria-checked="${bk.refs[w].includes(p.slug)}">${TICK}<img src="${p.card}" alt="" loading="lazy"><span>${esc(p.title)}</span><em class="price" data-rwf="${p.rwf}">${money(p.rwf)}</em></button>`).join('')}</div></div>`; }
+  else if(sel==='umu') h+=`<p class="refs-note">Umushanana is draped for you. Bring a colour in mind, or choose fabric at the fitting.</p>`;
+  else if(sel==='any') h+=`<p class="refs-note">No problem. The atelier will show you pieces${OCC_FOR[bk.occ]||''} at the fitting.</p>`;
+  return h+'</div>';
+}
+function renderBk(){
+  const box=$('#bk'); if(!box) return;
+  box.classList.toggle('filling',step>2&&!sent);
+  if(sent){ box.innerHTML=`<div class="done"><p class="eyebrow"><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Request ready in WhatsApp</p><h3>Come in for a fitting</h3><p class="hint" style="color:var(--ui-mfg);margin:10px 0 0">${esc(bk.name?bk.name+', here':'Here')} is what happens next for ${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}.</p>
+    <ol class="next"><li class="ok"><div><b>Send your request</b><span>It opened in WhatsApp, ready to send. Press send there.</span></div></li><li><div><b>The atelier confirms</b><span>They reply on WhatsApp with your time.</span></div></li><li><div><b>Come to Gishushu</b><span>15 KG 599 St, Monday to Saturday, 9am to 8pm.</span></div></li></ol>
+    <p class="alt2">WhatsApp did not open? Message or call <a href="https://wa.me/${WA}" target="_blank" rel="noopener">+250 781 178 499</a>.</p>
+    <div class="acts"><a class="u-btn" href="https://www.google.com/maps/search/?api=1&query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a><button type="button" class="u-btn outline" data-act="restart">Start a new request</button></div></div>`; return; }
+  let h=`<div class="bk-h"><div><b>Book a fitting</b><small>Step ${step} of 5 · ${LABELS[step-1]}</small></div>${step>1&&bk.occ?`<span class="bk-ctx">${esc(bk.occ)}${bk.who?' · '+esc(whoText()):''}</span>`:''}</div><div class="bk-progress" aria-hidden="true">${[1,2,3,4,5].map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body">`;
+  if(step===1) h+=`<h3>What is the occasion?</h3><p class="hint">Five quick questions, then we write the WhatsApp message for you.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
+  if(step===2) h+=`<h3>Who are we dressing${OCC_FOR[bk.occ]||''}?</h3><p class="hint">We will only show pieces that suit them and the occasion.</p><div class="rcards who" role="radiogroup" aria-label="Who it is for">${WHO_B.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-who="${k}" aria-checked="${bk.who===k}">${TICK}${svg(k)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
+  if(step===3) h+=`<h3>${bk.who==='both'?'Choose a piece for each of them':bk.who==='her'?'Choose her piece':'Choose his piece'}</h3><p class="hint">What we make for ${OCC_PL[bk.occ]||'any occasion'}. Pick the closest; the details are settled at your fitting.</p>${whoList().map(pieceBlock).join('')}`;
+  if(step===4) h+=`<h3>When would you like to come in?</h3><p class="hint">The atelier is open Monday to Saturday, 9am to 8pm.</p><div class="when">${calendar()}<div><div class="slots" role="radiogroup" aria-label="Time of day">${TIMES.map(([t,r])=>`<button type="button" class="rcard" role="radio" data-time="${t}" aria-checked="${bk.time===t}">${TICK}<b>${t}</b><small>${r}</small></button>`).join('')}</div><p class="chosen">${bk.date?`<b>${esc(fmtDay(bk.date))}</b>${bk.time?', '+esc(bk.time.toLowerCase()):', choose a time'}`:'Choose a date on the calendar.'}</p></div></div>`;
+  if(step===5) h+=`<h3>Your details</h3><p class="hint">Check your request, then send it on WhatsApp.</p><label class="u-field" id="nameField" for="bkName"><span>Your name</span><input id="bkName" autocomplete="name" placeholder="e.g. Aline Uwase" value="${esc(bk.name)}"></label><p class="err" id="nameErr" hidden>Add your name so the atelier knows who is coming.</p><label class="u-field" for="bkNote"><span>Anything we should know? <em>Optional</em></span><textarea id="bkNote" placeholder="The date of your ${esc((bk.occ||'event').toLowerCase())}, colours you like, sizes">${esc(bk.note)}</textarea></label>
+    <dl class="summary"><div><dt>Occasion</dt><dd>${esc(bk.occ)}</dd><button type="button" class="u-btn ghost sm" data-go="1">Edit</button></div><div><dt>For</dt><dd>${esc(whoText())}</dd><button type="button" class="u-btn ghost sm" data-go="2">Edit</button></div>${whoList().map(w=>`<div><dt>${bk.who==='both'?(w==='her'?'Her piece':'His piece'):'Piece'}</dt><dd>${esc(cut(bk.cut[w]).name)}${likes(w).length?` · ${esc(likes(w).join(', '))}`:''}</dd><button type="button" class="u-btn ghost sm" data-go="3">Edit</button></div>`).join('')}<div><dt>When</dt><dd>${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}</dd><button type="button" class="u-btn ghost sm" data-go="4">Edit</button></div></dl>`;
+  h+=`</div><div class="bk-foot">${step>1?'<button type="button" class="u-btn ghost" data-act="back"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button>':'<span></span>'}<div class="right">`;
+  if(step<5) h+=`<button type="button" class="u-btn" data-act="next" ${valid(step)?'':'disabled'}>Continue<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`;
+  else h+=`<button type="button" class="u-btn outline" data-act="copy">Copy message</button><a class="u-btn" id="bkSend" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(message())}"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>Send on WhatsApp</a>`;
+  h+=`</div></div>`;
+  box.innerHTML=h;
+  if(step===5){ const n=$('#bkName'), t=$('#bkNote'), s=$('#bkSend');
+    const upd=()=>{bk.name=n.value.trim(); bk.note=t.value.trim(); s.href=`https://wa.me/${WA}?text=${encodeURIComponent(message())}`; if(bk.name){$('#nameErr').hidden=true; $('#nameField').classList.remove('bad');}};
+    n.addEventListener('input',upd); t.addEventListener('input',upd);
+    s.addEventListener('click',e=>{ upd(); if(!bk.name){ e.preventDefault(); $('#nameErr').hidden=false; $('#nameField').classList.add('bad'); n.focus(); return;} setTimeout(()=>{sent=true; renderBk();},400); }); }
+}
+const goStep=n=>{ step=n; renderBk(); const top=$('#bk').getBoundingClientRect().top; if(top<barH()||top>innerHeight*.6) go('#bk',16); };
+function prefill({occ,who,cut:c,refs,piece}={}){
+  if(occ&&OCC_NAMES.includes(occ)) bk.occ=occ;
+  const pc=piece&&P.find(p=>p.title.toLowerCase()===String(piece).toLowerCase());
+  if(['her','him','both'].includes(who)) bk.who=who; else if(pc) bk.who=pc.for;
+  const k=c&&(cut(c)||CUTS.find(x=>x.name.toLowerCase()===String(c).toLowerCase()));
+  const w=k&&k.w!=='both'?k.w:(bk.who!=='both'?bk.who:null);
+  if(k&&w){ if(!bk.who) bk.who=w; if(bk.who==='both'||bk.who===w) bk.cut[w]=k.id; }
+  const rs=[...(refs||[]),...(pc?[pc.slug]:[])].filter(s=>by[s]);
+  rs.forEach(s=>{ const p=by[s]; if(!bk.who) bk.who=p.for; if(bk.who==='both'||bk.who===p.for){ if(!bk.cut[p.for]) bk.cut[p.for]=cutOf(p); if(!bk.refs[p.for].includes(s)) bk.refs[p.for].push(s); } });
+}
+if($('#bk')){
+  $('#bk').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b||b.disabled) return; const d=b.dataset;
+    if(d.occ){ bk.occ=d.occ; renderBk(); }
+    else if(d.who){ bk.who=d.who; ['her','him'].forEach(w=>{ if(!whoList().includes(w)){ bk.cut[w]=null; bk.refs[w]=[]; } }); renderBk(); }
+    else if(d.cut){ const w=d.w; if(bk.cut[w]!==d.cut){ bk.cut[w]=d.cut; bk.refs[w]=bk.refs[w].filter(s=>cut(d.cut).cats.includes(by[s].cat)); } renderBk(); }
+    else if(d.ref){ const w=d.w, r=bk.refs[w], i=r.indexOf(d.ref); if(i>-1) r.splice(i,1); else { if(r.length>=3) r.shift(); r.push(d.ref); } const sc=b.parentElement.scrollLeft; renderBk(); const row=$$('#bk .ref-row')[whoList().indexOf(w)]; if(row) row.scrollLeft=sc; }
+    else if(d.date){ bk.date=new Date(+d.date); renderBk(); }
+    else if(d.time){ bk.time=d.time; renderBk(); }
+    else if(d.cal){ view=new Date(view.getFullYear(),view.getMonth()+(+d.cal),1); renderBk(); }
+    else if(d.go){ goStep(+d.go); }
+    else if(d.act==='back'){ goStep(Math.max(1,step-1)); }
+    else if(d.act==='next'){ if(valid(step)) goStep(step+1); }
+    else if(d.act==='restart'){ Object.assign(bk,{occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,note:''}); sent=false; step=1; renderBk(); }
+    else if(d.act==='copy'){ const m=message(); const ok=()=>toast('Message copied'); const fb=()=>{const ta=document.createElement('textarea'); ta.value=m; document.body.append(ta); ta.select(); try{document.execCommand('copy'); ok();}catch(_){} ta.remove();}; navigator.clipboard?navigator.clipboard.writeText(m).then(ok,fb):fb(); }
+  });
+  $('#bk').addEventListener('dblclick',e=>{ const b=e.target.closest('[data-occ],[data-who]'); if(b&&valid(step)) goStep(step+1); });
+  bookFor=o=>{ prefill(o); sent=false; step=firstOpen(); renderBk(); go('#book'); };
+  const pre=store.get('book',null);
+  if(pre){ store.set('book',null); prefill(pre); step=firstOpen(); }
+  renderBk();
+  if(pre||location.hash==='#book') setTimeout(()=>go('#book'),400);
+}
+
+/* ---------- Prime concierge ---------- */
+const chat=$('#chat'), msgs=$('#msgs'), cin=$('#chatIn'); let turns=[], busy=false, ctl=null, sample=null;
+const FACTS=`Prime Couture is a tailoring atelier in Kigali, Rwanda ("Essential power tailoring"). Address: 15 KG 599 St, Gishushu, Kigali. Hours: Monday to Saturday, 9am to 8pm (Kigali time). Phone and WhatsApp: +250 781 178 499. Email: contact@prime-couture.com. Instagram: @primecouturehq. Orders and fittings are confirmed on WhatsApp. Prices are in Rwandan francs (RWF). The website has a home page, a collection page with every piece (shop.html) and an atelier page.`;
+const CATALOGUE=P.map(p=>`${p.slug} | ${p.title} | ${p.cat} | ${p.fam} | for ${p.for==='her'?'women':'men'} | RWF ${p.rwf}`).join('\n')+`\n(film only, not in the collection) Prime Umushanana | Umushanana | Olive | for women | RWF 156000`;
+const RULES=`You are Prime, the concierge on the Prime Couture website. Be warm, brief and elegant: two to four short sentences, plain English, no lists unless asked, no emoji.
+Only use the facts and catalogue below. Never invent fabrics, sizes, delivery times, payment methods, discounts or stock. If you don't know, say the atelier will confirm on WhatsApp.
+Use the tools: call show_pieces whenever you recommend pieces (up to 6 slugs from the catalogue) so the visitor sees them; call start_booking when the visitor wants a fitting or appointment; call open_piece to open one piece's page.
+FACTS: ${FACTS}
+CATALOGUE (slug | title | type | colour | for | price):
+${CATALOGUE}`;
+const TOOLS=[
+ {name:'show_pieces',description:'Show up to 6 pieces to the visitor as picture cards in the chat. Returns the titles shown.',inputSchema:{type:'object',properties:{slugs:{type:'array',items:{type:'string'}}},required:['slugs']},
+  execute:({slugs})=>{const list=(Array.isArray(slugs)?slugs:[]).map(String).filter(s=>by[s]).slice(0,6); if(!list.length) throw new Error('No matching slugs'); addPicks(list); return list.map(s=>by[s].title);}},
+ {name:'start_booking',description:'Fill in what is known in the fitting form and take the visitor to it. The visitor picks the day and sends it on WhatsApp.',inputSchema:{type:'object',properties:{occasion:{type:'string',enum:OCC_NAMES},who:{type:'string',enum:['her','him','both'],description:'Who the fitting is for'},cut:{type:'string',enum:CUTS.map(c=>c.name)},piece:{type:'string',description:'Exact title of a catalogue piece, if one was discussed'}}},
+  execute:({occasion,who,cut:c,piece})=>{ setTimeout(()=>{closeChat(); bookFor({occ:occasion,who,cut:c,piece:piece?String(piece):null});},1200); return 'Booking form opened with those details.';}},
+ {name:'open_piece',description:'Open the page of one piece by slug.',inputSchema:{type:'object',properties:{slug:{type:'string'}},required:['slug']},
+  execute:({slug})=>{ if(!by[String(slug)]) throw new Error('Unknown slug'); setTimeout(()=>{closeChat(); openItem(String(slug));},900); return 'Opened '+by[String(slug)].title;}}
+];
+function bubble(cls,text){const d=document.createElement('div'); d.className='m '+cls; d.textContent=text; msgs.append(d); msgs.scrollTop=msgs.scrollHeight; return d;}
+function addPicks(slugs){const row=document.createElement('div'); row.className='cpicks'; row.innerHTML=slugs.map(s=>{const p=by[s];return `<button type="button" class="cpick" data-open="${s}"><img src="${p.card}" alt=""><span>${esc(p.title)}</span><em class="price" data-rwf="${p.rwf}">${money(p.rwf)}</em></button>`}).join(''); msgs.append(row); msgs.scrollTop=msgs.scrollHeight;}
+const QUICK=['What do you make?','Wedding looks for men','Something in ivory for women','Book a fitting','Where are you?'];
+const renderQuick=()=>{$('#quick').innerHTML=QUICK.map(q=>`<button type="button">${q}</button>`).join('');};
+$('#quick').onclick=e=>{const b=e.target.closest('button'); if(b) send(b.textContent);};
+msgs.addEventListener('click',e=>{ const o=e.target.closest('[data-open]'); if(o){ closeChat(); openItem(o.dataset.open);} });
+function openChat(){ chat.classList.add('on'); chat.setAttribute('aria-hidden','false'); $('#askBtn').classList.add('hide'); if(!msgs.children.length){ bubble('prime','Welcome to Prime Couture. I can find a piece by colour, occasion or budget, tell you prices, or book your fitting. What are you dressing for?'); renderQuick(); } setTimeout(()=>cin.focus(),200); }
+function closeChat(){ chat.classList.remove('on'); chat.setAttribute('aria-hidden','true'); $('#askBtn').classList.remove('hide'); ctl&&ctl.abort(); }
+if($('#bk')) new IntersectionObserver(([e])=>{ if(!chat.classList.contains('on')) $('#askBtn').classList.toggle('hide',e.isIntersecting); },{threshold:.25}).observe($('#bk'));
+$('#askBtn').onclick=openChat; $('#chatClose').onclick=closeChat;
+$('#chatForm').addEventListener('submit',e=>{e.preventDefault(); const t=cin.value.trim(); if(t) send(t); });
+try{ window.claude?.use?.('sample').then(s=>{sample=s;}).catch(()=>{sample=null;}); }catch(e){}
+async function send(text){
+  if(busy) return; cin.value=''; $('#quick').innerHTML=''; bubble('you',text); busy=true;
+  if(sample){ const out=bubble('prime wait','Thinking…'); turns.push({role:'user',content:text}); ctl=new AbortController();
+    try{ const {text:ans}=await sample([{role:'user',content:RULES},...turns.slice(-10)],{tools:TOOLS,modelTier:'quick',cache:false,signal:ctl.signal,onText:({text})=>{out.classList.remove('wait'); out.textContent=text;}});
+      turns.push({role:'assistant',content:ans}); out.classList.remove('wait'); out.textContent=ans; }
+    catch(err){ if(['not_granted','sampling_disabled','not_declared','capability_disabled','capability_removed','tools_unavailable'].includes(err.code)){ sample=null; out.remove(); turns.pop(); local(text); }
+      else if(err.code==='cancelled'){ out.textContent=err.text||''; if(!out.textContent) out.remove(); turns.pop(); }
+      else { out.classList.remove('wait'); out.textContent=(err.text?err.text+'\n\n':'')+'I lost the thread for a moment. Try again, or message the atelier on WhatsApp: +250 781 178 499.'; turns.pop(); } }
+    busy=false; msgs.scrollTop=msgs.scrollHeight; return; }
+  local(text); busy=false;
+}
+const COLW={ivory:'Ivory',white:'Ivory',cream:'Ivory',sand:'Sand',beige:'Sand',camel:'Sand',brown:'Brown',mocha:'Brown',chocolate:'Brown',red:'Red',maroon:'Red',burgundy:'Red',scarlet:'Red',green:'Green',sage:'Green',olive:'Green',blue:'Blue',navy:'Blue',grey:'Grey',gray:'Grey',silver:'Grey',black:'Black',noir:'Black'};
+const TYPEW={suit:['Double-Breasted','Single-breasted','Tuxedo','Safari Suit'],tuxedo:['Tuxedo'],kaftan:['Kaftan'],shirt:['Kaftan'],jacket:['Jacket','Jacket complete'],dress:['Dress'],gown:['Dress'],set:['Two-Piece Set','Set','Jacket complete','Vest'],safari:['Safari Suit']};
+function local(text){
+  const t=text.toLowerCase(), say=s=>bubble('prime',s);
+  if(/where|address|location|hours|open|visit|map/.test(t)) return say('We are at 15 KG 599 St, Gishushu, Kigali, open Monday to Saturday from 9am to 8pm. Call or WhatsApp +250 781 178 499.');
+  const whoW=/\b(her|she|women|woman|ladies|lady|bride|female)\b/.test(t)?'her':(/\b(him|he|men|man|groom|male|gentleman)\b/.test(t)?'him':null);
+  if(/book|fitting|appointment|measure/.test(t)){ const occ=/wedding/.test(t)?'Wedding':/gusaba|gukwa|dowry/.test(t)?'Gusaba & gukwa':/office|work/.test(t)?'Office':/gala|black tie/.test(t)?'Gala or black tie':null;
+    say('Lovely. I have opened the fitting form for you. It takes a few quick taps.'); setTimeout(()=>{closeChat(); bookFor({occ,who:whoW});},1100); return; }
+  if(/umushanana/.test(t)){ say('The Prime Umushanana is RWF 156,000. You can watch it in Today\'s picks on the home page, and book a fitting for it.'); setTimeout(()=>{closeChat(); $('#picks')?go('#picks'):(location.href='./#picks');},1400); return; }
+  const fams=[...new Set(Object.keys(COLW).filter(w=>new RegExp('\\b'+w).test(t)).map(w=>COLW[w]))];
+  const types=Object.keys(TYPEW).filter(w=>t.includes(w)).flatMap(w=>TYPEW[w]);
+  const budget=(()=>{ if(!/under|below|less|budget|max|up to/.test(t)) return null; const m=t.match(/(\d[\d,.]*)\s*(k)?/); if(!m) return null; let v=parseFloat(m[1].replace(/,/g,'')); if(m[2]) v*=1000; return v<1000?v*1000:v;})();
+  const wed=/wedding|gala|black tie|evening|ceremony|gusaba|gukwa|dowry/.test(t), office=/office|work|business|meeting|interview/.test(t);
+  const titleHit=P.find(p=>t.includes(p.title.toLowerCase()));
+  if(titleHit){ say(`The ${titleHit.title} is ${money(titleHit.rwf)}. ${titleHit.desc&&titleHit.desc.length>20?titleHit.desc:'The atelier can tell you more about fabric and fit on WhatsApp.'}`); addPicks([titleHit.slug]); return; }
+  if(/what do you|what can|sell|make|offer|help/.test(t) && !fams.length && !types.length){
+    return say(`We make ${P.length} pieces: suits (double-breasted, single-breasted, tuxedo and safari), kaftans and linen shirts, jackets, two-piece sets and dresses, and the Prime Umushanana. Prices run from RWF ${Math.min(...P.map(p=>p.rwf)).toLocaleString('en-US')} to RWF ${Math.max(...P.map(p=>p.rwf)).toLocaleString('en-US')}. Tell me the occasion or a colour and I'll show you pieces.`); }
+  if(/price|cost|how much|expensive|cheap/.test(t) && !fams.length && !types.length) return say('Kaftans and shirts start at RWF 78,000, jackets at RWF 86,000, sets at RWF 146,000, and suits run from RWF 280,000 to RWF 555,000. Tell me a colour or occasion and I will show prices for each piece.');
+  let list=P.filter(p=>(!fams.length||fams.includes(p.fam))&&(!types.length||types.includes(p.cat))&&(!whoW||p.for===whoW)&&(!budget||p.rwf<=budget));
+  if(wed&&!types.length) list=list.filter(p=>['Double-Breasted','Tuxedo','Dress','Two-Piece Set','Single-breasted','Safari Suit'].includes(p.cat));
+  if(office&&!types.length) list=list.filter(p=>['Single-breasted','Double-Breasted','Jacket','Jacket complete','Set','Two-Piece Set'].includes(p.cat));
+  if(!fams.length&&!types.length&&!whoW&&!budget&&!wed&&!office) return say('I can help with pieces by colour, occasion or budget, prices, our address, or a fitting. For anything else, the atelier answers on WhatsApp: +250 781 178 499.');
+  if(!list.length) return say('I could not find a piece that matches that exactly. Ask the atelier on WhatsApp, or try another colour.');
+  list=list.slice().sort((a,b)=>b.rwf-a.rwf);
+  say(`Here ${list.length===1?'is one piece':'are '+Math.min(list.length,6)+' pieces'}${fams.length?' in '+fams.join(' and ').toLowerCase():''}${whoW?(whoW==='her'?' for women':' for men'):''}${wed?' for a wedding or ceremony':''}${office?' for the office':''}. Tap one to see it.`); addPicks(list.slice(0,6).map(p=>p.slug));
+}
+
+renderBag();
+startLenis();
+})();
+
+</script>
+</body>
+</html>

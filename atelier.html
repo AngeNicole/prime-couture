@@ -67,10 +67,32 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .top-r{display:flex;justify-content:flex-end;align-items:center;gap:8px}
 .top .btn{height:40px;padding:0 20px;font-size:11px}
 .menu-btn{display:none}
-.cur-top{height:36px;border-radius:999px;border:1px solid var(--line-d);background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F1EAE0' stroke-width='1.8'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 10px center/12px;color:var(--ivory);padding:0 28px 0 14px;font:inherit;font-size:12px;letter-spacing:.08em;appearance:none;-webkit-appearance:none;cursor:pointer}
-.cur-top option,.cur-foot option{color:#1A1612}
-.cur-top:focus,.cur-foot:focus{outline:2px solid var(--ivory);outline-offset:2px}
-.cur-foot{height:40px;border-radius:999px;border:1px solid var(--line-d);background:transparent;color:var(--ivory);padding:0 16px;font:inherit;font-size:14px;margin-top:4px}
+/* ---------- dropdown (button + listbox) ---------- */
+.dd{position:relative;display:inline-block;vertical-align:middle}
+.dd-btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 12px 0 14px;border-radius:10px;border:1px solid #E3DCD3;background:#fff;font-size:14px;color:var(--ink);white-space:nowrap;transition:border-color .2s,box-shadow .2s,background .2s}
+.dd-btn:hover{border-color:#BDB3A7}
+.dd-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;opacity:.6;transition:transform .3s var(--ease)}
+.dd.on .dd-btn svg{transform:rotate(180deg)}
+.dd.on .dd-btn,.dd-btn:focus-visible{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,22,18,.08)}
+.dd-p{color:#6E655C}
+.dd-list{position:absolute;z-index:75;top:calc(100% + 6px);right:0;min-width:max(100%,210px);max-height:330px;overflow:auto;margin:0;padding:6px;list-style:none;border-radius:12px;background:#fff;color:var(--ink);border:1px solid #E3DCD3;box-shadow:0 22px 48px -18px rgba(26,22,18,.4);opacity:0;visibility:hidden;transform:translateY(-4px) scale(.98);transform-origin:top right;pointer-events:none;transition:opacity .16s,transform .24s var(--ease),visibility 0s .24s;outline:none;text-align:left;letter-spacing:.01em;text-transform:none}
+.dd.up .dd-list{top:auto;bottom:calc(100% + 6px);transform-origin:bottom right}
+.dd.left .dd-list{right:auto;left:0;transform-origin:top left}
+.dd.left.up .dd-list{transform-origin:bottom left}
+.dd.on .dd-list{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .16s,transform .24s var(--ease)}
+.dd-list li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 10px;border-radius:8px;font-size:14px;line-height:1.3;cursor:pointer}
+.dd-list li small{display:block;font-size:12px;color:#6E655C;margin-top:1px}
+.dd-list li.act{background:#EFE9E1}
+.dd-list li svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;opacity:0;flex-shrink:0}
+.dd-list li[aria-selected="true"]{font-weight:500}
+.dd-list li[aria-selected="true"] svg{opacity:1}
+.dd--dark .dd-btn{height:36px;border-radius:999px;border-color:var(--line-d);background:transparent;color:var(--ivory);font-size:12px;letter-spacing:.08em;padding:0 10px 0 14px}
+.dd--dark .dd-btn:hover{border-color:rgba(241,234,224,.45);background:rgba(241,234,224,.06)}
+.dd--dark.on .dd-btn,.dd--dark .dd-btn:focus-visible{border-color:var(--ivory);box-shadow:0 0 0 3px rgba(241,234,224,.14)}
+.dd--sm .dd-btn{height:36px;font-size:13px}
+.cur-foot{margin-top:4px}
+.cur-foot .dd-btn{height:42px;font-size:14px;padding:0 12px 0 18px}
+.cur-foot .dd-list{left:0;right:auto;transform-origin:bottom left}
 .sr{position:absolute;left:-9999px}
 .menu{position:fixed;z-index:85;inset:0;background:var(--red);color:var(--ivory);padding:calc(var(--bar) + 40px + env(safe-area-inset-top,0px)) var(--gut) 40px;display:flex;flex-direction:column;gap:20px;opacity:0;pointer-events:none;transition:opacity .4s}
 .menu.on{opacity:1;pointer-events:auto}
@@ -133,9 +155,14 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .m1{grid-column:span 5;grid-row:span 4}.m2{grid-column:span 4;grid-row:span 3}.m3{grid-column:span 3;grid-row:span 2}.m4{grid-column:span 3;grid-row:span 3}.m5{grid-column:span 4;grid-row:span 3}.m6{grid-column:span 5;grid-row:span 2}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:48px}
 .films{padding-block:clamp(72px,8vw,120px)}
-.ig-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.ig{border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 20px 50px -30px rgba(0,0,0,.6);min-width:0}
-.ig iframe{display:block;width:100%;height:600px;border:0}
+.ig-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px}
+/* Instagram's player, cropped to the film itself: its header, frame and footer sit outside the window */
+.rv-tile{margin:0;min-width:0}
+.rv{position:relative;aspect-ratio:280/498;border-radius:10px;overflow:hidden;background:var(--red-deep);box-shadow:0 30px 60px -36px rgba(0,0,0,.7)}
+.rv iframe{position:absolute;left:0;top:0;width:400px;height:640px;border:0;transform-origin:0 0;transform:scale(var(--k,1)) translate(-60px,-55px);opacity:0;transition:opacity .6s}
+.rv iframe.ready{opacity:1}
+.rv-tile figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;font-size:13px;color:var(--blush)}
+.rv-tile figcaption a{color:var(--ivory);text-decoration:none;border-bottom:1px solid var(--line-d);padding-bottom:2px}
 .ig-card{display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:9/16;padding:24px;border-radius:10px;background:var(--red-deep);box-shadow:inset 0 0 0 1px var(--line-d);text-decoration:none;color:var(--ivory)}
 .ig-card small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blush)}
 .ig-card b{font-weight:400;font-size:22px;line-height:1.25}
@@ -156,24 +183,24 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .ig-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .visit-grid{grid-template-columns:1fr}
 }
-@media (max-width:560px){.ig-grid{grid-template-columns:1fr}.ig iframe{height:640px}}
+@media (max-width:560px){.ig-grid{gap:24px 12px}.rv-tile figcaption{font-size:12px;gap:6px;white-space:nowrap}}
 </style>
 </head>
-<body>
+<body data-page="atelier">
 <header class="top" id="top">
   <div class="wrap top-in">
-    <nav aria-label="Primary"><a href="./#picks">Today's picks</a><a href="./#collection">Collection</a><a href="atelier.html" aria-current="page">Atelier</a></nav>
+    <nav aria-label="Primary"><a href="./#picks">Today's picks</a><a href="shop.html">Collection</a><a href="atelier.html" aria-current="page">Atelier</a></nav>
     <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
     <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
     <div class="top-r">
-      
+      <div class="cur-top dd--dark" data-cur></div>
       <a class="btn btn--light" href="./#book">Book a fitting</a>
-      <button type="button" class="icon" id="bagOpen" aria-label="Open bag"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><i id="bagCount" data-n="0"></i></button>
+      <a class="icon" id="bagOpen" href="shop.html" aria-label="All pieces"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.4l2.2 10.6a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2L20.6 8H5.8"/><circle cx="9.6" cy="19.6" r="1.3"/><circle cx="17.2" cy="19.6" r="1.3"/></svg><i id="bagCount" data-n="0"></i></a>
     </div>
   </div>
 </header>
 <div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
-  <a class="big" href="./#picks">Today's picks</a><a class="big" href="./#collection">Collection</a><a class="big" href="atelier.html">Atelier</a>
+  <a class="big" href="./#picks">Today's picks</a><a class="big" href="shop.html">Collection</a><a class="big" href="atelier.html">Atelier</a>
   <a class="btn btn--light" href="./#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
 </div>
 
@@ -198,7 +225,6 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
     <div class="wrap">
       <div class="sec-head"><div><h2 class="title" id="fH">Fittings, filmed here</h2><p class="lede">Clients trying on their pieces in the atelier, from the Prime Couture Instagram.</p></div><a class="link" href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Follow @primecouturehq</a></div>
       <div class="ig-grid" id="igGrid"></div>
-      <p class="ig-note" id="igNote" hidden>Films play through Instagram. Open one to watch it there.</p>
     </div>
   </section>
 
@@ -234,8 +260,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </div>
   <div class="wrap foot-cols">
     <div><h4>Shop</h4><ul>
-      <li><a href="./#collection" data-who="him">Men</a></li><li><a href="./#collection" data-who="her">Women</a></li>
-      <li><a href="./#collection" data-type="suits">Suits</a></li><li><a href="./#collection" data-type="kaftans">Kaftans &amp; shirts</a></li><li><a href="./#collection" data-type="dresses">Dresses</a></li>
+      <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li>
+      <li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
     </ul></div>
     <div><h4>Atelier</h4><ul>
       <li><a href="atelier.html">Inside the atelier</a></li><li><a href="./#book">Book a fitting</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Directions</a></li>
@@ -245,7 +271,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
     </ul></div>
     <div><h4>Visit</h4><ul>
       <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
-    </ul></div>
+    </ul><h4 style="margin-top:28px">Prices in</h4><div class="cur-foot dd--dark" data-cur></div><p style="margin:12px 0 0;font-size:13px;color:var(--blush)">Set in RWF. Other currencies are approximate.</p></div>
   </div>
   <div class="wrap foot-word" aria-hidden="true"><span>PRIME COUTURE</span></div>
   <script>(()=>{const box=document.querySelector(".foot-word"),w=box&&box.querySelector("span");if(!w)return;const fit=()=>{w.style.fontSize="100px";const cs=getComputedStyle(box),avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);w.style.fontSize=Math.max(24,Math.floor(100*avail/w.offsetWidth*10)/10)+"px";};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener("resize",fit);})();</script>
@@ -253,9 +279,93 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (() => {
+/* Shared by every page: helpers, money and the currency pickers, the custom dropdown, smooth scroll, menu, newsletter, the cart. */
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k,d){try{const v=localStorage.getItem('pc_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('pc_'+k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let tt; const toast=t=>{const e=$('#toast'); if(!e) return; e.textContent=t;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1900)};
+let lenis=null;
+const barH=()=>parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bar'))||0;
+/* scroll so the target starts just under the header bar */
+const go=(sel,extra=0)=>{const t=typeof sel==='string'?document.querySelector(sel):sel; if(!t) return; const off=-barH()-extra;
+  if(lenis) lenis.scrollTo(t,{offset:off}); else window.scrollTo({top:t.getBoundingClientRect().top+scrollY+off,behavior:reduce?'auto':'smooth'}); };
+
+/* money: prices are set in RWF; every other currency is an approximate conversion */
+const CURS=[['RWF','Rwandan franc',1],['USD','US dollar',1/1440],['EUR','Euro',1/1565],['GBP','British pound',1/1846],['KES','Kenyan shilling',0.0896],['UGX','Ugandan shilling',2.57]];
+const RATE=Object.fromEntries(CURS.map(c=>[c[0],c[2]]));
+let cur=store.get('cur','RWF'); if(!RATE[cur]) cur='RWF';
+const fmt=(v,c)=>new Intl.NumberFormat('en-US',{style:'currency',currency:c,currencyDisplay:['RWF','KES','UGX'].includes(c)?'code':'narrowSymbol',maximumFractionDigits:0}).format(Math.round(v)).replace(/ /g,' ');
+const money=(rwf,c=cur)=>(c==='RWF'?'':'≈ ')+fmt(rwf*RATE[c],c);
+const curHooks=[], curPickers=[];
+const onCur=fn=>curHooks.push(fn);
+function setCur(c){ if(!RATE[c]||c===cur) return; cur=c; store.set('cur',c);
+  $$('[data-rwf]').forEach(e=>e.textContent=money(+e.dataset.rwf)); curPickers.forEach(p=>p.set(c)); curHooks.forEach(f=>f());
+  toast(c==='RWF'?'Prices in Rwandan francs':`Prices shown in ${CURS.find(x=>x[0]===c)[1].toLowerCase()}s, approximate`); }
+
+/* the dropdown: a button and a listbox, styled like the rest of the site.
+   Keyboard: arrows, Home, End, a letter, Enter or Space to choose, Escape to close. */
+const CHEV='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>';
+const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+let ddN=0, ddOpen=null;
+function dropdown(host,{label,options,value,onChange,short,prefix}){
+  const id='dd'+(++ddN); let val=value, act=0;
+  host.classList.add('dd');
+  host.innerHTML=`<button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="${esc(label)}">${prefix?`<span class="dd-p">${esc(prefix)}</span>`:''}<span class="dd-v"></span>${CHEV}</button><ul class="dd-list" id="${id}" role="listbox" tabindex="-1" aria-label="${esc(label)}" data-lenis-prevent></ul>`;
+  const btn=host.firstElementChild, list=host.lastElementChild;
+  const paintBtn=()=>{ const o=options.find(o=>o.v===val)||options[0]; host.querySelector('.dd-v').textContent=short?short(o):o.label; };
+  const paintList=()=>{ list.innerHTML=options.map((o,i)=>`<li role="option" id="${id}-${i}" data-i="${i}" aria-selected="${o.v===val}"><span>${esc(o.label)}${o.sub?`<small>${esc(o.sub)}</small>`:''}</span>${CHECK}</li>`).join(''); };
+  const setAct=i=>{ act=(i+options.length)%options.length; [...list.children].forEach((li,k)=>li.classList.toggle('act',k===act)); list.setAttribute('aria-activedescendant',`${id}-${act}`); list.children[act]&&list.children[act].scrollIntoView({block:'nearest'}); };
+  const open=()=>{ if(ddOpen&&ddOpen!==api) ddOpen.close(); paintList(); host.classList.add('on'); btn.setAttribute('aria-expanded','true');
+    const r=btn.getBoundingClientRect(), need=Math.min(330,list.scrollHeight+12); host.classList.toggle('up',innerHeight-r.bottom<need&&r.top>innerHeight-r.bottom);
+    setAct(Math.max(0,options.findIndex(o=>o.v===val))); list.focus({preventScroll:true}); ddOpen=api; };
+  const close=focus=>{ host.classList.remove('on'); btn.setAttribute('aria-expanded','false'); if(ddOpen===api) ddOpen=null; if(focus) btn.focus({preventScroll:true}); };
+  const pick=i=>{ const o=options[i]; close(true); if(o&&o.v!==val){ val=o.v; paintBtn(); onChange&&onChange(val); } };
+  btn.addEventListener('mousedown',e=>{ if(host.classList.contains('on')) e.preventDefault(); });
+  btn.addEventListener('click',()=>host.classList.contains('on')?close(true):open());
+  btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); open(); } });
+  list.addEventListener('click',e=>{ const li=e.target.closest('li'); if(li) pick(+li.dataset.i); });
+  list.addEventListener('mousemove',e=>{ const li=e.target.closest('li'); if(li&&+li.dataset.i!==act) setAct(+li.dataset.i); });
+  list.addEventListener('keydown',e=>{ const k=e.key;
+    if(k==='ArrowDown'){ e.preventDefault(); setAct(act+1); } else if(k==='ArrowUp'){ e.preventDefault(); setAct(act-1); }
+    else if(k==='Home'){ e.preventDefault(); setAct(0); } else if(k==='End'){ e.preventDefault(); setAct(options.length-1); }
+    else if(k==='Enter'||k===' '){ e.preventDefault(); pick(act); }
+    else if(k==='Escape'){ e.preventDefault(); e.stopPropagation(); close(true); }
+    else if(k==='Tab'){ close(); }
+    else if(k.length===1){ const L=k.toLowerCase(), n=options.length; for(let j=1;j<=n;j++){ const i=(act+j)%n; if(options[i].label.toLowerCase().startsWith(L)){ setAct(i); break; } } } });
+  list.addEventListener('focusout',e=>{ if(!host.contains(e.relatedTarget)) close(); });
+  const api={ set(v){ val=v; paintBtn(); if(host.classList.contains('on')) paintList(); }, setOptions(o){ options=o; paintBtn(); }, close, get value(){ return val; } };
+  paintBtn(); return api;
+}
+document.addEventListener('pointerdown',e=>{ if(ddOpen&&!e.target.closest('.dd.on')) ddOpen.close(); });
+$$('[data-cur]').forEach(h=>curPickers.push(dropdown(h,{label:'Currency',options:CURS.map(([c,n])=>({v:c,label:c,sub:n})),value:cur,short:o=>o.v,onChange:setCur})));
+
+/* the cart: a count on the icon; it opens the full collection, and the bag when it has pieces in it */
+const bagCount=()=>store.get('bag',[]).reduce((s,i)=>s+(i.q||0),0);
+function paintCart(n=bagCount()){ const c=$('#bagCount'), a=$('#bagOpen'); if(c){ c.textContent=n||''; c.dataset.n=n; }
+  if(a){ a.setAttribute('href','shop.html'+(n?'#bag':'')); a.setAttribute('aria-label',n?`Your bag, ${n} ${n===1?'piece':'pieces'}`:'All pieces'); } }
+paintCart();
+
+/* booking from a page without the form: remember the choice and open it on the home page */
+let bookFor=o=>{ store.set('book',o||{}); location.href='./#book'; };
+
+/* menu */
+const menu=$('#menu');
+function closeMenu(){ if(!menu) return; menu.classList.remove('on'); menu.setAttribute('aria-hidden','true'); $('#menuBtn').setAttribute('aria-expanded','false'); }
+if(menu){ $('#menuBtn').onclick=()=>{const on=!menu.classList.contains('on'); menu.classList.toggle('on',on); menu.setAttribute('aria-hidden',!on); $('#menuBtn').setAttribute('aria-expanded',on);};
+  menu.addEventListener('click',e=>{ if(e.target.closest('a')) closeMenu(); }); }
+
+/* newsletter (prototype) */
+const join=$('#join'); if(join) join.addEventListener('submit',e=>{e.preventDefault(); const i=$('#jEmail'); if(!i.checkValidity()){i.reportValidity();return} join.hidden=true; $('#joined').hidden=false;});
+
+/* smooth scroll */
+function startLenis(){ if(!window.Lenis||reduce) return; lenis=new Lenis({lerp:.09}); const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)}; requestAnimationFrame(raf);
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(!a) return; const h=a.getAttribute('href');
+    if(h.length>1){ const t=document.querySelector(h); if(t){ e.preventDefault(); go(t); } } else { e.preventDefault(); lenis.scrollTo(0); } }); }
+
 const SHOW=[
  ['media/full/essential-noir-2.webp','Essential Noir by the shelves','m1'],
  ['media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp','The fitting lounge','m2'],
@@ -264,20 +374,16 @@ const SHOW=[
  ['media/full/dark-grey-classic-0.webp','Dark Grey Classic','m5'],
  ['media/full/navy-blue-suit-0.webp','Navy Blue Suit on the stairs','m6']];
 $('#mosaic').innerHTML=SHOW.map(([s,c,m])=>`<figure class="${m}"><img src="${s}" alt="${c}, in the Prime Couture atelier" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('');
-/* Instagram reels from @primecouturehq, shown with Instagram's own embed where pages may embed it; otherwise as links */
+/* Fitting films from @primecouturehq. Where a page may embed Instagram, its player is cropped to the film; elsewhere each film is a link. */
 const REELS=[['Dfur6U_iPq6','14 Nov 2026'],['DfukVZACe9N','14 Nov 2026'],['DfsGgkKiKmX','13 Nov 2026'],['Dfpi64vi8Ov','12 Nov 2026'],['Dfm5CMriWSM','11 Nov 2026'],['DfchnQkiHvj','7 Nov 2026'],['DfXVKBTCHHc','5 Nov 2026'],['DfSKQOJiUjF','3 Nov 2026']];
 const canEmbed=/github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
 $('#igGrid').innerHTML=REELS.map(([c,d])=>canEmbed
-  ?`<div class="ig"><iframe src="https://www.instagram.com/reel/${c}/embed/" title="Prime Couture fitting film, ${d}" loading="lazy" allowtransparency="true" allow="encrypted-media; picture-in-picture" scrolling="no"></iframe></div>`
-  :`<a class="ig-card" href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener"><small>Instagram · ${d}</small><b>A fitting in the atelier</b><span class="link" style="align-self:flex-start">Watch on Instagram</span></a>`).join('');
-$('#igNote').hidden=canEmbed;
-/* bag count from the home page, menu, newsletter */
-try{ const n=(JSON.parse(localStorage.getItem('pc_bag')||'[]')).reduce((s,i)=>s+i.q,0); $('#bagCount').textContent=n||''; $('#bagCount').dataset.n=n; }catch(e){}
-$('#bagOpen').onclick=()=>{ location.href='./#collection'; };
-const menu=$('#menu');
-$('#menuBtn').onclick=()=>{const on=!menu.classList.contains('on'); menu.classList.toggle('on',on); menu.setAttribute('aria-hidden',!on); $('#menuBtn').setAttribute('aria-expanded',on);};
-menu.addEventListener('click',e=>{if(e.target.closest('a')){menu.classList.remove('on');}});
-$('#join').addEventListener('submit',e=>{e.preventDefault(); const i=$('#jEmail'); if(!i.checkValidity()){i.reportValidity();return} $('#join').hidden=true; $('#joined').hidden=false;});
+  ?`<figure class="rv-tile"><div class="rv"><iframe src="https://www.instagram.com/reel/${c}/embed/" title="Prime Couture fitting film, ${d}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" scrolling="no"></iframe></div><figcaption><span>${d}</span><a href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener">On Instagram</a></figcaption></figure>`
+  :`<a class="ig-card" href="https://www.instagram.com/reel/${c}/" target="_blank" rel="noopener"><small>Instagram · ${d}</small><b>A fitting in the atelier</b><span class="link" style="align-self:flex-start">Watch the film</span></a>`).join('');
+const fit=()=>$$('.rv').forEach(r=>r.style.setProperty('--k',r.clientWidth/280));
+fit(); addEventListener('resize',fit);
+$$('.rv iframe').forEach(f=>{ const ready=()=>f.classList.add('ready'); f.addEventListener('load',()=>setTimeout(ready,700)); new IntersectionObserver(([e],o)=>{ if(e.isIntersecting){ setTimeout(ready,6000); o.disconnect(); } }).observe(f); });
+startLenis();
 })();
 </script>
 </body>
