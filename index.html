@@ -100,31 +100,34 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .menu.on{opacity:1;pointer-events:auto}
 .menu a.big{font-size:36px;letter-spacing:.02em;text-decoration:none}
 
-/* ---------- footer ---------- */
-.foot{background:var(--night);color:#F4F2EF;overflow:hidden;--ivory:#F4F2EF;--blush:#ABA49C;--sand:#D9D3CA;--line-d:rgba(244,242,239,.14);--red-deep:var(--night)}
+/* ---------- footer: an invitation, then the details in quiet columns ---------- */
+.foot{background:var(--night);color:#F4F2EF;overflow:hidden;--ivory:#F4F2EF;--blush:#ABA49C;--sand:#D9D3CA;--line-d:rgba(244,242,239,.12);--red-deep:var(--night)}
 .foot a{text-decoration:none}
-.foot-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:end;padding-block:clamp(56px,6vw,96px) 48px;border-bottom:1px solid var(--line-d)}
-.foot-brand .logo-mark{height:72px;color:var(--sand)}
-.foot-claim{margin:32px 0 32px;font-size:clamp(26px,2.6vw,40px);line-height:1.2;letter-spacing:.02em;max-width:20ch}
-.foot-news h4,.foot-cols h4{margin:0 0 16px;font-size:12px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
-.foot-news p{margin:0 0 20px;color:var(--blush);max-width:40ch}
-.join{display:flex;gap:8px;max-width:480px}
-.join input{flex:1;min-width:0;height:52px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px var(--line-d);background:rgba(255,255,255,.04);color:var(--ivory);padding:0 22px;font:inherit}
-.join input::placeholder{color:var(--blush);opacity:.7}
-.join input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ivory)}
-.joined{margin:16px 0 0;color:var(--sand)}
-.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;padding-block:44px}
-.foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
-.foot-cols li{color:var(--blush)}
-.foot-cols a{color:var(--ivory);opacity:.85;transition:opacity .3s}
-.foot-cols a:hover{opacity:1}
+.foot a:not(.btn){color:inherit}
+.fz-cta{display:flex;justify-content:space-between;align-items:flex-end;gap:28px 48px;flex-wrap:wrap;padding-block:clamp(64px,7vw,104px) clamp(40px,4vw,56px);border-bottom:1px solid var(--line-d)}
+.fz-cta .kicker{color:var(--blush);opacity:1}
+.fz-t{margin:0;font-size:clamp(40px,5.4vw,88px);line-height:1;letter-spacing:.005em}
+.fz-acts{display:flex;gap:12px;flex-wrap:wrap}
+.fz-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:40px clamp(24px,3vw,48px);padding-block:clamp(44px,5vw,64px)}
+.fz-brand .logo-mark{height:52px;width:auto;color:var(--ivory)}
+.fz-brand>p:first-of-type{margin:20px 0 28px;max-width:34ch;font-size:15px;line-height:1.6;color:var(--blush)}
+.fz-h{margin:0 0 14px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--blush)}
+.fz-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;line-height:1.45}
+.fz-col li{color:var(--blush)}
+.fz-col a{color:#F4F2EF;opacity:.86;transition:opacity .25s}
+.fz-col a:hover{opacity:1}
+.join{display:flex;gap:6px;max-width:380px;padding:5px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d)}
+.join input{flex:1;min-width:0;height:40px;border:0;background:transparent;color:var(--ivory);padding:0 14px;font:inherit;font-size:14px}
+.join input::placeholder{color:var(--blush);opacity:.75}
+.join input:focus{outline:none}
+.join:focus-within{box-shadow:inset 0 0 0 1px var(--ivory)}
+.joined{margin:12px 0 0;color:var(--sand);font-size:14px}
 .cur{display:inline-flex;padding:4px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d);margin-top:8px}
 .cur button{height:32px;padding:0 14px;border-radius:999px;font-size:11px;letter-spacing:.12em;color:var(--blush)}
 .cur button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
-.foot-word{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(20px,2.4vw,32px);overflow:hidden;user-select:none}
-.foot-word span{display:block;width:max-content;margin:0 auto;font-size:min(170px,calc((100vw - 2 * max(20px,4.5vw)) / 9.6));line-height:1.05;letter-spacing:.16em;padding-left:.16em;white-space:nowrap;background:linear-gradient(180deg,var(--sand) 0%,rgba(205,181,148,.55) 55%,rgba(205,181,148,.12) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:22px calc(80px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
-.foot-legal nav{display:flex;gap:24px}
+.fz-legal{display:flex;justify-content:space-between;align-items:center;gap:12px 28px;flex-wrap:wrap;padding-block:20px calc(84px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
+.fz-legal a{color:#F4F2EF}
+.fz-note{flex:1;text-align:center}
 .toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 /* ---------- client films from Instagram, cropped to the film ---------- */
@@ -168,13 +171,13 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .top nav,.top .btn,.cur-top{display:none}
   .menu-btn{display:grid;margin-left:-10px}
   .logo-mark{height:28px}
-  .foot-top{grid-template-columns:1fr}
-  .foot-cols{grid-template-columns:1fr 1fr}
+  .fz-grid{grid-template-columns:1fr 1fr}
+  .fz-brand{grid-column:1/-1}
 }
 @media (max-width:560px){
-  .foot-cols{grid-template-columns:1fr}
-  .foot-cols ul{overflow-wrap:anywhere}
-  .foot-legal{flex-direction:column;align-items:flex-start}
+  .fz-col ul{overflow-wrap:anywhere}
+  .fz-legal{flex-direction:column;align-items:flex-start}
+  .fz-note{text-align:left}
 }
 
 /* Home: hero (search first, a piece on the stage) · Today's picks · client films · our pieces · booking. Earlier: · Today's picks (pieces and films, hover to play) · the collection · visit band · booking. */
@@ -285,7 +288,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .about{padding-block:clamp(88px,9vw,140px)}
 .ab-brand{display:flex;align-items:center;gap:clamp(16px,2.4vw,40px)}
 .ab-logo{height:clamp(64px,8.4vw,136px);width:auto;color:var(--red);flex-shrink:0}
-.ab-name{margin:0;font-weight:500;font-size:clamp(52px,9.4vw,156px);line-height:.92;letter-spacing:-.045em;color:var(--ink);white-space:nowrap}
+.ab-name{margin:0;font-weight:400;font-size:clamp(52px,9vw,148px);line-height:.95;letter-spacing:.005em;color:var(--ink);white-space:nowrap}
 .ab-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px clamp(40px,6vw,112px);margin-top:clamp(36px,4.4vw,64px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--line)}
 .ab-t{margin:0;font-size:clamp(22px,2.1vw,32px);line-height:1.3;letter-spacing:-.01em;max-width:30ch}
 .ab-t .kicker{display:block;margin-bottom:14px;font-size:12px;letter-spacing:.2em}
@@ -323,20 +326,77 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cat-guide:hover{color:var(--red)}
 .saved-band .sb-acts{display:flex;gap:8px;flex-wrap:wrap}
 
-/* know your suit: the home band into the suit guide */
-.kys{padding-block:clamp(72px,8vw,120px) clamp(56px,6vw,88px);background:var(--mist);overflow:hidden}
-.kys-in{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,4vw,72px);align-items:end}
-.kys .title{font-size:clamp(40px,4.6vw,72px)}
-.kys .lede{color:var(--muted);opacity:1}
-.kys .btn{margin-top:28px}
-.kys-line{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end}
-.kys-fig{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit;min-width:0}
-.kys-fig img{width:100%;height:clamp(240px,25vw,380px);object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 24px 22px rgba(18,16,16,.14));transition:transform .7s var(--ease)}
-.kys-fig span{margin-top:14px;font-size:14px;padding-bottom:2px;border-bottom:1px solid transparent;transition:border-color .3s,color .3s;white-space:nowrap}
-.kys-fig:hover img{transform:translateY(-10px)}
-.kys-fig:hover span{border-color:currentColor;color:var(--red)}
+/* know your suit: a red stage. The five cuts stand under a soft light; hover one and the others step back. */
+.kys{position:relative;overflow:hidden;padding-block:clamp(88px,9vw,140px) 0;background:radial-gradient(70% 70% at 50% 92%,#7A2622 0%,var(--red) 46%,#2E0A0A 100%);color:var(--ivory)}
+.kys::before{content:"";position:absolute;left:50%;top:-20%;width:120%;height:90%;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(255,236,220,.12),rgba(255,236,220,0) 70%);pointer-events:none}
+.kys-head{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px clamp(32px,5vw,96px);align-items:end}
+.kys .kicker{color:var(--blush);opacity:1}
+.kys-t{font-size:clamp(52px,7.4vw,124px);line-height:.95;letter-spacing:.005em;font-weight:400}
+.kys .lede{color:var(--blush);opacity:1;margin:0;max-width:40ch}
+.kys .btn{margin-top:24px}
+.kys-line{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(4px,1vw,16px);align-items:end;margin-top:clamp(40px,5vw,72px)}
+.kys-fig{position:relative;display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit;min-width:0;padding-bottom:clamp(28px,3vw,44px);transition:opacity .6s var(--ease)}
+.kys-fig::before{content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:70%;background:radial-gradient(50% 50% at 50% 60%,rgba(255,232,214,.22),rgba(255,232,214,0) 70%);opacity:0;transition:opacity .6s}
+.kys-fig img{position:relative;width:100%;height:clamp(300px,34vw,540px);object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 30px 30px rgba(0,0,0,.35));transform:translateY(40px);opacity:0;transition:transform 1.1s var(--ease),opacity .9s var(--ease),filter .6s}
+.kys.in .kys-fig img{transform:none;opacity:1}
+.kys.in .kys-fig:nth-child(2) img{transition-delay:.08s}.kys.in .kys-fig:nth-child(3) img{transition-delay:.16s}.kys.in .kys-fig:nth-child(4) img{transition-delay:.24s}.kys.in .kys-fig:nth-child(5) img{transition-delay:.32s}
+.kys-fig b{position:relative;display:block;margin-top:18px;font-weight:400;font-size:clamp(16px,1.3vw,20px);white-space:nowrap}
+.kys-fig small{position:relative;display:block;margin-top:4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blush);white-space:nowrap}
+.kys-line:hover .kys-fig:not(:hover){opacity:.45}
+.kys-fig:hover::before{opacity:1}
+.kys-fig:hover img{transform:translateY(-12px) scale(1.02)}
+.kys-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,3vw,44px);border-top:1px solid rgba(241,234,224,.14)}
 
-/* find your piece: the search and the way in by who you are dressing, after the looks */
+/* the visit, and the way into the booking flow */
+.visit{padding-block:clamp(88px,9vw,140px)}
+.visit-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,96px);align-items:center}
+.visit-ph{margin:0;position:relative;aspect-ratio:4/5;max-height:80svh;border-radius:18px;overflow:hidden;background:var(--mist)}
+.visit-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform 2s var(--ease)}
+.visit-ph:hover img{transform:scale(1.03)}
+.visit .title{font-size:clamp(44px,5vw,80px)}
+.visit .lede{color:var(--muted);opacity:1;max-width:40ch}
+.visit-facts{margin:36px 0 0;padding:0;list-style:none;display:grid;gap:18px;border-top:1px solid var(--line);padding-top:24px}
+.visit-facts b{display:block;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.visit-facts span{font-size:18px}
+.visit .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.visit .acts .btn.go{background:var(--red)}
+
+/* booking flow: full screen, one question at a time, the atelier beside it */
+html.onb-open{overflow:hidden}
+.onb{position:fixed;inset:0;z-index:93;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);background:var(--paper);opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.onb.on{opacity:1;pointer-events:auto}
+.onb-side{position:relative;overflow:hidden;background:var(--red);transform:translateX(-4%);transition:transform 1s var(--ease)}
+.onb.on .onb-side{transform:none}
+.onb-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;transform:scale(1.06);transition:opacity .9s var(--ease),transform 1.8s var(--ease)}
+.onb-side img.on{opacity:1;transform:none}
+.onb-side::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,8,8,.15) 0%,rgba(30,8,8,0) 30%,rgba(30,8,8,.15) 55%,rgba(30,8,8,.82) 100%);pointer-events:none}
+.onb-cap{position:absolute;z-index:1;left:clamp(24px,3vw,48px);right:clamp(24px,3vw,48px);bottom:clamp(28px,4vw,56px);color:#F4F2EF}
+.onb-cap .kicker{color:#E5C9BE;opacity:1}
+.onb-cap p:last-child{margin:0;font-size:clamp(22px,2.2vw,34px);line-height:1.2;max-width:22ch;transition:opacity .4s}
+.onb-main{position:relative;display:flex;flex-direction:column;min-height:0;overflow:auto;overscroll-behavior:contain;padding-top:env(safe-area-inset-top,0px)}
+.onb-top{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px clamp(20px,4vw,64px);background:var(--paper)}
+.onb-top .logo-mark{height:30px;width:auto;color:var(--red)}
+.onb-x{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px 0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-size:13px}
+.onb-x svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+.onb-x:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.onb .bk{flex:1;min-height:0;outline:0;box-shadow:none;border-radius:0;background:transparent}
+.onb .bk-h{padding:6px clamp(20px,4vw,64px) 0}
+.onb .bk-progress{grid-template-columns:repeat(9,1fr);padding:16px clamp(20px,4vw,64px) 0}
+.onb .bk-body{flex:1;padding:clamp(28px,5vh,56px) clamp(20px,4vw,64px) 40px}
+.onb .bk-body h3{font-size:clamp(30px,3vw,48px);line-height:1.08;letter-spacing:-.01em}
+.onb .bk-body .hint{font-size:16px;margin:10px 0 28px;max-width:52ch}
+.onb .bk-foot{position:sticky;bottom:0;z-index:2;padding:16px clamp(20px,4vw,64px) calc(16px + env(safe-area-inset-bottom,0px));background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.onb .done{padding:clamp(28px,5vh,56px) clamp(20px,4vw,64px)}
+.rcards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ccols{display:flex;flex-wrap:wrap;gap:10px}
+.ccol{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 18px 0 8px;border-radius:999px;border:1px solid var(--ui-border);background:#fff;font-size:15px;transition:border-color .2s,box-shadow .2s}
+.ccol i{width:32px;height:32px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.ccol:hover{border-color:var(--ink)}
+.ccol[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.bk-body textarea#bkMsg{min-height:300px;font-size:15px;line-height:1.55}
+.msg-tools{display:flex;justify-content:flex-end;margin:-6px 0 0}
+
+/* find your piece: the search/* find your piece: the search and the way in by who you are dressing, after the looks */
 .find{padding-block:clamp(88px,9vw,140px)}
 .fd-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px clamp(32px,5vw,96px);align-items:end}
 .fd-search{max-width:640px;width:100%;justify-self:end}
@@ -814,10 +874,15 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .lk-info{order:4;margin:24px 0 0;padding:0 var(--gut)}
   .wed-in,.ws-in{grid-template-columns:1fr}
   .ab-body{grid-template-columns:1fr}
-  .kys-in{grid-template-columns:1fr}
+  .kys-head{grid-template-columns:1fr}
   .kys-line{display:flex;overflow-x:auto;scrollbar-width:none;gap:4px;margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut)}
   .kys-line::-webkit-scrollbar{display:none}
-  .kys-fig{flex:0 0 38%}
+  .kys-fig{flex:0 0 42%}
+  .kys-line:hover .kys-fig:not(:hover){opacity:1}
+  .visit-in{grid-template-columns:1fr}
+  .onb{grid-template-columns:1fr;grid-template-rows:24svh minmax(0,1fr)}
+  .onb-cap p:last-child{font-size:20px}
+  .onb .bk-h .bk-n b{font-size:34px}
   .ab-name{white-space:normal}
   .lk-nav{order:5;margin-top:28px;padding:0 var(--gut)}
 }
@@ -899,10 +964,14 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
   <!-- KNOW YOUR SUIT -->
   <section class="kys" id="suit-guide" aria-labelledby="kyH">
-    <div class="wrap kys-in">
-      <div><p class="kicker">Suit guide · for men</p><h2 class="title" id="kyH">Know your suit</h2><p class="lede">Single-breasted, double-breasted, tuxedo, safari or kaftan. See what sets each one apart and the colours it comes in, then book a fitting.</p><a class="btn" href="suits.html" data-mag>Open the suit guide</a></div>
+    <div class="wrap">
+      <div class="kys-head">
+        <div><p class="kicker">Suit guide · for men</p><h2 class="kys-t" id="kyH">Know your suit</h2></div>
+        <div><p class="lede">Single-breasted, double-breasted, tuxedo, safari or kaftan. See what sets each one apart and the colours it comes in, then book a fitting.</p><a class="btn btn--light" href="suits.html" data-mag>Open the suit guide</a></div>
+      </div>
       <div class="kys-line" id="kysLine" aria-label="The five cuts"></div>
     </div>
+    <div class="kys-floor" aria-hidden="true"></div>
   </section>
 
   <!-- WEDDINGS PREVIEW: opens from the Weddings slide -->
@@ -924,53 +993,60 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </section>
 
   <!-- BOOK -->
-  <section class="book" id="book" aria-labelledby="vH">
-    <div class="wrap book-in">
-      <figure class="book-ph" id="visit">
-        <img src="media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp" alt="The fitting lounge at the Prime Couture atelier" loading="lazy">
-        <figcaption>
-          <p class="kicker">The atelier · Gishushu, Kigali</p>
-          <h2 class="title" id="vH">Visit the atelier</h2>
-          <p class="lede">Try pieces on and talk through your occasion in person. Book your fitting here, or look around first.</p>
-          <a class="btn btn--light" href="atelier.html">Step inside</a>
-          <p class="meta">15 KG 599 St · Monday to Saturday, 9am to 8pm</p>
-        </figcaption>
-      </figure>
-      <div class="bk ui" id="bk" aria-live="polite"></div>
+  <section class="visit" id="book" aria-labelledby="vH">
+    <div class="wrap visit-in">
+      <figure class="visit-ph"><img src="media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp" alt="The fitting lounge at the Prime Couture atelier" loading="lazy"></figure>
+      <div>
+        <p class="kicker">The atelier · Gishushu, Kigali</p>
+        <h2 class="title" id="vH">Visit the atelier</h2>
+        <p class="lede">Try pieces on and talk through your occasion in person. Book a fitting so the atelier is ready for you, or look around first.</p>
+        <ul class="visit-facts">
+          <li><b>Address</b><span>15 KG 599 St, Gishushu, Kigali</span></li>
+          <li><b>Hours</b><span>Monday to Saturday, 9am to 8pm</span></li>
+          <li><b>Call or WhatsApp</b><span>+250 781 178 499</span></li>
+        </ul>
+        <div class="acts"><button type="button" class="btn go" id="visitBook" data-mag>Book a fitting</button><a class="btn btn--ghost" href="atelier.html">Step inside</a></div>
+      </div>
     </div>
   </section>
+
+  <!-- BOOKING FLOW -->
+  <div class="onb" id="onb" role="dialog" aria-modal="true" aria-label="Book a fitting" aria-hidden="true">
+    <div class="onb-side" aria-hidden="true"><img class="on" src="media/films/bride.jpg" alt=""><div class="onb-cap"><p class="kicker">Book a fitting</p><p id="onbCap">Every fitting starts with the occasion.</p></div></div>
+    <div class="onb-main" id="onbMain" data-lenis-prevent>
+      <div class="onb-top"><span class="onb-logo" id="onbLogo"></span><button type="button" class="onb-x" id="onbX"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Close</button></div>
+      <div class="bk ui" id="bk" aria-live="polite"></div>
+    </div>
+  </div>
 </main>
 
 <footer class="foot" aria-label="Prime Couture">
-  <div class="wrap foot-top">
-    <div class="foot-brand">
+  <div class="wrap fz-cta">
+    <div><p class="kicker">Prime Couture · Gishushu, Kigali</p><p class="fz-t">Come in for a fitting.</p></div>
+    <div class="fz-acts"><a class="btn btn--light" href="#book">Book a fitting</a><a class="btn btn--ghost" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a></div>
+  </div>
+  <div class="wrap fz-grid">
+    <div class="fz-brand">
       <svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg>
-      <p class="foot-claim">Essential power tailoring, cut and finished in Kigali.</p>
-      <a class="btn btn--light" href="#book">Book a fitting</a>
-    </div>
-    <div class="foot-news">
-      <h4>Private list</h4>
-      <p>Early access to new drops, fittings and collection releases.</p>
-      <form class="join" id="join"><label for="jEmail" style="position:absolute;left:-9999px">Email address</label><input id="jEmail" type="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn--light" type="submit">Join</button></form>
+      <p>Tailoring for men and women, designed and finished at the atelier in Gishushu, Kigali.</p>
+      <p class="fz-h">Private list</p>
+      <form class="join" id="join"><label for="jEmail" style="position:absolute;left:-9999px">Email address</label><input id="jEmail" type="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn--light btn--sm" type="submit">Join</button></form>
       <p class="joined" id="joined" hidden>You're on the list. Thank you.</p>
     </div>
+    <nav class="fz-col" aria-label="Shop"><p class="fz-h">Shop</p><ul>
+      <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li><li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
+    </ul></nav>
+    <nav class="fz-col" aria-label="The atelier"><p class="fz-h">The atelier</p><ul>
+      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="suits.html">Suit guide</a></li><li><a href="#book">Book a fitting</a></li><li><a href="shop.html#saved">Your wishlist</a></li>
+    </ul></nav>
+    <div class="fz-col"><p class="fz-h">Visit</p><ul>
+      <li>15 KG 599 St<br>Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a></li>
+    </ul></div>
+    <div class="fz-col"><p class="fz-h">Contact</p><ul>
+      <li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">+250 781 178 499</a></li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">@primecouturehq</a></li><li>contact@prime-couture.com</li>
+    </ul><p class="fz-h" style="margin-top:28px">Prices in</p><div class="cur-foot dd--dark" data-cur></div></div>
   </div>
-  <div class="wrap foot-cols">
-    <div><h4>Shop</h4><ul>
-      <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li>
-      <li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
-    </ul></div>
-    <div><h4>Atelier</h4><ul>
-      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="#book">Book a fitting</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Directions</a></li>
-    </ul></div>
-    <div><h4>Contact</h4><ul>
-      <li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp +250 781 178 499</a></li><li>contact@prime-couture.com</li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram @primecouturehq</a></li>
-    </ul></div>
-    <div><h4>Visit</h4><ul>
-      <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
-    </ul><h4 style="margin-top:28px">Prices in</h4><div class="cur-foot dd--dark" data-cur></div><p style="margin:12px 0 0;font-size:13px;color:var(--blush)">Set in RWF. Other currencies are approximate.</p></div>
-  </div>
-  <div class="wrap foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><nav aria-label="Footer"><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram</a><a href="#top">Back to top</a></nav></div>
+  <div class="wrap fz-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><span class="fz-note">Prices are set in Rwandan francs; other currencies are approximate.</span><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
 </footer>
 
 
@@ -1170,8 +1246,9 @@ const WHO_B=[['her','A woman','Her look'],['him','A man','His look'],['both','Bo
 
 /* ---------- know your suit: the five cuts as a lineup; each opens the guide at that cut ---------- */
 if($('#kysLine')){
-  const KYS=[['sbs','Single-breasted','media/cut/half/sbs.webp'],['dbs','Double-breasted','media/cut/half/dbs.webp'],['tux','Tuxedo','media/cut/half/tux.webp'],['saf','Safari','media/cut/half/saf.webp'],['kaf','Kaftan','media/cut/half/kaf.webp']];
-  $('#kysLine').innerHTML=KYS.map(([k,n,src])=>`<a class="kys-fig" href="suits.html#${k}" data-cursor="View"><img src="${src}" alt="A ${n.toLowerCase()} from Prime Couture" loading="lazy"><span>${n}</span></a>`).join('');
+  const KYS=[['sbs','Single-breasted','media/cut/half/sbs.webp','Notch lapels'],['dbs','Double-breasted','media/cut/half/dbs.webp','Two rows of buttons'],['tux','Tuxedo','media/cut/half/tux.webp','Satin lapels'],['saf','Safari','media/cut/half/saf.webp','Buttoned to the collar'],['kaf','Kaftan','media/cut/half/kaf.webp','Embroidered front']];
+  $('#kysLine').innerHTML=KYS.map(([k,n,src,d])=>`<a class="kys-fig" href="suits.html#${k}" data-cursor="View"><img src="${src}" alt="A ${n.toLowerCase()} from Prime Couture" loading="lazy"><b>${n}</b><small>${d}</small></a>`).join('');
+  const ky=$('#suit-guide'); if(reduce||!('IntersectionObserver' in window)) ky.classList.add('in'); else new IntersectionObserver(([e],o)=>{ if(e.isIntersecting){ ky.classList.add('in'); o.disconnect(); } },{threshold:.2}).observe(ky);
 }
 
 /* ---------- weddings preview: opens from the Weddings slide, before the form ---------- */
@@ -1496,20 +1573,42 @@ const day0=d=>{const x=new Date(d); x.setHours(0,0,0,0); return x;};
 const TODAY=day0(new Date()), MIN=new Date(TODAY.getTime()+864e5), MAX=new Date(TODAY.getTime()+60*864e5);
 const isOpen=d=>d>=MIN&&d<=MAX&&d.getDay()!==0;
 const fmtDay=d=>d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
-const bk={occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,name:'',note:'',style:'',party:{men:0,women:0}};
+const bk={occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,name:'',note:'',style:'',party:{men:0,women:0},when:null,cols:[],budget:null,visited:null,phone:'',msg:'',edited:false};
+const BK0=()=>({occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,note:'',style:'',party:{men:0,women:0},when:null,cols:[],budget:null,visited:null,msg:'',edited:false});
 const partyText=()=>bk.occ!=='Wedding'?'':[bk.party.men?`${bk.party.men} groomsm${bk.party.men>1?'en':'an'}`:'',bk.party.women?`${bk.party.women} bridesmaid${bk.party.women>1?'s':''}`:''].filter(Boolean).join(' and '); let step=1, sent=false, view=new Date(MIN.getFullYear(),MIN.getMonth(),1);
-const LABELS=['Occasion','Who it is for','The piece','Date and time','Your details'];
+const LABELS=['The occasion','Who it is for','The date','The piece','Colours','Budget','Your first visit','Your visit','Your message'];
+const NSTEP=LABELS.length;
+const OCC_PHRASE={'Wedding':'a wedding','Gusaba & gukwa':'gusaba and gukwa','Office':'the office','Gala or black tie':'a gala or black-tie evening','Everyday':'everyday wear','Something else':'a special occasion'};
+const WHEN=[['soon','Within a month','Less than four weeks away'],['1-3','In 1 to 3 months','One to three months away'],['3-6','In 3 to 6 months','Three to six months away'],['6+','More than 6 months','Over six months away'],['none','No date yet','Still deciding']];
+const WHEN_TXT={soon:'is less than a month away','1-3':'is one to three months away','3-6':'is three to six months away','6+':'is more than six months away'};
+const BUDGET=[['u150','Under RWF 150,000','A simpler piece'],['150-300','RWF 150,000 to 300,000','Most suits and dresses'],['300-500','RWF 300,000 to 500,000','Finer fabric and detail'],['500+','Over RWF 500,000','The finest we make'],['talk','I would rather discuss it','Talk it through at the fitting']];
+const VISIT=[['new','This is my first time','We start with your measurements'],['back','I have been before','Tell us if anything has changed']];
+const BK_COLS=['White','Ivory','Beige','Brown','Red','Green','Blue','Grey','Black'].map(f=>[f,(P.find(p=>p.fam===f)||{}).sw||'#ccc']);
+const STEP_SIDE=[['media/films/bride.jpg','Every fitting starts with the occasion.'],['media/full/the-sand-mocha-suits-0.webp','For her, for him, or for both of you.'],['media/films/couple.jpg','Tell us the date, so the atelier can plan your fittings.'],['media/showroom/suit-wall.webp','Choose the closest. The details are settled together.'],['media/showroom/rail.webp','Colours you love, or none yet.'],['media/showroom/mannequin-red.webp','A budget helps the atelier suggest the right fabric.'],['media/showroom/lounge.webp','A first visit, or welcome back.'],['media/showroom/entrance.webp','15 KG 599 St, Gishushu. Monday to Saturday, 9am to 8pm.'],['media/showroom/door.webp','Your message, ready to send.']];
 const whoList=()=>bk.who==='both'?['her','him']:bk.who?[bk.who]:[];
 const whoText=()=>({her:'A woman',him:'A man',both:'A woman and a man'})[bk.who]||'';
-const valid=n=>n===1?!!bk.occ:n===2?!!bk.who:n===3?whoList().every(w=>bk.cut[w]):n===4?!!(bk.date&&bk.time):!!bk.name;
-const firstOpen=()=>[1,2,3,4].find(n=>!valid(n))||5;
+const valid=n=>n===1?!!bk.occ:n===2?!!bk.who:n===3?!!bk.when:n===4?whoList().every(w=>bk.cut[w]):n===5?true:n===6?!!bk.budget:n===7?!!bk.visited:n===8?!!(bk.date&&bk.time):!!bk.name;
+const firstOpen=()=>[1,2,3,4,5,6,7,8].find(n=>!valid(n))||NSTEP;
 const cutsFor=w=>{ const ids=((FOR_OCC[bk.occ]||FOR_OCC['Something else'])[w]||[]).slice(); const c=bk.cut[w]; if(c&&c!=='any'&&!ids.includes(c)) ids.unshift(c); return [...ids,'any']; };
 const likes=w=>bk.refs[w].map(s=>by[s]&&by[s].title).filter(Boolean);
 const pieceLine=w=>{ const c=cut(bk.cut[w]); if(!c) return ''; const l=likes(w); return c.name+(l.length?` (I like: ${l.join(', ')})`:''); };
-function message(){
-  const pieces=whoList().map(w=>bk.who==='both'?`${w==='her'?'Her':'His'} piece: ${pieceLine(w)}`:`Piece: ${pieceLine(w)}`).join('\n');
-  return `Hello Prime Couture,${bk.name?` this is ${bk.name}.`:''}\nI'd like to book a fitting.\n\nOccasion: ${bk.occ}\nFor: ${whoText().toLowerCase()}\n${pieces}${bk.style?`\nStyle: ${bk.style}`:''}${partyText()?`\nWedding party: ${partyText()}`:''}\nWhen: ${fmtDay(bk.date)}, ${bk.time.toLowerCase()}${bk.note?`\nNote: ${bk.note}`:''}\n\nThank you.`;
+/* the message they send: written from their answers, theirs to change; their name is theirs to add */
+function draftMsg(){
+  const occ=OCC_PHRASE[bk.occ]||'an occasion', forW={her:'a woman',him:'a man',both:'a woman and a man'}[bk.who];
+  const whenS=bk.when==='none'?'We do not have a date yet.':bk.when?`The date ${WHEN_TXT[bk.when]}.`:'';
+  const L=['Hello Prime Couture,','',`I would like to book a fitting for ${occ}${forW?`, for ${forW}`:''}. ${whenS}`.trim()];
+  const items=whoList().filter(w=>bk.cut[w]).map(w=>`- ${bk.who==='both'?(w==='her'?'For her: ':'For him: '):''}${pieceLine(w)}`);
+  if(bk.style) items.push(`- From the suit guide: ${bk.style}`);
+  if(partyText()) items.push(`- Wedding party: ${partyText()}`);
+  if(bk.cols.length) items.push(`- Colours: ${bk.cols.includes('help')?'I would like help choosing':bk.cols.join(', ')}`);
+  if(bk.budget) items.push(`- Budget: ${bk.budget==='talk'?'I would rather discuss it at the fitting':BUDGET.find(b=>b[0]===bk.budget)[1]+' per piece'}`);
+  if(items.length) L.push('','What I have in mind:',...items);
+  if(bk.visited) L.push('',bk.visited==='new'?'This will be my first fitting with you.':'I have been fitted with you before.');
+  if(bk.date&&bk.time) L.push('',`I would like to come in on ${fmtDay(bk.date)}, in the ${bk.time.toLowerCase()}.`);
+  L.push('','Thank you.');
+  return L.join('\n');
 }
+function message(){ return (bk.msg||draftMsg())+(bk.name?`\n${bk.name}`:'')+(bk.phone?`\n${bk.phone}`:''); }
 const imgFor=src=>!src?'':src.startsWith('film:')?(film(src.slice(5))||{}).poster:((by[src]||{}).card||'');
 function calendar(){
   const y=view.getFullYear(), m=view.getMonth(), first=new Date(y,m,1), lead=(first.getDay()+6)%7, n=new Date(y,m+1,0).getDate();
@@ -1529,6 +1628,11 @@ function pieceBlock(w){
   return h+'</div>';
 }
 let bkLast=0;
+function onbSide(){ const side=$('.onb-side'); if(!side) return; const [src,cap]=STEP_SIDE[sent?NSTEP-1:step-1]||STEP_SIDE[0];
+  const cur=side.querySelector('img.on'); if(!cur||cur.getAttribute('src')!==src){ const im=new Image(); im.alt=''; im.src=src; side.insertBefore(im,side.firstChild);
+    let d=false; const go=()=>{ if(d) return; d=true; setTimeout(()=>{ im.classList.add('on'); side.querySelectorAll('img').forEach(o=>{ if(o!==im){ o.classList.remove('on'); setTimeout(()=>o.remove(),900); } }); },20); };
+    im.addEventListener('load',go); im.addEventListener('error',go); if(im.complete) go(); setTimeout(go,1200); }
+  const c=$('#onbCap'); if(c) c.textContent=sent?'Your request is ready. See you in Gishushu.':cap; }
 function renderBk(){
   const box=$('#bk'); if(!box) return;
   box.classList.toggle('filling',step>2&&!sent);
@@ -1537,25 +1641,31 @@ function renderBk(){
     <p class="alt2">WhatsApp did not open? Message or call <a href="https://wa.me/${WA}" target="_blank" rel="noopener">+250 781 178 499</a>.</p>
     <div class="acts"><a class="u-btn" href="https://www.google.com/maps/search/?api=1&query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a><button type="button" class="u-btn outline" data-act="restart">Start a new request</button></div></div>`; return; }
   const bkDir=step>bkLast?' go-f':step<bkLast?' go-b':''; bkLast=step;
-  let h=`<div class="bk-h"><div class="bk-n" aria-label="Step ${step} of 5"><b>${String(step).padStart(2,'0')}</b><span>/ 05</span></div><div class="bk-t"><b>Book a fitting</b><small>${LABELS[step-1]}</small></div>${step>1&&bk.occ?`<span class="bk-ctx">${esc(bk.occ)}${bk.who?' · '+esc(whoText()):''}</span>`:''}</div><div class="bk-progress" aria-hidden="true">${[1,2,3,4,5].map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body${bkDir}">`;
-  if(step===1) h+=`<h3>What is the occasion?</h3><p class="hint">Five quick questions, then we write the WhatsApp message for you.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
+  let h=`<div class="bk-h"><div class="bk-n" aria-label="Step ${step} of ${NSTEP}"><b>${String(step).padStart(2,'0')}</b><span>/ ${String(NSTEP).padStart(2,'0')}</span></div><div class="bk-t"><b>Book a fitting</b><small>${LABELS[step-1]}</small></div>${step>1&&bk.occ?`<span class="bk-ctx">${esc(bk.occ)}${bk.who?' · '+esc(whoText()):''}</span>`:''}</div><div class="bk-progress" aria-hidden="true">${LABELS.map((_,i)=>i+1).map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body${bkDir}">`;
+  if(step===1) h+=`<h3>What are we dressing you for?</h3><p class="hint">Nine short questions. At the end we write your WhatsApp message for you to check and send.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
   if(step===2) h+=`<h3>Who are we dressing${OCC_FOR[bk.occ]||''}?</h3><p class="hint">We will only show pieces that suit them and the occasion.</p><div class="rcards who" role="radiogroup" aria-label="Who it is for">${WHO_B.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-who="${k}" aria-checked="${bk.who===k}">${TICK}${svg(k)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`
     +(bk.occ==='Wedding'?`<div class="party"><p class="party-h">Dressing the wedding party too?<em>Optional</em></p>${[['men','Groomsmen'],['women','Bridesmaids']].map(([k,l])=>`<div class="ctr"><span>${l}</span><div><button type="button" data-pty="${k}" data-d="-1" aria-label="Fewer ${l.toLowerCase()}" ${bk.party[k]?'':'disabled'}>−</button><b>${bk.party[k]}</b><button type="button" data-pty="${k}" data-d="1" aria-label="More ${l.toLowerCase()}">+</button></div></div>`).join('')}</div>`:'');
-  if(step===3) h+=`<h3>${bk.who==='both'?'Choose a piece for each of them':bk.who==='her'?'Choose her piece':'Choose his piece'}</h3><p class="hint">What we make for ${OCC_PL[bk.occ]||'any occasion'}. Pick the closest; the details are settled at your fitting.</p>${bk.style?`<p class="bk-style">From the suit guide: <b>${esc(bk.style)}</b></p>`:''}${whoList().map(pieceBlock).join('')}`;
-  if(step===4) h+=`<h3>When would you like to come in?</h3><p class="hint">The atelier is open Monday to Saturday, 9am to 8pm.</p><div class="when">${calendar()}<div><div class="slots" role="radiogroup" aria-label="Time of day">${TIMES.map(([t,r])=>`<button type="button" class="rcard" role="radio" data-time="${t}" aria-checked="${bk.time===t}">${TICK}<b>${t}</b><small>${r}</small></button>`).join('')}</div><p class="chosen">${bk.date?`<b>${esc(fmtDay(bk.date))}</b>${bk.time?', '+esc(bk.time.toLowerCase()):', choose a time'}`:'Choose a date on the calendar.'}</p></div></div>`;
-  if(step===5) h+=`<h3>Your details</h3><p class="hint">Check your request, then send it on WhatsApp.</p><label class="u-field" id="nameField" for="bkName"><span>Your name</span><input id="bkName" autocomplete="name" placeholder="e.g. Aline Uwase" value="${esc(bk.name)}"></label><p class="err" id="nameErr" hidden>Add your name so the atelier knows who is coming.</p><label class="u-field" for="bkNote"><span>Anything we should know? <em>Optional</em></span><textarea id="bkNote" placeholder="The date of your ${esc((bk.occ||'event').toLowerCase())}, colours you like, sizes">${esc(bk.note)}</textarea></label>
-    <dl class="summary"><div><dt>Occasion</dt><dd>${esc(bk.occ)}</dd><button type="button" class="u-btn ghost sm" data-go="1">Edit</button></div><div><dt>For</dt><dd>${esc(whoText())}</dd><button type="button" class="u-btn ghost sm" data-go="2">Edit</button></div>${whoList().map(w=>`<div><dt>${bk.who==='both'?(w==='her'?'Her piece':'His piece'):'Piece'}</dt><dd>${esc(cut(bk.cut[w]).name)}${likes(w).length?` · ${esc(likes(w).join(', '))}`:''}</dd><button type="button" class="u-btn ghost sm" data-go="3">Edit</button></div>`).join('')}<div><dt>When</dt><dd>${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}</dd><button type="button" class="u-btn ghost sm" data-go="4">Edit</button></div>${bk.style?`<div><dt>Style</dt><dd>${esc(bk.style)}</dd><span></span></div>`:''}${partyText()?`<div><dt>Party</dt><dd>${esc(partyText())}</dd><button type="button" class="u-btn ghost sm" data-go="2">Edit</button></div>`:''}</dl>`;
+  if(step===3){ const big=['Wedding','Gusaba & gukwa','Gala or black tie'].includes(bk.occ);
+    h+=`<h3>${big?'When is the big day?':bk.occ==='Something else'?'When is it for?':'When do you need it by?'}</h3><p class="hint">This helps the atelier plan your fittings and the time your piece needs.</p><div class="rcards" role="radiogroup" aria-label="When">${WHEN.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-when="${k}" aria-checked="${bk.when===k}">${TICK}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`; }
+  if(step===4) h+=`<h3>${bk.who==='both'?'Choose a piece for each of them':bk.who==='her'?'Choose her piece':'Choose his piece'}</h3><p class="hint">What we make for ${OCC_PL[bk.occ]||'any occasion'}. Pick the closest; the details are settled at your fitting.</p>${bk.style?`<p class="bk-style">From the suit guide: <b>${esc(bk.style)}</b></p>`:''}${whoList().map(pieceBlock).join('')}`;
+  if(step===5) h+=`<h3>Any colours in mind?</h3><p class="hint">Optional. Choose as many as you like, or ask for help choosing at your fitting.</p><div class="ccols" role="group" aria-label="Colours">${BK_COLS.map(([f,c])=>`<button type="button" class="ccol" data-col="${f}" aria-pressed="${bk.cols.includes(f)}"><i style="background:${c}"></i>${f}</button>`).join('')}<button type="button" class="ccol" data-col="help" aria-pressed="${bk.cols.includes('help')}"><i style="background:conic-gradient(#F6F4EF,#CBB089,#5A3A2A,#9A2E27,#536247,#3E5A80,#1C1B1A,#F6F4EF)"></i>Help me choose</button></div>`;
+  if(step===6) h+=`<h3>What budget feels right, per piece?</h3><p class="hint">It helps the atelier suggest the right fabrics. Prices are confirmed with you at the fitting.</p><div class="rcards" role="radiogroup" aria-label="Budget">${BUDGET.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-bud="${k}" aria-checked="${bk.budget===k}">${TICK}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
+  if(step===7) h+=`<h3>Have you had a fitting with us before?</h3><p class="hint">So the atelier knows whether to start with your measurements.</p><div class="rcards two" role="radiogroup" aria-label="First visit">${VISIT.map(([k,n,d])=>`<button type="button" class="rcard" role="radio" data-vis="${k}" aria-checked="${bk.visited===k}">${TICK}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
+  if(step===8) h+=`<h3>When can you come to the atelier?</h3><p class="hint">The atelier is open Monday to Saturday, 9am to 8pm.</p><div class="when">${calendar()}<div><div class="slots" role="radiogroup" aria-label="Time of day">${TIMES.map(([t,r])=>`<button type="button" class="rcard" role="radio" data-time="${t}" aria-checked="${bk.time===t}">${TICK}<b>${t}</b><small>${r}</small></button>`).join('')}</div><p class="chosen">${bk.date?`<b>${esc(fmtDay(bk.date))}</b>${bk.time?', '+esc(bk.time.toLowerCase()):', choose a time'}`:'Choose a date on the calendar.'}</p></div></div>`;
+  if(step===9){ if(!bk.edited) bk.msg=draftMsg();
+    h+=`<h3>Here is your message</h3><p class="hint">We wrote it from your answers. Change anything you like, add your name, then send it on WhatsApp.</p><label class="u-field" id="nameField" for="bkName"><span>Your name</span><input id="bkName" autocomplete="name" value="${esc(bk.name)}"></label><p class="err" id="nameErr" hidden>Add your name so the atelier knows who is coming.</p><label class="u-field" for="bkPhone"><span>Phone number <em>Optional</em></span><input id="bkPhone" type="tel" autocomplete="tel" value="${esc(bk.phone)}"></label><label class="u-field" for="bkMsg"><span>Your message</span><textarea id="bkMsg" rows="12">${esc(bk.msg)}</textarea></label><div class="msg-tools"><button type="button" class="u-btn ghost sm" data-act="resetmsg">Write it again from my answers</button></div>`; }
   h+=`</div><div class="bk-foot">${step>1?'<button type="button" class="u-btn ghost" data-act="back"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Back</button>':'<span></span>'}<div class="right">`;
-  if(step<5) h+=`<button type="button" class="u-btn" data-act="next" ${valid(step)?'':'disabled'}>Continue<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`;
+  if(step<NSTEP) h+=`<button type="button" class="u-btn" data-act="next" ${valid(step)?'':'disabled'}>${step===5&&!bk.cols.length?'Skip':'Continue'}<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`;
   else h+=`<button type="button" class="u-btn outline" data-act="copy">Copy message</button><a class="u-btn" id="bkSend" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(message())}"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/></svg>Send on WhatsApp</a>`;
   h+=`</div></div>`;
   box.innerHTML=h;
-  if(step===5){ const n=$('#bkName'), t=$('#bkNote'), s=$('#bkSend');
-    const upd=()=>{bk.name=n.value.trim(); bk.note=t.value.trim(); s.href=`https://wa.me/${WA}?text=${encodeURIComponent(message())}`; if(bk.name){$('#nameErr').hidden=true; $('#nameField').classList.remove('bad');}};
-    n.addEventListener('input',upd); t.addEventListener('input',upd);
+  onbSide();
+  if(step===NSTEP){ const n=$('#bkName'), ph=$('#bkPhone'), t=$('#bkMsg'), s=$('#bkSend');
+    const upd=()=>{bk.name=n.value.trim(); bk.phone=ph.value.trim(); s.href=`https://wa.me/${WA}?text=${encodeURIComponent(message())}`; if(bk.name){$('#nameErr').hidden=true; $('#nameField').classList.remove('bad');}};
+    n.addEventListener('input',upd); ph.addEventListener('input',upd); t.addEventListener('input',()=>{ bk.msg=t.value; bk.edited=true; upd(); });
     s.addEventListener('click',e=>{ upd(); if(!bk.name){ e.preventDefault(); $('#nameErr').hidden=false; $('#nameField').classList.add('bad'); n.focus(); return;} setTimeout(()=>{sent=true; renderBk();},400); }); }
 }
-const goStep=n=>{ step=n; renderBk(); const top=$('#bk').getBoundingClientRect().top; if(top<barH()||top>innerHeight*.6) go('#bk',16); };
+const goStep=n=>{ step=n; renderBk(); const m=$('#onbMain'); if(m) m.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); };
 function prefill({occ,who,cut:c,refs,piece,style}={}){
   if(style) bk.style=String(style).slice(0,160);
   if(occ&&OCC_NAMES.includes(occ)) bk.occ=occ;
@@ -1569,8 +1679,14 @@ function prefill({occ,who,cut:c,refs,piece,style}={}){
 }
 if($('#bk')){
   $('#bk').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b||b.disabled) return; const d=b.dataset;
-    if(d.occ){ bk.occ=d.occ; renderBk(); }
-    else if(d.who){ bk.who=d.who; ['her','him'].forEach(w=>{ if(!whoList().includes(w)){ bk.cut[w]=null; bk.refs[w]=[]; } }); renderBk(); }
+    const auto=()=>{ const s0=step; setTimeout(()=>{ if(step===s0&&valid(step)&&$('#onb').classList.contains('on')) goStep(step+1); },460); };
+    if(d.occ){ bk.occ=d.occ; renderBk(); auto(); }
+    else if(d.who){ bk.who=d.who; ['her','him'].forEach(w=>{ if(!whoList().includes(w)){ bk.cut[w]=null; bk.refs[w]=[]; } }); renderBk(); if(bk.occ!=='Wedding') auto(); }
+    else if(d.when){ bk.when=d.when; renderBk(); auto(); }
+    else if(d.col){ const c=d.col; if(c==='help') bk.cols=bk.cols.includes('help')?[]:['help']; else { bk.cols=bk.cols.filter(x=>x!=='help'); bk.cols=bk.cols.includes(c)?bk.cols.filter(x=>x!==c):[...bk.cols,c]; } renderBk(); }
+    else if(d.bud){ bk.budget=d.bud; renderBk(); auto(); }
+    else if(d.vis){ bk.visited=d.vis; renderBk(); auto(); }
+    else if(d.act==='resetmsg'){ bk.edited=false; renderBk(); }
     else if(d.cut){ const w=d.w; if(bk.cut[w]!==d.cut){ bk.cut[w]=d.cut; bk.refs[w]=bk.refs[w].filter(s=>cut(d.cut).cats.includes(by[s].cat)); } renderBk(); }
     else if(d.ref){ const w=d.w, r=bk.refs[w], i=r.indexOf(d.ref); if(i>-1) r.splice(i,1); else { if(r.length>=3) r.shift(); r.push(d.ref); } const sc=b.parentElement.scrollLeft; renderBk(); const row=$$('#bk .ref-row')[whoList().indexOf(w)]; if(row) row.scrollLeft=sc; }
     else if(d.date){ bk.date=new Date(+d.date); renderBk(); }
@@ -1580,15 +1696,25 @@ if($('#bk')){
     else if(d.go){ goStep(+d.go); }
     else if(d.act==='back'){ goStep(Math.max(1,step-1)); }
     else if(d.act==='next'){ if(valid(step)) goStep(step+1); }
-    else if(d.act==='restart'){ Object.assign(bk,{occ:null,who:null,cut:{her:null,him:null},refs:{her:[],him:[]},date:null,time:null,note:'',style:'',party:{men:0,women:0}}); sent=false; step=1; renderBk(); }
+    else if(d.act==='restart'){ Object.assign(bk,BK0()); sent=false; step=1; renderBk(); }
     else if(d.act==='copy'){ const m=message(); const ok=()=>toast('Message copied'); const fb=()=>{const ta=document.createElement('textarea'); ta.value=m; document.body.append(ta); ta.select(); try{document.execCommand('copy'); ok();}catch(_){} ta.remove();}; navigator.clipboard?navigator.clipboard.writeText(m).then(ok,fb):fb(); }
   });
   $('#bk').addEventListener('dblclick',e=>{ const b=e.target.closest('[data-occ],[data-who]'); if(b&&valid(step)) goStep(step+1); });
-  bookFor=o=>{ prefill(o); sent=false; step=firstOpen(); renderBk(); go('#book'); };
+  /* the booking flow opens over the page: from any Book a fitting button, link or piece */
+  const onb=$('#onb'); let onbBack=null;
+  const lg=$('.top .logo-mark'); if(lg&&$('#onbLogo')) $('#onbLogo').innerHTML=lg.outerHTML;
+  const openOnb=()=>{ onbBack=document.activeElement; renderBk(); onb.classList.add('on'); onb.setAttribute('aria-hidden','false'); document.documentElement.classList.add('onb-open'); if(lenis) lenis.stop();
+    setTimeout(()=>{ const f=onb.querySelector('.bk-body [aria-checked="false"],.bk-body button,.bk-body input'); (f||$('#onbX')).focus({preventScroll:true}); },450); };
+  const closeOnb=()=>{ onb.classList.remove('on'); onb.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('onb-open'); if(lenis) lenis.start(); if(location.hash==='#book') history.replaceState(null,'',location.pathname+location.search); if(onbBack&&onbBack.focus) onbBack.focus({preventScroll:true}); };
+  $('#onbX').onclick=closeOnb;
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&onb.classList.contains('on')&&!($('#lightbox')||{classList:{contains:()=>0}}).classList.contains('on')) closeOnb(); });
+  bookFor=o=>{ prefill(o||{}); sent=false; step=firstOpen(); openOnb(); };
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[href="#book"],a[href="./#book"]'); if(!a) return; e.preventDefault(); e.stopPropagation(); closeMenu&&closeMenu(); bookFor({}); },true);
+  $('#visitBook').addEventListener('click',()=>bookFor({}));
   const pre=store.get('book',null);
   if(pre){ store.set('book',null); prefill(pre); step=firstOpen(); }
   renderBk();
-  if(pre||location.hash==='#book') setTimeout(()=>go('#book'),400);
+  if(pre||location.hash==='#book') setTimeout(openOnb,500);
 }
 
 /* ---------- Prime concierge ---------- */

@@ -100,31 +100,34 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .menu.on{opacity:1;pointer-events:auto}
 .menu a.big{font-size:36px;letter-spacing:.02em;text-decoration:none}
 
-/* ---------- footer ---------- */
-.foot{background:var(--night);color:#F4F2EF;overflow:hidden;--ivory:#F4F2EF;--blush:#ABA49C;--sand:#D9D3CA;--line-d:rgba(244,242,239,.14);--red-deep:var(--night)}
+/* ---------- footer: an invitation, then the details in quiet columns ---------- */
+.foot{background:var(--night);color:#F4F2EF;overflow:hidden;--ivory:#F4F2EF;--blush:#ABA49C;--sand:#D9D3CA;--line-d:rgba(244,242,239,.12);--red-deep:var(--night)}
 .foot a{text-decoration:none}
-.foot-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:end;padding-block:clamp(56px,6vw,96px) 48px;border-bottom:1px solid var(--line-d)}
-.foot-brand .logo-mark{height:72px;color:var(--sand)}
-.foot-claim{margin:32px 0 32px;font-size:clamp(26px,2.6vw,40px);line-height:1.2;letter-spacing:.02em;max-width:20ch}
-.foot-news h4,.foot-cols h4{margin:0 0 16px;font-size:12px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
-.foot-news p{margin:0 0 20px;color:var(--blush);max-width:40ch}
-.join{display:flex;gap:8px;max-width:480px}
-.join input{flex:1;min-width:0;height:52px;border-radius:999px;border:0;box-shadow:inset 0 0 0 1px var(--line-d);background:rgba(255,255,255,.04);color:var(--ivory);padding:0 22px;font:inherit}
-.join input::placeholder{color:var(--blush);opacity:.7}
-.join input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ivory)}
-.joined{margin:16px 0 0;color:var(--sand)}
-.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;padding-block:44px}
-.foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
-.foot-cols li{color:var(--blush)}
-.foot-cols a{color:var(--ivory);opacity:.85;transition:opacity .3s}
-.foot-cols a:hover{opacity:1}
+.foot a:not(.btn){color:inherit}
+.fz-cta{display:flex;justify-content:space-between;align-items:flex-end;gap:28px 48px;flex-wrap:wrap;padding-block:clamp(64px,7vw,104px) clamp(40px,4vw,56px);border-bottom:1px solid var(--line-d)}
+.fz-cta .kicker{color:var(--blush);opacity:1}
+.fz-t{margin:0;font-size:clamp(40px,5.4vw,88px);line-height:1;letter-spacing:.005em}
+.fz-acts{display:flex;gap:12px;flex-wrap:wrap}
+.fz-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:40px clamp(24px,3vw,48px);padding-block:clamp(44px,5vw,64px)}
+.fz-brand .logo-mark{height:52px;width:auto;color:var(--ivory)}
+.fz-brand>p:first-of-type{margin:20px 0 28px;max-width:34ch;font-size:15px;line-height:1.6;color:var(--blush)}
+.fz-h{margin:0 0 14px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--blush)}
+.fz-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;line-height:1.45}
+.fz-col li{color:var(--blush)}
+.fz-col a{color:#F4F2EF;opacity:.86;transition:opacity .25s}
+.fz-col a:hover{opacity:1}
+.join{display:flex;gap:6px;max-width:380px;padding:5px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d)}
+.join input{flex:1;min-width:0;height:40px;border:0;background:transparent;color:var(--ivory);padding:0 14px;font:inherit;font-size:14px}
+.join input::placeholder{color:var(--blush);opacity:.75}
+.join input:focus{outline:none}
+.join:focus-within{box-shadow:inset 0 0 0 1px var(--ivory)}
+.joined{margin:12px 0 0;color:var(--sand);font-size:14px}
 .cur{display:inline-flex;padding:4px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d);margin-top:8px}
 .cur button{height:32px;padding:0 14px;border-radius:999px;font-size:11px;letter-spacing:.12em;color:var(--blush)}
 .cur button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
-.foot-word{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(20px,2.4vw,32px);overflow:hidden;user-select:none}
-.foot-word span{display:block;width:max-content;margin:0 auto;font-size:min(170px,calc((100vw - 2 * max(20px,4.5vw)) / 9.6));line-height:1.05;letter-spacing:.16em;padding-left:.16em;white-space:nowrap;background:linear-gradient(180deg,var(--sand) 0%,rgba(205,181,148,.55) 55%,rgba(205,181,148,.12) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:22px calc(80px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
-.foot-legal nav{display:flex;gap:24px}
+.fz-legal{display:flex;justify-content:space-between;align-items:center;gap:12px 28px;flex-wrap:wrap;padding-block:20px calc(84px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
+.fz-legal a{color:#F4F2EF}
+.fz-note{flex:1;text-align:center}
 .toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 /* ---------- client films from Instagram, cropped to the film ---------- */
@@ -168,13 +171,13 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .top nav,.top .btn,.cur-top{display:none}
   .menu-btn{display:grid;margin-left:-10px}
   .logo-mark{height:28px}
-  .foot-top{grid-template-columns:1fr}
-  .foot-cols{grid-template-columns:1fr 1fr}
+  .fz-grid{grid-template-columns:1fr 1fr}
+  .fz-brand{grid-column:1/-1}
 }
 @media (max-width:560px){
-  .foot-cols{grid-template-columns:1fr}
-  .foot-cols ul{overflow-wrap:anywhere}
-  .foot-legal{flex-direction:column;align-items:flex-start}
+  .fz-col ul{overflow-wrap:anywhere}
+  .fz-legal{flex-direction:column;align-items:flex-start}
+  .fz-note{text-align:left}
 }
 
 /* Atelier page: no hero. One switch between the showroom (photographs) and the atelier (fittings filmed there), then the visit. */
@@ -273,35 +276,32 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </section>
 </main>
 <footer class="foot" aria-label="Prime Couture">
-  <div class="wrap foot-top">
-    <div class="foot-brand">
+  <div class="wrap fz-cta">
+    <div><p class="kicker">Prime Couture · Gishushu, Kigali</p><p class="fz-t">Come in for a fitting.</p></div>
+    <div class="fz-acts"><a class="btn btn--light" href="./#book">Book a fitting</a><a class="btn btn--ghost" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a></div>
+  </div>
+  <div class="wrap fz-grid">
+    <div class="fz-brand">
       <svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg>
-      <p class="foot-claim">Essential power tailoring, cut and finished in Kigali.</p>
-      <a class="btn btn--light" href="./#book">Book a fitting</a>
-    </div>
-    <div class="foot-news">
-      <h4>Private list</h4>
-      <p>Early access to new drops, fittings and collection releases.</p>
-      <form class="join" id="join"><label for="jEmail" style="position:absolute;left:-9999px">Email address</label><input id="jEmail" type="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn--light" type="submit">Join</button></form>
+      <p>Tailoring for men and women, designed and finished at the atelier in Gishushu, Kigali.</p>
+      <p class="fz-h">Private list</p>
+      <form class="join" id="join"><label for="jEmail" style="position:absolute;left:-9999px">Email address</label><input id="jEmail" type="email" placeholder="Your email address" autocomplete="email" required><button class="btn btn--light btn--sm" type="submit">Join</button></form>
       <p class="joined" id="joined" hidden>You're on the list. Thank you.</p>
     </div>
+    <nav class="fz-col" aria-label="Shop"><p class="fz-h">Shop</p><ul>
+      <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li><li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
+    </ul></nav>
+    <nav class="fz-col" aria-label="The atelier"><p class="fz-h">The atelier</p><ul>
+      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="suits.html">Suit guide</a></li><li><a href="./#book">Book a fitting</a></li><li><a href="shop.html#saved">Your wishlist</a></li>
+    </ul></nav>
+    <div class="fz-col"><p class="fz-h">Visit</p><ul>
+      <li>15 KG 599 St<br>Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a></li>
+    </ul></div>
+    <div class="fz-col"><p class="fz-h">Contact</p><ul>
+      <li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">+250 781 178 499</a></li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">@primecouturehq</a></li><li>contact@prime-couture.com</li>
+    </ul><p class="fz-h" style="margin-top:28px">Prices in</p><div class="cur-foot dd--dark" data-cur></div></div>
   </div>
-  <div class="wrap foot-cols">
-    <div><h4>Shop</h4><ul>
-      <li><a href="shop.html">All pieces</a></li><li><a href="shop.html#who=him">Men</a></li><li><a href="shop.html#who=her">Women</a></li>
-      <li><a href="shop.html#type=suits">Suits</a></li><li><a href="shop.html#type=kaftans">Kaftans &amp; shirts</a></li><li><a href="shop.html#type=dresses">Dresses</a></li>
-    </ul></div>
-    <div><h4>Atelier</h4><ul>
-      <li><a href="atelier.html">Inside the atelier</a></li><li><a href="./#book">Book a fitting</a></li><li><a href="https://www.google.com/maps/search/?api=1&amp;query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Directions</a></li>
-    </ul></div>
-    <div><h4>Contact</h4><ul>
-      <li><a href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp +250 781 178 499</a></li><li>contact@prime-couture.com</li><li><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram @primecouturehq</a></li>
-    </ul></div>
-    <div><h4>Visit</h4><ul>
-      <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
-    </ul><h4 style="margin-top:28px">Prices in</h4><div class="cur-foot dd--dark" data-cur></div><p style="margin:12px 0 0;font-size:13px;color:var(--blush)">Set in RWF. Other currencies are approximate.</p></div>
-  </div>
-  <div class="wrap foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><nav aria-label="Footer"><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram</a><a href="#top">Back to top</a></nav></div>
+  <div class="wrap fz-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><span class="fz-note">Prices are set in Rwandan francs; other currencies are approximate.</span><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
