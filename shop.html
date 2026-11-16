@@ -103,7 +103,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 /* ---------- footer ---------- */
 .foot{background:var(--night);color:#F4F2EF;overflow:hidden;--ivory:#F4F2EF;--blush:#ABA49C;--sand:#D9D3CA;--line-d:rgba(244,242,239,.14);--red-deep:var(--night)}
 .foot a{text-decoration:none}
-.foot-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:end;padding-block:clamp(80px,9vw,128px) 64px;border-bottom:1px solid var(--line-d)}
+.foot-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:end;padding-block:clamp(56px,6vw,96px) 48px;border-bottom:1px solid var(--line-d)}
 .foot-brand .logo-mark{height:72px;color:var(--sand)}
 .foot-claim{margin:32px 0 32px;font-size:clamp(26px,2.6vw,40px);line-height:1.2;letter-spacing:.02em;max-width:20ch}
 .foot-news h4,.foot-cols h4{margin:0 0 16px;font-size:12px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
@@ -113,7 +113,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .join input::placeholder{color:var(--blush);opacity:.7}
 .join input:focus{outline:none;box-shadow:inset 0 0 0 1px var(--ivory)}
 .joined{margin:16px 0 0;color:var(--sand)}
-.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;padding-block:56px}
+.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;padding-block:44px}
 .foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
 .foot-cols li{color:var(--blush)}
 .foot-cols a{color:var(--ivory);opacity:.85;transition:opacity .3s}
@@ -123,7 +123,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cur button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
 .foot-word{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(20px,2.4vw,32px);overflow:hidden;user-select:none}
 .foot-word span{display:block;width:max-content;margin:0 auto;font-size:min(170px,calc((100vw - 2 * max(20px,4.5vw)) / 9.6));line-height:1.05;letter-spacing:.16em;padding-left:.16em;white-space:nowrap;background:linear-gradient(180deg,var(--sand) 0%,rgba(205,181,148,.55) 55%,rgba(205,181,148,.12) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:24px calc(92px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
+.foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:22px calc(80px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
 .foot-legal nav{display:flex;gap:24px}
 .toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
@@ -273,12 +273,15 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
 /* who we are, then the way in: men, women, or everything */
 .about{padding-block:clamp(88px,9vw,140px)}
-.ab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,5vw,88px);align-items:start}
-.ab-logo{height:clamp(96px,11vw,168px);width:auto;color:var(--red)}
-.ab-t{font-size:clamp(28px,3vw,46px);line-height:1.15;letter-spacing:-.02em;max-width:32ch}
-.ab-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:clamp(40px,5vw,64px) 0 0;padding:24px 0 0;border-top:1px solid var(--line);list-style:none}
+.ab-brand{display:flex;align-items:center;gap:clamp(16px,2.4vw,40px)}
+.ab-logo{height:clamp(64px,8.4vw,136px);width:auto;color:var(--red);flex-shrink:0}
+.ab-name{margin:0;font-weight:500;font-size:clamp(52px,9.4vw,156px);line-height:.92;letter-spacing:-.045em;color:var(--ink);white-space:nowrap}
+.ab-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:28px clamp(40px,6vw,112px);margin-top:clamp(36px,4.4vw,64px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--line)}
+.ab-t{margin:0;font-size:clamp(22px,2.1vw,32px);line-height:1.3;letter-spacing:-.01em;max-width:30ch}
+.ab-t .kicker{display:block;margin-bottom:14px;font-size:12px;letter-spacing:.2em}
+.ab-facts{display:grid;gap:20px;margin:0;padding:0;list-style:none}
 .ab-facts b{display:block;font-weight:500;font-size:16px}
-.ab-facts span{display:block;margin-top:4px;font-size:15px;color:var(--muted)}
+.ab-facts span{display:block;margin-top:2px;font-size:15px;color:var(--muted)}
 .ab-lead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:clamp(64px,7vw,104px)}
 .ab-lead .kicker{margin:0}
 .cat-all.brand{display:flex;flex-direction:column;justify-content:space-between;gap:28px;background:var(--red);color:var(--ivory)}
@@ -333,7 +336,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 /* the full-collection tile, light */
 .cat-all.lite{background:var(--mist);color:var(--ink);--ivory:var(--ink);--blush:var(--muted);--line-d:rgba(18,16,16,.16);--red-deep:#fff}
 /* client films */
-.clients{padding-block:clamp(88px,9vw,140px)}
+.clients{padding-block:clamp(80px,8vw,128px)}
+.clients .rv-tile figcaption{color:#F4F2EF}
 
 /* today's picks */
 .picks{padding-block:clamp(88px,9vw,140px)}
@@ -770,8 +774,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .lk-types{order:2;padding:0 var(--gut);margin-top:14px}
   .lk-info{order:4;margin:24px 0 0;padding:0 var(--gut)}
   .wed-in,.ws-in{grid-template-columns:1fr}
-  .ab{grid-template-columns:1fr}
-  .ab-facts{grid-template-columns:1fr}
+  .ab-body{grid-template-columns:1fr}
+  .ab-name{white-space:normal}
   .lk-nav{order:5;margin-top:28px;padding:0 var(--gut)}
 }
 @media (max-width:560px){
@@ -880,8 +884,6 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
       <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
     </ul><h4 style="margin-top:28px">Prices in</h4><div class="cur-foot dd--dark" data-cur></div><p style="margin:12px 0 0;font-size:13px;color:var(--blush)">Set in RWF. Other currencies are approximate.</p></div>
   </div>
-  <div class="wrap foot-word" aria-hidden="true"><span>PRIME COUTURE</span></div>
-  <script>(()=>{const box=document.querySelector(".foot-word"),w=box&&box.querySelector("span");if(!w)return;const fit=()=>{w.style.fontSize="100px";const cs=getComputedStyle(box),avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);w.style.fontSize=Math.max(24,Math.floor(100*avail/w.offsetWidth*10)/10)+"px";};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener("resize",fit);})();</script>
   <div class="wrap foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><nav aria-label="Footer"><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram</a><a href="#top">Back to top</a></nav></div>
 </footer>
 
