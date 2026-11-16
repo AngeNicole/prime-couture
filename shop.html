@@ -313,6 +313,19 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cat-guide:hover{color:var(--red)}
 .saved-band .sb-acts{display:flex;gap:8px;flex-wrap:wrap}
 
+/* know your suit: the home band into the suit guide */
+.kys{padding-block:clamp(72px,8vw,120px) clamp(56px,6vw,88px);background:var(--mist);overflow:hidden}
+.kys-in{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,4vw,72px);align-items:end}
+.kys .title{font-size:clamp(40px,4.6vw,72px)}
+.kys .lede{color:var(--muted);opacity:1}
+.kys .btn{margin-top:28px}
+.kys-line{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end}
+.kys-fig{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:inherit;min-width:0}
+.kys-fig img{width:100%;height:clamp(240px,25vw,380px);object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 24px 22px rgba(18,16,16,.14));transition:transform .7s var(--ease)}
+.kys-fig span{margin-top:14px;font-size:14px;padding-bottom:2px;border-bottom:1px solid transparent;transition:border-color .3s,color .3s;white-space:nowrap}
+.kys-fig:hover img{transform:translateY(-10px)}
+.kys-fig:hover span{border-color:currentColor;color:var(--red)}
+
 /* find your piece: the search and the way in by who you are dressing, after the looks */
 .find{padding-block:clamp(88px,9vw,140px)}
 .fd-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px clamp(32px,5vw,96px);align-items:end}
@@ -791,6 +804,10 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .lk-info{order:4;margin:24px 0 0;padding:0 var(--gut)}
   .wed-in,.ws-in{grid-template-columns:1fr}
   .ab-body{grid-template-columns:1fr}
+  .kys-in{grid-template-columns:1fr}
+  .kys-line{display:flex;overflow-x:auto;scrollbar-width:none;gap:4px;margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut)}
+  .kys-line::-webkit-scrollbar{display:none}
+  .kys-fig{flex:0 0 38%}
   .ab-name{white-space:normal}
   .lk-nav{order:5;margin-top:28px;padding:0 var(--gut)}
 }
@@ -1092,6 +1109,12 @@ const OCC_FOR={'Wedding':' for the wedding','Gusaba & gukwa':' for gusaba and gu
 const OCC_PL={'Wedding':'weddings','Gusaba & gukwa':'gusaba and gukwa','Office':'the office','Gala or black tie':'galas and black tie','Everyday':'every day','Something else':'any occasion'};
 const WHO_B=[['her','A woman','Her look'],['him','A man','His look'],['both','Both','Her and him']];
 
+/* ---------- know your suit: the five cuts as a lineup; each opens the guide at that cut ---------- */
+if($('#kysLine')){
+  const KYS=[['sbs','Single-breasted','media/cut/half/sbs.webp'],['dbs','Double-breasted','media/cut/half/dbs.webp'],['tux','Tuxedo','media/cut/half/tux.webp'],['saf','Safari','media/cut/half/saf.webp'],['kaf','Kaftan','media/cut/half/kaf.webp']];
+  $('#kysLine').innerHTML=KYS.map(([k,n,src])=>`<a class="kys-fig" href="suits.html#${k}" data-cursor="View"><img src="${src}" alt="A ${n.toLowerCase()} from Prime Couture" loading="lazy"><span>${n}</span></a>`).join('');
+}
+
 /* ---------- weddings preview: opens from the Weddings slide, before the form ---------- */
 let openWed=()=>bookFor({occ:'Wedding'});
 if($('#wSheet')){
@@ -1252,7 +1275,7 @@ if(lb){ $('#lbClose').onclick=closeFilm; $('#lbNext').onclick=()=>openFilm(lbi+1
 
 /* ---------- home: our pieces, by who they are for ---------- */
 if($('#catGrid')){
-  const CAT=[['him','Men','For him','the-sand-mocha-suits','essential-noir'],['her','Women','For her','ivory-grace-dress','maroon-muse-suit']];
+  const CAT=[['him','Men','For him','the-sand-mocha-suits','silverline-two-button-executive-suit'],['her','Women','For her','ivory-grace-dress','maroon-muse-suit']];
   const card=([w,name,kick,a,b])=>{ const list=P.filter(p=>p.for===w), pa=by[a]||list[0], pb=by[b]||list[1];
     const types=TYPES.slice(1).map(([k,l])=>[k,l,list.filter(p=>inType(p,k)).length]).filter(t=>t[2]);
     return `<article class="cat"><a class="cat-ph" href="shop.html#who=${w}" aria-label="${name}, ${list.length} pieces"><img src="${(pa.imgs[0]||pa.card)}" alt="" loading="lazy"><img class="b" src="${(pb.imgs[0]||pb.card)}" alt="" loading="lazy"><span class="cat-k">${kick}</span></a>
