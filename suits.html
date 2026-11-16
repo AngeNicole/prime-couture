@@ -102,6 +102,60 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .sr{position:absolute;left:-9999px}
 .menu{position:fixed;z-index:85;inset:0;background:var(--red);color:var(--ivory);padding:calc(var(--bar) + 40px + env(safe-area-inset-top,0px)) var(--gut) 40px;display:flex;flex-direction:column;gap:20px;opacity:0;pointer-events:none;transition:opacity .4s}
 .menu.on{opacity:1;pointer-events:auto}
+html.menu-open,html.srch-open{overflow:hidden}
+html.menu-open .top{z-index:90}
+.menu-btn .m-close{display:none}
+html.menu-open .menu-btn .m-open{display:none}
+html.menu-open .menu-btn .m-close{display:inline}
+.menu .m-search{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 0 18px;border-bottom:1px solid var(--line-d);color:inherit;text-align:left;font:inherit;font-size:36px;letter-spacing:.02em}
+.menu .m-search svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.5}
+/* search: a full-screen sheet, like the atelier's original site */
+.srch{position:fixed;z-index:96;inset:0;background:var(--paper);color:var(--ink);overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s .35s}
+.srch.on{opacity:1;visibility:visible;transition:opacity .35s var(--ease)}
+.srch-in{max-width:1240px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) var(--gut) 80px}
+.srch-top{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:42px 1fr 42px;align-items:center;height:64px;background:var(--paper)}
+.srch-top span{grid-column:2;text-align:center;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.srch-x{grid-column:3}
+.srch-f{position:sticky;top:64px;z-index:2;display:flex;align-items:center;gap:14px;padding:18px 0 14px;border-bottom:1px solid var(--ink);background:var(--paper)}
+.srch-f svg{width:22px;height:22px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.5}
+.srch-f input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:clamp(24px,3.4vw,40px);line-height:1.2;color:var(--ink);padding:0}
+.srch-f input::placeholder{color:#B8B1A9}
+.srch-f input::-webkit-search-cancel-button{display:none}
+.srch-clear{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:12px 0 12px 8px}
+.srch-clear:hover{color:var(--ink)}
+.srch-trend{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;padding:28px 0 8px}
+.srch-trend>span{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.srch-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.srch-chips button{height:40px;padding:0 18px;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;letter-spacing:.04em;transition:background .25s,color .25s,box-shadow .25s}
+.srch-chips button:hover{background:var(--ink);color:#fff;box-shadow:none}
+.srch-h{margin:36px 0 18px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.srch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px}
+.srch-card{position:relative}
+.srch-card>button.so{display:block;width:100%;text-align:left;color:inherit}
+.srch-card .ph{aspect-ratio:4/5;overflow:hidden;background:var(--mist)}
+.srch-card img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s var(--ease)}
+.srch-card:hover img{transform:scale(1.04)}
+.srch-card small{display:block;margin-top:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.srch-card b{display:block;margin-top:4px;font-weight:400;font-size:16px;line-height:1.35}
+.srch-card em{display:block;margin-top:4px;font-style:normal;font-size:15px}
+.srch-card mark{background:none;color:inherit;box-shadow:inset 0 -.4em 0 var(--mist)}
+.srch-none{padding:56px 0 24px;text-align:center}
+.srch-none p{margin:0 0 18px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.srch-none .srch-chips{justify-content:center}
+@media (max-width:900px){.srch-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){
+  .srch-top{height:56px}
+  .srch-f{top:56px;padding:12px 0 10px}
+  .srch-f input{font-size:22px}
+  .srch-trend{justify-content:flex-start;padding-top:22px}
+  .srch-trend>span{width:100%}
+  .srch-chips{justify-content:flex-start;gap:8px}
+  .srch-chips button{height:38px;padding:0 14px}
+  .srch-h{margin:28px 0 14px}
+  .srch-grid{grid-template-columns:1fr 1fr;gap:28px 12px}
+  .srch-card b{font-size:15px}
+  .srch-card em{font-size:14px}
+}
 .menu a.big{font-size:36px;letter-spacing:.02em;text-decoration:none}
 
 /* ---------- footer: an invitation, then the details in quiet columns ---------- */
@@ -271,10 +325,11 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 <header class="top" id="top">
   <div class="wrap top-in">
     <nav aria-label="Primary"><a href="./#find">Find a piece</a><a href="shop.html">Collection</a><a href="suits.html" aria-current="page">Suit guide</a><a href="atelier.html">Atelier</a></nav>
-    <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></svg></button>
+    <button type="button" class="icon menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="m-open" d="M4 9h16M4 15h16"/><path class="m-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     <a class="home" href="./#" aria-label="Prime Couture, home"><svg class="logo-mark" viewBox="126 52 262 400" aria-hidden="true"><path fill="currentColor" d="M372.93 333.71c-35.19 10.69-53.34 13.08-78.79 3.27-10.18-3.93-20-9.13-28.14-16.37-13.86-12.28-20.62-31.21-20.55-49.46.12-28.43 21.25-48.3 43.35-63.06 15.27-10.2 31.09-19.52 46.33-29.78 13.28-8.93 26.56-20.27 32.85-35.5a48.93 48.93 0 0 0 2.29-29.46l-.15-.66c-5.43-22.5-33.11-35-49.54-38.71-1-.23-2.06-.43-3.07-.61-30.58-5.44-60.32 13.39-70 42.9C211 227 174.55 329.74 138.09 440.48Z"/></svg></a>
     <div class="top-r">
       <div class="cur-top dd--dark" data-cur></div>
+      <button type="button" class="icon" id="srchOpen" aria-label="Search the collection" aria-haspopup="dialog" aria-controls="srch" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
       <a class="icon wa" href="https://wa.me/250781178499" target="_blank" rel="noopener" aria-label="Message the atelier on WhatsApp" title="WhatsApp the atelier"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9.2 9.4c.3 1.9 2.2 4 4.4 4.6l1.2-1.1 1.6.8-.4 1.5c-3.6.2-7.3-3.4-7.3-7.1l1.5-.4.8 1.6z" stroke-width="1.2"/></svg></a>
       <a class="btn btn--light" href="./#book">Book a fitting</a>
       <a class="icon" id="savedOpen" href="shop.html#saved" aria-label="Your wishlist" title="Wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg><i id="savedCount" data-n="0"></i></a>
@@ -283,9 +338,19 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </div>
 </header>
 <div class="menu" id="menu" aria-hidden="true" data-lenis-prevent>
-  <a class="big" href="./#find">Find a piece</a><a class="big" href="shop.html">Collection</a><a class="big" href="suits.html">Suit guide</a><a class="big" href="atelier.html">Atelier</a>
+  <button type="button" class="big m-search" data-srch>Search<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button><a class="big" href="shop.html">Collection</a><a class="big" href="suits.html">Suit guide</a><a class="big" href="atelier.html">Atelier</a>
   <a class="big" href="https://wa.me/250781178499" target="_blank" rel="noopener">WhatsApp us</a>
   <a class="btn btn--light" href="./#book" style="align-self:flex-start;margin-top:16px">Book a fitting</a>
+</div>
+<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="Search the collection" aria-hidden="true" data-lenis-prevent>
+  <div class="srch-in">
+    <div class="srch-top"><span>Prime Couture</span><button type="button" class="icon srch-x" id="srchClose" aria-label="Close search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <form class="srch-f" id="srchForm" role="search" action="shop.html" autocomplete="off"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><label class="sr" for="srchQ">Search pieces, styles, colours</label><input id="srchQ" type="search" placeholder="Search pieces, styles, colours" enterkeyhint="search" autocomplete="off"><button type="button" class="srch-clear" id="srchClear" hidden>Clear</button></form>
+    <div class="srch-trend" id="srchTrend"><span>Trending</span><div class="srch-chips" id="srchChips"></div></div>
+    <p class="srch-h" id="srchH" aria-live="polite">Our pieces</p>
+    <div class="srch-grid" id="srchGrid"></div>
+    <div class="srch-none" id="srchNone" hidden></div>
+  </div>
 </div>
 
 <main>
@@ -430,9 +495,56 @@ let bookFor=o=>{ store.set('book',o||{}); location.href='./#book'; };
 
 /* menu */
 const menu=$('#menu');
-function closeMenu(){ if(!menu) return; menu.classList.remove('on'); menu.setAttribute('aria-hidden','true'); $('#menuBtn').setAttribute('aria-expanded','false'); }
-if(menu){ $('#menuBtn').onclick=()=>{const on=!menu.classList.contains('on'); menu.classList.toggle('on',on); menu.setAttribute('aria-hidden',!on); $('#menuBtn').setAttribute('aria-expanded',on);};
-  menu.addEventListener('click',e=>{ if(e.target.closest('a')) closeMenu(); }); }
+function setMenu(on){ if(!menu) return; const b=$('#menuBtn'); menu.classList.toggle('on',on); menu.setAttribute('aria-hidden',!on); b.setAttribute('aria-expanded',on); b.setAttribute('aria-label',on?'Close menu':'Open menu'); document.documentElement.classList.toggle('menu-open',on); if(lenis) on?lenis.stop():lenis.start(); }
+function closeMenu(){ setMenu(false); }
+if(menu){ $('#menuBtn').onclick=()=>setMenu(!menu.classList.contains('on'));
+  menu.addEventListener('click',e=>{ if(e.target.closest('a')) closeMenu(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&menu.classList.contains('on')){ closeMenu(); $('#menuBtn').focus(); } });
+  addEventListener('resize',()=>{ if(innerWidth>900&&menu.classList.contains('on')) closeMenu(); }); }
+
+/* search: the full-screen sheet from the atelier's original site. Trending words, then every piece; typing filters them live */
+const srch=$('#srch');
+let openSearch=()=>{};
+if(srch){
+  const sq=$('#srchQ'), sGrid=$('#srchGrid'), sH=$('#srchH'), sTrend=$('#srchTrend'), sNone=$('#srchNone'), sClear=$('#srchClear');
+  const TREND=[['Jackets','jacket'],['Suits','suit'],['Kaftans','kaftan'],['Trousers','trousers'],['Dresses','dress']];
+  const chipsHTML=TREND.map(([l,q])=>`<button type="button" data-sq="${q}">${l}</button>`).join('');
+  $('#srchChips').innerHTML=chipsHTML;
+  const home=document.body.dataset.page==='home'?'':'./';
+  const items=()=>typeof P!=='undefined'?P:[];
+  const nz=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[“”"]/g,'');
+  const GROUP={'Double-Breasted':'suit suits','Single-breasted':'suit suits','Tuxedo':'suit suits','Safari Suit':'suit suits','Jacket':'jacket jackets','Jacket complete':'jacket jackets','Kaftan':'kaftan kaftans shirt','Dress':'dress dresses gown','Two-Piece Set':'set sets','Set':'set sets','Vest':'vest'};
+  const head=p=>nz(`${p.title} ${p.cat} ${GROUP[p.cat]||''} ${p.fam} ${p.for==='her'?'women woman ladies her':'men man gentlemen him'}`);
+  const has=(hay,w)=>hay.includes(w)||(w.length>3&&w.endsWith('s')&&hay.includes(w.slice(0,-1)))||(w.length>4&&w.endsWith('es')&&hay.includes(w.slice(0,-2)));
+  const find=q=>{ const w=nz(q).split(/\s+/).filter(Boolean);
+    return items().map(p=>{ const a=head(p), b=a+' '+nz(p.desc); return [p, w.every(x=>has(a,x))?2:(w.every(x=>has(b,x))?1:0)]; })
+      .filter(x=>x[1]).sort((x,y)=>y[1]-x[1]||(y[0].views||0)-(x[0].views||0)).map(x=>x[0]); };
+  const hl=(t,q)=>{ let s=esc(t); nz(q).split(/\s+/).filter(w=>w.length>1).forEach(w=>{ s=s.replace(new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>'); }); return s; };
+  const card=(p,q)=>`<div class="srch-card">${heartBtn(p.slug,p.title)}<button type="button" class="so" data-slug="${p.slug}"><div class="ph"><img src="${p.card}" alt="" loading="lazy"></div><small>${esc(p.cat)}</small><b>${q?hl(p.title,q):esc(p.title)}</b><em class="price" data-rwf="${p.rwf}">${money(p.rwf)}</em></button></div>`;
+  const paint=()=>{ const q=sq.value.trim(); sClear.hidden=!q; sTrend.hidden=!!q;
+    const list=q?find(q):[...items()].sort((a,b)=>(b.views||0)-(a.views||0));
+    sH.textContent=q?`${list.length} ${list.length===1?'result':'results'} for “${q}”`:'Our pieces';
+    sGrid.innerHTML=list.map(p=>card(p,q)).join('');
+    sNone.hidden=!!list.length||!q;
+    if(!list.length&&q) sNone.innerHTML=`<p>No results for “${esc(q)}”</p><div class="srch-chips">${chipsHTML}</div>`; };
+  let back=null, painted=false;
+  openSearch=(q='')=>{ if(menu&&menu.classList.contains('on')) closeMenu(); back=document.activeElement; sq.value=q; paint(); painted=true;
+    srch.classList.add('on'); srch.setAttribute('aria-hidden','false'); srch.scrollTop=0; document.documentElement.classList.add('srch-open'); if(lenis) lenis.stop();
+    setTimeout(()=>sq.focus({preventScroll:true}),60); };
+  const closeSearch=()=>{ srch.classList.remove('on'); srch.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('srch-open'); if(lenis) lenis.start(); sq.blur(); if(back&&back.focus&&document.contains(back)) back.focus({preventScroll:true}); };
+  window.pcOpenSearch=q=>openSearch(q);
+  $('#srchOpen').addEventListener('click',()=>openSearch());
+  document.addEventListener('click',e=>{ const t=e.target.closest('[data-srch]'); if(t){ e.preventDefault(); openSearch(t.dataset.srch||''); } });
+  $('#srchClose').addEventListener('click',closeSearch);
+  sq.addEventListener('input',paint);
+  sClear.addEventListener('click',()=>{ sq.value=''; paint(); sq.focus(); });
+  srch.addEventListener('click',e=>{ const ch=e.target.closest('[data-sq]'); if(ch){ sq.value=ch.dataset.sq; paint(); srch.scrollTop=0; return; }
+    const o=e.target.closest('.so'); if(!o) return; const slug=o.dataset.slug;
+    if(typeof openItem==='function'){ closeSearch(); openItem(slug); } else location.href=home+'shop.html#item='+encodeURIComponent(slug); });
+  $('#srchForm').addEventListener('submit',e=>{ e.preventDefault(); const q=sq.value.trim(); if(!q) return; sq.blur(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape'&&srch.classList.contains('on')){ e.stopImmediatePropagation(); closeSearch(); }
+    else if(e.key==='/'&&!srch.classList.contains('on')&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); openSearch(); } },true);
+}
 
 /* newsletter (prototype) */
 const join=$('#join'); if(join) join.addEventListener('submit',e=>{e.preventDefault(); const i=$('#jEmail'); if(!i.checkValidity()){i.reportValidity();return} join.hidden=true; $('#joined').hidden=false;});
