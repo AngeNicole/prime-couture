@@ -238,23 +238,18 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .empty{grid-column:1/-1;padding:48px 24px;text-align:center;border:1px dashed var(--ui-border);border-radius:16px;color:var(--ui-mfg)}
 .empty b{display:block;color:var(--ink);font-weight:500;font-size:18px;margin-bottom:6px}
 
-/* visit band */
-.visit{position:relative;min-height:min(86svh,820px);display:flex;align-items:flex-end;color:var(--ivory);overflow:hidden}
-.visit>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.visit::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(59,15,15,.92) 0%,rgba(59,15,15,.6) 45%,rgba(59,15,15,.05) 100%)}
-.visit .wrap{position:relative;z-index:2;width:100%;padding-block:clamp(72px,8vw,120px)}
-.visit .lede{color:var(--blush);opacity:.95}
-.visit-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
-.visit .meta{margin-top:32px;font-size:14px;letter-spacing:.06em;color:var(--blush)}
 
 /* booking: a shadcn-style card */
 .book{padding-block:clamp(88px,9vw,140px)}
 .book-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:start}
-.book-ph{position:sticky;top:calc(var(--bar) + 24px);margin:0;aspect-ratio:4/5;border-radius:18px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(0,0,0,.6)}
+.book-ph{position:sticky;top:calc(var(--bar) + 24px);margin:0;aspect-ratio:4/5;min-height:560px;border-radius:18px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(0,0,0,.6)}
 .book-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform 2s var(--ease)}
 .book-ph:hover img{transform:scale(1.03)}
-.book-ph figcaption{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:rgba(59,15,15,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:13px;color:var(--ivory)}
-.book-ph figcaption span{padding:3px 10px;border-radius:999px;background:var(--ivory);color:var(--red-deep);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.book-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(59,15,15,0) 30%,rgba(59,15,15,.55) 58%,rgba(59,15,15,.95) 100%);pointer-events:none}
+.book-ph figcaption{position:absolute;z-index:1;left:0;right:0;bottom:0;padding:clamp(24px,3vw,40px)}
+.book-ph .title{font-size:clamp(36px,3.8vw,60px)}
+.book-ph .lede{margin:14px 0 24px;max-width:36ch;font-size:16px}
+.book-ph .meta{margin:20px 0 0;font-size:13px;letter-spacing:.06em;color:var(--blush)}
 .bk{background:var(--paper);color:var(--ink);border-radius:18px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 50px 90px -40px rgba(0,0,0,.6);overflow:hidden}
 .bk-h{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:24px 28px 0}
 .bk-h b{display:block;font-weight:500;font-size:18px;letter-spacing:.01em}
@@ -442,9 +437,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .results-bar .u-input{flex-basis:100%}
   .grid{gap:36px 14px}
   .card .meta{flex-direction:column;gap:2px;font-size:14px}
-  .visit::before{background:linear-gradient(0deg,rgba(59,15,15,.95) 0%,rgba(59,15,15,.6) 55%,rgba(59,15,15,.1) 100%)}
   .book-in{grid-template-columns:1fr}
-  .book-ph{position:relative;top:auto;aspect-ratio:16/11}
+  .book-ph{position:relative;top:auto;aspect-ratio:auto;min-height:520px}
   .item{grid-template-columns:1fr;padding:72px 20px 48px;gap:32px}
   .item-info{position:static}
   .lightbox{padding:16px}
@@ -536,24 +530,18 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
     </div>
   </section>
 
-  <!-- VISIT -->
-  <section class="visit" id="visit" aria-labelledby="vH">
-    <img src="media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp" alt="" loading="lazy">
-    <div class="wrap">
-      <p class="kicker">The atelier · Gishushu, Kigali</p>
-      <h2 class="title" id="vH">Visit the atelier</h2>
-      <p class="lede">Try pieces on, see how they are made and talk through your occasion in person.</p>
-      <div class="visit-acts"><a class="btn btn--light" href="atelier.html">Step inside</a><a class="btn btn--ghost" href="#book">Book a fitting</a></div>
-      <p class="meta">15 KG 599 St, Gishushu · Monday to Saturday, 9am to 8pm</p>
-    </div>
-  </section>
-
   <!-- BOOK -->
-  <section class="book dark" id="book" aria-label="Book a fitting">
+  <section class="book dark" id="book" aria-labelledby="vH">
     <div class="wrap book-in">
-      <figure class="book-ph">
-        <img src="media/full/the-sand-mocha-suits-1.webp" alt="The Sand and Mocha suits, worn side by side" loading="lazy">
-        <figcaption><span>Fittings</span>Monday to Saturday, 9am to 8pm · Gishushu, Kigali</figcaption>
+      <figure class="book-ph" id="visit">
+        <img src="media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp" alt="The fitting lounge at the Prime Couture atelier" loading="lazy">
+        <figcaption>
+          <p class="kicker">The atelier · Gishushu, Kigali</p>
+          <h2 class="title" id="vH">Visit the atelier</h2>
+          <p class="lede">Try pieces on and talk through your occasion in person. Book your fitting here, or look around first.</p>
+          <a class="btn btn--light" href="atelier.html">Step inside</a>
+          <p class="meta">15 KG 599 St · Monday to Saturday, 9am to 8pm</p>
+        </figcaption>
       </figure>
       <div class="bk ui" id="bk" aria-live="polite"></div>
     </div>
