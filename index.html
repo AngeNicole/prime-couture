@@ -97,7 +97,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cur{display:inline-flex;padding:4px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d);margin-top:8px}
 .cur button{height:32px;padding:0 14px;border-radius:999px;font-size:11px;letter-spacing:.12em;color:var(--blush)}
 .cur button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
-.foot-word{font-size:min(200px,calc((100vw - 2 * max(20px,4.5vw)) / 9.3));line-height:.8;letter-spacing:.14em;margin-right:-.14em;text-align:center;white-space:nowrap;color:var(--red-soft);user-select:none;padding-top:24px;margin-bottom:-.06em}
+.foot-word{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(20px,2.4vw,32px);overflow:hidden;user-select:none}
+.foot-word span{display:block;width:max-content;margin:0 auto;font-size:min(170px,calc((100vw - 2 * max(20px,4.5vw)) / 9.6));line-height:1.05;letter-spacing:.16em;padding-left:.16em;white-space:nowrap;background:linear-gradient(180deg,var(--sand) 0%,rgba(205,181,148,.55) 55%,rgba(205,181,148,.12) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:24px calc(92px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
 .foot-legal nav{display:flex;gap:24px}
 .toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
@@ -248,13 +249,12 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 
 /* booking: a shadcn-style card */
 .book{padding-block:clamp(88px,9vw,140px)}
-.book-in{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
-.how{list-style:none;margin:48px 0 0;padding:0;display:grid;gap:20px;counter-reset:how}
-.how li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;color:var(--blush);counter-increment:how}
-.how li::before{content:counter(how);width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--line-d);display:grid;place-items:center;font-size:13px;color:var(--ivory)}
-.how b{display:block;font-weight:400;color:var(--ivory)}
-.book .alt{margin-top:40px;font-size:14px;color:var(--blush)}
-.book .alt a{color:var(--ivory)}
+.book-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:start}
+.book-ph{position:sticky;top:calc(var(--bar) + 24px);margin:0;aspect-ratio:4/5;border-radius:18px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(0,0,0,.6)}
+.book-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform 2s var(--ease)}
+.book-ph:hover img{transform:scale(1.03)}
+.book-ph figcaption{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:rgba(59,15,15,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:13px;color:var(--ivory)}
+.book-ph figcaption span{padding:3px 10px;border-radius:999px;background:var(--ivory);color:var(--red-deep);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 .bk{background:var(--paper);color:var(--ink);border-radius:18px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 50px 90px -40px rgba(0,0,0,.6);overflow:hidden}
 .bk-h{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:24px 28px 0}
 .bk-h b{display:block;font-weight:500;font-size:18px;letter-spacing:.01em}
@@ -324,10 +324,21 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .summary div:last-child{border-bottom:0}
 .summary dt{color:var(--ui-mfg)}
 .summary dd{margin:0;font-weight:500}
-.done{text-align:center;padding:32px 8px}
-.done-mark{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;margin:0 auto 20px}
-.done-mark svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2}
-.done p{color:var(--ui-mfg);max-width:40ch;margin:8px auto 0}
+.done{padding:30px 28px 28px}
+.done .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ui-mfg);margin-bottom:14px}
+.done .eyebrow i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-style:normal}
+.done .eyebrow svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:3}
+.done h3{font-size:clamp(28px,2.6vw,38px);font-weight:400;letter-spacing:.02em;line-height:1.1}
+.next{list-style:none;margin:28px 0 0;padding:0;counter-reset:n}
+.next li{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr);gap:14px;padding-bottom:22px;counter-increment:n}
+.next li::before{content:counter(n);width:30px;height:30px;border-radius:50%;border:1px solid var(--ui-border);background:#fff;display:grid;place-items:center;font-size:13px;font-weight:500}
+.next li.ok::before{content:"\2713";background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.next li:not(:last-child)::after{content:"";position:absolute;left:15px;top:34px;bottom:4px;width:1px;background:var(--ui-border)}
+.next b{display:block;font-weight:500;font-size:16px}
+.next span{display:block;color:var(--ui-mfg);font-size:14px;margin-top:2px}
+.done .alt2{margin:4px 0 0;padding:12px 14px;border-radius:12px;background:var(--ui-muted);font-size:14px;color:var(--ui-mfg)}
+.done .alt2 a{color:var(--ink)}
+.done .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
 
 /* overlays */
 .scrim{position:fixed;inset:0;z-index:80;background:rgba(10,8,6,.45);opacity:0;pointer-events:none;transition:opacity .5s}
@@ -433,6 +444,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .card .meta{flex-direction:column;gap:2px;font-size:14px}
   .visit::before{background:linear-gradient(0deg,rgba(59,15,15,.95) 0%,rgba(59,15,15,.6) 55%,rgba(59,15,15,.1) 100%)}
   .book-in{grid-template-columns:1fr}
+  .book-ph{position:relative;top:auto;aspect-ratio:16/11}
   .item{grid-template-columns:1fr;padding:72px 20px 48px;gap:32px}
   .item-info{position:static}
   .lightbox{padding:16px}
@@ -537,19 +549,12 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   </section>
 
   <!-- BOOK -->
-  <section class="book dark" id="book" aria-labelledby="bH">
+  <section class="book dark" id="book" aria-label="Book a fitting">
     <div class="wrap book-in">
-      <div>
-        <p class="kicker">Book a fitting</p>
-        <h2 class="title" id="bH">Come in for a fitting</h2>
-        <p class="lede">Four quick questions. We write the WhatsApp message for you.</p>
-        <ol class="how">
-          <li><span><b>Send your request</b>It opens in WhatsApp, ready to send.</span></li>
-          <li><span><b>The atelier confirms</b>They reply on WhatsApp with your time.</span></li>
-          <li><span><b>Come to Gishushu</b>15 KG 599 St, Monday to Saturday.</span></li>
-        </ol>
-        <p class="alt">Prefer to call? <a href="https://wa.me/250781178499" target="_blank" rel="noopener">+250 781 178 499</a></p>
-      </div>
+      <figure class="book-ph">
+        <img src="media/full/the-sand-mocha-suits-1.webp" alt="The Sand and Mocha suits, worn side by side" loading="lazy">
+        <figcaption><span>Fittings</span>Monday to Saturday, 9am to 8pm · Gishushu, Kigali</figcaption>
+      </figure>
       <div class="bk ui" id="bk" aria-live="polite"></div>
     </div>
   </section>
@@ -584,7 +589,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
       <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
     </ul><h4 style="margin-top:28px">Prices in</h4><label class="sr" for="curFoot">Currency</label><select class="cur-foot cur-sel" id="curFoot"></select><p style="margin:10px 0 0;font-size:13px;color:var(--blush)">Set in RWF. Other currencies are approximate.</p></div>
   </div>
-  <div class="foot-word" aria-hidden="true">PRIME COUTURE</div>
+  <div class="wrap foot-word" aria-hidden="true"><span>PRIME COUTURE</span></div>
+  <script>(()=>{const box=document.querySelector(".foot-word"),w=box&&box.querySelector("span");if(!w)return;const fit=()=>{w.style.fontSize="100px";const cs=getComputedStyle(box),avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);w.style.fontSize=Math.max(24,Math.floor(100*avail/w.offsetWidth*10)/10)+"px";};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener("resize",fit);})();</script>
   <div class="wrap foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><nav aria-label="Footer"><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram</a><a href="#top">Back to top</a></nav></div>
 </footer>
 
@@ -840,9 +846,12 @@ function calendar(){
 }
 function renderBk(){
   const box=$('#bk');
-  if(sent){ box.innerHTML=`<div class="bk-body done"><div class="done-mark"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><h3>Your request is ready in WhatsApp</h3><p>Press send in WhatsApp. The atelier replies there to confirm ${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}.</p><p>If WhatsApp did not open, message +250 781 178 499.</p><div style="margin-top:24px"><button type="button" class="u-btn outline" data-act="restart">Start a new request</button></div></div>`; return; }
+  if(sent){ box.innerHTML=`<div class="done"><p class="eyebrow"><i><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Request ready in WhatsApp</p><h3>Come in for a fitting</h3><p class="hint" style="color:var(--ui-mfg);margin:10px 0 0">${esc(bk.name?bk.name+', here':'Here')} is what happens next for ${esc(fmtDay(bk.date))}, ${esc(bk.time.toLowerCase())}.</p>
+    <ol class="next"><li class="ok"><div><b>Send your request</b><span>It opened in WhatsApp, ready to send. Press send there.</span></div></li><li><div><b>The atelier confirms</b><span>They reply on WhatsApp with your time.</span></div></li><li><div><b>Come to Gishushu</b><span>15 KG 599 St, Monday to Saturday, 9am to 8pm.</span></div></li></ol>
+    <p class="alt2">WhatsApp did not open? Message or call <a href="https://wa.me/${WA}" target="_blank" rel="noopener">+250 781 178 499</a>.</p>
+    <div class="acts"><a class="u-btn" href="https://www.google.com/maps/search/?api=1&query=15+KG+599+St+Kigali" target="_blank" rel="noopener">Get directions</a><button type="button" class="u-btn outline" data-act="restart">Start a new request</button></div></div>`; return; }
   let h=`<div class="bk-h"><div><b>Book a fitting</b><small>Step ${step} of 4 · ${LABELS[step-1]}</small></div></div><div class="bk-progress" aria-hidden="true">${[1,2,3,4].map(n=>`<span class="${n<=step?'on':''}"></span>`).join('')}</div><div class="bk-body">`;
-  if(step===1) h+=`<h3>What is the occasion?</h3><p class="hint">This helps the atelier prepare the right pieces.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
+  if(step===1) h+=`<h3>What is the occasion?</h3><p class="hint">Four quick questions. We write the WhatsApp message for you.</p><div class="rcards" role="radiogroup" aria-label="Occasion">${OCC.map(([n,d,i])=>`<button type="button" class="rcard" role="radio" data-occ="${n}" aria-checked="${bk.occ===n}">${TICK}${svg(i)}<b>${n}</b><small>${d}</small></button>`).join('')}</div>`;
   if(step===2) h+=`<h3>What would you like made?</h3><p class="hint">Pick the closest. You can talk through the details at the fitting.</p>${bk.piece?`<span class="for-piece">For the ${esc(bk.piece)}${bk.colour?', '+esc(bk.colour.toLowerCase()):''}<button type="button" data-act="unpiece" aria-label="Remove the piece">×</button></span>`:''}<div class="ptiles" role="radiogroup" aria-label="Piece">${CUTS.map(([n,src])=>`<button type="button" class="ptile" role="radio" data-cut="${n}" aria-checked="${bk.cut===n}">${TICK}<div class="im${src?'':' none'}">${src?`<img src="${imgFor(src)}" alt="" loading="lazy">`:'?'}</div><span>${n}</span></button>`).join('')}</div>`;
   if(step===3) h+=`<h3>When would you like to come in?</h3><p class="hint">The atelier is open Monday to Saturday, 9am to 8pm.</p><div class="when">${calendar()}<div><div class="slots" role="radiogroup" aria-label="Time of day">${TIMES.map(([t,r,i])=>`<button type="button" class="rcard" role="radio" data-time="${t}" aria-checked="${bk.time===t}">${TICK}<b>${t}</b><small>${r}</small></button>`).join('')}</div><p class="chosen">${bk.date?`<b>${esc(fmtDay(bk.date))}</b>${bk.time?', '+esc(bk.time.toLowerCase()):', choose a time'}`:'Choose a date on the calendar.'}</p></div></div>`;
   if(step===4) h+=`<h3>Your details</h3><p class="hint">Check your request, then send it on WhatsApp.</p><label class="u-field" id="nameField" for="bkName"><span>Your name</span><input id="bkName" autocomplete="name" placeholder="e.g. Aline Uwase" value="${esc(bk.name)}"></label><p class="err" id="nameErr" hidden>Add your name so the atelier knows who is coming.</p><label class="u-field" for="bkNote"><span>Anything we should know? <em>Optional</em></span><textarea id="bkNote" placeholder="Your date, colours you like, or a piece you saw">${esc(bk.note)}</textarea></label>

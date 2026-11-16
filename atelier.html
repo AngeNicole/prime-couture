@@ -97,7 +97,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cur{display:inline-flex;padding:4px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-d);margin-top:8px}
 .cur button{height:32px;padding:0 14px;border-radius:999px;font-size:11px;letter-spacing:.12em;color:var(--blush)}
 .cur button[aria-pressed="true"]{background:var(--ivory);color:var(--red-deep)}
-.foot-word{font-size:min(200px,calc((100vw - 2 * max(20px,4.5vw)) / 9.3));line-height:.8;letter-spacing:.14em;margin-right:-.14em;text-align:center;white-space:nowrap;color:var(--red-soft);user-select:none;padding-top:24px;margin-bottom:-.06em}
+.foot-word{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(20px,2.4vw,32px);overflow:hidden;user-select:none}
+.foot-word span{display:block;width:max-content;margin:0 auto;font-size:min(170px,calc((100vw - 2 * max(20px,4.5vw)) / 9.6));line-height:1.05;letter-spacing:.16em;padding-left:.16em;white-space:nowrap;background:linear-gradient(180deg,var(--sand) 0%,rgba(205,181,148,.55) 55%,rgba(205,181,148,.12) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot-legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:24px calc(92px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line-d);font-size:13px;color:var(--blush)}
 .foot-legal nav{display:flex;gap:24px}
 .toast{position:fixed;z-index:99;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:999px;font-size:14px;transition:opacity .4s,transform .6s var(--ease);pointer-events:none;white-space:nowrap}
@@ -246,7 +247,8 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
       <li>15 KG 599 St, Gishushu, Kigali</li><li>Monday to Saturday<br>9am to 8pm</li>
     </ul></div>
   </div>
-  <div class="foot-word" aria-hidden="true">PRIME COUTURE</div>
+  <div class="wrap foot-word" aria-hidden="true"><span>PRIME COUTURE</span></div>
+  <script>(()=>{const box=document.querySelector(".foot-word"),w=box&&box.querySelector("span");if(!w)return;const fit=()=>{w.style.fontSize="100px";const cs=getComputedStyle(box),avail=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);w.style.fontSize=Math.max(24,Math.floor(100*avail/w.offsetWidth*10)/10)+"px";};fit();document.fonts&&document.fonts.ready.then(fit);addEventListener("resize",fit);})();</script>
   <div class="wrap foot-legal"><span>© 2026 Prime Couture · Made in Rwanda</span><nav aria-label="Footer"><a href="https://instagram.com/primecouturehq" target="_blank" rel="noopener">Instagram</a><a href="#top">Back to top</a></nav></div>
 </footer>
 
