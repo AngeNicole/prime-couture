@@ -148,6 +148,18 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cur-l{position:fixed;z-index:95;left:0;top:0;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.16em;text-transform:uppercase;pointer-events:none;transform:translate(var(--x,-200px),var(--y,-200px)) scale(0);transition:transform .35s var(--ease)}
 .cur-l.on{transform:translate(var(--x),var(--y)) scale(1)}
 [data-mag]{transition:transform .5s var(--ease)}
+/* ---------- wishlist heart ---------- */
+.heart{position:absolute;z-index:3;top:10px;right:10px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center;box-shadow:0 6px 16px -8px rgba(0,0,0,.35);transition:transform .25s var(--ease)}
+.heart svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;transition:fill .25s,stroke .25s}
+.heart:hover{transform:scale(1.08)}
+.heart[aria-pressed="true"] svg{fill:var(--red);stroke:var(--red)}
+.heart.pop svg{animation:hpop .45s var(--ease)}
+@keyframes hpop{40%{transform:scale(1.35)}}
+.heart.inline{position:static;width:46px;height:46px;flex-shrink:0;background:transparent;box-shadow:inset 0 0 0 1px currentColor}
+.heart.inline.lt{color:var(--ivory)}
+.heart.inline.lt[aria-pressed="true"] svg{fill:var(--ivory);stroke:var(--ivory)}
+#savedOpen svg{fill:none}
+#savedOpen i{background:var(--ivory);color:var(--red-deep)}
 @media (prefers-reduced-motion:reduce){.rvl{clip-path:none;transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}}
 @media (max-width:900px){
@@ -351,35 +363,51 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .u-badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:12px}
 /* layout: sidebar + results */
 .coll{display:grid;grid-template-columns:268px minmax(0,1fr);gap:clamp(28px,4vw,56px);margin-top:48px;align-items:start}
-.side{position:sticky;top:calc(var(--bar) + 20px);max-height:calc(100svh - var(--bar) - 40px);overflow:auto;padding:18px 20px;border:1px solid var(--ui-border);border-radius:16px;background:rgba(255,255,255,.7);scrollbar-width:thin}
-.side-h{position:sticky;top:-18px;z-index:1;margin:-18px -20px 0;padding:18px 20px 8px;background:rgba(251,249,246,.96);border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center;padding-bottom:8px}
-.side-h b{font-weight:500;font-size:16px}
-.fgroup{padding:16px 0;border-top:1px solid var(--ui-border)}
-.fgroup h4{margin:0 0 8px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ui-mfg)}
-.ropt{display:flex;align-items:center;gap:10px;width:calc(100% + 16px);padding:7px 8px;margin:0 -8px;border-radius:8px;font-size:15px;text-align:left;transition:background .2s}
-.ropt:hover{background:var(--ui-muted)}
-.ropt .dot{width:16px;height:16px;border-radius:50%;border:1px solid #BDB3A7;display:grid;place-items:center;flex-shrink:0;background:#fff}
-.ropt[aria-checked="true"] .dot{border-color:var(--ink)}
-.ropt[aria-checked="true"] .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink)}
-.ropt .n,.swopt .n{margin-left:auto;font-size:12px;color:var(--ui-mfg);font-variant-numeric:tabular-nums}
-.ropt.zero,.swopt.zero{opacity:.45}
-.swgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
-.swopt{display:flex;align-items:center;gap:8px;padding:7px 8px;margin:0 -4px;border-radius:8px;font-size:14px;text-align:left;transition:background .2s}
-.swopt:hover{background:var(--ui-muted)}
-.swopt i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);flex-shrink:0}
-.swopt[aria-checked="true"]{background:var(--ui-muted);font-weight:500}
-.swopt[aria-checked="true"] i{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ink)}
-.pnote{margin:8px 0 0;font-size:12px;color:var(--ui-mfg)}
-.side-f{position:sticky;bottom:-18px;z-index:1;display:flex;flex-direction:column;align-items:stretch;gap:8px;text-align:center;margin:8px -20px -18px;padding:14px 20px 18px;border-top:1px solid var(--ui-border);background:rgba(251,249,246,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:0 0 16px 16px}
-.side-note{font-size:13px;color:var(--ui-mfg)}
-.side.dirty .side-note{color:#9A5B12}
-.side-f .u-btn{flex-shrink:0}
-.side.dirty .side-f .u-btn{box-shadow:0 0 0 3px rgba(205,181,148,.45)}
+/* filters: an open column, no box. Who is a three-way switch, colours are swatches, type and price are pills;
+   Apply stays at the foot of the column and wakes up when something changes. */
+.side{position:sticky;top:calc(var(--bar) + 24px);max-height:calc(100svh - var(--bar) - 48px);overflow:auto;scrollbar-width:none;display:flex;flex-direction:column}
+.side::-webkit-scrollbar{display:none}
+.side-h{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:6px}
+.side-h b{font-weight:400;font-size:22px;letter-spacing:-.01em}
 .side-h>div{display:flex;align-items:center;gap:4px}
+.side-h .u-btn.ghost{height:auto;padding:0;font-size:13px;color:var(--ui-mfg);text-decoration:underline;text-underline-offset:3px;background:none}
+.side-h .u-btn.ghost:disabled{opacity:.35;text-decoration:none}
 .side-x{display:none}
-.ropt.new{font-weight:500}
-.ropt.new .dot{border-color:#9A5B12}
-.ropt.new .dot::after{background:#9A5B12}
+.fgroup{padding:18px 0 4px}
+.fgroup h4{margin:0 0 12px;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ui-mfg)}
+.fseg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:4px;border-radius:999px;background:var(--ui-muted)}
+.fseg .fchip{justify-content:center;height:36px;padding:0 8px;box-shadow:none;background:transparent}
+.fseg .fchip[aria-checked="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.fchips{display:flex;flex-wrap:wrap;gap:8px}
+.fchip{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--ui-border);background:#fff;font-size:14px;transition:background .2s,color .2s,box-shadow .2s}
+.fchip span{font-size:11px;color:var(--ui-mfg);font-variant-numeric:tabular-nums}
+.fchip:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.fchip[aria-checked="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.fchip[aria-checked="true"] span{color:rgba(255,255,255,.65)}
+.fchip.new{box-shadow:inset 0 0 0 1.5px var(--red)}
+.fchip[aria-checked="true"].new{background:var(--red)}
+.fchip.zero{opacity:.4}
+.fsw{display:grid;grid-template-columns:repeat(6,32px);gap:10px 12px}
+.sw{position:relative;width:32px;height:32px;padding:0;border-radius:50%;display:grid;place-items:center;transition:transform .2s}
+.sw i{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+.sw:hover{transform:scale(1.08)}
+.sw[aria-checked="true"]{box-shadow:0 0 0 1.5px var(--ink)}
+.sw.new[aria-checked="true"]{box-shadow:0 0 0 1.5px var(--red)}
+.sw.zero{opacity:.3}
+.fsel{margin:12px 0 0;font-size:13px;color:var(--ui-mfg)}
+.fsel b{font-weight:500;color:var(--ink)}
+.side-f{position:sticky;bottom:0;z-index:1;display:flex;flex-direction:column;gap:6px;margin-top:auto;padding:18px 0 4px;background:linear-gradient(transparent,var(--paper) 22%)}
+.side-f .u-btn{width:100%;height:48px;border-radius:999px}
+.side-note{font-size:12px;color:var(--ui-mfg);text-align:center;min-height:16px}
+.side.dirty .side-note{color:var(--red)}
+.side.dirty .side-f .u-btn{background:var(--red);border-color:var(--red)}
+.saved-band{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 22px;border-radius:14px;background:var(--mist)}
+.saved-band b{font-weight:400;font-size:18px}
+.saved-band p{margin:2px 0 0;font-size:14px;color:var(--ui-mfg)}
+#fSaved svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6}
+#fSaved[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+#fSaved[aria-pressed="true"] svg{fill:var(--red);stroke:var(--red)}
+.card{position:relative}
 .results-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .results-bar .u-input{flex:1 1 280px}
 .fbtn{display:none}
@@ -665,6 +693,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   .side.on{transform:none}
   .side #fGroups{flex:1;overflow:auto}
   .side-x{display:grid}
+  .side-x{display:grid}
   .side-f{position:static;margin:12px 0 0;padding:14px 0 0;background:none;border-radius:0}
   .side-f .u-btn{flex:1}
   .side-h{position:static;margin:0;padding:0 0 8px;background:none}
@@ -748,6 +777,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
       <div class="cur-top dd--dark" data-cur></div>
       <a class="icon wa" href="https://wa.me/250781178499" target="_blank" rel="noopener" aria-label="Message the atelier on WhatsApp" title="WhatsApp the atelier"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9.2 9.4c.3 1.9 2.2 4 4.4 4.6l1.2-1.1 1.6.8-.4 1.5c-3.6.2-7.3-3.4-7.3-7.1l1.5-.4.8 1.6z" stroke-width="1.2"/></svg></a>
       <a class="btn btn--light" href="./#book">Book a fitting</a>
+      <a class="icon" id="savedOpen" href="shop.html#saved" aria-label="Your wishlist" title="Wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg><i id="savedCount" data-n="0"></i></a>
       <a class="icon" id="bagOpen" href="shop.html" aria-label="All pieces"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.4l2.2 10.6a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2L20.6 8H5.8"/><circle cx="9.6" cy="19.6" r="1.3"/><circle cx="17.2" cy="19.6" r="1.3"/></svg><i id="bagCount" data-n="0"></i></a>
     </div>
   </div>
@@ -778,7 +808,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
         <div>
           <div class="results-bar" id="results">
             <label class="u-input" for="fSearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="fSearch" type="search" placeholder="Search by name, colour or type" autocomplete="off" enterkeyhint="search"><button type="button" class="clear" id="fSearchClear" hidden>Clear</button></label>
-            <button type="button" class="u-btn outline fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters<span class="u-badge" id="fN" hidden></span></button>
+            <button type="button" class="u-btn outline fbtn" id="fOpen"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters<span class="u-badge" id="fN" hidden></span></button><button type="button" class="u-btn outline" id="fSaved" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg><span class="sv-l">Saved</span><span class="u-badge" id="fSavedN" hidden></span></button>
             <div id="fSort"></div>
             <div class="cur-coll" data-cur></div>
           </div>
@@ -844,7 +874,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
   <div class="item">
     <div class="gallery"><div class="main"><img id="itMain" alt=""></div><div class="thumbs" id="itThumbs"></div></div>
     <div class="item-info"><p class="kicker" id="itCat"></p><h2 id="itTitle"></h2><div class="itprice"><span class="price" id="itPrice"></span><div id="curItem"></div><small id="itNote"></small></div><details class="conv"><summary>See this price in other currencies</summary><ul id="itConv"></ul><p>Set in Rwandan francs. Other currencies are approximate and confirmed by the atelier.</p></details><p class="desc" id="itDesc"></p>
-      <div class="item-acts"><button type="button" class="btn" id="itAdd">Add to bag</button><button type="button" class="link" id="itFit">Book a fitting for this piece</button><button type="button" class="link" id="itAsk">Ask Prime about this piece</button></div></div>
+      <div class="item-acts"><button type="button" class="btn" id="itAdd">Add to bag</button><button type="button" class="heart inline" id="itHeart" data-heart="" aria-pressed="false" aria-label="Save this piece to your wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg></button><button type="button" class="link" id="itFit">Book a fitting for this piece</button><button type="button" class="link" id="itAsk">Ask Prime about this piece</button></div></div>
   </div>
 </aside>
 <aside class="drawer" id="drawer" aria-label="Bag" aria-hidden="true" data-lenis-prevent>
@@ -968,6 +998,17 @@ if(!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
     if(!b) return; const r=b.getBoundingClientRect(); b.classList.add('mag'); b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.3}px)`; },{passive:true});
 }
 
+/* ---------- wishlist: hearts on pieces, a count in the header, a saved view on the collection page ---------- */
+let saved=store.get('saved',[]); const savedHooks=[];
+const isSaved=s=>saved.includes(s);
+const HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg>';
+const heartBtn=(slug,title,cls='')=>`<button type="button" class="heart ${cls}" data-heart="${slug}" aria-pressed="${isSaved(slug)}" aria-label="Save ${esc(title||'this piece')} to your wishlist">${HEART}</button>`;
+function paintSaved(){ $$('[data-heart]').forEach(b=>{ if(b.dataset.heart) b.setAttribute('aria-pressed',isSaved(b.dataset.heart)); });
+  const c=$('#savedCount'); if(c){ c.textContent=saved.length||''; c.dataset.n=saved.length; } savedHooks.forEach(f=>f()); }
+function toggleSave(slug){ const was=isSaved(slug); saved=was?saved.filter(x=>x!==slug):[slug,...saved]; store.set('saved',saved); paintSaved(); toast(was?'Removed from your wishlist':'Saved to your wishlist'); }
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-heart]'); if(!b||!b.dataset.heart) return; e.preventDefault(); e.stopPropagation(); toggleSave(b.dataset.heart); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); },true);
+paintSaved();
+
 const PAGE=document.body.dataset.page;
 const WA='250781178499';
 const P=[{"slug":"the-sand-mocha-suits","title":"The Sand & Mocha Suits","cat":"Double-Breasted","rwf":350000,"desc":"Refined double-breasted suits in warm sand and rich mocha tones, featuring peak lapels, structured shoulders, and matching tailored trousers. A distinguished choice for weddings, business occasions, and formal celebrations. Each suit is sold separately at 350,000 RWF.","card":"media/card/the-sand-mocha-suits.webp","imgs":["media/full/the-sand-mocha-suits-0.webp","media/full/the-sand-mocha-suits-1.webp","media/full/the-sand-mocha-suits-2.webp","media/full/the-sand-mocha-suits-3.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":31},{"slug":"the-silver-muse-set","title":"The Silver Muse Set","cat":"Two-Piece Set","rwf":150000,"desc":"A striking silver-grey printed two-piece featuring a deep V-neck top, flared sleeves, and a sculpted waist with a peplum finish. Matching trousers create an elegant silhouette for special occasions and standout everyday style.","card":"media/card/the-silver-muse-set.webp","imgs":["media/full/the-silver-muse-set-0.webp","media/full/the-silver-muse-set-1.webp","media/full/the-silver-muse-set-2.webp","media/full/the-silver-muse-set-3.webp"],"fam":"Grey","for":"her","sw":"#8D8D8B","views":12},{"slug":"the-sahara-muse-set","title":"The Sahara Muse Set","cat":"Two-Piece Set","rwf":150000,"desc":"An elegant beige two-piece featuring a sculpted peplum top with flared sleeves, a statement front zip, and lace-up waist detailing. Matching trousers complete a refined look for special occasions and elevated everyday wear.","card":"media/card/the-sahara-muse-set.webp","imgs":["media/full/the-sahara-muse-set-0.webp","media/full/the-sahara-muse-set-1.webp","media/full/the-sahara-muse-set-2.webp","media/full/the-sahara-muse-set-3.webp"],"fam":"Sand","for":"her","sw":"#C9AF8A","views":16},{"slug":"the-executive-mocha-2","title":"The Executive Mocha","cat":"Double-Breasted","rwf":350000,"desc":"Command the room in The Executive Mocha, a women’s trouser suit in a rich mocha brown. A double-breasted blazer, defined waist, and tailored trousers create a polished silhouette for business meetings, special occasions, and everything in between.","card":"media/card/the-executive-mocha-2.webp","imgs":["media/full/the-executive-mocha-2-0.webp","media/full/the-executive-mocha-2-1.webp","media/full/the-executive-mocha-2-2.webp"],"fam":"Brown","for":"her","sw":"#6B4430","views":17},{"slug":"kaftan-jacket","title":"Kaftan Complete","cat":"Kaftan","rwf":146000,"desc":"Refined Made in Rwanda Shirt","card":"media/card/kaftan-jacket.webp","imgs":["media/full/kaftan-jacket-0.webp","media/full/kaftan-jacket-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":40},{"slug":"prime-jacket","title":"Prime Jacket","cat":"Jacket","rwf":94000,"desc":"Prime Jacket","card":"media/card/prime-jacket.webp","imgs":["media/full/prime-jacket-0.webp","media/full/prime-jacket-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":29},{"slug":"kaftan-shirt","title":"Kaftan Shirt","cat":"Kaftan","rwf":84000,"desc":"PS 030","card":"media/card/kaftan-shirt.webp","imgs":["media/full/kaftan-shirt-0.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":24},{"slug":"ash-distressed-texture-suit","title":"Ash Distressed Texture Suit","cat":"Single-breasted","rwf":380000,"desc":"A textured ash-grey blazer with a weathered, brushed finish, paired with a slim black tie for an edgy formal statement.","card":"media/card/ash-distressed-texture-suit.webp","imgs":["media/full/ash-distressed-texture-suit-0.webp","media/full/ash-distressed-texture-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":78},{"slug":"sand-contrast-bib-set","title":"Sand Contrast Bib Set","cat":"Kaftan","rwf":146000,"desc":"A beige two-piece set finished with a diagonally stitched brown bib panel for a refined contrast-detail look.","card":"media/card/sand-contrast-bib-set.webp","imgs":["media/full/sand-contrast-bib-set-0.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":82},{"slug":"midnight-laced-bib-shirt","title":"Midnight Laced Bib Shirt","cat":"Kaftan","rwf":84000,"desc":"A navy shirt with a structured bib front and eyelet lace-up detailing, blending utility styling with sharp tailoring.","card":"media/card/midnight-laced-bib-shirt.webp","imgs":["media/full/midnight-laced-bib-shirt-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":113},{"slug":"olive-marble-print-suit","title":"Olive Marble Print Suit","cat":"Single-breasted","rwf":380000,"desc":"A statement two-piece suit in an olive marbled texture, offering an artistic, modern twist on formal tailoring.","card":"media/card/olive-marble-print-suit.webp","imgs":["media/full/olive-marble-print-suit-0.webp","media/full/olive-marble-print-suit-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":66},{"slug":"monochrome-houndstooth-suit","title":"Monochrome Houndstooth Suit","cat":"Single-breasted","rwf":350000,"desc":"A sharp black-and-white houndstooth blazer styled with a crisp white shirt and slim black tie for classic tailored appeal","card":"media/card/monochrome-houndstooth-suit.webp","imgs":["media/full/monochrome-houndstooth-suit-0.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":56},{"slug":"espresso-bib-kaftan","title":"Espresso Bib Kaftan","cat":"Kaftan","rwf":84000,"desc":"A tailored deep brown kaftan featuring a layered bib front with silver snap buttons, paired elegantly with cream trousers.","card":"media/card/espresso-bib-kaftan.webp","imgs":["media/full/espresso-bib-kaftan-0.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":125},{"slug":"sand-weave-linen-kaftan","title":"Sand Weave Linen Kaftan","cat":"Kaftan","rwf":84000,"desc":"A relaxed linen-blend kaftan shirt in warm sand beige, finished with a bold zigzag stitch placket for a modern, textured look.","card":"media/card/sand-weave-linen-kaftan.webp","imgs":["media/full/sand-weave-linen-kaftan-0.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":63},{"slug":"ice-blue-double-breasted-suit","title":"Ice Blue Double-Breasted Suit","cat":"Double-Breasted","rwf":320000,"desc":"A refined double-breasted suit in pale silver-grey, paired here with a paisley tie and pocket square for a sharp, modern formal look.","card":"media/card/ice-blue-double-breasted-suit.webp","imgs":["media/full/ice-blue-double-breasted-suit-0.webp","media/full/ice-blue-double-breasted-suit-1.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":105},{"slug":"ivory-embroidered-kaftan","title":"Ivory Embroidered Kaftan","cat":"Kaftan","rwf":84000,"desc":"IVORY EMBROIDERED KAFTAN","card":"media/card/ivory-embroidered-kaftan.webp","imgs":["media/full/ivory-embroidered-kaftan-0.webp","media/full/ivory-embroidered-kaftan-1.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":77},{"slug":"verdant-double-breated-suit","title":"Verdant Double-Breasted Suit","cat":"Double-Breasted","rwf":380000,"desc":"","card":"media/card/verdant-double-breated-suit.webp","imgs":["media/full/verdant-double-breated-suit-0.webp","media/full/verdant-double-breated-suit-1.webp","media/full/verdant-double-breated-suit-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":135},{"slug":"brown-embellished-gown","title":"Brown Embellished Gown","cat":"Dress","rwf":350000,"desc":"","card":"media/card/brown-embellished-gown.webp","imgs":["media/full/brown-embellished-gown-0.webp","media/full/brown-embellished-gown-1.webp","media/full/brown-embellished-gown-2.webp","media/full/brown-embellished-gown-3.webp"],"fam":"Brown","for":"her","sw":"#6B4430","views":260},{"slug":"prime-essential-prime-jacket-set","title":"Prime Essential Jacket Set","cat":"Jacket complete","rwf":146000,"desc":"","card":"media/card/prime-essential-prime-jacket-set.webp","imgs":["media/full/prime-essential-prime-jacket-set-0.webp","media/full/prime-essential-prime-jacket-set-1.webp","media/full/prime-essential-prime-jacket-set-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":112},{"slug":"maroon-muse-suit","title":"Maroon Muse Suit","cat":"Double-Breasted","rwf":280000,"desc":"","card":"media/card/maroon-muse-suit.webp","imgs":["media/full/maroon-muse-suit-0.webp","media/full/maroon-muse-suit-1.webp","media/full/maroon-muse-suit-2.webp","media/full/maroon-muse-suit-3.webp"],"fam":"Red","for":"her","sw":"#7A2228","views":193},{"slug":"silverline-two-button-executive-suit","title":"Silverline Two Button Executive Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/silverline-two-button-executive-suit.webp","imgs":["media/full/silverline-two-button-executive-suit-0.webp","media/full/silverline-two-button-executive-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":138},{"slug":"ivory-silhouette-ensemble","title":"Ivory Silhouette Ensemble","cat":"Dress","rwf":168000,"desc":"","card":"media/card/ivory-silhouette-ensemble.webp","imgs":["media/full/ivory-silhouette-ensemble-0.webp","media/full/ivory-silhouette-ensemble-1.webp","media/full/ivory-silhouette-ensemble-2.webp","media/full/ivory-silhouette-ensemble-3.webp","media/full/ivory-silhouette-ensemble-4.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":189},{"slug":"the-terra-command-set","title":"The Terra Command Set","cat":"Jacket complete","rwf":198000,"desc":"","card":"media/card/the-terra-command-set.webp","imgs":["media/full/the-terra-command-set-0.webp","media/full/the-terra-command-set-1.webp","media/full/the-terra-command-set-2.webp","media/full/the-terra-command-set-3.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":41},{"slug":"the-eartline-pattern-suit","title":"The Eartline Pattern Suit","cat":"Single-breasted","rwf":380000,"desc":"","card":"media/card/the-eartline-pattern-suit.webp","imgs":["media/full/the-eartline-pattern-suit-0.webp","media/full/the-eartline-pattern-suit-1.webp","media/full/the-eartline-pattern-suit-2.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":40},{"slug":"sage-edge-formal-jacket","title":"Sage Edge Formal Jacket","cat":"Jacket","rwf":86000,"desc":"","card":"media/card/sage-edge-formal-jacket.webp","imgs":["media/full/sage-edge-formal-jacket-0.webp","media/full/sage-edge-formal-jacket-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":82},{"slug":"atlas-heavy-linen-kaftan","title":"Atlas Heavy Linen Kaftan","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/atlas-heavy-linen-kaftan.webp","imgs":["media/full/atlas-heavy-linen-kaftan-0.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":49},{"slug":"umugongo-black-linen-shirt","title":"Umugongo Black Linen Shirt","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/umugongo-black-linen-shirt.webp","imgs":["media/full/umugongo-black-linen-shirt-0.webp","media/full/umugongo-black-linen-shirt-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":159},{"slug":"the-tailored-contrast","title":"The Tailored Contrast","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/the-tailored-contrast.webp","imgs":["media/full/the-tailored-contrast-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":24},{"slug":"desert-phatom-set","title":"Desert Phantom Set","cat":"Safari Suit","rwf":350000,"desc":"","card":"media/card/desert-phatom-set.webp","imgs":["media/full/desert-phatom-set-0.webp","media/full/desert-phatom-set-1.webp","media/full/desert-phatom-set-2.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":32},{"slug":"one-button-sage-green-prime-suit","title":"One Button Sage Green Prime Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/one-button-sage-green-prime-suit.webp","imgs":["media/full/one-button-sage-green-prime-suit-0.webp","media/full/one-button-sage-green-prime-suit-1.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":38},{"slug":"veridian-jacket","title":"Veridian Jacket","cat":"Jacket","rwf":94000,"desc":"","card":"media/card/veridian-jacket.webp","imgs":["media/full/veridian-jacket-0.webp","media/full/veridian-jacket-1.webp","media/full/veridian-jacket-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":92},{"slug":"mocha-apex-suit","title":"Mocha Apex Suit","cat":"Double-Breasted","rwf":350000,"desc":"","card":"media/card/mocha-apex-suit.webp","imgs":["media/full/mocha-apex-suit-0.webp","media/full/mocha-apex-suit-1.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":108},{"slug":"ivory-grace-dress","title":"Ivory Grace Dress","cat":"Dress","rwf":145000,"desc":"","card":"media/card/ivory-grace-dress.webp","imgs":["media/full/ivory-grace-dress-0.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":128},{"slug":"heritage-crest-jacket","title":"Heritage Crest Jacket","cat":"Jacket","rwf":86000,"desc":"","card":"media/card/heritage-crest-jacket.webp","imgs":["media/full/heritage-crest-jacket-0.webp","media/full/heritage-crest-jacket-1.webp","media/full/heritage-crest-jacket-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":60},{"slug":"umugongo-linen-shirt","title":"Umugongo Linen Shirt","cat":"Kaftan","rwf":84000,"desc":"","card":"media/card/umugongo-linen-shirt.webp","imgs":["media/full/umugongo-linen-shirt-0.webp","media/full/umugongo-linen-shirt-1.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":71},{"slug":"ember-sovereign-suit","title":"Ember Sovereign Suit","cat":"Single-breasted","rwf":320000,"desc":"","card":"media/card/ember-sovereign-suit.webp","imgs":["media/full/ember-sovereign-suit-0.webp","media/full/ember-sovereign-suit-1.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":32},{"slug":"the-sovereign-fringe-jacket-set","title":"The Sovereign Fringe Jacket Set","cat":"Jacket complete","rwf":206000,"desc":"A new chapter in modern African tailoring. \n\nDesigned and produced in RWANDA, celebrating the artistry of local craftmanship and cultural heritage.\n\nWhere tradition meets contemporary elegance.","card":"media/card/the-sovereign-fringe-jacket-set.webp","imgs":["media/full/the-sovereign-fringe-jacket-set-0.webp","media/full/the-sovereign-fringe-jacket-set-1.webp","media/full/the-sovereign-fringe-jacket-set-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":63},{"slug":"navy-blue-suit","title":"Navy Blue Suit","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/navy-blue-suit.webp","imgs":["media/full/navy-blue-suit-0.webp"],"fam":"Blue","for":"him","sw":"#5D7590","views":71},{"slug":"dark-grey-classic","title":"Dark Grey Classic","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/dark-grey-classic.webp","imgs":["media/full/dark-grey-classic-0.webp"],"fam":"Grey","for":"him","sw":"#8D8D8B","views":20},{"slug":"copper-noir","title":"Copper Noir","cat":"Kaftan","rwf":78000,"desc":"","card":"media/card/copper-noir.webp","imgs":["media/full/copper-noir-0.webp"],"fam":"Brown","for":"him","sw":"#6B4430","views":52},{"slug":"single-breasted-three-button-suit","title":"Single Breasted Three Button Suit","cat":"Single-breasted","rwf":350000,"desc":"","card":"media/card/single-breasted-three-button-suit.webp","imgs":["media/full/single-breasted-three-button-suit-0.webp","media/full/single-breasted-three-button-suit-1.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":28},{"slug":"the-ivory-vest-set","title":"The Ivory Vest Set","cat":"Vest","rwf":245000,"desc":"","card":"media/card/the-ivory-vest-set.webp","imgs":["media/full/the-ivory-vest-set-0.webp","media/full/the-ivory-vest-set-1.webp"],"fam":"Ivory","for":"her","sw":"#E9E1D2","views":57},{"slug":"essential-noir","title":"Essential Noir","cat":"Double-Breasted","rwf":320000,"desc":"This piece is a classic, minimalist black power suit designed for women. It emphasizes the concept of \"effortless elegance,\" where sharp tailoring and a deep noir tone create a strong, authoritative presence without the need for bold patterns or excessive ornamentation.","card":"media/card/essential-noir.webp","imgs":["media/full/essential-noir-0.webp","media/full/essential-noir-1.webp","media/full/essential-noir-2.webp"],"fam":"Black","for":"her","sw":"#1C1B1A","views":87},{"slug":"the-silent-shadow","title":"The Silent Shadow","cat":"Double-Breasted","rwf":385000,"desc":"This garment is built on precision, with strong shield-like shoulders that give quiet authority, while deep forest green brings controlled strength and black moves through it like a calm shadow, creating a look that doesn’t demand attention but naturally claims it.","card":"media/card/the-silent-shadow.webp","imgs":["media/full/the-silent-shadow-0.webp","media/full/the-silent-shadow-1.webp","media/full/the-silent-shadow-2.webp"],"fam":"Green","for":"him","sw":"#5E6B4E","views":103},{"slug":"the-silent-command","title":"The Silent Command","cat":"Double-Breasted","rwf":555000,"desc":"","card":"media/card/the-silent-command.webp","imgs":["media/full/the-silent-command-0.webp","media/full/the-silent-command-1.webp","media/full/the-silent-command-2.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":35},{"slug":"scarlet-study-no-02","title":"Scarlet Study No. 02","cat":"Double-Breasted","rwf":435000,"desc":"Sharply structured ensemble defined by a disciplined waist, defined shoulders, and a unique curved lapel. The look is balanced by flared trousers with asymmetric layering and anchored by a black high-neck for a high-contrast, elongated silhouette.","card":"media/card/scarlet-study-no-02.webp","imgs":["media/full/scarlet-study-no-02-0.webp","media/full/scarlet-study-no-02-1.webp","media/full/scarlet-study-no-02-2.webp"],"fam":"Red","for":"him","sw":"#7A2228","views":17},{"slug":"ivory-study-no-01","title":"Ivory Study No. 01","cat":"Double-Breasted","rwf":550000,"desc":"Ivory double-breasted suit featuring subtle gold accents. It is designed with a focus on precision and quiet elegance rather than bold ornamentation.","card":"media/card/ivory-study-no-01.webp","imgs":["media/full/ivory-study-no-01-0.webp","media/full/ivory-study-no-01-1.webp","media/full/ivory-study-no-01-2.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":24},{"slug":"black-safari-regent-suit-44d2b2","title":"Black Safari Regent Suit","cat":"Safari Suit","rwf":380000,"desc":"A sleek black safari suit tailored for modern ceremonial elegance","card":"media/card/black-safari-regent-suit-44d2b2.webp","imgs":["media/full/black-safari-regent-suit-44d2b2-0.webp","media/full/black-safari-regent-suit-44d2b2-1.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":50},{"slug":"black-regent-3f53da","title":"Black Regent","cat":"Double-Breasted","rwf":350000,"desc":"A timeless black double-breasted suit tailored for sharp formal authority","card":"media/card/black-regent-3f53da.webp","imgs":["media/full/black-regent-3f53da-0.webp","media/full/black-regent-3f53da-1.webp","media/full/black-regent-3f53da-2.webp","media/full/black-regent-3f53da-3.webp"],"fam":"Black","for":"him","sw":"#1C1B1A","views":52},{"slug":"double-breasted-peak-lapel-suit-dbe2a6","title":"Double-Breasted Peak-Lapel Suit","cat":"Double-Breasted","rwf":380000,"desc":"A whisper of class","card":"media/card/double-breasted-peak-lapel-suit-dbe2a6.webp","imgs":["media/full/double-breasted-peak-lapel-suit-dbe2a6-0.webp","media/full/double-breasted-peak-lapel-suit-dbe2a6-1.webp"],"fam":"Sand","for":"him","sw":"#C9AF8A","views":42},{"slug":"ivory-tuxedo-5b6732","title":"Ivory Tuxedo","cat":"Tuxedo","rwf":380000,"desc":"Ivory tuxedo with bold black lapels","card":"media/card/ivory-tuxedo-5b6732.webp","imgs":["media/full/ivory-tuxedo-5b6732-0.webp"],"fam":"Ivory","for":"him","sw":"#E9E1D2","views":46}];
@@ -1055,16 +1096,16 @@ if($('#hs')){
 /* ---------- hero: the looks. The real photographs, one at a time, the next waiting at the edge; 5 seconds each ---------- */
 if($('#looks')){
   const LINE=[
-    {slug:'silverline-two-button-executive-suit',img:'media/full/silverline-two-button-executive-suit-1.webp',w:'Suits'},
+    {film:'couple',w:'Weddings'},
     {slug:'brown-embellished-gown',img:'media/full/brown-embellished-gown-0.webp',w:'Gowns'},
+    {slug:'silverline-two-button-executive-suit',img:'media/full/silverline-two-button-executive-suit-1.webp',w:'Suits'},
     {slug:'ivory-embroidered-kaftan',img:'media/full/ivory-embroidered-kaftan-1.webp',w:'Kaftans'},
     {slug:'the-sahara-muse-set',img:'media/full/the-sahara-muse-set-0.webp',w:'Sets'},
-    {film:'couple',w:'Weddings'},
     {slug:'prime-essential-prime-jacket-set',img:'media/full/prime-essential-prime-jacket-set-1.webp',w:'Jackets'},
     {slug:'ivory-silhouette-ensemble',img:'media/full/ivory-silhouette-ensemble-0.webp',w:'Dresses'},
-    {slug:'mocha-apex-suit',img:'media/full/mocha-apex-suit-0.webp',w:'Suits'}].filter(x=>x.film?film(x.film):by[x.slug]);
+    {slug:'ivory-tuxedo-5b6732',img:'media/full/ivory-tuxedo-5b6732-0.webp',w:'Tuxedos'}].filter(x=>x.film?film(x.film):by[x.slug]);
   const PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-  const KOF={Suits:'suits',Kaftans:'kaftans',Gowns:'dresses',Dresses:'dresses',Sets:'sets',Jackets:'jackets'};
+  const KOF={Tuxedos:'suits',Suits:'suits',Kaftans:'kaftans',Gowns:'dresses',Dresses:'dresses',Sets:'sets',Jackets:'jackets'};
   const N=LINE.length, DUR=5000, FILM_DUR=9000, pad=n=>String(n).padStart(2,'0');
   const sec=$('#looks'), stage=$('#lkStage'), word=$('#edWord'), rail=$('#lkRail'), info=$('#lkInfo');
   stage.innerHTML=LINE.map((x,i)=>{ if(x.film){ const f=film(x.film); return `<figure class="lk-card film" data-i="${i}"><video muted loop playsinline preload="none" poster="${f.poster}" data-src="${f.src}" aria-label="${esc(f.title)}, a film from a Prime Couture wedding"></video><span class="lk-tag">${PLAY}Film</span><figcaption>Next · ${esc(x.w)}</figcaption></figure>`; }
@@ -1079,11 +1120,12 @@ if($('#looks')){
   const setInfo=p=>{ slug=p.slug; info.classList.add('swap');
     setTimeout(()=>{ if(slug!==p.slug) return; $('#lkK').textContent=`${forName(p.for)} · ${p.cat}`; $('#lkT').textContent=p.title;
       const pr=$('#lkP'); pr.dataset.rwf=p.rwf; pr.textContent=money(p.rwf);
+      const hb=$('#lkHeart'); hb.hidden=false; hb.dataset.heart=p.slug; hb.setAttribute('aria-pressed',isSaved(p.slug));
       const t=TYPES.find(t=>t[0]!=='all'&&inType(p,t[0]))||['all','pieces'], m=$('#lkMore'); m.href=`shop.html#type=${t[0]}`; m.textContent=`See all ${t[1].toLowerCase()}`;
       info.classList.remove('swap'); },reduce?0:320); };
   const setFilm=f=>{ slug=null; info.classList.add('swap');
     setTimeout(()=>{ $('#lkK').textContent='Film · A Prime Couture wedding'; $('#lkT').textContent=f.title; const pr=$('#lkP'); delete pr.dataset.rwf; pr.textContent='Filmed on the day, in pieces cut at the atelier';
-      const m=$('#lkMore'); m.href='shop.html#type=dresses'; m.textContent='See the gowns'; $('#lkView').textContent='Watch the film'; info.classList.remove('swap'); },reduce?0:320); };
+      $('#lkHeart').hidden=true; const m=$('#lkMore'); m.href='shop.html#type=dresses'; m.textContent='See the gowns'; $('#lkView').textContent='Watch the film'; info.classList.remove('swap'); },reduce?0:320); };
   const dur=()=>LINE[cur]&&LINE[cur].film?FILM_DUR:DUR;
   const tick=()=>{ clearTimeout(timer); ths.forEach(t=>{ t.classList.remove('run'); t.style.removeProperty('--dur'); }); if(reduce||paused||!seen||cur<0) return;
     const t=ths[cur]; t.style.setProperty('--dur',dur()/1000+'s'); void t.offsetWidth; t.classList.add('run'); timer=setTimeout(()=>show(cur+1),dur()); };
@@ -1181,7 +1223,7 @@ if($('#grid')){
   const priceLabel=([k,lo,hi])=>k==='all'?'Any price':(lo===0?`Under ${bare(money(hi))}`:(hi===Infinity?`Over ${bare(money(lo))}`:`${bare(money(lo))} to ${bare(money(hi))}`));
   const inPrice=(p,k)=>{const r=PRICES.find(x=>x[0]===k)||PRICES[0]; return p.rwf>=r[1]&&p.rwf<r[2];};
   const KEYS=['who','fam','type','price'], ALL={who:'all',fam:'all',type:'all',price:'all'};
-  let on={...ALL}, draft={...ALL}, q='', sort='views';
+  let on={...ALL}, draft={...ALL}, q='', sort='views', savedOnly=false;
   const grid=$('#grid'), room=$('#collection'), side=$('#side');
   const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   const words=()=>norm(q).split(/\s+/).filter(Boolean);
@@ -1193,12 +1235,14 @@ if($('#grid')){
   const plural=n=>`${n} ${n===1?'piece':'pieces'}`;
   const toResults=()=>go('#results',16);
   function renderFilters(){
-    const radio=(g,k,l,n)=>`<button type="button" class="ropt${n?'':' zero'}${draft[g]===k&&on[g]!==k?' new':''}" role="radio" aria-checked="${draft[g]===k}" data-g="${g}" data-v="${k}"><span class="dot"></span>${l}<span class="n">${n}</span></button>`;
+    const chip=(g,k,l,n)=>`<button type="button" class="fchip${n?'':' zero'}${draft[g]===k&&on[g]!==k?' new':''}" role="radio" aria-checked="${draft[g]===k}" data-g="${g}" data-v="${k}">${l}<span>${n}</span></button>`;
+    const famN=f=>cnt('fam',p=>f==='all'||p.fam===f);
+    const sw=(f,bg,label)=>{ const n=famN(f); return `<button type="button" class="sw${n?'':' zero'}${draft.fam===f&&on.fam!==f?' new':''}" role="radio" aria-checked="${draft.fam===f}" data-g="fam" data-v="${f}" title="${esc(label)} · ${n}" aria-label="${esc(label)}, ${n} pieces"><i style="background:${bg}"></i></button>`; };
     $('#fGroups').innerHTML=
-      `<div class="fgroup" role="radiogroup" aria-label="Who it is for"><h4>Who it is for</h4>${WHO.map(([k,l])=>radio('who',k,l,cnt('who',p=>k==='all'||p.for===k))).join('')}</div>`
-     +`<div class="fgroup" role="radiogroup" aria-label="Colour"><h4>Colour</h4><div class="swgrid"><button type="button" class="swopt" role="radio" aria-checked="${draft.fam==='all'}" data-g="fam" data-v="all"><i style="background:conic-gradient(#E9E1D2,#C9AF8A,#6B4430,#7A2228,#5E6B4E,#5D7590,#8D8D8B,#1C1B1A,#E9E1D2)"></i>All</button>${FAMS.map(([f,sw])=>{const n=cnt('fam',p=>p.fam===f); return `<button type="button" class="swopt${n?'':' zero'}" role="radio" aria-checked="${draft.fam===f}" data-g="fam" data-v="${f}"><i style="background:${sw}"></i>${f}<span class="n">${n}</span></button>`;}).join('')}</div></div>`
-     +`<div class="fgroup" role="radiogroup" aria-label="Type"><h4>Type</h4>${TYPES.map(([k,l])=>radio('type',k,l,cnt('type',p=>inType(p,k)))).join('')}</div>`
-     +`<div class="fgroup" role="radiogroup" aria-label="Price"><h4>Price</h4>${PRICES.map(x=>radio('price',x[0],priceLabel(x),cnt('price',p=>inPrice(p,x[0])))).join('')}<p class="pnote">${cur==='RWF'?'Prices are set in Rwandan francs.':'Converted from Rwandan francs at an approximate rate.'}</p></div>`;
+      `<div class="fgroup" role="radiogroup" aria-label="Who it is for"><h4>Who it is for</h4><div class="fseg">${WHO.map(([k,l])=>chip('who',k,l,cnt('who',p=>k==='all'||p.for===k))).join('')}</div></div>`
+     +`<div class="fgroup" role="radiogroup" aria-label="Colour"><h4>Colour</h4><div class="fsw">${sw('all','conic-gradient(#E9E1D2,#C9AF8A,#6B4430,#7A2228,#5E6B4E,#5D7590,#8D8D8B,#1C1B1A,#E9E1D2)','All colours')}${FAMS.map(([f,c])=>sw(f,c,f)).join('')}</div><p class="fsel"><b>${draft.fam==='all'?'All colours':esc(draft.fam)}</b> · ${plural(famN(draft.fam))}</p></div>`
+     +`<div class="fgroup" role="radiogroup" aria-label="Type"><h4>Type</h4><div class="fchips">${TYPES.map(([k,l])=>chip('type',k,l,cnt('type',p=>inType(p,k)))).join('')}</div></div>`
+     +`<div class="fgroup" role="radiogroup" aria-label="Price"><h4>Price</h4><div class="fchips">${PRICES.map(x=>chip('price',x[0],priceLabel(x),cnt('price',p=>inPrice(p,x[0])))).join('')}</div><p class="pnote">${cur==='RWF'?'Prices are set in Rwandan francs.':'Converted from Rwandan francs at an approximate rate.'}</p></div>`;
     const n=P.filter(p=>pass(p,draft)).length, ch=changed();
     $('#fApply').disabled=!ch; $('#fApply').textContent=ch?`Show ${plural(n)}`:'Apply filters';
     $('#fNote').textContent=ch?'Not applied yet':'';
@@ -1207,11 +1251,13 @@ if($('#grid')){
   }
   const hl=t=>{ let s=esc(t); words().forEach(w=>{ if(w.length>1) s=s.replace(new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>'); }); return s; };
   function renderGrid(){
-    let list=P.filter(p=>pass(p,on));
+    let list=P.filter(p=>pass(p,on)&&(!savedOnly||isSaved(p.slug)));
     if(sort==='low') list.sort((a,b)=>a.rwf-b.rwf); else if(sort==='high') list.sort((a,b)=>b.rwf-a.rwf); else if(sort==='az') list.sort((a,b)=>a.title.localeCompare(b.title)); else list.sort((a,b)=>(b.views||0)-(a.views||0));
-    grid.innerHTML=list.length?list.map((p,i)=>`<div class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms"><button type="button" class="c-open"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button><button type="button" class="c-book" data-book="${p.slug}">Book a fitting</button></div>`).join('')
-      :`<div class="empty"><b>No pieces match</b>Try a different word, or clear a filter. The atelier can also make pieces to order.<div style="margin-top:16px"><button type="button" class="u-btn outline sm" data-clear="all">Clear all filters</button></div></div>`;
-    const tags=[]; if(q) tags.push(['q',`“${q}”`]); if(on.who!=='all') tags.push(['who',WHO.find(x=>x[0]===on.who)[1]]); if(on.fam!=='all') tags.push(['fam',on.fam]); if(on.type!=='all') tags.push(['type',TYPES.find(x=>x[0]===on.type)[1]]); if(on.price!=='all') tags.push(['price',priceLabel(PRICES.find(x=>x[0]===on.price))]);
+    grid.innerHTML=list.length?list.map((p,i)=>`<div class="card" data-slug="${p.slug}" style="animation-delay:${Math.min(i,9)*35}ms">${heartBtn(p.slug,p.title)}<button type="button" class="c-open"><div class="ph"><img src="${p.card}" alt="${esc(p.title)}" loading="lazy">${p.imgs[1]?`<img class="alt" data-src="${p.imgs[1]}" alt="">`:''}</div><div class="meta"><span>${hl(p.title)}</span><span class="price" data-rwf="${p.rwf}">${money(p.rwf)}</span></div><div class="sub"><i style="background:${p.sw}"></i>${esc(p.fam)} · ${esc(p.cat)}<span class="sub-w"> · ${forName(p.for)}</span></div></button><button type="button" class="c-book" data-book="${p.slug}">Book a fitting</button></div>`).join('')
+      :savedOnly?`<div class="empty"><b>Nothing saved yet</b>Tap the heart on any piece to keep it here, then book a fitting to try them on.</div>`:`<div class="empty"><b>No pieces match</b>Try a different word, or clear a filter. The atelier can also make pieces to order.<div style="margin-top:16px"><button type="button" class="u-btn outline sm" data-clear="all">Clear all filters</button></div></div>`;
+    if(savedOnly&&list.length) grid.insertAdjacentHTML('afterbegin',`<div class="saved-band"><div><b>Your wishlist</b><p>Try your saved pieces on at the atelier.</p></div><button type="button" class="u-btn" id="savedBook">Book a fitting for these</button></div>`);
+    $('#fSaved').setAttribute('aria-pressed',savedOnly); const sn=$('#fSavedN'); sn.textContent=saved.length; sn.hidden=!saved.length;
+    const tags=[]; if(savedOnly) tags.push(['saved','Saved pieces']); if(q) tags.push(['q',`“${q}”`]); if(on.who!=='all') tags.push(['who',WHO.find(x=>x[0]===on.who)[1]]); if(on.fam!=='all') tags.push(['fam',on.fam]); if(on.type!=='all') tags.push(['type',TYPES.find(x=>x[0]===on.type)[1]]); if(on.price!=='all') tags.push(['price',priceLabel(PRICES.find(x=>x[0]===on.price))]);
     $('#fActive').innerHTML=`<p class="rcount" aria-live="polite">${plural(list.length)}</p>`+tags.map(([k,l])=>`<span class="tag">${esc(l)}<button type="button" data-clear="${k}" aria-label="Remove ${esc(l)}">×</button></span>`).join('')+(tags.length>1?`<button type="button" class="u-btn ghost sm" data-clear="all">Clear all</button>`:'');
     const nf=KEYS.filter(k=>on[k]!=='all').length; $('#fN').textContent=nf; $('#fN').hidden=!nf;
     if($('#sCount')) $('#sCount').textContent=plural(list.length);
@@ -1220,12 +1266,16 @@ if($('#grid')){
   const render=()=>{ renderFilters(); renderGrid(); };
   const apply=()=>{ on={...draft}; render(); hide(side); toResults(); };
   const setQ=v=>{ q=v; $('#fSearch').value=v; $('#fSearchClear').hidden=!v; };
-  const resetAll=()=>{ on={...ALL}; draft={...ALL}; setQ(''); render(); toResults(); };
+  const resetAll=()=>{ on={...ALL}; draft={...ALL}; savedOnly=false; setQ(''); render(); toResults(); };
+  $('#fSaved').onclick=()=>{ savedOnly=!savedOnly; renderGrid(); toResults(); };
+  savedHooks.push(()=>{ if(savedOnly) return renderGrid(); const sn=$('#fSavedN'); sn.textContent=saved.length; sn.hidden=!saved.length; });
+  grid.addEventListener('click',e=>{ if(!e.target.closest('#savedBook')) return; const ps=saved.map(s=>by[s]).filter(Boolean), ws=[...new Set(ps.map(p=>p.for))];
+    bookFor({who:ws.length>1?'both':ws[0],refs:ps.slice(0,3).map(p=>p.slug)}); });
   $('#fGroups').addEventListener('click',e=>{const b=e.target.closest('[data-g]'); if(!b) return; draft[b.dataset.g]=b.dataset.v; renderFilters();});
   $('#fApply').onclick=apply;
   $('#fClear').onclick=()=>{ draft={...ALL}; renderFilters(); };
   room.addEventListener('click',e=>{const b=e.target.closest('[data-clear]'); if(!b) return; const k=b.dataset.clear;
-    if(k==='all') return resetAll(); if(k==='q') setQ(''); else { on[k]='all'; draft[k]='all'; } render(); toResults(); });
+    if(k==='all') return resetAll(); if(k==='saved'){ savedOnly=false; renderGrid(); return; } if(k==='q') setQ(''); else { on[k]='all'; draft[k]='all'; } render(); toResults(); });
   let qt; $('#fSearch').addEventListener('input',e=>{ clearTimeout(qt); qt=setTimeout(()=>{ q=e.target.value.trim(); $('#fSearchClear').hidden=!q; render(); },140); });
   $('#fSearch').addEventListener('keydown',e=>{ if(e.key==='Escape'&&e.target.value){ e.stopPropagation(); setQ(''); render(); } });
   $('#fSearchClear').onclick=()=>{ setQ(''); render(); $('#fSearch').focus(); };
@@ -1236,7 +1286,7 @@ if($('#grid')){
   grid.onclick=e=>{ const b=e.target.closest('.c-book'); if(b){ const p=by[b.dataset.book]; return bookFor({who:p.for,cut:cutOf(p),refs:[p.slug]}); } const c=e.target.closest('.c-open'); if(c) openItem(c.closest('.card').dataset.slug); };
   onCur(renderFilters);
   /* links like shop.html#who=her&type=dresses set and apply the filters */
-  const fromHash=scroll=>{ const h=new URLSearchParams(location.hash.slice(1)); if(h.has('bag')){ setTimeout(()=>show(drawer),200); return; }
+  const fromHash=scroll=>{ if(location.hash==='#saved'){ savedOnly=true; renderGrid(); if(scroll) toResults(); return; } const h=new URLSearchParams(location.hash.slice(1)); if(h.has('bag')){ setTimeout(()=>show(drawer),200); return; }
     if(![...KEYS,'q'].some(k=>h.has(k))) return;
     KEYS.forEach(k=>{ on[k]=h.get(k)||'all'; }); if(!WHO.some(x=>x[0]===on.who)) on.who='all'; if(!TYPES.some(x=>x[0]===on.type)) on.type='all'; if(!PRICES.some(x=>x[0]===on.price)) on.price='all'; if(!FAMS.some(x=>x[0]===on.fam)) on.fam='all';
     draft={...on}; setQ((h.get('q')||'').trim()); render(); if(scroll) toResults(); };
@@ -1253,7 +1303,7 @@ addEventListener('keydown',e=>{ if(e.key!=='Escape') return; if(lb&&lb.classList
 
 /* item page */
 const sheet=$('#sheet'); let itSlug=null;
-function openItem(slug){ const p=by[slug]; if(!p) return; itSlug=slug;
+function openItem(slug){ const p=by[slug]; if(!p) return; itSlug=slug; const ih=$('#itHeart'); if(ih){ ih.dataset.heart=slug; ih.setAttribute('aria-pressed',isSaved(slug)); }
   $('#itCat').textContent=`${p.cat} · ${forName(p.for)} · ${p.fam}`; $('#itTitle').textContent=p.title; $('#itPrice').dataset.rwf=p.rwf; $('#itPrice').textContent=money(p.rwf);
   $('#itDesc').textContent=p.desc&&p.desc.length>30&&p.desc.toLowerCase()!==p.title.toLowerCase()?p.desc:'Ask the atelier on WhatsApp for fabric and fit details.';
   const imgs=p.imgs.length?p.imgs:[p.card]; $('#itMain').src=imgs[0]; $('#itMain').alt=p.title;

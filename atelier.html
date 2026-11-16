@@ -148,6 +148,18 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 .cur-l{position:fixed;z-index:95;left:0;top:0;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.16em;text-transform:uppercase;pointer-events:none;transform:translate(var(--x,-200px),var(--y,-200px)) scale(0);transition:transform .35s var(--ease)}
 .cur-l.on{transform:translate(var(--x),var(--y)) scale(1)}
 [data-mag]{transition:transform .5s var(--ease)}
+/* ---------- wishlist heart ---------- */
+.heart{position:absolute;z-index:3;top:10px;right:10px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center;box-shadow:0 6px 16px -8px rgba(0,0,0,.35);transition:transform .25s var(--ease)}
+.heart svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;transition:fill .25s,stroke .25s}
+.heart:hover{transform:scale(1.08)}
+.heart[aria-pressed="true"] svg{fill:var(--red);stroke:var(--red)}
+.heart.pop svg{animation:hpop .45s var(--ease)}
+@keyframes hpop{40%{transform:scale(1.35)}}
+.heart.inline{position:static;width:46px;height:46px;flex-shrink:0;background:transparent;box-shadow:inset 0 0 0 1px currentColor}
+.heart.inline.lt{color:var(--ivory)}
+.heart.inline.lt[aria-pressed="true"] svg{fill:var(--ivory);stroke:var(--ivory)}
+#savedOpen svg{fill:none}
+#savedOpen i{background:var(--ivory);color:var(--red-deep)}
 @media (prefers-reduced-motion:reduce){.rvl{clip-path:none;transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}}
 @media (max-width:900px){
@@ -218,6 +230,7 @@ h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
       <div class="cur-top dd--dark" data-cur></div>
       <a class="icon wa" href="https://wa.me/250781178499" target="_blank" rel="noopener" aria-label="Message the atelier on WhatsApp" title="WhatsApp the atelier"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9.2 9.4c.3 1.9 2.2 4 4.4 4.6l1.2-1.1 1.6.8-.4 1.5c-3.6.2-7.3-3.4-7.3-7.1l1.5-.4.8 1.6z" stroke-width="1.2"/></svg></a>
       <a class="btn btn--light" href="./#book">Book a fitting</a>
+      <a class="icon" id="savedOpen" href="shop.html#saved" aria-label="Your wishlist" title="Wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg><i id="savedCount" data-n="0"></i></a>
       <a class="icon" id="bagOpen" href="shop.html" aria-label="All pieces"><svg viewBox="0 0 24 24"><path d="M2.5 4h2.4l2.2 10.6a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2L20.6 8H5.8"/><circle cx="9.6" cy="19.6" r="1.3"/><circle cx="17.2" cy="19.6" r="1.3"/></svg><i id="bagCount" data-n="0"></i></a>
     </div>
   </div>
@@ -409,6 +422,17 @@ if(!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
   document.addEventListener('pointermove',e=>{ const b=e.target.closest&&e.target.closest('[data-mag]'); $$('[data-mag].mag').forEach(x=>{ if(x!==b){ x.classList.remove('mag'); x.style.transform=''; } });
     if(!b) return; const r=b.getBoundingClientRect(); b.classList.add('mag'); b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.3}px)`; },{passive:true});
 }
+
+/* ---------- wishlist: hearts on pieces, a count in the header, a saved view on the collection page ---------- */
+let saved=store.get('saved',[]); const savedHooks=[];
+const isSaved=s=>saved.includes(s);
+const HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.3-4.6-7.3-10.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.3 2.6c0 5.7-7.3 10.3-7.3 10.3z"/></svg>';
+const heartBtn=(slug,title,cls='')=>`<button type="button" class="heart ${cls}" data-heart="${slug}" aria-pressed="${isSaved(slug)}" aria-label="Save ${esc(title||'this piece')} to your wishlist">${HEART}</button>`;
+function paintSaved(){ $$('[data-heart]').forEach(b=>{ if(b.dataset.heart) b.setAttribute('aria-pressed',isSaved(b.dataset.heart)); });
+  const c=$('#savedCount'); if(c){ c.textContent=saved.length||''; c.dataset.n=saved.length; } savedHooks.forEach(f=>f()); }
+function toggleSave(slug){ const was=isSaved(slug); saved=was?saved.filter(x=>x!==slug):[slug,...saved]; store.set('saved',saved); paintSaved(); toast(was?'Removed from your wishlist':'Saved to your wishlist'); }
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-heart]'); if(!b||!b.dataset.heart) return; e.preventDefault(); e.stopPropagation(); toggleSave(b.dataset.heart); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); },true);
+paintSaved();
 
 const SHOW=[
  ['media/full/essential-noir-2.webp','Essential Noir by the shelves','m1'],
